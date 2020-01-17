@@ -1,0 +1,15 @@
+2017/12/05 09:23:03.24: Hello Kitty
+2017/12/05 09:23:17.16: Looking for game on screen...
+2017/12/05 09:23:17.45: ****** Running Just_Seated == True Section ******
+2017/12/05 09:23:17.48: Reseting Table Information
+2017/12/05 09:23:17.81: -------
+2017/12/05 09:23:17.82: Vital_Signs() <-- OCR_My_Bank_Number(Seat_Num) is running....
+2017/12/05 09:23:18.00: internet is connected
+2017/12/05 09:23:18.15: Position (0,720) is clicked
+2017/12/05 09:23:18.54: Game region refounded after Vital_Signs()
+2017/12/05 09:23:19.47: internet is connected
+2017/12/05 09:23:19.49: looking for reconnect button
+2017/12/05 09:23:20.01: I AM IN,BUT MY SEAT IS MANUALLY CHANGED TO: 4
+2017/12/05 09:23:20.02: Check_Mod is On: My seat is manually changed!
+2017/12/05 09:23:20.03: -------
+2017/12/05 09:23:20.31: Screenshot Error: OCR_My_Bank_Number(Error Not Digit!!2) Seat 3

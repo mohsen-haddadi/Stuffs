@@ -1,0 +1,165 @@
+2018/01/20 22:11:54.33: Hello Kitty
+2018/01/20 22:13:18.75: Looking for game on screen...
+2018/01/20 22:13:19.05: ****** Running Just_Seated == True Section ******
+2018/01/20 22:13:19.05: Reseting Table Information
+2018/01/20 22:13:19.92: My Bank is:20000
+2018/01/20 22:13:19.92: Rebuying...
+2018/01/20 22:13:20.47: OCR Others Bank string Seat1: 20,656
+2018/01/20 22:13:20.98: OCR Others Bank string Seat2: 21,860
+2018/01/20 22:13:21.42: OCR Others Bank string Seat3: 20,926
+2018/01/20 22:13:21.70: OCR Others Name string Seat3: abraxa18
+2018/01/20 22:13:21.95: OCR Others Bank string Seat4: 15,138
+2018/01/20 22:13:22.26: OCR Others Name string Seat4: SattyBchRN
+2018/01/20 22:13:22.35: Players Bank dictionary is: {1: 20656, 2: 21860, 3: 20926, 4: 15138, 5: None}
+2018/01/20 22:13:22.36: Players Name dictionary is: {1: None, 2: None, 3: 'abraxa18', 4: 'SattyBchRN', 5: None}
+2018/01/20 22:13:22.36: Looking for cards in Just_Seated == True Section...
+2018/01/20 22:14:09.59: Cards are founded
+2018/01/20 22:14:09.59: ****** First hand Started ******
+2018/01/20 22:14:09.90: My first Card is: A h
+2018/01/20 22:14:09.96: My second Card is: Q c
+2018/01/20 22:14:09.96: Reading my cards took:0.21
+2018/01/20 22:14:09.96: hand5 is True
+2018/01/20 22:14:10.00: Playing Music: 'Bob Marley'
+2018/01/20 22:14:10.00: Looking for light...
+2018/01/20 22:14:11.47: Running PreFlop Section
+2018/01/20 22:14:11.47: Looking for Next sign...
+2018/01/20 22:14:12.11: light is founded
+2018/01/20 22:14:12.37: Check_Mod is On: 3
+2018/01/20 22:14:12.38: Screenshot Error: 7.Red should be True here, check later why this happens
+2018/01/20 22:14:13.52: OCR Bet string Seat3: 100
+2018/01/20 22:14:13.73: Seat3 Call: $100
+2018/01/20 22:14:14.17: OCR Bet string Seat4: 200
+2018/01/20 22:14:14.34: Seat4 Call: $200
+2018/01/20 22:14:14.74: OCR Bet string Seat5: 200
+2018/01/20 22:14:14.91: Seat5 Call: $200
+2018/01/20 22:14:14.91: *Deciding on Preflop*
+2018/01/20 22:14:15.37: Check_Button is clicked
+2018/01/20 22:14:16.38: Looking for Next sign...
+2018/01/20 22:14:21.40: Reading Flop Cards...
+2018/01/20 22:14:21.54: 1th card is: 4 c
+2018/01/20 22:14:21.87: 2th card is: 5 s
+2018/01/20 22:14:22.03: 3th card is: 8 d
+2018/01/20 22:14:22.04: Reading Flop cards took:0.6
+2018/01/20 22:14:22.04: Running Flop Section
+2018/01/20 22:14:22.04: Looking for Next sign...
+2018/01/20 22:14:24.59: light is founded
+2018/01/20 22:14:25.76: OCR Bet string Seat4: 200
+2018/01/20 22:14:25.94: Seat4 Raise: $200
+2018/01/20 22:14:26.12: *Deciding on Flop*
+2018/01/20 22:14:26.57: Fold_Button is clicked
+2018/01/20 22:14:27.57: Looking for Next sign...
+2018/01/20 22:14:29.42: Reading Turn Card
+2018/01/20 22:14:29.69: 4th card is: J s
+2018/01/20 22:14:29.70: Reading Turn card took:0.27
+2018/01/20 22:14:29.70: Running Turn Section
+2018/01/20 22:14:29.71: Looking for Next sign...
+2018/01/20 22:14:33.67: Reading River Card
+2018/01/20 22:14:33.84: 5th card is: A s
+2018/01/20 22:14:33.85: Reading River card took:0.17
+2018/01/20 22:14:33.85: Running River Section
+2018/01/20 22:14:33.85: Looking for Next sign...
+2018/01/20 22:14:39.50: Seat 4 won the game!
+2018/01/20 22:14:39.51: -------- Hand Ended --------
+2018/01/20 22:14:39.51: Check_Mod is reset to False
+2018/01/20 22:14:39.51: Reseting Table Information
+2018/01/20 22:14:39.79: My Bank is:19800
+2018/01/20 22:14:39.80: Rebuying...
+2018/01/20 22:14:45.08: OCR Others Bank string Seat2: 19,360
+2018/01/20 22:14:45.46: OCR Others Name string Seat2: Qinnykid
+2018/01/20 22:14:45.76: OCR Others Bank string Seat4: 14,317
+2018/01/20 22:14:46.00: Players Bank dictionary is: {1: None, 2: 19360, 3: None, 4: 14317, 5: None}
+2018/01/20 22:14:46.01: Players Name dictionary is: {1: None, 2: 'Qinnykid', 3: None, 4: None, 5: None}
+2018/01/20 22:14:46.69: -------- New Hand Started --------
+2018/01/20 22:14:46.70: Coins are Founded
+2018/01/20 22:14:46.92: Seat 4 is at Small Blind Seat
+2018/01/20 22:14:47.16: Seat 5 is at Big Blind Seat
+2018/01/20 22:14:47.41: Seat 2 is at Dealer Seat
+2018/01/20 22:14:47.41: Looking for cards...
+2018/01/20 22:14:48.06: Cards are founded
+2018/01/20 22:14:48.32: My first Card is: K h
+2018/01/20 22:14:48.43: My second Card is: 10 h
+2018/01/20 22:14:48.44: Reading my cards took:0.20
+2018/01/20 22:14:48.44: Looking for light...
+2018/01/20 22:14:52.19: Running PreFlop Section
+2018/01/20 22:14:52.19: Looking for Next sign...
+2018/01/20 22:14:52.80: light is founded
+2018/01/20 22:14:53.08: Check_Mod is On: 3
+2018/01/20 22:14:53.08: Screenshot Error: 7.Red should be True here, check later why this happens
+2018/01/20 22:14:54.05: OCR Bet string Seat2: 200
+2018/01/20 22:14:54.23: Seat2 Call: $200
+2018/01/20 22:14:54.82: OCR Bet string Seat4: 200
+2018/01/20 22:14:55.01: Seat4 Call: $200
+2018/01/20 22:14:55.48: OCR Bet string Seat5: 200
+2018/01/20 22:14:55.66: Seat5 Call: $200
+2018/01/20 22:14:55.66: *Deciding on Preflop*
+2018/01/20 22:14:56.13: Check_Button is clicked
+2018/01/20 22:14:57.13: Looking for Next sign...
+2018/01/20 22:14:57.77: Reading Flop Cards...
+2018/01/20 22:14:57.89: 1th card is: 8 c
+2018/01/20 22:14:57.95: 2th card is: 6 h
+2018/01/20 22:14:58.33: 3th card is: K s
+2018/01/20 22:14:58.34: Reading Flop cards took:0.5
+2018/01/20 22:14:58.43: Running Flop Section
+2018/01/20 22:14:58.43: Looking for Next sign...
+2018/01/20 22:14:59.69: light is founded
+2018/01/20 22:15:00.99: OCR Bet string Seat4: 200
+2018/01/20 22:15:01.19: Seat4 Raise: $200
+2018/01/20 22:15:01.38: *Deciding on Flop*
+2018/01/20 22:15:01.84: Fold_Button is clicked
+2018/01/20 22:15:02.85: Looking for Next sign...
+2018/01/20 22:15:04.07: Reading Turn Card
+2018/01/20 22:15:04.12: 4th card is: 2 d
+2018/01/20 22:15:04.12: Reading Turn card took:0.04
+2018/01/20 22:15:04.12: Running Turn Section
+2018/01/20 22:15:04.12: Looking for Next sign...
+2018/01/20 22:15:09.81: Reading River Card
+2018/01/20 22:15:09.90: 5th card is: 3 s
+2018/01/20 22:15:09.90: Reading River card took:0.0
+2018/01/20 22:15:09.91: Running River Section
+2018/01/20 22:15:09.91: Looking for Next sign...
+2018/01/20 22:15:17.01: Seat 4 won the game!
+2018/01/20 22:15:17.02: -------- Hand Ended --------
+2018/01/20 22:15:17.02: Check_Mod is reset to False
+2018/01/20 22:15:17.02: Reseting Table Information
+2018/01/20 22:15:17.29: My Bank is:19600
+2018/01/20 22:15:17.29: Rebuying...
+2018/01/20 22:15:22.18: OCR Others Bank string Seat1: 19,800
+2018/01/20 22:15:22.64: OCR Others Bank string Seat2: 16,760
+2018/01/20 22:15:23.00: OCR Others Name string Seat2: Qinnykid
+2018/01/20 22:15:23.23: OCR Others Bank string Seat3: 19,800
+2018/01/20 22:15:23.67: OCR Others Bank string Seat4: 17,217
+2018/01/20 22:15:23.97: OCR Others Name string Seat4: SattyBchRN
+2018/01/20 22:15:24.07: Players Bank dictionary is: {1: 19800, 2: 16760, 3: 19800, 4: 17217, 5: None}
+2018/01/20 22:15:24.08: Players Name dictionary is: {1: None, 2: 'Qinnykid', 3: None, 4: 'SattyBchRN', 5: None}
+2018/01/20 22:15:24.74: -------- New Hand Started --------
+2018/01/20 22:15:24.74: Coins are Founded
+2018/01/20 22:15:24.97: Seat 5 is at Small Blind Seat
+2018/01/20 22:15:25.21: Seat 1 is at Big Blind Seat
+2018/01/20 22:15:25.43: Seat 4 is at Dealer Seat
+2018/01/20 22:15:25.43: Looking for cards...
+2018/01/20 22:15:26.05: Cards are founded
+2018/01/20 22:15:26.28: My first Card is: Q c
+2018/01/20 22:15:26.37: My second Card is: 9 s
+2018/01/20 22:15:26.37: Reading my cards took:0.1
+2018/01/20 22:15:26.37: Looking for light...
+2018/01/20 22:15:28.53: Running PreFlop Section
+2018/01/20 22:15:28.53: Looking for Next sign...
+2018/01/20 22:15:29.14: light is founded
+2018/01/20 22:15:29.88: OCR Bet string Seat1: 200
+2018/01/20 22:15:30.06: Seat1 Call: $200
+2018/01/20 22:15:30.66: OCR Bet string Seat3: 200
+2018/01/20 22:15:30.86: Seat3 Call: $200
+2018/01/20 22:15:31.31: OCR Bet string Seat4: 400
+2018/01/20 22:15:31.49: Seat4 Raise: $400
+2018/01/20 22:15:31.95: OCR Bet string Seat5: 100
+2018/01/20 22:15:32.14: Seat5 Call: $100
+2018/01/20 22:15:32.14: *Deciding on Preflop*
+2018/01/20 22:15:32.64: Fold_Button is clicked
+2018/01/20 22:15:33.64: Looking for Next sign...
+2018/01/20 22:15:41.23: Reading Flop Cards...
+2018/01/20 22:15:41.35: 1th card is: J c
+2018/01/20 22:15:41.40: 2th card is: 8 d
+2018/01/20 22:15:41.44: 3th card is: A c
+2018/01/20 22:15:41.44: Reading Flop cards took:0.21
+2018/01/20 22:15:41.45: Running Flop Section
+2018/01/20 22:15:41.45: Looking for Next sign...

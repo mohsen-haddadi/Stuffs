@@ -1,0 +1,42 @@
+2017/12/05 09:44:52.26: Hello Kitty
+2017/12/05 09:45:04.94: Looking for game on screen...
+2017/12/05 09:45:05.27: ****** Running Just_Seated == True Section ******
+2017/12/05 09:45:05.27: Reseting Table Information
+2017/12/05 09:45:05.56: -------
+2017/12/05 09:45:05.56: Vital_Signs() <-- OCR_My_Bank_Number(Seat_Num) is running....
+2017/12/05 09:45:05.82: internet is connected
+2017/12/05 09:45:05.95: Position (0,720) is clicked
+2017/12/05 09:45:06.37: Game region refounded after Vital_Signs()
+2017/12/05 09:45:06.56: After Vital_Signs() --> Just_Seated is True.
+2017/12/05 09:45:06.67: I_am_back_Button is clicked
+2017/12/05 09:45:06.68: Check_Mod is On: Click_on_I_am_back_Button()
+2017/12/05 09:45:07.40: internet is connected
+2017/12/05 09:45:07.42: looking for reconnect button
+2017/12/05 09:45:08.07: I AM IN,BUT MY SEAT IS MANUALLY CHANGED TO: 4
+2017/12/05 09:45:08.09: Check_Mod is On: My seat is manually changed!
+2017/12/05 09:45:08.10: -------
+2017/12/05 09:45:08.34: My Bank is:34184
+2017/12/05 09:45:08.34: Rebuying...
+2017/12/05 09:45:08.96: Players Info is not Read
+2017/12/05 09:45:08.97: Looking for cards in Just_Seated == True Section...
+2017/12/05 09:45:09.09: Check_Mod is On: this is Ok! Becuase i may start program from middle of the game
+2017/12/05 09:45:09.10: Cards are founded
+2017/12/05 09:45:09.11: ****** First hand Started ******
+2017/12/05 09:45:09.30: My first Card is: 7 c
+2017/12/05 09:45:09.36: My second Card is: K h
+2017/12/05 09:45:09.37: Reading my cards took:0.12
+2017/12/05 09:45:09.38: Looking for light...
+2017/12/05 09:45:10.06: Check_Mod is On: 1.5
+2017/12/05 09:45:10.07: Screenshot Error: 6.5 Pre Flop is Jumped, game must lagged
+2017/12/05 09:45:11.31: Running PreFlop Section
+2017/12/05 09:45:11.32: Running Flop Section
+2017/12/05 09:45:11.32: Looking for Next sign...
+2017/12/05 09:45:11.89: Reading Turn Card
+2017/12/05 09:45:12.05: 4th card is: K s
+2017/12/05 09:45:12.06: Reading Turn card took:0.15
+2017/12/05 09:45:12.07: Running Turn Section
+2017/12/05 09:45:12.07: Looking for Next sign...
+2017/12/05 09:45:12.71: light is founded
+2017/12/05 09:45:13.81: *Deciding on Turn*
+2017/12/05 09:45:14.27: Check_Button is clicked
+2017/12/05 09:45:15.28: Looking for Next sign...

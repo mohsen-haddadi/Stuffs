@@ -1,0 +1,91 @@
+2017/11/19 03:15:39.43: Hello Kitty
+2017/11/19 03:15:57.16: Looking for game on screen...
+2017/11/19 03:15:57.53: ****** Running Just_Seated == True Section ******
+2017/11/19 03:15:57.53: Reseting Table Information
+2017/11/19 03:15:58.03: My Bank is:800000000
+2017/11/19 03:15:58.03: Rebuying...
+2017/11/19 03:15:58.75: Players Bank dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None}
+2017/11/19 03:15:58.75: Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None}
+2017/11/19 03:15:58.75: Looking for cards in Just_Seated == True Section...
+2017/11/19 03:17:58.85: -------
+2017/11/19 03:17:58.85: Vital_Signs() <-- 1 is running....
+2017/11/19 03:17:59.35: Position (0,720) is clicked
+2017/11/19 03:17:59.35: Looking for game on screen...
+2017/11/19 03:17:59.78: Game region refounded after Vital_Signs()
+2017/11/19 03:18:00.16: I am In
+2017/11/19 03:18:00.16: -------
+2017/11/19 03:18:58.82: -------
+2017/11/19 03:18:58.83: Vital_Signs() <-- 1 is running....
+2017/11/19 03:18:59.34: Position (0,720) is clicked
+2017/11/19 03:18:59.38: Looking for game on screen...
+2017/11/19 03:18:59.92: Game region refounded after Vital_Signs()
+2017/11/19 03:19:00.32: I am In
+2017/11/19 03:19:00.32: -------
+2017/11/19 03:19:58.83: -------
+2017/11/19 03:19:58.83: Vital_Signs() <-- 1 is running....
+2017/11/19 03:19:59.27: Position (0,720) is clicked
+2017/11/19 03:19:59.27: Looking for game on screen...
+2017/11/19 03:19:59.67: Game region refounded after Vital_Signs()
+2017/11/19 03:19:59.99: I am In
+2017/11/19 03:19:59.99: -------
+2017/11/19 03:20:56.80: Cards are founded
+2017/11/19 03:20:56.81: ****** First hand Started ******
+2017/11/19 03:20:58.74: My first Card is: 6 d
+2017/11/19 03:21:03.52: My second Card is: Q s
+2017/11/19 03:21:03.52: Looking for light...
+2017/11/19 03:21:04.94: light is founded
+2017/11/19 03:21:05.59: Seat2 Call: $10000000
+2017/11/19 03:21:06.26: *Deciding on Preflop*
+2017/11/19 03:21:06.56: Check_Mod is On: check_fold()(It's already True)
+2017/11/19 03:21:06.57: -------
+2017/11/19 03:21:06.57: Vital_Signs() <-- check_fold() is running....
+2017/11/19 03:21:07.09: Position (0,720) is clicked
+2017/11/19 03:21:07.10: Looking for game on screen...
+2017/11/19 03:21:07.41: Game region refounded after Vital_Signs()
+2017/11/19 03:21:07.61: After Vital_Signs() --> Just_Seated is True.
+2017/11/19 03:21:07.72: I_am_back_Button is clicked
+2017/11/19 03:21:07.72: Check_Mod is On: Click_on_I_am_back_Button()
+2017/11/19 03:21:08.02: I am In
+2017/11/19 03:21:08.02: -------
+2017/11/19 03:21:09.27: ****** Running Just_Seated == True Section ******
+2017/11/19 03:21:09.28: Check_Mod is reset to False
+2017/11/19 03:21:09.28: Reseting Table Information
+2017/11/19 03:21:09.58: My Bank is:790000000
+2017/11/19 03:21:09.58: Rebuying...
+2017/11/19 03:21:13.01: Easy_OCR_Others_Bank_Number(A Gift Over Bank Number) Seat 5 
+2017/11/19 03:21:13.24: Players Bank dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None}
+2017/11/19 03:21:13.24: Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None}
+2017/11/19 03:21:13.24: Looking for cards in Just_Seated == True Section...
+2017/11/19 03:21:13.99: Cards are founded
+2017/11/19 03:21:14.00: ****** First hand Started ******
+2017/11/19 03:21:15.07: My first Card is: 10 c
+2017/11/19 03:21:16.46: My second Card is: 2 d
+2017/11/19 03:21:16.46: Looking for light...
+2017/11/19 03:21:17.84: light is founded
+2017/11/19 03:21:18.50: Seat2 Call: $20000000
+2017/11/19 03:21:19.41: Seat5 Call: $20000000
+2017/11/19 03:21:19.41: *Deciding on Preflop*
+2017/11/19 03:21:19.94: Check_Button is clicked
+2017/11/19 03:21:20.94: Running PreFlop Section
+2017/11/19 03:21:20.95: Looking for Next sign...
+2017/11/19 03:21:21.69: Reading Flop Cards...
+2017/11/19 03:21:23.19: 1th card is: K c
+2017/11/19 03:21:26.48: 2th card is: 5 h
+2017/11/19 03:21:30.13: 3th card is: Q h
+2017/11/19 03:21:30.14: Running Flop Section
+2017/11/19 03:21:30.14: Looking for Next sign...
+2017/11/19 03:21:30.83: light is founded
+2017/11/19 03:21:32.00: *Deciding on Flop*
+2017/11/19 03:21:32.35: Check_Mod is On: check_fold()(It's already True)
+2017/11/19 03:21:32.35: -------
+2017/11/19 03:21:32.36: Vital_Signs() <-- check_fold() is running....
+2017/11/19 03:21:32.85: Position (0,720) is clicked
+2017/11/19 03:21:32.86: Looking for game on screen...
+2017/11/19 03:21:33.30: Game region refounded after Vital_Signs()
+2017/11/19 03:21:33.46: After Vital_Signs() --> Check_Mod is True.
+2017/11/19 03:21:33.56: I_am_back_Button is clicked
+2017/11/19 03:21:33.56: Check_Mod is On: Click_on_I_am_back_Button()
+2017/11/19 03:21:34.04: I am Out
+2017/11/19 03:21:34.04: Searching for a seat to sit in
+2017/11/19 03:21:34.66: Exit_Button is clicked
+2017/11/19 03:21:34.66: Just_Seated is None.

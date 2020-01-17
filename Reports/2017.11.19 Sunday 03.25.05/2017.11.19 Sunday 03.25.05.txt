@@ -1,0 +1,7 @@
+2017/11/19 03:25:05.80: Hello Kitty
+2017/11/19 03:25:39.07: Looking for game on screen...
+2017/11/19 03:25:39.41: ****** Running Just_Seated == True Section ******
+2017/11/19 03:25:39.41: Reseting Table Information
+2017/11/19 03:25:40.00: My Bank is:920000000
+2017/11/19 03:25:40.00: Rebuying...
+2017/11/19 03:25:41.67: Players Bank dictionary is: {1: None, 2: None, 3: 1838000000, 4: None, 5: None}

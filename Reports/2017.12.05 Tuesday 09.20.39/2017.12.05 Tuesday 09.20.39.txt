@@ -1,0 +1,11 @@
+2017/12/05 09:20:39.82: Hello Kitty
+2017/12/05 09:20:42.40: Looking for game on screen...
+2017/12/05 09:20:42.69: ****** Running Just_Seated == True Section ******
+2017/12/05 09:20:42.71: Reseting Table Information
+2017/12/05 09:20:43.03: -------
+2017/12/05 09:20:43.04: Vital_Signs() <-- OCR_My_Bank_Number(Seat_Num) is running....
+2017/12/05 09:20:43.23: internet is connected
+2017/12/05 09:20:43.35: Position (0,720) is clicked
+2017/12/05 09:20:43.81: Game region refounded after Vital_Signs()
+2017/12/05 09:20:44.92: internet is connected
+2017/12/05 09:20:44.97: looking for reconnect button

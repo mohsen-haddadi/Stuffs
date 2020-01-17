@@ -1,0 +1,697 @@
+2017/12/14 22:40:06.35: Hello Kitty
+2017/12/14 22:41:17.84: Looking for game on screen...
+2017/12/14 22:41:18.24: ****** Running Just_Seated == True Section ******
+2017/12/14 22:41:18.24: Reseting Table Information
+2017/12/14 22:41:20.13: OCR My Bank string Seat1: 
+2017/12/14 22:41:20.17: -------
+2017/12/14 22:41:20.17: Vital_Signs() <-- OCR_My_Bank_Number(Seat_Num) is running....
+2017/12/14 22:41:22.75: Internet is Disconnected, waiting to reconect...
+2017/12/14 22:41:25.64: internet is connected
+2017/12/14 22:41:25.64: Internet is Connected Back!
+2017/12/14 22:41:40.64: looking for reconnect button
+2017/12/14 22:41:41.25: Screenshot Error: No reconnect button founded
+2017/12/14 22:41:41.73: Position (0,720) is clicked
+2017/12/14 22:41:42.14: Game region refounded after Vital_Signs()
+2017/12/14 22:41:42.81: I am Out
+2017/12/14 22:41:42.81: Searching for a seat to sit in
+2017/12/14 22:41:43.19: Available_Seat 3 is clicked
+2017/12/14 22:41:43.19: Sit_In() --> Just_Seated is True.
+2017/12/14 22:41:55.65: Buy_In_Button is clicked
+2017/12/14 22:41:55.65: Screenshot Error: Rebuyed
+2017/12/14 22:41:55.98: -------
+2017/12/14 22:41:56.18: Screenshot Error: OCR_My_Bank_Number(Error Not Digit!!2) Seat 3
+2017/12/14 22:41:59.13: OCR Others Bank string Seat1: 100,000
+2017/12/14 22:41:59.49: OCR Others Name string Seat1: 
+2017/12/14 22:41:59.82: OCR Others Bank string Seat2: 90,460
+2017/12/14 22:42:00.20: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:42:00.58: OCR Others Bank string Seat5: 1 13,645
+2017/12/14 22:42:00.82: Players Bank dictionary is: {1: 100000, 2: 90460, 3: None, 4: None, 5: 113645}
+2017/12/14 22:42:00.84: Players Name dictionary is: {1: '', 2: 'Arenda’s iPad', 3: None, 4: None, 5: None}
+2017/12/14 22:42:00.84: Looking for cards in Just_Seated == True Section...
+2017/12/14 22:42:01.29: Cards are founded
+2017/12/14 22:42:01.30: ****** First hand Started ******
+2017/12/14 22:42:01.56: My first Card is: 4 c
+2017/12/14 22:42:01.67: My second Card is: 2 s
+2017/12/14 22:42:01.69: Reading my cards took:0.2
+2017/12/14 22:42:01.69: Looking for light...
+2017/12/14 22:42:04.52: light is founded
+2017/12/14 22:42:04.97: OCR Bet string Seat1: 1,000
+2017/12/14 22:42:05.17: Seat1 Call: $1000
+2017/12/14 22:42:05.60: OCR Bet string Seat2: 1,000
+2017/12/14 22:42:05.77: Seat2 Call: $1000
+2017/12/14 22:42:06.20: OCR Bet string Seat3: 1,000
+2017/12/14 22:42:06.37: Seat3 Call: $1000
+2017/12/14 22:42:07.02: OCR Bet string Seat5: 500
+2017/12/14 22:42:07.22: Seat5 Call: $500
+2017/12/14 22:42:07.22: *Deciding on Preflop*
+2017/12/14 22:42:07.71: Check_Button is clicked
+2017/12/14 22:42:08.71: Running PreFlop Section
+2017/12/14 22:42:08.71: Looking for Next sign...
+2017/12/14 22:42:14.10: Reading Flop Cards...
+2017/12/14 22:42:14.47: 1th card is: A s
+2017/12/14 22:42:14.57: 2th card is: Q c
+2017/12/14 22:42:14.80: 3th card is: 5 h
+2017/12/14 22:42:14.80: Reading Flop cards took:0.6
+2017/12/14 22:42:14.80: Running Flop Section
+2017/12/14 22:42:14.81: Looking for Next sign...
+2017/12/14 22:42:18.14: light is founded
+2017/12/14 22:42:19.31: *Deciding on Flop*
+2017/12/14 22:42:19.79: Check_Button is clicked
+2017/12/14 22:42:20.79: Looking for Next sign...
+2017/12/14 22:42:28.70: light is founded
+2017/12/14 22:42:30.12: OCR Bet string Seat5: 1,000
+2017/12/14 22:42:30.32: Seat5 Raise: $1000
+2017/12/14 22:42:30.32: *Deciding on Flop*
+2017/12/14 22:42:30.79: Fold_Button is clicked
+2017/12/14 22:42:31.79: Looking for Next sign...
+2017/12/14 22:42:33.08: Running Turn Section
+2017/12/14 22:42:33.08: Running River Section
+2017/12/14 22:42:33.44: Seat 5 won the game!
+2017/12/14 22:42:33.44: -------- Hand Ended --------
+2017/12/14 22:42:33.44: Reseting Table Information
+2017/12/14 22:42:33.73: My Bank is:39000
+2017/12/14 22:42:33.74: Rebuying...
+2017/12/14 22:42:38.53: OCR Others Bank string Seat1: 99,000
+2017/12/14 22:42:38.97: OCR Others Bank string Seat2: 89,460
+2017/12/14 22:42:39.31: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:42:39.67: OCR Others Bank string Seat5: 117,145
+2017/12/14 22:42:39.93: OCR Others Name string Seat5: Richard
+2017/12/14 22:42:39.97: Players Bank dictionary is: {1: 99000, 2: 89460, 3: None, 4: None, 5: 117145}
+2017/12/14 22:42:39.97: Players Name dictionary is: {1: None, 2: 'Arenda’s iPad', 3: None, 4: None, 5: 'Richard'}
+2017/12/14 22:42:42.63: -------- New Hand Started --------
+2017/12/14 22:42:42.64: Coins are Founded
+2017/12/14 22:42:42.87: Seat 1 is at Small Blind Seat
+2017/12/14 22:42:43.09: Seat 2 is at Big Blind Seat
+2017/12/14 22:42:43.31: Seat 5 is at Dealer Seat
+2017/12/14 22:42:43.31: Looking for cards...
+2017/12/14 22:42:43.97: Cards are founded
+2017/12/14 22:42:44.23: My first Card is: Q d
+2017/12/14 22:42:44.31: My second Card is: 9 d
+2017/12/14 22:42:44.31: Reading my cards took:0.19
+2017/12/14 22:42:44.31: Looking for light...
+2017/12/14 22:42:45.64: light is founded
+2017/12/14 22:42:46.06: OCR Bet string Seat1: 500
+2017/12/14 22:42:46.25: Seat1 Call: $500
+2017/12/14 22:42:46.70: OCR Bet string Seat2: 1,000
+2017/12/14 22:42:46.89: Seat2 Call: $1000
+2017/12/14 22:42:47.42: *Deciding on Preflop*
+2017/12/14 22:42:47.91: Fold_Button is clicked
+2017/12/14 22:42:48.91: Running PreFlop Section
+2017/12/14 22:42:48.91: Looking for Next sign...
+2017/12/14 22:42:56.10: Reading Flop Cards...
+2017/12/14 22:42:56.25: 1th card is: Q s
+2017/12/14 22:42:56.55: 2th card is: 4 s
+2017/12/14 22:42:56.77: Reading Flop cards took:0.6
+2017/12/14 22:42:56.77: -------
+2017/12/14 22:42:56.78: Vital_Signs() <-- Read_Flop_Cards():Card_3th is running....
+2017/12/14 22:42:57.33: internet is connected
+2017/12/14 22:42:57.50: Position (0,720) is clicked
+2017/12/14 22:42:58.01: Game region refounded after Vital_Signs()
+2017/12/14 22:42:58.42: I am In
+2017/12/14 22:42:58.42: -------
+2017/12/14 22:42:58.50: Check_Mod is On: Read_Flop_Cards():Card_3th
+2017/12/14 22:42:58.50: Running Flop Section
+2017/12/14 22:42:58.50: Looking for Next sign...
+2017/12/14 22:43:01.75: Reading Turn Card
+2017/12/14 22:43:02.01: 4th card is: A h
+2017/12/14 22:43:02.01: Reading Turn card took:0.2
+2017/12/14 22:43:02.02: Running Turn Section
+2017/12/14 22:43:02.02: Looking for Next sign...
+2017/12/14 22:43:09.05: Reading River Card
+2017/12/14 22:43:09.20: 5th card is: 2 h
+2017/12/14 22:43:09.21: Reading River card took:0.15
+2017/12/14 22:43:09.21: Running River Section
+2017/12/14 22:43:09.21: Looking for Next sign...
+2017/12/14 22:43:14.08: Seat 5 won the game!
+2017/12/14 22:43:14.08: -------- Hand Ended --------
+2017/12/14 22:43:14.09: Check_Mod is reset to False
+2017/12/14 22:43:14.09: Reseting Table Information
+2017/12/14 22:43:14.39: My Bank is:39000
+2017/12/14 22:43:14.39: Rebuying...
+2017/12/14 22:43:19.76: OCR Others Bank string Seat1: 97,000
+2017/12/14 22:43:20.08: OCR Others Name string Seat1: 
+2017/12/14 22:43:20.35: OCR Others Bank string Seat2: 87,960
+2017/12/14 22:43:20.89: OCR Others Bank string Seat4: 99,000
+2017/12/14 22:43:21.40: OCR Others Bank string Seat5: 120,105
+2017/12/14 22:43:21.75: OCR Others Name string Seat5: Richard
+2017/12/14 22:43:21.80: Players Bank dictionary is: {1: 97000, 2: 87960, 3: None, 4: 99000, 5: 120105}
+2017/12/14 22:43:21.81: Players Name dictionary is: {1: '', 2: None, 3: None, 4: None, 5: 'Richard'}
+2017/12/14 22:43:22.54: -------- New Hand Started --------
+2017/12/14 22:43:22.54: Coins are Founded
+2017/12/14 22:43:22.78: Seat 2 is at Small Blind Seat
+2017/12/14 22:43:23.02: Seat 3 is at Big Blind Seat
+2017/12/14 22:43:23.25: Seat 1 is at Dealer Seat
+2017/12/14 22:43:23.27: Looking for cards...
+2017/12/14 22:43:24.03: Cards are founded
+2017/12/14 22:43:24.33: My first Card is: J s
+2017/12/14 22:43:24.42: My second Card is: 7 h
+2017/12/14 22:43:24.43: Reading my cards took:0.2
+2017/12/14 22:43:24.43: Looking for light...
+2017/12/14 22:43:31.72: light is founded
+2017/12/14 22:43:32.18: OCR Bet string Seat1: 1,000
+2017/12/14 22:43:32.37: Seat1 Call: $1000
+2017/12/14 22:43:32.83: OCR Bet string Seat2: 1,000
+2017/12/14 22:43:33.04: Seat2 Call: $1000
+2017/12/14 22:43:33.50: OCR Bet string Seat3: 1,000
+2017/12/14 22:43:33.70: Seat3 Call: $1000
+2017/12/14 22:43:34.18: OCR Bet string Seat4: 1,000
+2017/12/14 22:43:34.37: Seat4 Call: $1000
+2017/12/14 22:43:34.84: OCR Bet string Seat5: 1,000
+2017/12/14 22:43:35.04: Seat5 Call: $1000
+2017/12/14 22:43:35.04: *Deciding on Preflop*
+2017/12/14 22:43:35.54: Check_Button is clicked
+2017/12/14 22:43:36.54: Running PreFlop Section
+2017/12/14 22:43:36.54: Looking for Next sign...
+2017/12/14 22:43:37.17: light is founded
+2017/12/14 22:43:37.48: Check_Mod is On: 3
+2017/12/14 22:43:37.48: Screenshot Error: 7.Red should be True here, check later why this happens
+2017/12/14 22:43:38.15: OCR Bet string Seat1: 1,000
+2017/12/14 22:43:38.31: Seat1 Call: $1000
+2017/12/14 22:43:38.68: OCR Bet string Seat2: 1,000
+2017/12/14 22:43:38.78: Check_Mod is On: OCR Bet is None
+2017/12/14 22:43:38.79: Screenshot Error: Easy_OCR_Bet_Number(This case can not happen1) Seat 2
+2017/12/14 22:43:39.16: Seat2 Call: $None
+2017/12/14 22:43:39.73: *Deciding on Preflop*
+2017/12/14 22:43:40.18: Check_Button is clicked
+2017/12/14 22:43:41.19: Looking for Next sign...
+2017/12/14 22:43:41.83: Reading Flop Cards...
+2017/12/14 22:43:41.92: 1th card is: 10 s
+2017/12/14 22:43:41.99: 2th card is: 2 h
+2017/12/14 22:43:42.05: 3th card is: J c
+2017/12/14 22:43:42.05: Reading Flop cards took:0.2
+2017/12/14 22:43:42.05: Running Flop Section
+2017/12/14 22:43:42.05: Looking for Next sign...
+2017/12/14 22:43:45.26: Reading Turn Card
+2017/12/14 22:43:45.32: 4th card is: 7 c
+2017/12/14 22:43:45.32: Reading Turn card took:0.052
+2017/12/14 22:43:45.32: Running Turn Section
+2017/12/14 22:43:45.32: Looking for Next sign...
+2017/12/14 22:43:49.20: light is founded
+2017/12/14 22:43:50.32: *Deciding on Turn*
+2017/12/14 22:43:50.80: Check_Button is clicked
+2017/12/14 22:43:51.80: Looking for Next sign...
+2017/12/14 22:44:02.30: light is founded
+2017/12/14 22:44:03.18: OCR Bet string Seat2: 5,000
+2017/12/14 22:44:03.39: Seat2 Call: $5000
+2017/12/14 22:44:04.21: OCR Bet string Seat5: 5,000
+2017/12/14 22:44:04.40: Seat5 Raise: $5000
+2017/12/14 22:44:04.40: *Deciding on Turn*
+2017/12/14 22:44:04.89: Fold_Button is clicked
+2017/12/14 22:44:05.89: Looking for Next sign...
+2017/12/14 22:44:07.13: Reading River Card
+2017/12/14 22:44:07.32: 5th card is: 9 s
+2017/12/14 22:44:07.32: Reading River card took:0.1
+2017/12/14 22:44:07.32: Running River Section
+2017/12/14 22:44:07.32: Looking for Next sign...
+2017/12/14 22:44:19.00: Seat 2 won the game!
+2017/12/14 22:44:19.01: -------- Hand Ended --------
+2017/12/14 22:44:19.01: Check_Mod is reset to False
+2017/12/14 22:44:19.01: Reseting Table Information
+2017/12/14 22:44:19.28: My Bank is:38000
+2017/12/14 22:44:19.28: Rebuying...
+2017/12/14 22:44:24.41: OCR Others Bank string Seat1: 96,000
+2017/12/14 22:44:24.72: OCR Others Name string Seat1: 
+2017/12/14 22:44:24.99: OCR Others Bank string Seat2: 97,460
+2017/12/14 22:44:25.28: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:44:25.61: OCR Others Bank string Seat4: 98,000
+2017/12/14 22:44:26.14: OCR Others Bank string Seat5: n1ﬂ.&,o55
+2017/12/14 22:44:26.14: Easy_OCR_Others_Bank_Number(A Gift Over Bank Number) Seat 5 
+2017/12/14 22:44:26.44: OCR Others Name string Seat5: Richard
+2017/12/14 22:44:26.48: Players Bank dictionary is: {1: 96000, 2: 97460, 3: None, 4: 98000, 5: None}
+2017/12/14 22:44:26.49: Players Name dictionary is: {1: '', 2: 'Arenda’s iPad', 3: None, 4: None, 5: 'Richard'}
+2017/12/14 22:44:27.23: -------- New Hand Started --------
+2017/12/14 22:44:27.24: Coins are Founded
+2017/12/14 22:44:27.47: Seat 3 is at Small Blind Seat
+2017/12/14 22:44:27.70: Seat 4 is at Big Blind Seat
+2017/12/14 22:44:27.93: Seat 2 is at Dealer Seat
+2017/12/14 22:44:27.94: Looking for cards...
+2017/12/14 22:44:28.58: Cards are founded
+2017/12/14 22:44:28.79: My first Card is: 3 c
+2017/12/14 22:44:28.86: My second Card is: A h
+2017/12/14 22:44:28.86: Reading my cards took:0.12
+2017/12/14 22:44:28.86: Looking for light...
+2017/12/14 22:44:30.87: light is founded
+2017/12/14 22:44:31.32: OCR Bet string Seat1: 1,000
+2017/12/14 22:44:31.50: Seat1 Call: $1000
+2017/12/14 22:44:31.95: OCR Bet string Seat2: 1,000
+2017/12/14 22:44:32.12: Seat2 Call: $1000
+2017/12/14 22:44:32.57: OCR Bet string Seat3: 500
+2017/12/14 22:44:32.77: Seat3 Call: $500
+2017/12/14 22:44:33.25: OCR Bet string Seat4: 1,000
+2017/12/14 22:44:33.45: Seat4 Call: $1000
+2017/12/14 22:44:33.91: OCR Bet string Seat5: 1,000
+2017/12/14 22:44:34.09: Seat5 Call: $1000
+2017/12/14 22:44:34.09: *Deciding on Preflop*
+2017/12/14 22:44:34.54: Fold_Button is clicked
+2017/12/14 22:44:35.54: Running PreFlop Section
+2017/12/14 22:44:35.55: Looking for Next sign...
+2017/12/14 22:44:37.51: Reading Flop Cards...
+2017/12/14 22:44:37.56: 1th card is: 9 c
+2017/12/14 22:44:37.63: 2th card is: 9 h
+2017/12/14 22:44:37.70: 3th card is: 9 s
+2017/12/14 22:44:37.70: Reading Flop cards took:0.18
+2017/12/14 22:44:37.70: Running Flop Section
+2017/12/14 22:44:37.70: Looking for Next sign...
+2017/12/14 22:44:47.02: Reading Turn Card
+2017/12/14 22:44:47.09: 4th card is: 2 h
+2017/12/14 22:44:47.09: Reading Turn card took:0.0
+2017/12/14 22:44:47.09: Running Turn Section
+2017/12/14 22:44:47.09: Looking for Next sign...
+2017/12/14 22:44:55.66: Reading River Card
+2017/12/14 22:44:55.73: 5th card is: 4 s
+2017/12/14 22:44:55.74: Reading River card took:0.0
+2017/12/14 22:44:55.74: Running River Section
+2017/12/14 22:44:55.74: Looking for Next sign...
+2017/12/14 22:45:05.33: Seat 5 won the game!
+2017/12/14 22:45:05.33: -------- Hand Ended --------
+2017/12/14 22:45:05.34: Reseting Table Information
+2017/12/14 22:45:05.65: My Bank is:37500
+2017/12/14 22:45:05.66: Rebuying...
+2017/12/14 22:45:10.71: OCR Others Bank string Seat2: 96,310
+2017/12/14 22:45:11.08: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:45:11.41: OCR Others Bank string Seat4: 80,000
+2017/12/14 22:45:11.82: OCR Others Bank string Seat5: ﬂﬁsso
+2017/12/14 22:45:11.83: Easy_OCR_Others_Bank_Number(A Gift Over Bank Number) Seat 5 
+2017/12/14 22:45:12.05: Players Bank dictionary is: {1: None, 2: 96310, 3: None, 4: 80000, 5: None}
+2017/12/14 22:45:12.06: Players Name dictionary is: {1: None, 2: 'Arenda’s iPad', 3: None, 4: None, 5: None}
+2017/12/14 22:45:12.76: -------- New Hand Started --------
+2017/12/14 22:45:12.77: Coins are Founded
+2017/12/14 22:45:12.98: Seat 4 is at Small Blind Seat
+2017/12/14 22:45:13.22: Seat 5 is at Big Blind Seat
+2017/12/14 22:45:13.48: Seat 3 is at Dealer Seat
+2017/12/14 22:45:13.48: Looking for cards...
+2017/12/14 22:45:14.17: Cards are founded
+2017/12/14 22:45:14.38: My first Card is: Q c
+2017/12/14 22:45:14.43: My second Card is: 3 c
+2017/12/14 22:45:14.43: Reading my cards took:0.11
+2017/12/14 22:45:14.43: Looking for light...
+2017/12/14 22:45:15.66: light is founded
+2017/12/14 22:45:16.29: OCR Bet string Seat2: 1,000
+2017/12/14 22:45:16.48: Seat2 Call: $1000
+2017/12/14 22:45:17.14: OCR Bet string Seat4: 500
+2017/12/14 22:45:17.33: Seat4 Call: $500
+2017/12/14 22:45:17.79: OCR Bet string Seat5: 1,000
+2017/12/14 22:45:17.97: Seat5 Call: $1000
+2017/12/14 22:45:17.97: *Deciding on Preflop*
+2017/12/14 22:45:18.42: Fold_Button is clicked
+2017/12/14 22:45:19.42: Running PreFlop Section
+2017/12/14 22:45:19.43: Looking for Next sign...
+2017/12/14 22:45:23.92: Reading Flop Cards...
+2017/12/14 22:45:23.99: 1th card is: 9 h
+2017/12/14 22:45:24.16: 2th card is: K s
+2017/12/14 22:45:24.22: 3th card is: 10 c
+2017/12/14 22:45:24.22: Reading Flop cards took:0.29
+2017/12/14 22:45:24.22: Running Flop Section
+2017/12/14 22:45:24.22: Looking for Next sign...
+2017/12/14 22:45:30.17: Reading Turn Card
+2017/12/14 22:45:30.28: 4th card is: 7 h
+2017/12/14 22:45:30.28: Reading Turn card took:0.10
+2017/12/14 22:45:30.29: Running Turn Section
+2017/12/14 22:45:30.29: Looking for Next sign...
+2017/12/14 22:45:38.70: Running River Section
+2017/12/14 22:45:39.11: Seat 4 won the game!
+2017/12/14 22:45:39.11: -------- Hand Ended --------
+2017/12/14 22:45:39.11: Reseting Table Information
+2017/12/14 22:45:39.36: My Bank is:37500
+2017/12/14 22:45:39.37: Rebuying...
+2017/12/14 22:45:43.27: OCR Others Bank string Seat2: 95,310
+2017/12/14 22:45:43.58: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:45:43.83: OCR Others Bank string Seat4: 83,500
+2017/12/14 22:45:44.13: OCR Others Name string Seat4: Magic Shark
+2017/12/14 22:45:44.37: OCR Others Bank string Seat5: 133,650
+2017/12/14 22:45:44.63: Players Bank dictionary is: {1: None, 2: 95310, 3: None, 4: 83500, 5: 133650}
+2017/12/14 22:45:44.64: Players Name dictionary is: {1: None, 2: 'Arenda’s iPad', 3: None, 4: 'Magic Shark', 5: None}
+2017/12/14 22:45:45.37: -------- New Hand Started --------
+2017/12/14 22:45:45.37: Coins are Founded
+2017/12/14 22:45:45.62: Seat 5 is at Small Blind Seat
+2017/12/14 22:45:45.86: Seat 2 is at Big Blind Seat
+2017/12/14 22:45:46.12: Seat 4 is at Dealer Seat
+2017/12/14 22:45:46.12: Looking for cards...
+2017/12/14 22:45:46.77: Cards are founded
+2017/12/14 22:45:46.96: My first Card is: 8 c
+2017/12/14 22:45:47.03: My second Card is: Q d
+2017/12/14 22:45:47.03: Reading my cards took:0.12
+2017/12/14 22:45:47.03: Looking for light...
+2017/12/14 22:45:48.29: light is founded
+2017/12/14 22:45:48.96: OCR Bet string Seat2: 1,000
+2017/12/14 22:45:49.17: Seat2 Call: $1000
+2017/12/14 22:45:50.02: OCR Bet string Seat5: 500
+2017/12/14 22:45:50.20: Seat5 Call: $500
+2017/12/14 22:45:50.21: *Deciding on Preflop*
+2017/12/14 22:45:50.68: Fold_Button is clicked
+2017/12/14 22:45:51.68: Running PreFlop Section
+2017/12/14 22:45:51.69: Looking for Next sign...
+2017/12/14 22:45:56.86: Reading Flop Cards...
+2017/12/14 22:45:56.93: 1th card is: 3 d
+2017/12/14 22:45:56.99: 2th card is: 6 h
+2017/12/14 22:45:57.05: 3th card is: 8 s
+2017/12/14 22:45:57.06: Reading Flop cards took:0.18
+2017/12/14 22:45:57.06: Running Flop Section
+2017/12/14 22:45:57.06: Looking for Next sign...
+2017/12/14 22:46:01.51: Reading Turn Card
+2017/12/14 22:46:01.56: 4th card is: 3 c
+2017/12/14 22:46:01.56: Reading Turn card took:0.047
+2017/12/14 22:46:01.56: Running Turn Section
+2017/12/14 22:46:01.56: Looking for Next sign...
+2017/12/14 22:46:18.47: Reading River Card
+2017/12/14 22:46:18.55: 5th card is: Q s
+2017/12/14 22:46:18.55: Reading River card took:0.07
+2017/12/14 22:46:18.55: Running River Section
+2017/12/14 22:46:18.55: Looking for Next sign...
+2017/12/14 22:46:31.72: Seat 4 won the game!
+2017/12/14 22:46:31.72: -------- Hand Ended --------
+2017/12/14 22:46:31.73: Reseting Table Information
+2017/12/14 22:46:32.01: My Bank is:37500
+2017/12/14 22:46:32.01: Rebuying...
+2017/12/14 22:46:32.82: OCR Others Bank string Seat2: 94,310
+2017/12/14 22:46:33.33: OCR Others Bank string Seat4: 85,450
+2017/12/14 22:46:33.61: OCR Others Name string Seat4: Magic Shark
+2017/12/14 22:46:33.84: OCR Others Bank string Seat5: 132,650
+2017/12/14 22:46:34.09: OCR Others Name string Seat5: Richard
+2017/12/14 22:46:34.14: Players Bank dictionary is: {1: None, 2: 94310, 3: None, 4: 85450, 5: 132650}
+2017/12/14 22:46:34.14: Players Name dictionary is: {1: None, 2: None, 3: None, 4: 'Magic Shark', 5: 'Richard'}
+2017/12/14 22:46:34.65: -------- New Hand Started --------
+2017/12/14 22:46:34.65: Coins are Founded
+2017/12/14 22:46:34.86: Seat 2 is at Small Blind Seat
+2017/12/14 22:46:35.05: Seat 3 is at Big Blind Seat
+2017/12/14 22:46:35.21: Seat 5 is at Dealer Seat
+2017/12/14 22:46:35.21: Looking for cards...
+2017/12/14 22:46:36.50: Cards are founded
+2017/12/14 22:46:36.71: My first Card is: J h
+2017/12/14 22:46:36.76: My second Card is: J c
+2017/12/14 22:46:36.76: Reading my cards took:0.12
+2017/12/14 22:46:36.77: hand2 is True
+2017/12/14 22:46:36.82: Playing Music: 'Alan Walker'
+2017/12/14 22:46:36.83: Looking for light...
+2017/12/14 22:46:41.08: light is founded
+2017/12/14 22:46:41.72: OCR Bet string Seat2: 1,000
+2017/12/14 22:46:41.90: Seat2 Call: $1000
+2017/12/14 22:46:42.35: OCR Bet string Seat3: 1,000
+2017/12/14 22:46:42.53: Seat3 Call: $1000
+2017/12/14 22:46:42.98: OCR Bet string Seat4: 1,000
+2017/12/14 22:46:43.17: Seat4 Call: $1000
+2017/12/14 22:46:43.64: OCR Bet string Seat5: 1,000
+2017/12/14 22:46:43.84: Seat5 Call: $1000
+2017/12/14 22:46:43.84: *Deciding on Preflop*
+2017/12/14 22:46:43.84: hand2 is True
+2017/12/14 22:46:44.14: Plus_Button is clicked
+2017/12/14 22:46:44.44: Raise_Button is clicked
+2017/12/14 22:46:45.44: Running PreFlop Section
+2017/12/14 22:46:45.44: Looking for Next sign...
+2017/12/14 22:46:52.00: Reading Flop Cards...
+2017/12/14 22:46:52.08: 1th card is: Q h
+2017/12/14 22:46:52.15: 2th card is: 2 s
+2017/12/14 22:46:52.22: 3th card is: Q s
+2017/12/14 22:46:52.23: Reading Flop cards took:0.2
+2017/12/14 22:46:52.23: Running Flop Section
+2017/12/14 22:46:52.23: Looking for Next sign...
+2017/12/14 22:46:56.37: light is founded
+2017/12/14 22:46:57.12: OCR Bet string Seat2: 1,000
+2017/12/14 22:46:57.30: Seat2 Raise: $1000
+2017/12/14 22:46:57.87: *Deciding on Flop*
+2017/12/14 22:46:57.87: hand2 is True
+2017/12/14 22:46:58.27: Plus_Button is clicked
+2017/12/14 22:46:58.46: -------
+2017/12/14 22:46:58.47: Vital_Signs() <-- Click_on_Bet_Button() is running....
+2017/12/14 22:46:59.71: internet is connected
+2017/12/14 22:46:59.81: Position (0,720) is clicked
+2017/12/14 22:47:00.25: Game region refounded after Vital_Signs()
+2017/12/14 22:47:00.60: I am In
+2017/12/14 22:47:00.60: -------
+2017/12/14 22:47:00.88: Check_Mod is On: Click_on_Bet_Button()
+2017/12/14 22:47:01.89: Looking for Next sign...
+2017/12/14 22:47:02.50: light is founded
+2017/12/14 22:47:03.26: OCR Bet string Seat2: 1,000
+2017/12/14 22:47:03.44: Seat2 Raise: $1000
+2017/12/14 22:47:04.02: *Deciding on Flop*
+2017/12/14 22:47:04.50: Fold_Button is clicked
+2017/12/14 22:47:05.50: Looking for Next sign...
+2017/12/14 22:47:06.66: Running Turn Section
+2017/12/14 22:47:06.66: Running River Section
+2017/12/14 22:47:07.11: Seat 2 won the game!
+2017/12/14 22:47:07.12: -------- Hand Ended --------
+2017/12/14 22:47:07.12: Check_Mod is reset to False
+2017/12/14 22:47:07.12: Reseting Table Information
+2017/12/14 22:47:07.36: My Bank is:33500
+2017/12/14 22:47:07.36: Rebuying...
+2017/12/14 22:47:12.62: Players Info is not Read
+2017/12/14 22:47:13.30: -------- New Hand Started --------
+2017/12/14 22:47:13.30: Coins are Founded
+2017/12/14 22:47:13.54: Seat 3 is at Small Blind Seat
+2017/12/14 22:47:13.79: Seat 4 is at Big Blind Seat
+2017/12/14 22:47:14.03: Seat 2 is at Dealer Seat
+2017/12/14 22:47:14.03: Looking for cards...
+2017/12/14 22:47:14.66: Cards are founded
+2017/12/14 22:47:14.86: My first Card is: 2 s
+2017/12/14 22:47:14.91: My second Card is: 6 c
+2017/12/14 22:47:14.91: Reading my cards took:0.11
+2017/12/14 22:47:14.91: Looking for light...
+2017/12/14 22:47:19.13: light is founded
+2017/12/14 22:47:19.79: OCR Bet string Seat2: 1,000
+2017/12/14 22:47:19.98: Seat2 Call: $1000
+2017/12/14 22:47:20.43: OCR Bet string Seat3: 500
+2017/12/14 22:47:20.61: Seat3 Call: $500
+2017/12/14 22:47:21.06: OCR Bet string Seat4: 1,000
+2017/12/14 22:47:21.27: Seat4 Call: $1000
+2017/12/14 22:47:21.78: OCR Bet string Seat5: 1,000
+2017/12/14 22:47:21.98: Seat5 Call: $1000
+2017/12/14 22:47:21.98: *Deciding on Preflop*
+2017/12/14 22:47:22.45: Fold_Button is clicked
+2017/12/14 22:47:23.45: Running PreFlop Section
+2017/12/14 22:47:23.45: Looking for Next sign...
+2017/12/14 22:47:35.40: Reading Flop Cards...
+2017/12/14 22:47:35.46: 1th card is: 7 c
+2017/12/14 22:47:35.53: 2th card is: 10 s
+2017/12/14 22:47:35.59: 3th card is: 7 s
+2017/12/14 22:47:35.59: Reading Flop cards took:0.18
+2017/12/14 22:47:35.60: Running Flop Section
+2017/12/14 22:47:35.60: Looking for Next sign...
+2017/12/14 22:47:38.28: Reading Turn Card
+2017/12/14 22:47:38.41: 4th card is: K h
+2017/12/14 22:47:38.41: Reading Turn card took:0.12
+2017/12/14 22:47:38.41: Running Turn Section
+2017/12/14 22:47:38.41: Looking for Next sign...
+2017/12/14 22:47:42.05: Reading River Card
+2017/12/14 22:47:42.10: 5th card is: 3 s
+2017/12/14 22:47:42.10: Reading River card took:0.054
+2017/12/14 22:47:42.10: Running River Section
+2017/12/14 22:47:42.11: Looking for Next sign...
+2017/12/14 22:47:50.43: Seat 4 won the game!
+2017/12/14 22:47:50.44: -------- Hand Ended --------
+2017/12/14 22:47:50.44: Reseting Table Information
+2017/12/14 22:47:50.76: My Bank is:33000
+2017/12/14 22:47:50.76: Rebuying...
+2017/12/14 22:47:55.85: OCR Others Bank string Seat2: 99,210
+2017/12/14 22:47:56.19: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:47:56.51: OCR Others Bank string Seat4: 86,385
+2017/12/14 22:47:56.96: OCR Others Bank string Seat5: 129,650
+2017/12/14 22:47:57.20: Players Bank dictionary is: {1: None, 2: 99210, 3: None, 4: 86385, 5: 129650}
+2017/12/14 22:47:57.20: Players Name dictionary is: {1: None, 2: 'Arenda’s iPad', 3: None, 4: None, 5: None}
+2017/12/14 22:47:57.86: -------- New Hand Started --------
+2017/12/14 22:47:57.87: Coins are Founded
+2017/12/14 22:47:58.11: Seat 4 is at Small Blind Seat
+2017/12/14 22:47:58.36: Seat 5 is at Big Blind Seat
+2017/12/14 22:47:58.61: Seat 3 is at Dealer Seat
+2017/12/14 22:47:58.61: Looking for cards...
+2017/12/14 22:47:59.25: Cards are founded
+2017/12/14 22:47:59.45: My first Card is: 7 d
+2017/12/14 22:47:59.52: My second Card is: J d
+2017/12/14 22:47:59.52: Reading my cards took:0.
+2017/12/14 22:47:59.53: Looking for light...
+2017/12/14 22:48:00.75: light is founded
+2017/12/14 22:48:01.36: OCR Bet string Seat2: 1,000
+2017/12/14 22:48:01.55: Seat2 Call: $1000
+2017/12/14 22:48:02.21: OCR Bet string Seat4: 500
+2017/12/14 22:48:02.40: Seat4 Call: $500
+2017/12/14 22:48:02.84: OCR Bet string Seat5: 1,000
+2017/12/14 22:48:03.03: Seat5 Call: $1000
+2017/12/14 22:48:03.04: *Deciding on Preflop*
+2017/12/14 22:48:03.52: Fold_Button is clicked
+2017/12/14 22:48:04.52: Running PreFlop Section
+2017/12/14 22:48:04.52: Looking for Next sign...
+2017/12/14 22:48:08.30: Reading Flop Cards...
+2017/12/14 22:48:08.37: 1th card is: A h
+2017/12/14 22:48:08.44: 2th card is: 2 h
+2017/12/14 22:48:08.50: 3th card is: 7 h
+2017/12/14 22:48:08.51: Reading Flop cards took:0.20
+2017/12/14 22:48:08.51: Running Flop Section
+2017/12/14 22:48:08.51: Looking for Next sign...
+2017/12/14 22:48:15.24: Running Turn Section
+2017/12/14 22:48:15.24: Running River Section
+2017/12/14 22:48:15.62: Seat 4 won the game!
+2017/12/14 22:48:15.62: -------- Hand Ended --------
+2017/12/14 22:48:15.62: Reseting Table Information
+2017/12/14 22:48:15.92: My Bank is:33000
+2017/12/14 22:48:15.92: Rebuying...
+2017/12/14 22:48:20.63: OCR Others Bank string Seat2: 98,210
+2017/12/14 22:48:20.93: OCR Others Name string Seat2: I’U)| DU
+2017/12/14 22:48:21.25: OCR Others Bank string Seat4: 88,885
+2017/12/14 22:48:21.58: OCR Others Name string Seat4: Magic Shark
+2017/12/14 22:48:21.89: OCR Others Bank string Seat5: 129,150
+2017/12/14 22:48:22.14: Players Bank dictionary is: {1: None, 2: 98210, 3: None, 4: 88885, 5: 129150}
+2017/12/14 22:48:22.14: Players Name dictionary is: {1: None, 2: 'I’U)| DU', 3: None, 4: 'Magic Shark', 5: None}
+2017/12/14 22:48:22.82: -------- New Hand Started --------
+2017/12/14 22:48:22.82: Coins are Founded
+2017/12/14 22:48:23.06: Seat 5 is at Small Blind Seat
+2017/12/14 22:48:23.28: Seat 2 is at Big Blind Seat
+2017/12/14 22:48:23.50: Seat 4 is at Dealer Seat
+2017/12/14 22:48:23.50: Looking for cards...
+2017/12/14 22:48:24.17: Cards are founded
+2017/12/14 22:48:24.38: My first Card is: 4 c
+2017/12/14 22:48:24.45: My second Card is: 5 h
+2017/12/14 22:48:24.45: Reading my cards took:0.12
+2017/12/14 22:48:24.45: Looking for light...
+2017/12/14 22:48:25.72: light is founded
+2017/12/14 22:48:26.34: OCR Bet string Seat2: 1,000
+2017/12/14 22:48:26.52: Seat2 Call: $1000
+2017/12/14 22:48:27.32: OCR Bet string Seat5: 500
+2017/12/14 22:48:27.49: Seat5 Call: $500
+2017/12/14 22:48:27.50: *Deciding on Preflop*
+2017/12/14 22:48:27.95: Fold_Button is clicked
+2017/12/14 22:48:28.95: Running PreFlop Section
+2017/12/14 22:48:28.96: Looking for Next sign...
+2017/12/14 22:48:37.03: Running Flop Section
+2017/12/14 22:48:37.03: Running Turn Section
+2017/12/14 22:48:37.04: Running River Section
+2017/12/14 22:48:37.43: Seat 4 won the game!
+2017/12/14 22:48:37.43: -------- Hand Ended --------
+2017/12/14 22:48:37.44: Reseting Table Information
+2017/12/14 22:48:37.71: My Bank is:33000
+2017/12/14 22:48:37.71: Rebuying...
+2017/12/14 22:48:42.53: OCR Others Bank string Seat2: 97,210
+2017/12/14 22:48:43.06: OCR Others Bank string Seat4: 90,355
+2017/12/14 22:48:43.38: OCR Others Name string Seat4: Magic Shark
+2017/12/14 22:48:43.68: OCR Others Bank string Seat5: 129,150
+2017/12/14 22:48:44.01: OCR Others Name string Seat5: Richard
+2017/12/14 22:48:44.07: Players Bank dictionary is: {1: None, 2: 97210, 3: None, 4: 90355, 5: 129150}
+2017/12/14 22:48:44.07: Players Name dictionary is: {1: None, 2: None, 3: None, 4: 'Magic Shark', 5: 'Richard'}
+2017/12/14 22:48:44.78: -------- New Hand Started --------
+2017/12/14 22:48:44.79: Coins are Founded
+2017/12/14 22:48:45.00: Seat 2 is at Small Blind Seat
+2017/12/14 22:48:45.25: Seat 3 is at Big Blind Seat
+2017/12/14 22:48:45.47: Seat 5 is at Dealer Seat
+2017/12/14 22:48:45.47: Looking for cards...
+2017/12/14 22:48:46.16: Cards are founded
+2017/12/14 22:48:46.35: My first Card is: 4 d
+2017/12/14 22:48:46.41: My second Card is: 8 c
+2017/12/14 22:48:46.42: Reading my cards took:0.1
+2017/12/14 22:48:46.42: Looking for light...
+2017/12/14 22:48:51.33: light is founded
+2017/12/14 22:48:51.96: OCR Bet string Seat2: 1,000
+2017/12/14 22:48:52.13: Seat2 Call: $1000
+2017/12/14 22:48:52.58: OCR Bet string Seat3: 1,000
+2017/12/14 22:48:52.75: Seat3 Call: $1000
+2017/12/14 22:48:53.19: OCR Bet string Seat4: 1,000
+2017/12/14 22:48:53.38: Seat4 Call: $1000
+2017/12/14 22:48:53.82: OCR Bet string Seat5: 1,000
+2017/12/14 22:48:54.02: Seat5 Call: $1000
+2017/12/14 22:48:54.02: *Deciding on Preflop*
+2017/12/14 22:48:54.53: Check_Button is clicked
+2017/12/14 22:48:55.53: Running PreFlop Section
+2017/12/14 22:48:55.54: Looking for Next sign...
+2017/12/14 22:48:56.14: Reading Flop Cards...
+2017/12/14 22:48:56.21: 1th card is: 2 s
+2017/12/14 22:48:56.27: 2th card is: 8 h
+2017/12/14 22:48:56.33: 3th card is: K d
+2017/12/14 22:48:56.33: Reading Flop cards took:0.18
+2017/12/14 22:48:56.33: Running Flop Section
+2017/12/14 22:48:56.34: Looking for Next sign...
+2017/12/14 22:48:59.72: light is founded
+2017/12/14 22:49:00.85: *Deciding on Flop*
+2017/12/14 22:49:01.34: Check_Button is clicked
+2017/12/14 22:49:02.34: Looking for Next sign...
+2017/12/14 22:49:15.78: Reading Turn Card
+2017/12/14 22:49:15.85: 4th card is: A s
+2017/12/14 22:49:15.85: Reading Turn card took:0.06
+2017/12/14 22:49:15.85: Running Turn Section
+2017/12/14 22:49:15.85: Looking for Next sign...
+2017/12/14 22:49:18.79: light is founded
+2017/12/14 22:49:19.85: *Deciding on Turn*
+2017/12/14 22:49:20.33: Check_Button is clicked
+2017/12/14 22:49:21.34: Looking for Next sign...
+2017/12/14 22:49:29.12: Reading River Card
+2017/12/14 22:49:29.20: 5th card is: Q s
+2017/12/14 22:49:29.20: Reading River card took:0.08
+2017/12/14 22:49:29.21: Running River Section
+2017/12/14 22:49:29.21: Looking for Next sign...
+2017/12/14 22:49:34.53: light is founded
+2017/12/14 22:49:35.29: OCR Bet string Seat2: 21,000
+2017/12/14 22:49:35.46: Seat2 Raise: $21000
+2017/12/14 22:49:36.02: *Deciding on River*
+2017/12/14 22:49:36.47: Fold_Button is clicked
+2017/12/14 22:49:37.47: Looking for Next sign...
+2017/12/14 22:49:42.70: Seat 2 won the game!
+2017/12/14 22:49:42.70: -------- Hand Ended --------
+2017/12/14 22:49:42.71: Reseting Table Information
+2017/12/14 22:49:43.01: My Bank is:32000
+2017/12/14 22:49:43.01: Rebuying...
+2017/12/14 22:49:45.42: Players Info is not Read
+2017/12/14 22:49:46.13: -------- New Hand Started --------
+2017/12/14 22:49:46.14: Coins are Founded
+2017/12/14 22:49:46.38: Seat 3 is at Small Blind Seat
+2017/12/14 22:49:46.60: Seat 4 is at Big Blind Seat
+2017/12/14 22:49:46.85: Seat 2 is at Dealer Seat
+2017/12/14 22:49:46.86: Looking for cards...
+2017/12/14 22:49:47.49: Cards are founded
+2017/12/14 22:49:47.69: My first Card is: 2 d
+2017/12/14 22:49:47.75: My second Card is: A d
+2017/12/14 22:49:47.75: Reading my cards took:0.11
+2017/12/14 22:49:47.75: Looking for light...
+2017/12/14 22:49:51.32: light is founded
+2017/12/14 22:49:51.96: OCR Bet string Seat2: 1,000
+2017/12/14 22:49:52.16: Seat2 Call: $1000
+2017/12/14 22:49:52.62: OCR Bet string Seat3: 500
+2017/12/14 22:49:52.80: Seat3 Call: $500
+2017/12/14 22:49:53.29: OCR Bet string Seat4: 1,000
+2017/12/14 22:49:53.48: Seat4 Call: $1000
+2017/12/14 22:49:53.98: OCR Bet string Seat5: 1,000
+2017/12/14 22:49:54.20: Seat5 Call: $1000
+2017/12/14 22:49:54.21: *Deciding on Preflop*
+2017/12/14 22:49:54.70: Fold_Button is clicked
+2017/12/14 22:49:55.71: Running PreFlop Section
+2017/12/14 22:49:55.71: Looking for Next sign...
+2017/12/14 22:49:58.28: Reading Flop Cards...
+2017/12/14 22:49:58.37: 1th card is: 9 c
+2017/12/14 22:49:58.44: 2th card is: 3 s
+2017/12/14 22:49:58.50: 3th card is: 9 h
+2017/12/14 22:49:58.51: Reading Flop cards took:0.22
+2017/12/14 22:49:58.51: Running Flop Section
+2017/12/14 22:49:58.51: Looking for Next sign...
+2017/12/14 22:50:03.68: Reading Turn Card
+2017/12/14 22:50:03.75: 4th card is: 9 d
+2017/12/14 22:50:03.75: Reading Turn card took:0.06
+2017/12/14 22:50:03.75: Running Turn Section
+2017/12/14 22:50:03.75: Looking for Next sign...
+2017/12/14 22:50:11.53: Reading River Card
+2017/12/14 22:50:11.58: 5th card is: 5 h
+2017/12/14 22:50:11.58: Reading River card took:0.0
+2017/12/14 22:50:11.58: Running River Section
+2017/12/14 22:50:11.58: Looking for Next sign...
+2017/12/14 22:50:17.69: Seat 5 won the game!
+2017/12/14 22:50:17.70: -------- Hand Ended --------
+2017/12/14 22:50:17.70: Reseting Table Information
+2017/12/14 22:50:18.01: My Bank is:31500
+2017/12/14 22:50:18.02: Rebuying...
+2017/12/14 22:50:23.22: OCR Others Bank string Seat2: 99,170
+2017/12/14 22:50:23.57: OCR Others Name string Seat2: Arenda’s iPad
+2017/12/14 22:50:23.91: OCR Others Bank string Seat4: 81,330
+2017/12/14 22:50:24.48: OCR Others Bank string Seat5: |1&.'L985
+2017/12/14 22:50:24.48: Easy_OCR_Others_Bank_Number(A Gift Over Bank Number) Seat 5 
+2017/12/14 22:50:24.70: Players Bank dictionary is: {1: None, 2: 99170, 3: None, 4: 81330, 5: None}
+2017/12/14 22:50:24.71: Players Name dictionary is: {1: None, 2: 'Arenda’s iPad', 3: None, 4: None, 5: None}
+2017/12/14 22:50:25.40: -------- New Hand Started --------
+2017/12/14 22:50:25.40: Coins are Founded
+2017/12/14 22:50:25.62: Seat 4 is at Small Blind Seat
+2017/12/14 22:50:25.87: Seat 5 is at Big Blind Seat
+2017/12/14 22:50:26.14: Seat 3 is at Dealer Seat
+2017/12/14 22:50:26.15: Looking for cards...
+2017/12/14 22:50:26.85: Cards are founded
+2017/12/14 22:50:27.04: My first Card is: 9 c
+2017/12/14 22:50:27.10: My second Card is: 4 c
+2017/12/14 22:50:27.10: Reading my cards took:0.10
+2017/12/14 22:50:27.10: Looking for light...
+2017/12/14 22:50:28.33: light is founded
+2017/12/14 22:50:28.99: OCR Bet string Seat2: 1,000
+2017/12/14 22:50:29.19: Seat2 Call: $1000
+2017/12/14 22:50:29.86: OCR Bet string Seat4: 500
+2017/12/14 22:50:30.06: Seat4 Call: $500

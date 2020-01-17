@@ -1,0 +1,4 @@
+2017/11/18 00:42:26.71: [1m[31mH[39m[33me[39m[32ml[39m[34ml[39m[35mo[39m [33mK[39m[32mi[39m[34mt[39m[35mt[39m[31my[39m[22m
+2017/11/18 00:42:54.48: [1m[33mLooking for game on screen...[39m[22m
+2017/11/18 00:42:54.77: [1m[42m****** Running Just_Seated == True Section ******[49m[22m
+2017/11/18 00:42:54.80: Reseting Table Information

@@ -1,0 +1,17 @@
+2018/01/20 05:39:03.39: Hello Kitty
+2018/01/20 05:39:09.01: Looking for game on screen...
+2018/01/20 05:39:09.33: ****** Running Just_Seated == True Section ******
+2018/01/20 05:39:09.33: Reseting Table Information
+2018/01/20 05:39:09.72: My Bank is:96480
+2018/01/20 05:39:09.74: Rebuying...
+2018/01/20 05:39:10.28: Players Info is not Read
+2018/01/20 05:39:10.28: Looking for cards in Just_Seated == True Section...
+2018/01/20 05:39:10.53: Check_Mod is On: this is Ok! Becuase i may start program from middle of the game
+2018/01/20 05:39:10.54: Cards are founded
+2018/01/20 05:39:10.54: ****** First hand Started ******
+2018/01/20 05:39:10.71: My first Card is: 2 c
+2018/01/20 05:39:10.81: My second Card is: K h
+2018/01/20 05:39:10.85: Reading my cards took:0.18
+2018/01/20 05:39:10.85: Looking for light...
+2018/01/20 05:39:30.95: OCR Bet string Seat2: 500
+2018/01/20 05:39:50.96: OCR Bet string Seat1: 102,950 -

@@ -1,0 +1,8 @@
+2017/12/02 14:18:32.88: Hello Kitty
+2017/12/02 14:18:45.95: Looking for game on screen...
+2017/12/02 14:18:46.25: ****** Running Just_Seated == True Section ******
+2017/12/02 14:18:46.25: Reseting Table Information
+2017/12/02 14:18:48.46: OCR My Bank string Seat1: 20,000
+2017/12/02 14:18:48.49: My Bank is:20000
+2017/12/02 14:18:48.50: Rebuying...
+2017/12/02 14:18:49.34: OCR Others Bank string Seat3: 8,093

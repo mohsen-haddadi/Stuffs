@@ -1,0 +1,68 @@
+2017/11/19 03:28:04.16: Hello Kitty
+2017/11/19 03:28:14.18: Looking for game on screen...
+2017/11/19 03:28:14.54: ****** Running Just_Seated == True Section ******
+2017/11/19 03:28:14.55: Reseting Table Information
+2017/11/19 03:28:14.92: My Bank is:790000000
+2017/11/19 03:28:14.93: Rebuying...
+2017/11/19 03:28:16.26: Players Bank dictionary is: {1: None, 2: None, 3: None, 4: None, 5: 780000000}
+2017/11/19 03:28:16.26: Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: 'Ror'}
+2017/11/19 03:28:16.26: Looking for cards in Just_Seated == True Section...
+2017/11/19 03:28:23.24: Cards are founded
+2017/11/19 03:28:23.24: ****** First hand Started ******
+2017/11/19 03:28:27.63: My first Card is: 3 s
+2017/11/19 03:28:28.21: My second Card is: 6 c
+2017/11/19 03:28:28.21: Looking for light...
+2017/11/19 03:28:29.59: light is founded
+2017/11/19 03:28:30.74: Seat4 Call: $20000000
+2017/11/19 03:28:31.26: Seat5 Call: $20000000
+2017/11/19 03:28:31.26: *Deciding on Preflop*
+2017/11/19 03:28:31.79: Check_Button is clicked
+2017/11/19 03:28:32.79: Running PreFlop Section
+2017/11/19 03:28:32.80: Looking for Next sign...
+2017/11/19 03:28:33.56: Reading Flop Cards...
+2017/11/19 03:28:35.01: 1th card is: 2 d
+2017/11/19 03:28:38.67: 2th card is: Q h
+2017/11/19 03:28:39.07: 3th card is: 4 c
+2017/11/19 03:28:39.07: Running Flop Section
+2017/11/19 03:28:39.07: Looking for Next sign...
+2017/11/19 03:28:39.90: light is founded
+2017/11/19 03:28:41.24: *Deciding on Flop*
+2017/11/19 03:28:41.77: Check_Button is clicked
+2017/11/19 03:28:42.77: Looking for Next sign...
+2017/11/19 03:28:45.00: light is founded
+2017/11/19 03:28:46.58: Seat5 Raise: $20000000
+2017/11/19 03:28:46.59: *Deciding on Flop*
+2017/11/19 03:28:47.17: Fold_Button is clicked
+2017/11/19 03:28:48.17: Looking for Next sign...
+2017/11/19 03:28:48.88: Running Turn Section
+2017/11/19 03:28:48.88: Running River Section
+2017/11/19 03:28:49.40: Seat 5 won the game!
+2017/11/19 03:28:49.40: -------- Hand Ended --------
+2017/11/19 03:28:49.40: Reseting Table Information
+2017/11/19 03:28:49.75: My Bank is:770000000
+2017/11/19 03:28:49.75: Rebuying...
+2017/11/19 03:28:55.90: Easy_OCR_Others_Bank_Number(A Gift Over Bank Number) Seat 5 
+2017/11/19 03:28:56.12: Players Bank dictionary is: {1: 800000000, 2: None, 3: None, 4: None, 5: None}
+2017/11/19 03:28:56.12: Players Name dictionary is: {1: 'scumbag', 2: None, 3: None, 4: None, 5: None}
+2017/11/19 03:28:57.04: -------- New Hand Started --------
+2017/11/19 03:28:57.05: Coins are Founded
+2017/11/19 03:28:57.37: Seat 4 is at Small Blind Seat
+2017/11/19 03:28:57.67: Seat 5 is at Big Blind Seat
+2017/11/19 03:28:57.99: Seat 4 is at Dealer Seat
+2017/11/19 03:28:58.00: Looking for cards...
+2017/11/19 03:28:58.81: Cards are founded
+2017/11/19 03:29:01.93: My first Card is: 2 h
+2017/11/19 03:29:05.52: My second Card is: 7 h
+2017/11/19 03:29:05.52: Looking for light...
+2017/11/19 03:29:06.53: -------
+2017/11/19 03:29:06.55: Vital_Signs() <-- 2.5 I am back Button is True is running....
+2017/11/19 03:29:07.07: Position (0,720) is clicked
+2017/11/19 03:29:07.07: Looking for game on screen...
+2017/11/19 03:29:07.66: Game region refounded after Vital_Signs()
+2017/11/19 03:29:07.89: After Vital_Signs() --> Just_Seated is True.
+2017/11/19 03:29:08.00: I_am_back_Button is clicked
+2017/11/19 03:29:08.00: Check_Mod is On: Click_on_I_am_back_Button()
+2017/11/19 03:29:08.55: I am Out
+2017/11/19 03:29:08.55: Searching for a seat to sit in
+2017/11/19 03:29:09.24: Exit_Button is clicked
+2017/11/19 03:29:09.24: Just_Seated is None.

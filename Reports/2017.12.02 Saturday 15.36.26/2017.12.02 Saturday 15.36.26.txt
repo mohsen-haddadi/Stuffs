@@ -1,0 +1,2 @@
+2017/12/02 15:36:26.55: Hello Kitty
+2017/12/02 15:36:34.02: internet is not connected

@@ -1,0 +1,275 @@
+2018/04/25 04:21:35.32: Hello Kitty
+2018/04/25 04:22:10.92: Looking for game on screen...
+2018/04/25 04:22:11.51: ****** Running Just_Seated == True Section ******
+2018/04/25 04:22:11.51: Reseting Table Information
+2018/04/25 04:22:12.60: OCR My Bank string Seat1: 8,000
+2018/04/25 04:22:12.64: My Bank is:8000
+2018/04/25 04:22:12.64: Rebuying...
+2018/04/25 04:22:13.54: OCR Others Bank string Seat3: 31,840
+2018/04/25 04:22:14.03: OCR Others Bank string Seat5: 118,416
+2018/04/25 04:22:14.26: Players Bank dictionary is: {1: None, 2: None, 3: 31840, 4: None, 5: 118416}
+2018/04/25 04:22:14.27: Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None}
+2018/04/25 04:22:14.27: Looking for cards in Just_Seated == True Section...
+2018/04/25 04:22:14.69: Cards are founded
+2018/04/25 04:22:14.69: ****** First hand Started ******
+2018/04/25 04:22:15.03: My first Card is: J c
+2018/04/25 04:22:15.12: My second Card is: 5 c
+2018/04/25 04:22:15.12: Reading my cards took:0.28
+2018/04/25 04:22:15.13: Looking for light...
+2018/04/25 04:22:16.31: light is founded
+2018/04/25 04:22:16.72: OCR Bet string Seat1: 200
+2018/04/25 04:22:16.92: Seat1 Call: $200
+2018/04/25 04:22:17.53: OCR Bet string Seat3: 100
+2018/04/25 04:22:17.70: Seat3 Call: $100
+2018/04/25 04:22:18.35: OCR Bet string Seat5: 200
+2018/04/25 04:22:18.53: Seat5 Call: $200
+2018/04/25 04:22:18.53: *Deciding on Preflop*
+2018/04/25 04:22:19.02: Check_Button is clicked
+2018/04/25 04:22:20.02: Running PreFlop Section
+2018/04/25 04:22:20.02: Looking for Next sign...
+2018/04/25 04:22:23.90: Reading Flop Cards...
+2018/04/25 04:22:24.04: 1th card is: 10 c
+2018/04/25 04:22:24.28: 2th card is: 3 h
+2018/04/25 04:22:24.57: 3th card is: A h
+2018/04/25 04:22:24.57: Reading Flop cards took:0.6
+2018/04/25 04:22:24.58: Running Flop Section
+2018/04/25 04:22:24.58: Looking for Next sign...
+2018/04/25 04:22:25.27: light is founded
+2018/04/25 04:22:26.34: *Deciding on Flop*
+2018/04/25 04:22:26.81: Check_Button is clicked
+2018/04/25 04:22:27.82: Looking for Next sign...
+2018/04/25 04:22:29.66: Reading Turn Card
+2018/04/25 04:22:29.89: 4th card is: 7 h
+2018/04/25 04:22:29.90: Reading Turn card took:0.22
+2018/04/25 04:22:29.90: Running Turn Section
+2018/04/25 04:22:29.90: Looking for Next sign...
+2018/04/25 04:22:31.71: light is founded
+2018/04/25 04:22:32.78: *Deciding on Turn*
+2018/04/25 04:22:33.27: Check_Button is clicked
+2018/04/25 04:22:34.27: Looking for Next sign...
+2018/04/25 04:22:35.46: Reading River Card
+2018/04/25 04:22:35.63: 5th card is: 5 d
+2018/04/25 04:22:35.63: Reading River card took:0.16
+2018/04/25 04:22:35.63: Running River Section
+2018/04/25 04:22:35.63: Looking for Next sign...
+2018/04/25 04:22:37.37: light is founded
+2018/04/25 04:22:38.57: *Deciding on River*
+2018/04/25 04:22:39.08: Check_Button is clicked
+2018/04/25 04:22:40.09: Looking for Next sign...
+2018/04/25 04:22:42.65: Seat 3 won the game!
+2018/04/25 04:22:42.66: -------- Hand Ended --------
+2018/04/25 04:22:42.66: Reseting Table Information
+2018/04/25 04:22:42.90: OCR My Bank string Seat1: 7,800
+2018/04/25 04:22:42.95: My Bank is:7800
+2018/04/25 04:22:42.95: Rebuying...
+2018/04/25 04:22:47.83: OCR Others Bank string Seat3: 32,340
+2018/04/25 04:22:48.17: OCR Others Name string Seat3: Sevens
+2018/04/25 04:22:48.51: OCR Others Bank string Seat5: 118,316
+2018/04/25 04:22:48.73: Players Bank dictionary is: {1: None, 2: None, 3: 32340, 4: None, 5: 118316}
+2018/04/25 04:22:48.73: Players Name dictionary is: {1: None, 2: None, 3: 'Sevens', 4: None, 5: None}
+2018/04/25 04:22:49.42: -------- New Hand Started --------
+2018/04/25 04:22:49.43: Coins are Founded
+2018/04/25 04:22:49.65: Seat 5 is at Small Blind Seat
+2018/04/25 04:22:49.88: Seat 1 is at Big Blind Seat
+2018/04/25 04:22:50.12: Seat 3 is at Dealer Seat
+2018/04/25 04:22:50.12: Looking for cards...
+2018/04/25 04:22:50.79: Cards are founded
+2018/04/25 04:22:51.01: My first Card is: 2 d
+2018/04/25 04:22:51.11: My second Card is: 8 c
+2018/04/25 04:22:51.11: Reading my cards took:0.1
+2018/04/25 04:22:51.11: Looking for light...
+2018/04/25 04:22:59.67: light is founded
+2018/04/25 04:23:00.22: OCR Bet string Seat1: 200
+2018/04/25 04:23:00.40: Seat1 Call: $200
+2018/04/25 04:23:01.01: OCR Bet string Seat3: 200
+2018/04/25 04:23:01.18: Seat3 Call: $200
+2018/04/25 04:23:01.82: OCR Bet string Seat5: 200
+2018/04/25 04:23:02.00: Seat5 Call: $200
+2018/04/25 04:23:02.01: *Deciding on Preflop*
+2018/04/25 04:23:02.50: Check_Button is clicked
+2018/04/25 04:23:03.50: Running PreFlop Section
+2018/04/25 04:23:03.51: Looking for Next sign...
+2018/04/25 04:23:04.20: Reading Flop Cards...
+2018/04/25 04:23:04.26: 1th card is: 5 c
+2018/04/25 04:23:04.31: 2th card is: 10 d
+2018/04/25 04:23:04.38: 3th card is: J d
+2018/04/25 04:23:04.38: Reading Flop cards took:0.17
+2018/04/25 04:23:04.39: Running Flop Section
+2018/04/25 04:23:04.39: Looking for Next sign...
+2018/04/25 04:23:05.70: light is founded
+2018/04/25 04:23:06.81: *Deciding on Flop*
+2018/04/25 04:23:07.27: Check_Button is clicked
+2018/04/25 04:23:08.27: Looking for Next sign...
+2018/04/25 04:23:09.51: Reading Turn Card
+2018/04/25 04:23:09.60: 4th card is: 10 h
+2018/04/25 04:23:09.61: Reading Turn card took:0.09
+2018/04/25 04:23:09.61: Running Turn Section
+2018/04/25 04:23:09.61: Looking for Next sign...
+2018/04/25 04:23:11.47: light is founded
+2018/04/25 04:23:12.54: *Deciding on Turn*
+2018/04/25 04:23:13.00: Check_Button is clicked
+2018/04/25 04:23:14.00: Looking for Next sign...
+2018/04/25 04:23:16.43: Reading River Card
+2018/04/25 04:23:16.65: 5th card is: Q s
+2018/04/25 04:23:16.66: Reading River card took:0.22
+2018/04/25 04:23:16.66: Running River Section
+2018/04/25 04:23:16.66: Looking for Next sign...
+2018/04/25 04:23:19.60: light is founded
+2018/04/25 04:23:20.69: *Deciding on River*
+2018/04/25 04:23:21.19: Check_Button is clicked
+2018/04/25 04:23:22.19: Looking for Next sign...
+2018/04/25 04:23:27.69: Seat 5 won the game!
+2018/04/25 04:23:27.70: -------- Hand Ended --------
+2018/04/25 04:23:27.70: Reseting Table Information
+2018/04/25 04:23:27.98: OCR My Bank string Seat1: 7,600
+2018/04/25 04:23:28.04: My Bank is:7600
+2018/04/25 04:23:28.04: Rebuying...
+2018/04/25 04:23:33.11: OCR Others Bank string Seat3: 32,134
+2018/04/25 04:23:33.57: OCR Others Bank string Seat4: 7,800
+2018/04/25 04:23:34.04: OCR Others Bank string Seat5: 118,816
+2018/04/25 04:23:34.33: OCR Others Name string Seat5: greenie102
+2018/04/25 04:23:34.38: Players Bank dictionary is: {1: None, 2: None, 3: 32134, 4: 7800, 5: 118816}
+2018/04/25 04:23:34.39: Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: 'greenie102'}
+2018/04/25 04:23:35.10: -------- New Hand Started --------
+2018/04/25 04:23:35.11: Coins are Founded
+2018/04/25 04:23:35.32: Seat 1 is at Small Blind Seat
+2018/04/25 04:23:35.55: Seat 3 is at Big Blind Seat
+2018/04/25 04:23:35.77: Seat 5 is at Dealer Seat
+2018/04/25 04:23:35.77: Looking for cards...
+2018/04/25 04:23:36.42: Cards are founded
+2018/04/25 04:23:36.63: My first Card is: 4 d
+2018/04/25 04:23:36.80: My second Card is: 10 s
+2018/04/25 04:23:36.80: Reading my cards took:0.22
+2018/04/25 04:23:36.80: Looking for light...
+2018/04/25 04:23:42.52: light is founded
+2018/04/25 04:23:42.94: OCR Bet string Seat1: 100
+2018/04/25 04:23:43.13: Seat1 Call: $100
+2018/04/25 04:23:43.74: OCR Bet string Seat3: 200
+2018/04/25 04:23:43.93: Seat3 Call: $200
+2018/04/25 04:23:44.36: OCR Bet string Seat4: 200
+2018/04/25 04:23:44.55: Seat4 Call: $200
+2018/04/25 04:23:45.02: OCR Bet string Seat5: 200
+2018/04/25 04:23:45.22: Seat5 Call: $200
+2018/04/25 04:23:45.22: *Deciding on Preflop*
+2018/04/25 04:23:45.69: Fold_Button is clicked
+2018/04/25 04:23:46.69: Running PreFlop Section
+2018/04/25 04:23:46.69: Looking for Next sign...
+2018/04/25 04:23:48.64: Reading Flop Cards...
+2018/04/25 04:23:48.84: 1th card is: K d
+2018/04/25 04:23:48.90: 2th card is: 7 c
+2018/04/25 04:23:49.03: 3th card is: 7 h
+2018/04/25 04:23:49.03: Reading Flop cards took:0.3
+2018/04/25 04:23:49.03: Running Flop Section
+2018/04/25 04:23:49.03: Looking for Next sign...
+2018/04/25 04:24:01.70: Reading Turn Card
+2018/04/25 04:24:01.75: 4th card is: 3 c
+2018/04/25 04:24:01.76: Reading Turn card took:0.057
+2018/04/25 04:24:01.76: Running Turn Section
+2018/04/25 04:24:01.76: Looking for Next sign...
+2018/04/25 04:24:06.76: Reading River Card
+2018/04/25 04:24:06.82: 5th card is: J h
+2018/04/25 04:24:06.82: Reading River card took:0.05
+2018/04/25 04:24:06.82: Running River Section
+2018/04/25 04:24:06.82: Looking for Next sign...
+2018/04/25 04:24:17.05: Seat 5 won the game!
+2018/04/25 04:24:17.05: -------- Hand Ended --------
+2018/04/25 04:24:17.05: Reseting Table Information
+2018/04/25 04:24:17.34: OCR My Bank string Seat1: 7,500
+2018/04/25 04:24:17.39: My Bank is:7500
+2018/04/25 04:24:17.39: Rebuying...
+2018/04/25 04:24:22.22: OCR Others Bank string Seat2: 20,000
+2018/04/25 04:24:22.54: OCR Others Name string Seat2: Dennis iPad2
+2018/04/25 04:24:22.82: OCR Others Bank string Seat3: 31,834
+2018/04/25 04:24:23.30: OCR Others Bank string Seat4: 7,600
+2018/04/25 04:24:23.76: OCR Others Bank string Seat5: 119,310
+2018/04/25 04:24:24.11: OCR Others Name string Seat5: greenie102
+2018/04/25 04:24:24.15: Players Bank dictionary is: {1: None, 2: 20000, 3: 31834, 4: 7600, 5: 119310}
+2018/04/25 04:24:24.16: Players Name dictionary is: {1: None, 2: 'Dennis iPad2', 3: None, 4: None, 5: 'greenie102'}
+2018/04/25 04:24:24.85: -------- New Hand Started --------
+2018/04/25 04:24:24.86: Coins are Founded
+2018/04/25 04:24:25.07: Seat 3 is at Small Blind Seat
+2018/04/25 04:24:25.29: Seat 4 is at Big Blind Seat
+2018/04/25 04:24:25.52: Seat 1 is at Dealer Seat
+2018/04/25 04:24:25.52: Looking for cards...
+2018/04/25 04:24:26.22: Cards are founded
+2018/04/25 04:24:26.46: My first Card is: 10 c
+2018/04/25 04:24:26.51: My second Card is: 2 d
+2018/04/25 04:24:26.52: Reading my cards took:0.11
+2018/04/25 04:24:26.52: Looking for light...
+2018/04/25 04:24:27.74: light is founded
+2018/04/25 04:24:28.52: OCR Bet string Seat3: 100
+2018/04/25 04:24:28.70: Seat3 Call: $100
+2018/04/25 04:24:29.14: OCR Bet string Seat4: 200
+2018/04/25 04:24:29.34: Seat4 Call: $200
+2018/04/25 04:24:29.79: OCR Bet string Seat5: 200
+2018/04/25 04:24:29.98: Seat5 Call: $200
+2018/04/25 04:24:29.99: *Deciding on Preflop*
+2018/04/25 04:24:30.47: Fold_Button is clicked
+2018/04/25 04:24:31.49: Running PreFlop Section
+2018/04/25 04:24:31.49: Looking for Next sign...
+2018/04/25 04:24:37.90: Reading Flop Cards...
+2018/04/25 04:24:37.97: 1th card is: 8 c
+2018/04/25 04:24:38.03: 2th card is: 2 h
+2018/04/25 04:24:38.15: 3th card is: J h
+2018/04/25 04:24:38.16: Reading Flop cards took:0.2
+2018/04/25 04:24:38.16: Running Flop Section
+2018/04/25 04:24:38.16: Looking for Next sign...
+2018/04/25 04:24:45.38: Reading Turn Card
+2018/04/25 04:24:45.52: 4th card is: Q s
+2018/04/25 04:24:45.52: Reading Turn card took:0.13
+2018/04/25 04:24:45.52: Running Turn Section
+2018/04/25 04:24:45.52: Looking for Next sign...
+2018/04/25 04:24:54.35: Reading River Card
+2018/04/25 04:24:54.40: 5th card is: Q d
+2018/04/25 04:24:54.40: Reading River card took:0.04
+2018/04/25 04:24:54.40: Running River Section
+2018/04/25 04:24:54.40: Looking for Next sign...
+2018/04/25 04:25:19.48: Seat 4 won the game!
+2018/04/25 04:25:19.48: -------- Hand Ended --------
+2018/04/25 04:25:19.49: Reseting Table Information
+2018/04/25 04:25:19.71: OCR My Bank string Seat1: 7,500
+2018/04/25 04:25:19.75: My Bank is:7500
+2018/04/25 04:25:19.75: Rebuying...
+2018/04/25 04:25:24.45: OCR Others Bank string Seat2: 20,000
+2018/04/25 04:25:24.74: OCR Others Name string Seat2: Dennis iPad2
+2018/04/25 04:25:25.00: OCR Others Bank string Seat3: 31,334
+2018/04/25 04:25:25.32: OCR Others Name string Seat3: Sevens
+2018/04/25 04:25:25.60: OCR Others Bank string Seat4: 8,8-82
+2018/04/25 04:25:25.60: Easy_OCR_Others_Bank_Number(A Gift Over Bank Number) Seat 4 
+2018/04/25 04:25:26.07: OCR Others Bank string Seat5: 118,503
+2018/04/25 04:25:26.33: Players Bank dictionary is: {1: None, 2: 20000, 3: 31334, 4: None, 5: 118503}
+2018/04/25 04:25:26.33: Players Name dictionary is: {1: None, 2: 'Dennis iPad2', 3: 'Sevens', 4: None, 5: None}
+2018/04/25 04:25:26.99: -------- New Hand Started --------
+2018/04/25 04:25:26.99: Coins are Founded
+2018/04/25 04:25:27.23: Seat 4 is at Small Blind Seat
+2018/04/25 04:25:27.47: Seat 5 is at Big Blind Seat
+2018/04/25 04:25:27.71: Seat 3 is at Dealer Seat
+2018/04/25 04:25:27.71: Looking for cards...
+2018/04/25 04:25:28.32: Cards are founded
+2018/04/25 04:25:28.51: My first Card is: 3 c
+2018/04/25 04:25:28.58: My second Card is: 4 s
+2018/04/25 04:25:28.58: Reading my cards took:0.11
+2018/04/25 04:25:28.58: Looking for light...
+2018/04/25 04:25:29.79: light is founded
+2018/04/25 04:25:30.45: OCR Bet string Seat2: 200
+2018/04/25 04:25:30.66: Seat2 Call: $200
+2018/04/25 04:25:31.27: OCR Bet string Seat4: 100
+2018/04/25 04:25:31.45: Seat4 Call: $100
+2018/04/25 04:25:31.85: OCR Bet string Seat5: 200
+2018/04/25 04:25:32.02: Seat5 Call: $200
+2018/04/25 04:25:32.02: *Deciding on Preflop*
+2018/04/25 04:25:32.49: Fold_Button is clicked
+2018/04/25 04:25:33.49: Running PreFlop Section
+2018/04/25 04:25:33.49: Looking for Next sign...
+2018/04/25 04:25:52.65: Reading Flop Cards...
+2018/04/25 04:25:52.73: 1th card is: A h
+2018/04/25 04:25:52.81: 2th card is: J c
+2018/04/25 04:25:52.93: 3th card is: 5 s
+2018/04/25 04:25:52.94: Reading Flop cards took:0.27
+2018/04/25 04:25:52.94: Running Flop Section
+2018/04/25 04:25:52.94: Looking for Next sign...
+2018/04/25 04:26:06.58: Reading Turn Card
+2018/04/25 04:26:06.65: 4th card is: K s
+2018/04/25 04:26:06.65: Reading Turn card took:0.06
+2018/04/25 04:26:06.65: Running Turn Section
+2018/04/25 04:26:06.65: Looking for Next sign...

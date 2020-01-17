@@ -1,0 +1,13 @@
+2017/11/19 03:27:40.09: Hello Kitty
+2017/11/19 03:27:53.94: Looking for game on screen...
+2017/11/19 03:27:54.55: ****** Running Just_Seated == True Section ******
+2017/11/19 03:27:54.56: Reseting Table Information
+2017/11/19 03:27:54.92: -------
+2017/11/19 03:27:54.93: Vital_Signs() <-- OCR_My_Bank_Number(Seat_Num) is running....
+2017/11/19 03:27:55.40: Position (0,720) is clicked
+2017/11/19 03:27:55.40: Looking for game on screen...
+2017/11/19 03:27:56.24: Game region refounded after Vital_Signs()
+2017/11/19 03:27:56.87: I am Out
+2017/11/19 03:27:56.87: Searching for a seat to sit in
+2017/11/19 03:27:57.42: Exit_Button is clicked
+2017/11/19 03:27:57.44: Just_Seated is None.
