@@ -1,3 +1,0 @@
-2018/07/15 02:31:50.59: Hello Kitty
-2018/07/15 02:31:53.61: Looking for game on screen...
-2018/07/15 02:31:54.62: Screenshot Error: Could not find game on screen

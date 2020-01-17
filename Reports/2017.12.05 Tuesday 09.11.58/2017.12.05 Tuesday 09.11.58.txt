@@ -1,9 +1,0 @@
-2017/12/05 09:11:58.44: Hello Kitty
-2017/12/05 09:12:05.69: Looking for game on screen...
-2017/12/05 09:12:06.02: ****** Running Just_Seated == True Section ******
-2017/12/05 09:12:06.03: Reseting Table Information
-2017/12/05 09:12:07.46: OCR My Bank string Seat1: 39,600
-2017/12/05 09:12:07.51: My Bank is:39600
-2017/12/05 09:12:07.52: Rebuying...
-2017/12/05 09:12:08.14: Players Info is not Read
-2017/12/05 09:12:08.15: Looking for cards in Just_Seated == True Section...

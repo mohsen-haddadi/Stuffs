@@ -1,3 +1,0 @@
-2017/11/18 00:41:56.19: [1m[31mH[39m[33me[39m[32ml[39m[34ml[39m[35mo[39m [33mK[39m[32mi[39m[34mt[39m[35mt[39m[31my[39m[22m
-2017/11/18 00:42:00.02: [1m[33mLooking for game on screen...[39m[22m
-2017/11/18 00:42:00.55: [1m[104mScreenshot Error: Could not find game on screen[49m[22m
