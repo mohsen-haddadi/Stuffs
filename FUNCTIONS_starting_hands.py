@@ -1,4 +1,4 @@
-from FUNCTIONS_suit_and_value import s, n
+from FUNCTIONS_suit_and_value import s, n 
 
 
 def globalization():
