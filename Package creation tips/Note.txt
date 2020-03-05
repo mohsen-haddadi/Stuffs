@@ -1,7 +1,7 @@
-This examples demonstrates how to import your modules or folders with modules in it
-first, if there is another built in or site libraries with SAME NAMES.
+This examples demonstrates how to import your own modules or the folders with modules in it
+before the other packages, if there is another built in or site libraries with SAME NAMES.
 
-1. if you have a folder, change it to a package by empty __init__.py file to 
+1. if you have a folder, change it to a package by empty content __init__.py file to 
 put it high on priority (package and modules are on same priority but folder is on lower priority)
 
 2. Your modules or packages name SHOULD NOT be built in standrad packages name, 
