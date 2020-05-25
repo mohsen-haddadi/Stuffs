@@ -21,6 +21,5 @@ while True: #main loop
 			input("press Enter to countinue...") 
 			#here run check_connectivity() function (Just_Seated and check_mode will be assigned True in check_connectivity() if needed)
 			break 
-		time.sleep(2) #program excection(pixel matching)
-		print("in sub loop")
-		
+		time.sleep(2) #program excecution(pixel matching)
+		print("in sub loop")		
