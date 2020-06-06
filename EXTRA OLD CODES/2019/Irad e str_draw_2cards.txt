@@ -1,0 +1,12 @@
+May 2018
+
+>>> open_str_draw_2_Cards_list( [14,7,5] )
+[(8, 6), (6, 4)]
+dorost: [...,(4,3)]
+
+
+>>> open_str_draw_2_Cards_list( [7,8,9] )
+[]
+dorost: [(11,6)]
+
+

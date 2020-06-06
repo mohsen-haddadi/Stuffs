@@ -1,0 +1,44 @@
+1. There are 2 ways to create a global scope
+   1. simply assign the variable outside functions
+   2. global it inside a function but don't remember to run that funtion 
+      before using that variable inside or ouside other funcions to resist NameError.
+
+2. using global line in a function is for:
+   1. introduce and creating a new global variable or
+   2. modify and assigning a global variable
+
+3. Whenever using save_variables() inside a function, make sure you have already used
+global line for the global variables you are assigning;
+to affect that variable into save_variables().
+
+4. in save_variables() definition there is no need to use global line.
+using load_variables() inside save_variables() definition leads to wrong answers. 
+
+5. using save_variables() and load_variables() procedure:
+   a: global 
+   b: load_variables() 
+   c: save_variables()
+
+   1. a <- b <- c  ( exeption: set_variables_to_None() a <- c )
+   2. a <- b <- return
+   3. a <- return
+   
+   *look at 'how to use load and save variables functions' file for exampels
+
+6. pure functions uses return; non pure uses save_variables
+
+7. make all pixel matching, card findings and ocr functions; pure functions by 
+using return; and then assign returned values into variables
+(ex: card_1th, dealer_seat,....)and save_variables() them,
+all in a single function like read_game_variables()
+
+8. modules like: straight, flush, supporting_functions and... uses pickled variables 
+and therefore do not need to import other pixel matching modules
+
+9. Only in these modules save_variables() is defined and used:
+   1. file_level_1o5th_game_coordinates
+   2. file_level_1o6th_game_variables
+   3. file_level_2th_buttons ( to save the rasing amount of mine,
+      at raise() button function )
+
+10. don't use load_variables() and save_variables() at unnessesary places.
