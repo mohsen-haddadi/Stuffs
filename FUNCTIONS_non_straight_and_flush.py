@@ -13,7 +13,7 @@ Ranking Functions return 1.a Number or 2.a tuple or 3.None value if their True o
 
 def globalization():
     """ variables order is important while loading """
-    global po , file_name , Reports_directory ,\
+    global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -23,7 +23,7 @@ def globalization():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    po , file_name , Reports_directory ,\
+    GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\

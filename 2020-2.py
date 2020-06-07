@@ -89,7 +89,7 @@ def sound(string_name) :
 # FUNCTIONS_Pixel-Maching ---------------------------------------------------------------------------------------------
 
 
-
+#
 def Coins_Founded():
     globalization()
     Small_seat_1= pixelMatchesColor( GAME_POSITION[0]+369, GAME_POSITION[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
@@ -111,7 +111,7 @@ def Coins_Founded():
                and ( Big_seat_1 or Big_seat_2 or Big_seat_3 or Big_seat_4 or Big_seat_5 )
                and ( Dealer_seat_1 or Dealer_seat_2 or Dealer_seat_3 or Dealer_seat_4 or Dealer_seat_5 ) )
     return Founded
-    
+#    
 def Declare_The_Winners():
     globalization()
     me1= pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
@@ -136,24 +136,27 @@ def Declare_The_Winners():
         return shout("Seat 4 won the game!")
     if( other5==True ):
         return shout("Seat 5 won the game!")
-
+#
 def Pre_Flop(): # True or Flase
     return not Flop()
+#
 def Flop():
     globalization()
     Flop = pixelMatchesColor( GAME_POSITION[0]+136, GAME_POSITION[1]+218, (237,237,237) ) #Flop
     return Flop 
+#
 def Turn():
     globalization()
     Turn = pixelMatchesColor( GAME_POSITION[0]+196, GAME_POSITION[1]+218, (237,237,237) ) #Turn
     return Turn 
+#
 def River():
     globalization()
     River = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+218, (237,237,237) ) #River
     return River 
 
 
-    
+#    
 def avg_color(x,y,h,w) :
     pil_image=pyautogui.screenshot(region=(x, y , h, w) )
     pil_image.convert('RGB')
@@ -164,7 +167,7 @@ def avg_color(x,y,h,w) :
 
     return avg_color
 
-
+#
 def Bet_White_or_Red(Seat_Num): # Red: True, White: False
     globalization()
     if Seat_Num==1 :
@@ -197,7 +200,7 @@ def Bet_White_or_Red(Seat_Num): # Red: True, White: False
             return True
         else :
             return False
-
+#
 def Bet_coin(Seat): #New define function for celeb
     globalization()
     if Seat==1:
@@ -210,20 +213,20 @@ def Bet_coin(Seat): #New define function for celeb
         return pixelMatchesColor( GAME_POSITION[0]-143, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_4
     if Seat==5:
         return pixelMatchesColor( GAME_POSITION[0]+302, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_5
-
+#
 def White(Seat):
     if Bet_coin(Seat):
         return not Bet_White_or_Red(Seat)
     else :
         return False
-
+#
 def Red(Seat):
     if Bet_coin(Seat):
         return Bet_White_or_Red(Seat)
     else :
         return False
 
-
+#
 def Cards(Seat):
     globalization()
     if Seat==1:
@@ -246,7 +249,7 @@ def Cards(Seat):
         c1 = pixelMatchesColor( GAME_POSITION[0]+359, GAME_POSITION[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_5 
         c2 = pixelMatchesColor( GAME_POSITION[0]+357, GAME_POSITION[1]+193, (154,7,13), tolerance=20 ) 
         return c1 or c2
-
+#
 def Light(Seat): # celeb
     globalization()
     if Seat==1:
@@ -260,7 +263,7 @@ def Light(Seat): # celeb
     if Seat==5:
         return pixelMatchesColor( GAME_POSITION[0]+383, GAME_POSITION[1]+217, (31,40,45), tolerance=5 ) #Light_Turn_seat_5
 
-
+#
 def Gray_Sign_Seat(Number): # celeb
     globalization()
     if Number == 1 :
@@ -283,25 +286,7 @@ def Gray_Sign_Seat(Number): # celeb
         x1 = pixelMatchesColor( GAME_POSITION[0]+321, GAME_POSITION[1]+43, (62,72,87), tolerance=5 ) #Gray_Sign_Me_seat_5
         x2 = pixelMatchesColor( GAME_POSITION[0]+345, GAME_POSITION[1]+46, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_5
         return (x1 or x2)
-
-    
-def Players_In_dic_Engine(Five_Seats_CardsX):  #(shout who Folds and Update players_In dictionary)
-    globalization()
-    global Five_Seats_Cards , players_In
-    Five_Seats_CardsY = Five_Seats_CardsX
-    Cards_seat_1= pixelMatchesColor( GAME_POSITION[0]+330, GAME_POSITION[1]+331, (154,7,13) ) #Cards_seat_1
-    Cards_seat_2= pixelMatchesColor( GAME_POSITION[0]+74, GAME_POSITION[1]+332, (154,7,13) ) #Cards_seat_2
-    Cards_seat_3= pixelMatchesColor( GAME_POSITION[0]-181, GAME_POSITION[1]+331, (154,7,13) ) #Cards_seat_3
-    Cards_seat_4= pixelMatchesColor( GAME_POSITION[0]-140, GAME_POSITION[1]+212, (154,7,13) ) #Cards_seat_4
-    Cards_seat_5= pixelMatchesColor( GAME_POSITION[0]+359, GAME_POSITION[1]+212, (154,7,13) ) #Cards_seat_5
-    Five_Seats_Cards_New_screenshot =( Cards_seat_1 , Cards_seat_2 , Cards_seat_3 , Cards_seat_4 , Cards_seat_5 )
-    Five_Seats_Cards = Five_Seats_Cards_New_screenshot 
-    for k in range(5):
-        if Five_Seats_CardsY[k] != Five_Seats_Cards_New_screenshot[k]:
-            players_In[k+1]=False
-            return shout("seat",k+1,"Folded!")    
-      
-
+#
 def Hand_End_Cheker():
     globalization()
     me1= pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
@@ -319,7 +304,7 @@ def Hand_End_Cheker():
 
 # 2017 :------------------------------
 
-
+###
 def Determine_Small_Blind_Seat():
     global Small_Blind_Seat
     globalization()
@@ -346,7 +331,7 @@ def Determine_Small_Blind_Seat():
         Small_Blind_Seat = 5
         shout("Seat 5 is at Small Blind Seat")
 
-
+###
 def Determine_Big_Blind_Seat():
     global Big_Blind_Seat
     globalization()
@@ -373,7 +358,7 @@ def Determine_Big_Blind_Seat():
         Big_Blind_Seat = 5
         shout("Seat 5 is at Big Blind Seat") 
 
-
+###
 def Determine_Dealer_Seat():
     global Dealer_Seat
     globalization()
@@ -412,7 +397,7 @@ def Determine_Dealer_Seat():
 
 # def_Buttons_new: ---------------------------------------------------------------------------------------------------------------
 
-
+#
 def Available_Seat(Number):
     globalization()
     if Number == 1 :
@@ -453,7 +438,7 @@ def Click_on_Available_Seat(Number):
     if Number == 5 :
         pyautogui.click( GAME_POSITION[0]+392, GAME_POSITION[1]+103 ) #Seat5
         shout(paint.light_cyan.bold("Available_Seat 5 is clicked"))
-
+#
 def Fold_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+51, GAME_POSITION[1]+581, (190,22,28) ) #Fold
@@ -472,7 +457,7 @@ def Click_on_Fold_Button():
             pyautogui.click( GAME_POSITION[0]+51, GAME_POSITION[1]+581 )
             shout(paint.light_cyan.bold("Fold_Button is clicked"))
         Check_Mod_On("Click_on_Fold_Button()")
-
+#
 def Check_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+578, (1,83,170) ) #Check_up
@@ -497,7 +482,7 @@ def Click_on_Check_Button():
             shout(paint.light_cyan.bold("Check_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Check_Button()")
-            
+#            
 def Call_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+575, (0,84,172) ) #Call_up
@@ -522,7 +507,7 @@ def Click_on_Call_Button():
             shout(paint.light_cyan.bold("Call_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Call_Button()")
-
+#
 def Bet_Button(): # celeb
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (24,115,0), tolerance=15 ) #Bet_up
@@ -547,7 +532,7 @@ def Click_on_Bet_Button():
             shout(paint.light_cyan.bold("Bet_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Bet_Button()")
-
+#
 def Raise_Button(): # celeb
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (25,117,0), tolerance=15 ) #Raise_up
@@ -598,7 +583,7 @@ def Number_of_Clicks_on_Plus_Button(Number): #Number of clicks
             shout(paint.light_cyan.bold("Plus_Button is clicked"))
         else :
             Check_Mod_On("Number_of_Clicks_on_Plus_Button()")
-
+#
 def Minus_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-9, GAME_POSITION[1]+648, (58,68,83) ) #Minus_Button
@@ -624,7 +609,7 @@ def Number_of_Click_on_Minus_Button(Number): #Number of clicks
             shout(paint.light_cyan.bold("Minus_Button is clicked"))
         else :
             Check_Mod_On("Number_of_Click_on_Minus_Button()")
-
+#
 def All_In_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+531, GAME_POSITION[1]+648, (207,90,6) ) #All_In_Button
@@ -647,7 +632,7 @@ def Click_on_All_In_Button():
             shout(paint.light_cyan.bold("All_In_Button is clicked"))
         else :
             Check_Mod_On("Click_on_All_In_Button()")
-
+#
 def Exit_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+378, GAME_POSITION[1]+21, (130,135,146) ) #Exit_Button
@@ -667,7 +652,7 @@ def Click_on_Exit_Button():
             shout(paint.light_cyan.bold("Exit_Button is clicked"))
         else : #can't proceed to here
             Raise_What_is_Problem("Click_on_Exit_Button")
-            
+#            
 def Exit_Yes_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+47, GAME_POSITION[1]+355, (168,11,16) ) #Exit_Yes_Button
@@ -681,13 +666,13 @@ def Click_on_Exit_Yes_Button():
         shout(paint.light_cyan.bold("Exit_Yes_Button is clicked"))
     else :
         Raise_What_is_Problem("Click_on_Exit_Yes_Button")
-
+#
 def Menu_Button(): # celeb
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-399, GAME_POSITION[1]-66, (38,44,47), tolerance=5 ) #Menu_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]-399, GAME_POSITION[1]-66, (78,83,97), tolerance=5 ) #Menu_Button_Light
     return (x1 or x2)
-
+#
 def Click_on_Menu_Button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
@@ -701,7 +686,7 @@ def Click_on_Menu_Button():
             shout(paint.light_cyan.bold("Menu_Button is clicked"))
         else :
             Raise_What_is_Problem("Click_on_Exit_Button")
-
+#
 def Rebuy_Menu_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+513, GAME_POSITION[1]+14, (203,0,6) ) #Rebuy_Menu_Button
