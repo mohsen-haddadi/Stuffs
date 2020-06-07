@@ -90,69 +90,82 @@ def sound(string_name) :
 
 
 #
-def Coins_Founded():
+def coins_founded():
     globalization()
-    Small_seat_1= pixelMatchesColor( GAME_POSITION[0]+369, GAME_POSITION[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
-    Small_seat_2= pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (21,124,218), tolerance=10 ) #Small_seat_2
-    Small_seat_3= pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (16,105,211), tolerance=10 ) #Small_seat_3
-    Small_seat_4= pixelMatchesColor( GAME_POSITION[0]-173, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_4
-    Small_seat_5= pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_5
-    Big_seat_1= pixelMatchesColor( GAME_POSITION[0]+367, GAME_POSITION[1]+329, (180,180,180), tolerance=10 ) #Big_seat_1
-    Big_seat_2= pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (200,200,200), tolerance=10 ) #Big_seat_2
-    Big_seat_3= pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (185,185,185), tolerance=10 ) #Big_seat_3
-    Big_seat_4= pixelMatchesColor( GAME_POSITION[0]-174, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_4
-    Big_seat_5= pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_5
-    Dealer_seat_1= pixelMatchesColor( GAME_POSITION[0]+397, GAME_POSITION[1]+330, (255,155,0), tolerance=10 ) #Dealer_seat_1
-    Dealer_seat_2= pixelMatchesColor( GAME_POSITION[0]+144, GAME_POSITION[1]+333, (254,193,0), tolerance=10 ) #Dealer_seat_2
-    Dealer_seat_3= pixelMatchesColor( GAME_POSITION[0]-116, GAME_POSITION[1]+330, (255,154,0), tolerance=10 ) #Dealer_seat_3
-    Dealer_seat_4= pixelMatchesColor( GAME_POSITION[0]-202, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_4
-    Dealer_seat_5= pixelMatchesColor( GAME_POSITION[0]+429, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_5    
-    Founded=( ( Small_seat_1 or Small_seat_2 or Small_seat_3 or Small_seat_4 or Small_seat_5 )
-               and ( Big_seat_1 or Big_seat_2 or Big_seat_3 or Big_seat_4 or Big_seat_5 )
-               and ( Dealer_seat_1 or Dealer_seat_2 or Dealer_seat_3 or Dealer_seat_4 or Dealer_seat_5 ) )
-    return Founded
+   
+    founded = ( ( small_blind_seat(1) or small_blind_seat(2) or small_blind_seat(3) or small_blind_seat(4) or small_blind_seat(5) )
+               and ( big_blind_seat(1) or big_blind_seat(2) or big_blind_seat(3) or big_blind_seat(4) or big_blind_seat(5) )
+               and ( dealer_seat(1) or dealer_seat(2) or dealer_seat(3) or dealer_seat(4) or dealer_seat(5) ) )
+    return founded
+
+#2020
+def my_seat_won(seat):
+    # looking for a sign of winning on my seat to check if I have won the game by returning True or False    
+    i_won_on_seat_1 = pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
+    i_won_on_seat_2 = pixelMatchesColor( GAME_POSITION[0]+187, GAME_POSITION[1]+422, (248,123,10), tolerance=5 ) #Win-Finish-Me-seat-2
+    i_won_on_seat_3 = pixelMatchesColor( GAME_POSITION[0]-68, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-3
+    i_won_on_seat_4 = pixelMatchesColor( GAME_POSITION[0]-98, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-4
+    i_won_on_seat_5 = pixelMatchesColor( GAME_POSITION[0]+472, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-5
+
+    if seat == 1: return i_won_on_seat_1
+    if seat == 2: return i_won_on_seat_2
+    if seat == 3: return i_won_on_seat_3
+    if seat == 4: return i_won_on_seat_4
+    if seat == 5: return i_won_on_seat_5
+
+#2020
+def other_seat_won(seat):
+    # looking for a sign on other's seat to check if they have won the game by returning True or False
+    others_won_on_seat_1= pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
+    others_won_on_seat_2= pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
+    others_won_on_seat_3= pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
+    others_won_on_seat_4= pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
+    others_won_on_seat_5= pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
+
+    if seat == 1: return others_won_on_seat_1
+    if seat == 2: return others_won_on_seat_2
+    if seat == 3: return others_won_on_seat_3
+    if seat == 4: return others_won_on_seat_4
+    if seat == 5: return others_won_on_seat_5
+    
+
 #    
-def Declare_The_Winners():
+def declare_the_winners():
     globalization()
-    me1= pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
-    me2= pixelMatchesColor( GAME_POSITION[0]+187, GAME_POSITION[1]+422, (248,123,10), tolerance=5 ) #Win-Finish-Me-seat-2
-    me3= pixelMatchesColor( GAME_POSITION[0]-68, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-3
-    me4= pixelMatchesColor( GAME_POSITION[0]-98, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-4
-    me5= pixelMatchesColor( GAME_POSITION[0]+472, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-5
-    other1= pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
-    other2= pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
-    other3= pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
-    other4= pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
-    other5= pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
-    if( (me1 or me2 or me3 or me4 or me5)==True ):
+
+    if( (my_seat_won(1) or my_seat_won(2) or my_seat_won(3) or my_seat_won(4) or my_seat_won(5)) == True ):
         return shout(paint.on_light_magenta.bold("I won the game!"))
-    if( other1==True ):
+    if( other_seat_won(1) == True ):
         return shout("Seat 1 won the game!")
-    if( other2==True ):
+    if( other_seat_won(2) == True ):
         return shout("Seat 2 won the game!")
-    if( other3==True ):
+    if( other_seat_won(3) == True ):
         return shout("Seat 3 won the game!")
-    if( other4==True ):
+    if( other_seat_won(4) == True ):
         return shout("Seat 4 won the game!")
-    if( other5==True ):
+    if( other_seat_won(5) == True ):
         return shout("Seat 5 won the game!")
 #
-def Pre_Flop(): # True or Flase
-    return not Flop()
+def pre_flop(): 
+    # Check if the game is on pre flop by returning True or False
+    return not flop()
 #
-def Flop():
+def flop():
+    # Check if the game is on flop by returning True or False
     globalization()
-    Flop = pixelMatchesColor( GAME_POSITION[0]+136, GAME_POSITION[1]+218, (237,237,237) ) #Flop
+    flop = pixelMatchesColor( GAME_POSITION[0]+136, GAME_POSITION[1]+218, (237,237,237) ) #Flop
     return Flop 
 #
-def Turn():
+def turn():
+    # Check if the game is on turn by returning True or False
     globalization()
-    Turn = pixelMatchesColor( GAME_POSITION[0]+196, GAME_POSITION[1]+218, (237,237,237) ) #Turn
+    turn = pixelMatchesColor( GAME_POSITION[0]+196, GAME_POSITION[1]+218, (237,237,237) ) #Turn
     return Turn 
 #
-def River():
+def river():
+    # Check if the game is on river by returning True or False
     globalization()
-    River = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+218, (237,237,237) ) #River
+    river = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+218, (237,237,237) ) #River
     return River 
 
 
@@ -168,61 +181,68 @@ def avg_color(x,y,h,w) :
     return avg_color
 
 #
-def Bet_White_or_Red(Seat_Num): # Red: True, White: False
+def is_bet_coin_white_or_red(seat): 
+    # If betting or raising coin color on the table is
+    # red it returns True, if the colors is white it returns False
     globalization()
-    if Seat_Num==1 :
+    if seat == 1 :
         x = avg_color(GAME_POSITION[0]+313,GAME_POSITION[1]+310,15,15) #Bet_White_or_Red_seat1
         if x[2] < 20 :
             return True
         else :
             return False
-    if Seat_Num==2 :
+    if seat == 2 :
         x = avg_color(GAME_POSITION[0]+95,GAME_POSITION[1]+312,15,15) #Bet_White_or_Red_seat2
         if x[2] < 20 :
             return True
         else :
             return False
-    if Seat_Num==3 :
+    if seat == 3 :
         x = avg_color(GAME_POSITION[0]-123,GAME_POSITION[1]+310,15,15) #Bet_White_or_Red_seat3
         if x[2] < 20 :
             return True
         else :
             return False
-    if Seat_Num==4 :
+    if seat == 4 :
         x = avg_color(GAME_POSITION[0]-128,GAME_POSITION[1]+223,15,15) #Bet_White_or_Red_seat4
         if x[2] < 20 :
             return True
         else :
             return False
-    if Seat_Num==5 :
+    if seat == 5 :
         x = avg_color(GAME_POSITION[0]+318,GAME_POSITION[1]+223,15,15) #Bet_White_or_Red_seat5
         if x[2] < 20 :
             return True
         else :
             return False
 #
-def Bet_coin(Seat): #New define function for celeb
+def bet_coin_seat(seat): #New define function for celeb
+    # Checks if there is any betting coin in front of a seat or not, by returning True or False
     globalization()
-    if Seat==1:
+    if seat==1:
         return pixelMatchesColor( GAME_POSITION[0]+298, GAME_POSITION[1]+317, (240,16,0), tolerance=10 ) #Bet_coin_seat_1
-    if Seat==2:
+    if seat==2:
         return pixelMatchesColor( GAME_POSITION[0]+79, GAME_POSITION[1]+320, (237,16,0), tolerance=10 ) #Bet_coin_seat_2
-    if Seat==3:
+    if seat==3:
         return pixelMatchesColor( GAME_POSITION[0]-138, GAME_POSITION[1]+317, (241,17,0), tolerance=10 ) #Bet_coin_seat_3
-    if Seat==4:
+    if seat==4:
         return pixelMatchesColor( GAME_POSITION[0]-143, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_4
-    if Seat==5:
+    if seat==5:
         return pixelMatchesColor( GAME_POSITION[0]+302, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_5
 #
-def White(Seat):
-    if Bet_coin(Seat):
-        return not Bet_White_or_Red(Seat)
+def white(Seat):
+    # To find out if a player has bet/call or not it checks if
+    # betting coin in front of a seat is white or not, by returning True or False
+    if bet_coin_seat(Seat):
+        return not is_bet_coin_white_or_red(Seat)
     else :
         return False
 #
-def Red(Seat):
-    if Bet_coin(Seat):
-        return Bet_White_or_Red(Seat)
+def red(Seat):
+    # To find out if a player has raised or not it checks if
+    # betting coin in front of a seat is red or not, by returning True or False
+    if bet_coin_seat(Seat):
+        return is_bet_coin_white_or_red(Seat)
     else :
         return False
 
@@ -289,99 +309,117 @@ def Gray_Sign_Seat(Number): # celeb
 #
 def Hand_End_Cheker():
     globalization()
-    me1= pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
-    me2= pixelMatchesColor( GAME_POSITION[0]+187, GAME_POSITION[1]+422, (248,123,10), tolerance=5 ) #Win-Finish-Me-seat-2
-    me3= pixelMatchesColor( GAME_POSITION[0]-68, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-3
-    me4= pixelMatchesColor( GAME_POSITION[0]-98, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-4
-    me5= pixelMatchesColor( GAME_POSITION[0]+472, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-5
-    other1= pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
-    other2= pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
-    other3= pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
-    other4= pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
-    other5= pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
-    Hand_Ended=(me1 or me2 or me3 or me4 or me5 or other1 or other2 or other3 or other4 or other5 )
+
+    Hand_Ended= ( my_seat_won(1) or my_seat_won(2) or my_seat_won(3) or my_seat_won(4) or my_seat_won(5) or 
+                other_seat_won(1) or other_seat_won(2) or other_seat_won(3) or other_seat_won(4) or other_seat_won(5) )
     return Hand_Ended
 
 # 2017 :------------------------------
+
+#2020
+def small_blind_seat(seat):
+    # check if a seat is on small blind position by returning True or False
+    small_blind_seat_1 = pixelMatchesColor( GAME_POSITION[0]+369, GAME_POSITION[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
+    small_blind_seat_2 = pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (21,124,218), tolerance=10 ) #Small_seat_2
+    small_blind_seat_3 = pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (16,105,211), tolerance=10 ) #Small_seat_3
+    small_blind_seat_4 = pixelMatchesColor( GAME_POSITION[0]-173, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_4
+    small_blind_seat_5 = pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_5
+
+    if seat == 1: return small_blind_seat_1
+    if seat == 2: return small_blind_seat_2
+    if seat == 3: return small_blind_seat_3
+    if seat == 4: return small_blind_seat_4
+    if seat == 5: return small_blind_seat_5
 
 ###
 def Determine_Small_Blind_Seat():
     global Small_Blind_Seat
     globalization()
 
-    Small_seat_1= pixelMatchesColor( GAME_POSITION[0]+369, GAME_POSITION[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
-    Small_seat_2= pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (21,124,218), tolerance=10 ) #Small_seat_2
-    Small_seat_3= pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (16,105,211), tolerance=10 ) #Small_seat_3
-    Small_seat_4= pixelMatchesColor( GAME_POSITION[0]-173, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_4
-    Small_seat_5= pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_5
-
-    if Small_seat_1 == True :
+    if small_blind_seat(1) == True :
         Small_Blind_Seat = 1
         shout("Seat 1 is at Small Blind Seat")
-    elif Small_seat_2 == True :
+    elif small_blind_seat(2) == True :
         Small_Blind_Seat = 2
         shout("Seat 2 is at Small Blind Seat")
-    elif Small_seat_3 == True :
+    elif small_blind_seat(3) == True :
         Small_Blind_Seat = 3
         shout("Seat 3 is at Small Blind Seat")
-    elif Small_seat_4 == True :
+    elif small_blind_seat(4) == True :
         Small_Blind_Seat = 4
         shout("Seat 4 is at Small Blind Seat")
-    elif Small_seat_5 == True :
+    elif small_blind_seat(5) == True :
         Small_Blind_Seat = 5
         shout("Seat 5 is at Small Blind Seat")
+
+#2020
+def big_blind_seat(seat):
+    # check if a seat is on big blind position by returning True or False
+    big_blind_seat_1 = pixelMatchesColor( GAME_POSITION[0]+367, GAME_POSITION[1]+329, (180,180,180), tolerance=10 ) #Big_seat_1
+    big_blind_seat_2 = pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (200,200,200), tolerance=10 ) #Big_seat_2
+    big_blind_seat_3 = pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (185,185,185), tolerance=10 ) #Big_seat_3
+    big_blind_seat_4 = pixelMatchesColor( GAME_POSITION[0]-174, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_4
+    big_blind_seat_5 = pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_5
+
+    if seat == 1: return big_blind_seat_1
+    if seat == 2: return big_blind_seat_2
+    if seat == 3: return big_blind_seat_3
+    if seat == 4: return big_blind_seat_4
+    if seat == 5: return big_blind_seat_5
 
 ###
 def Determine_Big_Blind_Seat():
     global Big_Blind_Seat
     globalization()
 
-    Big_seat_1= pixelMatchesColor( GAME_POSITION[0]+367, GAME_POSITION[1]+329, (180,180,180), tolerance=10 ) #Big_seat_1
-    Big_seat_2= pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (200,200,200), tolerance=10 ) #Big_seat_2
-    Big_seat_3= pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (185,185,185), tolerance=10 ) #Big_seat_3
-    Big_seat_4= pixelMatchesColor( GAME_POSITION[0]-174, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_4
-    Big_seat_5= pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_5
-
-    if Big_seat_1 == True :
+    if big_blind_seat(1) == True :
         Big_Blind_Seat = 1
         shout("Seat 1 is at Big Blind Seat")
-    elif Big_seat_2 == True :
+    elif  big_blind_seat(2) == True :
         Big_Blind_Seat = 2
         shout("Seat 2 is at Big Blind Seat")
-    elif Big_seat_3 == True :
+    elif  big_blind_seat(3) == True :
         Big_Blind_Seat = 3
         shout("Seat 3 is at Big Blind Seat")
-    elif Big_seat_4 == True :
+    elif  big_blind_seat(4) == True :
         Big_Blind_Seat = 4
         shout("Seat 4 is at Big Blind Seat")
-    elif Big_seat_5 == True :
+    elif  big_blind_seat(5) == True :
         Big_Blind_Seat = 5
         shout("Seat 5 is at Big Blind Seat") 
 
+#2020
+def dealer_seat(seat):
+    # check if a seat is on dealer position by returning True or False
+    dealer_seat_1 = pixelMatchesColor( GAME_POSITION[0]+397, GAME_POSITION[1]+330, (255,155,0), tolerance=10 ) #Dealer_seat_1
+    dealer_seat_2 = pixelMatchesColor( GAME_POSITION[0]+144, GAME_POSITION[1]+333, (254,193,0), tolerance=10 ) #Dealer_seat_2
+    dealer_seat_3 = pixelMatchesColor( GAME_POSITION[0]-116, GAME_POSITION[1]+330, (255,154,0), tolerance=10 ) #Dealer_seat_3
+    dealer_seat_4 = pixelMatchesColor( GAME_POSITION[0]-202, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_4
+    dealer_seat_5 = pixelMatchesColor( GAME_POSITION[0]+429, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_5 
+
+    if seat == 1: return dealer_seat_1
+    if seat == 2: return dealer_seat_2
+    if seat == 3: return dealer_seat_3
+    if seat == 4: return dealer_seat_4
+    if seat == 5: return dealer_seat_5
 ###
 def Determine_Dealer_Seat():
     global Dealer_Seat
     globalization()
 
-    Dealer_seat_1= pixelMatchesColor( GAME_POSITION[0]+397, GAME_POSITION[1]+330, (255,155,0), tolerance=10 ) #Dealer_seat_1
-    Dealer_seat_2= pixelMatchesColor( GAME_POSITION[0]+144, GAME_POSITION[1]+333, (254,193,0), tolerance=10 ) #Dealer_seat_2
-    Dealer_seat_3= pixelMatchesColor( GAME_POSITION[0]-116, GAME_POSITION[1]+330, (255,154,0), tolerance=10 ) #Dealer_seat_3
-    Dealer_seat_4= pixelMatchesColor( GAME_POSITION[0]-202, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_4
-    Dealer_seat_5= pixelMatchesColor( GAME_POSITION[0]+429, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_5 
-
-    if Dealer_seat_1 == True :
+    if dealer_seat(1) == True :
         Dealer_Seat = 1
         shout("Seat 1 is at Dealer Seat")
-    elif Dealer_seat_2 == True :
+    elif dealer_seat(2) == True :
         Dealer_Seat = 2
         shout("Seat 2 is at Dealer Seat")
-    elif Dealer_seat_3 == True :
+    elif dealer_seat(3) == True :
         Dealer_Seat = 3
         shout("Seat 3 is at Dealer Seat")
-    elif Dealer_seat_4 == True :
+    elif dealer_seat(4) == True :
         Dealer_Seat = 4
         shout("Seat 4 is at Dealer Seat")
-    elif Dealer_seat_5 == True :
+    elif dealer_seat(5) == True :
         Dealer_Seat = 5
         shout("Seat 5 is at Dealer Seat")
 
@@ -557,7 +595,7 @@ def Click_on_Raise_Button():
             shout(paint.light_cyan.bold("Raise_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Raise_Button()")
-
+#
 def Plus_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+648, (58,68,83) ) #Plus_Button
@@ -705,7 +743,7 @@ def Click_on_Rebuy_Menu_Button():
             shout(paint.light_cyan.bold("Rebuy_Menu_Button is clicked"))
         else :
             Raise_What_is_Problem("Click_on_Rebuy_Menu_Button")
-
+#
 def Leave_Next_Hand_OK_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+108, GAME_POSITION[1]+342, (0,83,171) ) #Leave_Next_Hand_OK_Button
@@ -719,7 +757,7 @@ def Click_on_Leave_Next_Hand_OK_Button():
         shout(paint.light_cyan.bold("Leave_Next_Hand_OK_Button is clicked"))
     else :
         Raise_What_is_Problem("Click_on_Leave_Next_Hand_OK_Button")
-    
+#    
 def Buy_In_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+71, GAME_POSITION[1]+448, (26,123,0) ) #Buy_In_Button
@@ -733,7 +771,7 @@ def Click_on_Buy_In_Button():
         shout(paint.light_cyan.bold("Buy_In_Button is clicked"))
     else :
         Raise_What_is_Problem("Click_on_Buy_In_Button")   
-
+#
 def Buy_In_Plus_Button(): 
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+236, (58,68,83) ) #Buy_In_Plus_Button
@@ -755,7 +793,7 @@ def Hold_Click_on_Buy_In_Plus_Button(): #hold left click for 10s
             pyautogui.mouseUp()
         else :
             Raise_What_is_Problem("Hold_Click_on_Buy_In_Plus_Button") 
-
+#
 def Buy_In_Minus_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+244, (54,62,76) ) #Buy_In_Minus_Button
@@ -777,7 +815,7 @@ def Hold_Click_Buy_In_Minus_Button(): #hold left click for 10s
             pyautogui.mouseUp()
         else :
             Raise_What_is_Problem("Hold_Click_Buy_In_Minus_Button")
-
+#
 def Re_Buy_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+91, GAME_POSITION[1]+430, (26,124,0) ) #Re_Buy_Button
@@ -791,7 +829,7 @@ def Click_on_Re_Buy_Button():
         shout(paint.light_cyan.bold("Re_Buy_Button is clicked"))
     else :
         Raise_What_is_Problem("Click_on_Re_Buy_Button")
-
+#
 def Re_Buy_Plus_Button(): 
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+254, (58,68,83) ) #Re_Buy_Plus_Button
@@ -813,7 +851,7 @@ def Hold_Click_on_Re_Buy_Plus_Button(): #hold left click for 10s
             pyautogui.mouseUp()        
         else :
             Raise_What_is_Problem("Hold_Click_on_Re_Buy_Plus_Button")
-
+#
 def Re_Buy_Minus_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+261, (54,62,76) ) #Re_Buy_Minus_Button
@@ -835,7 +873,7 @@ def Hold_Click_on_Re_Buy_Minus_Button(): #hold left click for 10s
             pyautogui.mouseUp()
         else :
             Raise_What_is_Problem("Hold_Click_on_Re_Buy_Minus_Button")
-
+#
 def I_am_back_Button():
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,80,165) ) #I_am_back_Button
@@ -1121,7 +1159,7 @@ def Read_Flop_Cards():
 
         Card_1th = Download_Table_Cards(1)
 
-        if Card_1th == None or not Flop() or Turn() :
+        if Card_1th == None or not flop() or turn() :
             Check_Mod_On("Read_Flop_Cards():Card_1th")
             shout("Reading Flop cards is stoped")
             return None # to stop Vital_Signs for 2 and 3 cards
@@ -1134,7 +1172,7 @@ def Read_Flop_Cards():
 
         Card_2th = Download_Table_Cards(2)
 
-        if Card_2th == None or not Flop() or Turn() :
+        if Card_2th == None or not flop() or turn() :
             Check_Mod_On("Read_Flop_Cards():Card_2th")
             shout("Reading Flop cards is stoped")
             return None # to stop Vital_Signs for 3 card   
@@ -1151,7 +1189,7 @@ def Read_Flop_Cards():
 
         Card_3th = Download_Table_Cards(3)
 
-        if Card_3th == None or not Flop() or Turn():
+        if Card_3th == None or not flop() or turn():
             Check_Mod_On("Read_Flop_Cards():Card_3th")
         
 
@@ -1171,7 +1209,7 @@ def Read_Turn_Cards():
 
         Card_4th = Download_Table_Cards(4)
 
-        if Card_4th == None or not Turn() or River() :
+        if Card_4th == None or not turn() or river() :
             Check_Mod_On("Read_Flop_Cards():Card_4th")
 
 
@@ -1191,7 +1229,7 @@ def Read_River_Cards():
 
         Card_5th = Download_Table_Cards(5)
 
-        if Card_5th == None or not River():
+        if Card_5th == None or not river():
             Check_Mod_On("Read_Flop_Cards():Card_5th")
 
 
@@ -1261,7 +1299,7 @@ def Read_My_Cards():
 
         My_1th_Card = Download_My_Cards(My_Seat_Number, 1)
 
-        if My_1th_Card == None or Flop() :
+        if My_1th_Card == None or flop() :
             Check_Mod_On("Read_My_Cards():My_1th_Card")
             shout("Reading my 2th card is stoped")
             return None # to stop Vital_Signs for my 2th card
@@ -1277,7 +1315,7 @@ def Read_My_Cards():
 
         My_2th_Card = Download_My_Cards(My_Seat_Number, 2)
 
-        if My_2th_Card == None or Flop() :
+        if My_2th_Card == None or flop() :
             Check_Mod_On("Read_My_Cards():My_2th_Card")
 
 
@@ -1339,42 +1377,6 @@ def OCR_Bet_String(Seat_Num): #corrected for celeb poker
         shout("OCR Bet string Seat5: %s" %string)
         return string
 
-def OCR_Bet_Number(Seat_Num):
-    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
-
-    x1 = Bet_coin(Seat_Num)
-    string1 = OCR_Bet_String( Seat_Num )
-    x2 = Bet_coin(Seat_Num)
-    string2 = Replace_Comma_VoidSpace_M_K( string1 )
-    string2 = string2.replace("*","")
-    if not ( string2.isdigit() and (x1) and (x2) ) :
-        if not ( (x1) and (x2) ) :
-            Check_Mod_On("OCR Bet is None")            
-            Screenshot_Error( "OCR_Bet_Number(This case can not happen1) Seat %s" %Seat_Num  ) #Type_of_Error in string
-            return None
-        else :
-            Vital_Signs()
-            x1 = Bet_coin(Seat_Num)
-            string1 = OCR_Bet_String( Seat_Num )
-            x2 = Bet_coin(Seat_Num)
-            string2 = Replace_Comma_VoidSpace_M_K( string1 )
-            string2 = string2.replace("*","")
-            if not ( string2.isdigit() and (x1) and (x2) ) :
-                if not ( (x1) and (x2) ) :
-                    Check_Mod_On("OCR Bet is None") 
-                    Screenshot_Error( "OCR_Bet_Number(This case can not happen2) Seat %s" %Seat_Num  ) #Type_of_Error in string
-                    return None
-                else :
-                    Check_Mod_On("OCR Bet is None") 
-                    Screenshot_Error( "OCR_Bet_Number Seat(Not Digit!!) %s" %Seat_Num  ) #Type_of_Error in string
-                    return None
-            else :
-                string1 = Replace_Comma_VoidSpace_M_K( string1 )
-                return eval( string1 )
-    
-    else :
-        string1 = Replace_Comma_VoidSpace_M_K( string1 )
-        return eval( string1 )
 
 
 def Easy_OCR_Bet_Number(Seat_Num):
@@ -1384,8 +1386,8 @@ def Easy_OCR_Bet_Number(Seat_Num):
     x1 = Last_White_cache[Seat_Num]
     y1 = Last_Red_cache[Seat_Num]
     string1 = OCR_Bet_String( Seat_Num )
-    x2 = White(Seat_Num)
-    y2 = Red(Seat_Num)
+    x2 = white(Seat_Num)
+    y2 = red(Seat_Num)
     string2 = Replace_Comma_VoidSpace_M_K( string1 )
     string2 = string2.replace("*","")
     if not ( string2.isdigit() and (x1 or y1) and (x2 or y2) ) :
@@ -1396,11 +1398,11 @@ def Easy_OCR_Bet_Number(Seat_Num):
             return None
         else :
             Vital_Signs("Easy_OCR_Bet_Number(%s)" %Seat_Num)
-            x1 = White(Seat_Num)
-            y1 = Red(Seat_Num)
+            x1 = white(Seat_Num)
+            y1 = red(Seat_Num)
             string1 = OCR_Bet_String( Seat_Num )
-            x2 = White(Seat_Num)
-            y2 = Red(Seat_Num)
+            x2 = white(Seat_Num)
+            y2 = red(Seat_Num)
             string2 = Replace_Comma_VoidSpace_M_K( string1 )
             string2 = string2.replace("*","")
             if not ( string2.isdigit() and (x1 or y1) and (x2 or y2) ) :
@@ -1430,20 +1432,8 @@ def Easy_OCR_Bet_Number(Seat_Num):
 
 # OCR Others Bank Number Positions new 2016: -------------------------------------------------------------------------------------
 
-def Win_Finish_Others(Seat):
-    globalization()
 
-    if Seat==1:
-        return pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8) ) #Win-Finish-Others-seat-1
-    if Seat==2:
-        return pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8) ) #Win-Finish-Others-seat-2
-    if Seat==3:
-        return pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9) ) #Win-Finish-Others-seat-3
-    if Seat==4:
-        return pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9) ) #Win-Finish-Others-seat-4
-    if Seat==5:
-        return pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9) ) #Win-Finish-Others-seat-5
-
+#
 def Others_In(Seat): # celeb
     globalization()
 
@@ -1486,10 +1476,10 @@ def OCR_Others_Bank_String(Seat_Num): #corrected for celeb poker
 
 def OCR_Others_Bank_Number(Seat_Num):
     global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
-    x1 = Win_Finish_Others(Seat_Num)
+    x1 = other_seat_won(Seat_Num)
     y1 = Others_In(Seat_Num)
     string1 = OCR_Others_Bank_String( Seat_Num )
-    x2 = Win_Finish_Others(Seat_Num)
+    x2 = other_seat_won(Seat_Num)
     y2 = Others_In(Seat_Num)
     string2 = Replace_Comma_VoidSpace_M_K( string1 )
     string2 = string2.replace("*","")
@@ -1504,10 +1494,10 @@ def OCR_Others_Bank_Number(Seat_Num):
         else : # if not(y1 or y2) :
             
             Vital_Signs()
-            x1 = Win_Finish_Others(Seat_Num)
+            x1 = other_seat_won(Seat_Num)
             y1 = Others_In(Seat_Num)
             string1 = OCR_Others_Bank_String( Seat_Num )
-            x2 = Win_Finish_Others(Seat_Num)
+            x2 = other_seat_won(Seat_Num)
             y2 = Others_In(Seat_Num)
             string2 = Replace_Comma_VoidSpace_M_K( string1 )
             string2 = string2.replace("*","")
@@ -1557,20 +1547,6 @@ def Easy_OCR_Others_Bank_Number(Seat_Num):
 
 # OCR Me Bank Number Positions 2016: ---------------------------------------------------------------------------------------------
 
-def Win_Finish_Me(Seat):
-    globalization()
-
-    if Seat==1:
-        return pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9) ) #Win-Finish-Me-seat-1
-    if Seat==2:
-        return pixelMatchesColor( GAME_POSITION[0]+187, GAME_POSITION[1]+422, (248,123,10) ) #Win-Finish-Me-seat-2
-    if Seat==3:
-        return pixelMatchesColor( GAME_POSITION[0]-68, GAME_POSITION[1]+415, (248,125,9) ) #Win-Finish-Me-seat-3
-    if Seat==4:
-        return pixelMatchesColor( GAME_POSITION[0]-98, GAME_POSITION[1]+95, (250,130,6) ) #Win-Finish-Me-seat-4
-    if Seat==5:
-        return pixelMatchesColor( GAME_POSITION[0]+472, GAME_POSITION[1]+95, (250,130,6) ) #Win-Finish-Me-seat-5
-
 
 def OCR_My_Bank_String(Seat_Num): #corrected for celeb poker
     globalization()
@@ -1601,9 +1577,9 @@ def OCR_My_Bank_Number(Seat_Num):
     global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
     globalization()
 
-    x1 = Win_Finish_Me(Seat_Num)
+    x1 = my_seat_won(Seat_Num)
     string1 = OCR_My_Bank_String( Seat_Num )
-    x2 = Win_Finish_Me(Seat_Num)
+    x2 = my_seat_won(Seat_Num)
     string2 = Replace_Comma_VoidSpace_M_K( string1 )
     string2 = string2.replace("*","")
     if not( string2.isdigit() and x1==False and x2==False ) :
@@ -1614,9 +1590,9 @@ def OCR_My_Bank_Number(Seat_Num):
             
             Vital_Signs("OCR_My_Bank_Number(Seat_Num)")
             Seat_Num = My_Seat_Number
-            x1 = Win_Finish_Me(Seat_Num)
+            x1 = my_seat_won(Seat_Num)
             string1 = OCR_My_Bank_String( Seat_Num )
-            x2 = Win_Finish_Me(Seat_Num)
+            x2 = my_seat_won(Seat_Num)
             string2 = Replace_Comma_VoidSpace_M_K( string1 )
             string2 = string2.replace("*","")
             if not( string2.isdigit() and x1==False and x2==False ) :
@@ -1672,10 +1648,10 @@ def OCR_Others_Name_String(Seat_Num):
         return string
 
 def OCR_Others_Name(Seat_Num):
-    x1 = Win_Finish_Others(Seat_Num)
+    x1 = other_seat_won(Seat_Num)
     y1 = Gray_Sign_Seat(Seat_Num)
     string = OCR_Others_Name_String(Seat_Num)
-    x2 = Win_Finish_Others(Seat_Num)
+    x2 = other_seat_won(Seat_Num)
     y2 = Gray_Sign_Seat(Seat_Num)
     if (x1 or x2) :
         return None
@@ -1688,7 +1664,7 @@ def OCR_Others_Name(Seat_Num):
         return string
 
 def Easy_OCR_Others_Name(Seat_Num):
-    x1 = Win_Finish_Others(Seat_Num)
+    x1 = other_seat_won(Seat_Num)
     y1 = Gray_Sign_Seat(Seat_Num)
     if x1 or y1 :
         return None
@@ -1779,7 +1755,7 @@ def OCR_My_Name(Seat_Num): #this OCR should be compeleted at future!!!!!!!!!!!!!
         return OCR(GAME_POSITION[0]+328,GAME_POSITION[1]+58,140,16)  #seat5_Me_Name
         shout("OCR My Name string Seat5: %s" %string)
         return string
-
+#
 def Me_In(Number):
     globalization()
 
@@ -1799,30 +1775,9 @@ def Me_In(Number):
         x1 = pixelMatchesColor( GAME_POSITION[0]+458, GAME_POSITION[1]+181, (7,8,10) ) #me_in_5
         return (x1)
 
+#
+#def Available_Seat(Number):
 
-def Available_Seat(Number):
-    globalization()
-
-    if Number == 1 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+362, GAME_POSITION[1]+408, (1,79,164) ) #Seat1
-        x2 = pixelMatchesColor( GAME_POSITION[0]+362, GAME_POSITION[1]+408, (21,102,189) ) #Seat1_Light
-        return (x1 or x2)
-    if Number == 2 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+107, GAME_POSITION[1]+411, (1,78,163) ) #Seat2
-        x2 = pixelMatchesColor( GAME_POSITION[0]+107, GAME_POSITION[1]+411, (21,101,188) ) #Seat2_Light
-        return (x1 or x2)
-    if Number == 3 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-148, GAME_POSITION[1]+408, (1,79,164) ) #Seat3
-        x2 = pixelMatchesColor( GAME_POSITION[0]-148, GAME_POSITION[1]+408, (21,102,189) ) #Seat3_Light
-        return (x1 or x2)
-    if Number == 4 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-178, GAME_POSITION[1]+103, (1,79,164) ) #Seat4
-        x2 = pixelMatchesColor( GAME_POSITION[0]-178, GAME_POSITION[1]+103, (21,102,189) ) #Seat4_Light
-        return (x1 or x2)
-    if Number == 5 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+392, GAME_POSITION[1]+103, (1,79,164) ) #Seat5
-        x2 = pixelMatchesColor( GAME_POSITION[0]+392, GAME_POSITION[1]+103, (21,102,189) ) #Seat5_Light
-        return (x1 or x2)
 
 def Click_on_Available_Seat(Number):
     globalization()
@@ -1885,12 +1840,9 @@ def Sit_In(Chips): # "Min buy in" or "Max buy in"
         if My_Seat_Number != None :
             Click_on_Buy_In_Button()
             Screenshot_Error("Rebuyed")
+#
+#def I_am_back_Button():
 
-def I_am_back_Button():
-    globalization()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,80,165) ) #I_am_back_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,91,188) ) #I_am_back_Button_Light
-    return (x1 or x2)
 
 def Click_on_I_am_back_Button(): 
     global Check_Mod
@@ -2067,7 +2019,7 @@ def Read_Players_Info() :
         if Others_In(Seat) == True :
             Players_bank_dic[Seat] = Easy_OCR_Others_Bank_Number(Seat)
             Players_name_dic[Seat] = Easy_OCR_Others_Name(Seat)
-            if Red(Seat) :
+            if red(Seat) :
                 Players_bank_dic[Seat] = None
     shout(paint.on_light_red.bold("Players Bank dictionary is: %s" %Players_bank_dic ))
     shout(paint.on_light_red.bold("Players Name dictionary is: %s" %Players_name_dic ))
@@ -2128,8 +2080,8 @@ def Read_Bets() :
         
         for Seat in range(1,6) :
             Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = Cards(Seat)
-            White_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = White(Seat)
-            Red_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = Red(Seat)
+            White_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = white(Seat)
+            Red_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
             Last_White_cache[Seat] = White_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
             Last_Red_cache[Seat] = Red_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
@@ -2156,8 +2108,8 @@ def Read_Bets() :
 
         for Seat in range(1,6) :
             Cards_cache["Flop %s" %Round_Flop][Seat] = Cards(Seat)
-            White_cache["Flop %s" %Round_Flop][Seat] = White(Seat)
-            Red_cache["Flop %s" %Round_Flop][Seat] = Red(Seat)
+            White_cache["Flop %s" %Round_Flop][Seat] = white(Seat)
+            Red_cache["Flop %s" %Round_Flop][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["Flop %s" %Round_Flop][Seat]
             Last_White_cache[Seat] = White_cache["Flop %s" %Round_Flop][Seat]
             Last_Red_cache[Seat] = Red_cache["Flop %s" %Round_Flop][Seat]
@@ -2184,8 +2136,8 @@ def Read_Bets() :
 
         for Seat in range(1,6) :
             Cards_cache["Turn %s" %Round_Turn][Seat] = Cards(Seat)
-            White_cache["Turn %s" %Round_Turn][Seat] = White(Seat)
-            Red_cache["Turn %s" %Round_Turn][Seat] = Red(Seat)
+            White_cache["Turn %s" %Round_Turn][Seat] = white(Seat)
+            Red_cache["Turn %s" %Round_Turn][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["Turn %s" %Round_Turn][Seat]
             Last_White_cache[Seat] = White_cache["Turn %s" %Round_Turn][Seat]
             Last_Red_cache[Seat] = Red_cache["Turn %s" %Round_Turn][Seat]
@@ -2212,8 +2164,8 @@ def Read_Bets() :
 
         for Seat in range(1,6) :
             Cards_cache["River %s" %Round_River][Seat] = Cards(Seat)
-            White_cache["River %s" %Round_River][Seat] = White(Seat)
-            Red_cache["River %s" %Round_River][Seat] = Red(Seat)
+            White_cache["River %s" %Round_River][Seat] = white(Seat)
+            Red_cache["River %s" %Round_River][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["River %s" %Round_River][Seat]
             Last_White_cache[Seat] = White_cache["River %s" %Round_River][Seat]
             Last_Red_cache[Seat] = Red_cache["River %s" %Round_River][Seat]
@@ -2400,7 +2352,7 @@ while True :
 
         Reset_Table_Info() #
 
-        if Win_Finish_Me( My_Seat_Number ) == False :
+        if my_seat_won( My_Seat_Number ) == False :
             My_Bank = OCR_My_Bank_Number( My_Seat_Number )
             if My_Bank != None :
                 if My_Bank >= 15 * BLIND :
@@ -2439,7 +2391,7 @@ while True :
             raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), Just_Seated == None")
 
         if Cards1 == True :
-            if Pre_Flop() == False or (Pre_Flop() == True and is_there_any_raiser() == True) :
+            if pre_flop() == False or (pre_flop() == True and is_there_any_raiser() == True) :
                 Check_Mod_On("this is Ok! Becuase i may start program from middle of the game")
 
             Just_Seated = False
@@ -2454,10 +2406,10 @@ while True :
 
 #-------    
 
-    if Hand_End_Cheker1 == False and Pre_Flop() == False and Just_Seated == False and Check_Mod != True :
+    if Hand_End_Cheker1 == False and pre_flop() == False and Just_Seated == False and Check_Mod != True :
         Vital_Signs("2")
         Check_Mod_On("2")
-        Screenshot_Error('6.Pre_Flop() == False')
+        Screenshot_Error('6.pre_flop() == False')
     elif Hand_End_Cheker1 == False and Just_Seated == False and Check_Mod != True :
         Pre_Flop1 = True
         Pre_Flop1_Deside = True
@@ -2477,7 +2429,7 @@ while True :
         Hand_End_Cheker1 = Hand_End_Cheker()
         Light1 = Light( My_Seat_Number )
         Gray1 = Gray_Sign_Seat( My_Seat_Number )
-        Flop1_Deside = Flop()
+        Flop1_Deside = flop()
         n20 = (time.time() - time1 - 60 ) // 20
         if time.time() - time1 > 1 * 60 and n20 >= fo :
             Vital_Signs("3")
@@ -2532,7 +2484,7 @@ while True :
                     Vital_Signs("4.5 I am back Button is True")
                 Hand_End_Cheker1 = Hand_End_Cheker()
                 Light1 = Light( My_Seat_Number )
-                Flop1 = Flop()
+                Flop1 = flop()
                 time2 = time.time() - time1
                     
             if not time2 < 1 * 60 :
@@ -2588,7 +2540,7 @@ while True :
                     Vital_Signs("6.5 I am back Button is True")
                 Hand_End_Cheker1 = Hand_End_Cheker()
                 Light1 = Light( My_Seat_Number )
-                Turn1 = Turn()
+                Turn1 = turn()
                 time2 = time.time() - time1
 
             if not time2 < 1 * 60 :
@@ -2648,7 +2600,7 @@ while True :
                     Vital_Signs("8.5 I am back Button is True")
                 Hand_End_Cheker1 = Hand_End_Cheker()
                 Light1 = Light( My_Seat_Number )
-                River1 = River()
+                River1 = river()
                 time2 = time.time() - time1
 
             if not time2 < 1 * 60 :
@@ -2714,7 +2666,7 @@ while True :
                 
             if Hand_End_Cheker1 == False :
 
-                if Light1 == True and River() == True :
+                if Light1 == True and river() == True :
                     Round_River += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
@@ -2742,19 +2694,19 @@ while True :
             
     if Hand_End_Cheker1 == True and Just_Seated == True :
 
-        Declare_The_Winners()
+        declare_the_winners()
         shout (paint.on_green.bold("-------- Hand Ended --------"))
 
     if Hand_End_Cheker1 == True and Just_Seated == False :
 
-        Declare_The_Winners()
+        declare_the_winners()
         shout (paint.on_green.bold("-------- Hand Ended --------"))
         
         Reset_Check_Mod() #
 
         Reset_Table_Info() #
 
-        if Win_Finish_Me( My_Seat_Number ) == False : 
+        if my_seat_won( My_Seat_Number ) == False : 
             My_Bank = OCR_My_Bank_Number( My_Seat_Number )
             if My_Bank != None :
                 if My_Bank >= 15 * BLIND : 
@@ -2793,7 +2745,7 @@ while True :
         time02 = 0 ; fo = 0 
         time1 = time.time()
         while Coins_Appeared == False and time02 < 5 * 60 : #being alone time
-            Coins_Appeared = Coins_Founded()
+            Coins_Appeared = coins_founded()
             time2 = time.time() - time1
             if not time2 < 8 and fo == 0 :
                 getpo()
