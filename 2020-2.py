@@ -90,12 +90,12 @@ def sound(string_name) :
 
 
 #
-def coins_founded():
+def sb_b_d_buttons_are_founded():
     globalization()
    
-    founded = ( ( small_blind_seat(1) or small_blind_seat(2) or small_blind_seat(3) or small_blind_seat(4) or small_blind_seat(5) )
-               and ( big_blind_seat(1) or big_blind_seat(2) or big_blind_seat(3) or big_blind_seat(4) or big_blind_seat(5) )
-               and ( dealer_seat(1) or dealer_seat(2) or dealer_seat(3) or dealer_seat(4) or dealer_seat(5) ) )
+    founded = ( ( small_blind_pixel(1) or small_blind_pixel(2) or small_blind_pixel(3) or small_blind_pixel(4) or small_blind_pixel(5) )
+               and ( big_blind_pixel(1) or big_blind_pixel(2) or big_blind_pixel(3) or big_blind_pixel(4) or big_blind_pixel(5) )
+               and ( dealer_pixel(1) or dealer_pixel(2) or dealer_pixel(3) or dealer_pixel(4) or dealer_pixel(5) ) )
     return founded
 
 #2020
@@ -116,11 +116,11 @@ def my_seat_won(seat):
 #2020
 def other_seat_won(seat):
     # looking for a sign on other's seat to check if they have won the game by returning True or False
-    others_won_on_seat_1= pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
-    others_won_on_seat_2= pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
-    others_won_on_seat_3= pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
-    others_won_on_seat_4= pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
-    others_won_on_seat_5= pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
+    others_won_on_seat_1 = pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
+    others_won_on_seat_2 = pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
+    others_won_on_seat_3 = pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
+    others_won_on_seat_4 = pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
+    others_won_on_seat_5 = pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
 
     if seat == 1: return others_won_on_seat_1
     if seat == 2: return others_won_on_seat_2
@@ -129,7 +129,7 @@ def other_seat_won(seat):
     if seat == 5: return others_won_on_seat_5
     
 
-#    
+#
 def declare_the_winners():
     globalization()
 
@@ -154,19 +154,19 @@ def flop():
     # Check if the game is on flop by returning True or False
     globalization()
     flop = pixelMatchesColor( GAME_POSITION[0]+136, GAME_POSITION[1]+218, (237,237,237) ) #Flop
-    return Flop 
+    return flop 
 #
 def turn():
     # Check if the game is on turn by returning True or False
     globalization()
     turn = pixelMatchesColor( GAME_POSITION[0]+196, GAME_POSITION[1]+218, (237,237,237) ) #Turn
-    return Turn 
+    return turn 
 #
 def river():
     # Check if the game is on river by returning True or False
     globalization()
     river = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+218, (237,237,237) ) #River
-    return River 
+    return river 
 
 
 #    
@@ -181,9 +181,9 @@ def avg_color(x,y,h,w) :
     return avg_color
 
 #
-def is_bet_coin_white_or_red(seat): 
-    # If betting or raising coin color on the table is
-    # red it returns True, if the colors is white it returns False
+def are_chips_white_or_red(seat): #celeb
+    # If the color of the sign behind chips is
+    # red it returns True (bet/raise), if the color is white it returns False (call)
     globalization()
     if seat == 1 :
         x = avg_color(GAME_POSITION[0]+313,GAME_POSITION[1]+310,15,15) #Bet_White_or_Red_seat1
@@ -216,8 +216,8 @@ def is_bet_coin_white_or_red(seat):
         else :
             return False
 #
-def bet_coin_seat(seat): #New define function for celeb
-    # Checks if there is any betting coin in front of a seat or not, by returning True or False
+def player_chips_pixel(seat): #New define function for celeb
+    # Checks if there is any call/bet/raising chips in front of a seat or not, by returning True or False
     globalization()
     if seat==1:
         return pixelMatchesColor( GAME_POSITION[0]+298, GAME_POSITION[1]+317, (240,16,0), tolerance=10 ) #Bet_coin_seat_1
@@ -230,61 +230,69 @@ def bet_coin_seat(seat): #New define function for celeb
     if seat==5:
         return pixelMatchesColor( GAME_POSITION[0]+302, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_5
 #
-def white(Seat):
-    # To find out if a player has bet/call or not it checks if
-    # betting coin in front of a seat is white or not, by returning True or False
-    if bet_coin_seat(Seat):
-        return not is_bet_coin_white_or_red(Seat)
+def white(seat):
+    # It checks if there is a white color sign in front of a seat,
+    # by returning True or False, to find out if a player has call or not
+
+    if player_chips_pixel(seat):
+        return not are_chips_white_or_red(seat)
     else :
         return False
 #
-def red(Seat):
-    # To find out if a player has raised or not it checks if
-    # betting coin in front of a seat is red or not, by returning True or False
-    if bet_coin_seat(Seat):
-        return is_bet_coin_white_or_red(Seat)
+def red(seat):
+    # It checks if there is a red color sign in front of a seat,
+    # by returning True or False, to find out if a player has bet/raised or not.
+    # (In accordance to Google: 'A bet is the first wager of a round.')
+    if player_chips_pixel(seat):
+        return are_chips_white_or_red(seat)
     else :
         return False
 
 #
-def Cards(Seat):
+def player_cards_pixel(seat):
+    # It checks if a player has cards in his hands or not, by returning True of False
     globalization()
-    if Seat==1:
+    if seat==1:
         c1 = pixelMatchesColor( GAME_POSITION[0]+330, GAME_POSITION[1]+331, (154,7,13), tolerance=5 ) #Cards_seat_1
         c2 = pixelMatchesColor( GAME_POSITION[0]+328, GAME_POSITION[1]+333, (154,7,13), tolerance=5 ) 
         return c1 or c2
-    if Seat==2:
+    if seat==2:
         c1 = pixelMatchesColor( GAME_POSITION[0]+74, GAME_POSITION[1]+332, (154,7,13), tolerance=5 ) #Cards_seat_2
         c2 = pixelMatchesColor( GAME_POSITION[0]+72, GAME_POSITION[1]+334, (154,7,13), tolerance=5 ) 
         return c1 or c2
-    if Seat==3:
+    if seat==3:
         c1 = pixelMatchesColor( GAME_POSITION[0]-181, GAME_POSITION[1]+331, (154,7,13), tolerance=5 ) #Cards_seat_3
         c2 = pixelMatchesColor( GAME_POSITION[0]-183, GAME_POSITION[1]+333, (154,7,13), tolerance=5 ) 
         return c1 or c2
-    if Seat==4:
+    if seat==4:
         c1 = pixelMatchesColor( GAME_POSITION[0]-140, GAME_POSITION[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_4
         c2 = pixelMatchesColor( GAME_POSITION[0]-142, GAME_POSITION[1]+193, (154,7,13), tolerance=20 )
         return c1 or c2
-    if Seat==5:
+    if seat==5:
         c1 = pixelMatchesColor( GAME_POSITION[0]+359, GAME_POSITION[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_5 
         c2 = pixelMatchesColor( GAME_POSITION[0]+357, GAME_POSITION[1]+193, (154,7,13), tolerance=20 ) 
         return c1 or c2
 #
-def Light(Seat): # celeb
+def active_player_pixel(seat): # celeb
+    # It checks whose player turn is, 
+    # using the lighting pixel on a seat, by returning True or False 
     globalization()
-    if Seat==1:
+    if seat==1:
         return pixelMatchesColor( GAME_POSITION[0]+346, GAME_POSITION[1]+328, (34,41,48), tolerance=5 ) #Light_Turn_seat_1
-    if Seat==2:
+    if seat==2:
         return pixelMatchesColor( GAME_POSITION[0]+96, GAME_POSITION[1]+330, (47,59,69), tolerance=5 ) #Light_Turn_seat_2
-    if Seat==3:
+    if seat==3:
         return pixelMatchesColor( GAME_POSITION[0]-116, GAME_POSITION[1]+328, (34,41,48), tolerance=5 ) #Light_Turn_seat_3
-    if Seat==4:
+    if seat==4:
         return pixelMatchesColor( GAME_POSITION[0]-161, GAME_POSITION[1]+219, (33,41,47), tolerance=5 ) #Light_Turn_seat_4
-    if Seat==5:
+    if seat==5:
         return pixelMatchesColor( GAME_POSITION[0]+383, GAME_POSITION[1]+217, (31,40,45), tolerance=5 ) #Light_Turn_seat_5
 
 #
-def Gray_Sign_Seat(Number): # celeb
+def notification_banner_pixel(Number): # celeb
+    # It checks if a notification banner which contains messages like:
+    # 'FOLD, CHECK, BET, RAISE, CALL, ALL_IN' has covered player name or not,
+    # by returning True of False.
     globalization()
     if Number == 1 :
         x1 = pixelMatchesColor( GAME_POSITION[0]+291, GAME_POSITION[1]+348, (62,72,86), tolerance=5 ) #Gray_Sign_Me_seat_1
@@ -307,17 +315,17 @@ def Gray_Sign_Seat(Number): # celeb
         x2 = pixelMatchesColor( GAME_POSITION[0]+345, GAME_POSITION[1]+46, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_5
         return (x1 or x2)
 #
-def Hand_End_Cheker():
+def hand_is_ended():
     globalization()
 
-    Hand_Ended= ( my_seat_won(1) or my_seat_won(2) or my_seat_won(3) or my_seat_won(4) or my_seat_won(5) or 
+    hand_ended= ( my_seat_won(1) or my_seat_won(2) or my_seat_won(3) or my_seat_won(4) or my_seat_won(5) or 
                 other_seat_won(1) or other_seat_won(2) or other_seat_won(3) or other_seat_won(4) or other_seat_won(5) )
-    return Hand_Ended
+    return hand_ended
 
 # 2017 :------------------------------
 
 #2020
-def small_blind_seat(seat):
+def small_blind_pixel(seat):
     # check if a seat is on small blind position by returning True or False
     small_blind_seat_1 = pixelMatchesColor( GAME_POSITION[0]+369, GAME_POSITION[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
     small_blind_seat_2 = pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (21,124,218), tolerance=10 ) #Small_seat_2
@@ -332,28 +340,28 @@ def small_blind_seat(seat):
     if seat == 5: return small_blind_seat_5
 
 ###
-def Determine_Small_Blind_Seat():
+def determine_small_blind_seat():
     global Small_Blind_Seat
     globalization()
 
-    if small_blind_seat(1) == True :
+    if small_blind_pixel(1) == True :
         Small_Blind_Seat = 1
         shout("Seat 1 is at Small Blind Seat")
-    elif small_blind_seat(2) == True :
+    elif small_blind_pixel(2) == True :
         Small_Blind_Seat = 2
         shout("Seat 2 is at Small Blind Seat")
-    elif small_blind_seat(3) == True :
+    elif small_blind_pixel(3) == True :
         Small_Blind_Seat = 3
         shout("Seat 3 is at Small Blind Seat")
-    elif small_blind_seat(4) == True :
+    elif small_blind_pixel(4) == True :
         Small_Blind_Seat = 4
         shout("Seat 4 is at Small Blind Seat")
-    elif small_blind_seat(5) == True :
+    elif small_blind_pixel(5) == True :
         Small_Blind_Seat = 5
         shout("Seat 5 is at Small Blind Seat")
 
 #2020
-def big_blind_seat(seat):
+def big_blind_pixel(seat):
     # check if a seat is on big blind position by returning True or False
     big_blind_seat_1 = pixelMatchesColor( GAME_POSITION[0]+367, GAME_POSITION[1]+329, (180,180,180), tolerance=10 ) #Big_seat_1
     big_blind_seat_2 = pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (200,200,200), tolerance=10 ) #Big_seat_2
@@ -367,29 +375,29 @@ def big_blind_seat(seat):
     if seat == 4: return big_blind_seat_4
     if seat == 5: return big_blind_seat_5
 
-###
-def Determine_Big_Blind_Seat():
+### 
+def determine_big_blind_seat():
     global Big_Blind_Seat
     globalization()
 
-    if big_blind_seat(1) == True :
+    if big_blind_pixel(1) == True :
         Big_Blind_Seat = 1
         shout("Seat 1 is at Big Blind Seat")
-    elif  big_blind_seat(2) == True :
+    elif  big_blind_pixel(2) == True :
         Big_Blind_Seat = 2
         shout("Seat 2 is at Big Blind Seat")
-    elif  big_blind_seat(3) == True :
+    elif  big_blind_pixel(3) == True :
         Big_Blind_Seat = 3
         shout("Seat 3 is at Big Blind Seat")
-    elif  big_blind_seat(4) == True :
+    elif  big_blind_pixel(4) == True :
         Big_Blind_Seat = 4
         shout("Seat 4 is at Big Blind Seat")
-    elif  big_blind_seat(5) == True :
+    elif  big_blind_pixel(5) == True :
         Big_Blind_Seat = 5
         shout("Seat 5 is at Big Blind Seat") 
 
 #2020
-def dealer_seat(seat):
+def dealer_pixel(seat):
     # check if a seat is on dealer position by returning True or False
     dealer_seat_1 = pixelMatchesColor( GAME_POSITION[0]+397, GAME_POSITION[1]+330, (255,155,0), tolerance=10 ) #Dealer_seat_1
     dealer_seat_2 = pixelMatchesColor( GAME_POSITION[0]+144, GAME_POSITION[1]+333, (254,193,0), tolerance=10 ) #Dealer_seat_2
@@ -403,23 +411,23 @@ def dealer_seat(seat):
     if seat == 4: return dealer_seat_4
     if seat == 5: return dealer_seat_5
 ###
-def Determine_Dealer_Seat():
+def determine_dealer_seat():
     global Dealer_Seat
     globalization()
 
-    if dealer_seat(1) == True :
+    if dealer_pixel(1) == True :
         Dealer_Seat = 1
         shout("Seat 1 is at Dealer Seat")
-    elif dealer_seat(2) == True :
+    elif dealer_pixel(2) == True :
         Dealer_Seat = 2
         shout("Seat 2 is at Dealer Seat")
-    elif dealer_seat(3) == True :
+    elif dealer_pixel(3) == True :
         Dealer_Seat = 3
         shout("Seat 3 is at Dealer Seat")
-    elif dealer_seat(4) == True :
+    elif dealer_pixel(4) == True :
         Dealer_Seat = 4
         shout("Seat 4 is at Dealer Seat")
-    elif dealer_seat(5) == True :
+    elif dealer_pixel(5) == True :
         Dealer_Seat = 5
         shout("Seat 5 is at Dealer Seat")
 
@@ -436,67 +444,70 @@ def Determine_Dealer_Seat():
 # def_Buttons_new: ---------------------------------------------------------------------------------------------------------------
 
 #
-def Available_Seat(Number):
+def available_seat_pixel(seat):
+    # It checks if the seat is free to be seated or not, by returning True or False
     globalization()
-    if Number == 1 :
+    if seat == 1 :
         x1 = pixelMatchesColor( GAME_POSITION[0]+362, GAME_POSITION[1]+408, (1,79,164) ) #Seat1
         x2 = pixelMatchesColor( GAME_POSITION[0]+362, GAME_POSITION[1]+408, (21,102,189) ) #Seat1_Light
         return (x1 or x2)
-    if Number == 2 :
+    if seat == 2 :
         x1 = pixelMatchesColor( GAME_POSITION[0]+107, GAME_POSITION[1]+411, (1,78,163) ) #Seat2
         x2 = pixelMatchesColor( GAME_POSITION[0]+107, GAME_POSITION[1]+411, (21,101,188) ) #Seat2_Light
         return (x1 or x2)
-    if Number == 3 :
+    if seat == 3 :
         x1 = pixelMatchesColor( GAME_POSITION[0]-148, GAME_POSITION[1]+408, (1,79,164) ) #Seat3
         x2 = pixelMatchesColor( GAME_POSITION[0]-148, GAME_POSITION[1]+408, (21,102,189) ) #Seat3_Light
         return (x1 or x2)
-    if Number == 4 :
+    if seat == 4 :
         x1 = pixelMatchesColor( GAME_POSITION[0]-178, GAME_POSITION[1]+103, (1,79,164) ) #Seat4
         x2 = pixelMatchesColor( GAME_POSITION[0]-178, GAME_POSITION[1]+103, (21,102,189) ) #Seat4_Light
         return (x1 or x2)
-    if Number == 5 :
+    if seat == 5 :
         x1 = pixelMatchesColor( GAME_POSITION[0]+392, GAME_POSITION[1]+103, (1,79,164) ) #Seat5
         x2 = pixelMatchesColor( GAME_POSITION[0]+392, GAME_POSITION[1]+103, (21,102,189) ) #Seat5_Light
         return (x1 or x2)
 
-def Click_on_Available_Seat(Number):
+def click_on_available_seat(seat):
     globalization()
-    if Number == 1 :
+    if seat == 1 :
         pyautogui.click( GAME_POSITION[0]+362, GAME_POSITION[1]+408 ) #Seat1
         shout(paint.light_cyan.bold("Available_Seat 1 is clicked"))
-    if Number == 2 :
+    if seat == 2 :
         pyautogui.click( GAME_POSITION[0]+107, GAME_POSITION[1]+411 ) #Seat2
         shout(paint.light_cyan.bold("Available_Seat 2 is clicked"))
-    if Number == 3 :
+    if seat == 3 :
         pyautogui.click( GAME_POSITION[0]-148, GAME_POSITION[1]+408 ) #Seat3
         shout(paint.light_cyan.bold("Available_Seat 3 is clicked"))
-    if Number == 4 :
+    if seat == 4 :
         pyautogui.click( GAME_POSITION[0]-178, GAME_POSITION[1]+103 ) #Seat4
         shout(paint.light_cyan.bold("Available_Seat 4 is clicked"))
-    if Number == 5 :
+    if seat == 5 :
         pyautogui.click( GAME_POSITION[0]+392, GAME_POSITION[1]+103 ) #Seat5
         shout(paint.light_cyan.bold("Available_Seat 5 is clicked"))
 #
-def Fold_Button():
+def fold_button_pixel():
+    # It checks if Fold button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+51, GAME_POSITION[1]+581, (190,22,28) ) #Fold
     x2 = pixelMatchesColor( GAME_POSITION[0]+51, GAME_POSITION[1]+581, (220,27,33) ) #Fold_Light
     return (x1 or x2)
 
-def Click_on_Fold_Button():
+def click_on_fold_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if Fold_Button() :
+    if fold_button_pixel() :
         pyautogui.click( GAME_POSITION[0]+51, GAME_POSITION[1]+581 )
         shout(paint.light_cyan.bold("Fold_Button is clicked"))
     else :
         Vital_Signs("Click_on_Fold_Button()")
-        if Cards( My_Seat_Number ) and Fold_Button() :
+        if player_cards_pixel( My_Seat_Number ) and fold_button_pixel() :
             pyautogui.click( GAME_POSITION[0]+51, GAME_POSITION[1]+581 )
             shout(paint.light_cyan.bold("Fold_Button is clicked"))
         Check_Mod_On("Click_on_Fold_Button()")
 #
-def Check_Button():
+def check_button_pixel():
+    # It checks if Check button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+578, (1,83,170) ) #Check_up
     x2 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+584, (254,254,254) ) #Check_down
@@ -504,24 +515,25 @@ def Check_Button():
     x4 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+584, (254,254,254) ) #Check_down_Light
     return ( (x1 and x2) or (x3 and x4) )
 
-def Click_on_Check_Button():
+def click_on_check_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if Check_Button() :
+    if check_button_pixel() :
         pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+578 )
         shout(paint.light_cyan.bold("Check_Button is clicked"))
     else :
         time0 = time.time()
         Vital_Signs("Click_on_Check_Button()")
         time1 = time.time() - time0
-        Check_Button1 = Check_Button()
-        if Cards( My_Seat_Number ) and Check_Button1 and time1 <= 10 :
+        Check_Button1 = check_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and Check_Button1 and time1 <= 10 :
             pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+578 )
             shout(paint.light_cyan.bold("Check_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Check_Button()")
 #            
-def Call_Button():
+def call_button_pixel():
+    # It checks if Call button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+575, (0,84,172) ) #Call_up
     x2 = pixelMatchesColor( GAME_POSITION[0]+260, GAME_POSITION[1]+579, (249,249,249) ) #Call_down
@@ -529,24 +541,25 @@ def Call_Button():
     x4 = pixelMatchesColor( GAME_POSITION[0]+260, GAME_POSITION[1]+579, (249,249,249) ) #Call_down_Light
     return ( (x1 and x2) or (x3 and x4) )
 
-def Click_on_Call_Button():
+def click_on_call_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if Call_Button() :
+    if call_button_pixel() :
         pyautogui.click( GAME_POSITION[0]+261, GAME_POSITION[1]+575 )
         shout(paint.light_cyan.bold("Call_Button is clicked"))
     else :
         time0 = time.time()
         Vital_Signs("Click_on_Call_Button()")
         time1 = time.time() - time0
-        Call_Button1 = Call_Button()
-        if Cards( My_Seat_Number ) and Call_Button1 and time1 <= 10 :
+        Call_Button1 = call_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and Call_Button1 and time1 <= 10 :
             pyautogui.click( GAME_POSITION[0]+261, GAME_POSITION[1]+575 )
             shout(paint.light_cyan.bold("Call_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Call_Button()")
 #
-def Bet_Button(): # celeb
+def bet_button_pixel(): # celeb
+    # It checks if Bet button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (24,115,0), tolerance=15 ) #Bet_up
     x2 = pixelMatchesColor( GAME_POSITION[0]+463, GAME_POSITION[1]+579, (242,242,242), tolerance=15 ) #Bet_down
@@ -554,24 +567,25 @@ def Bet_Button(): # celeb
     x4 = pixelMatchesColor( GAME_POSITION[0]+463, GAME_POSITION[1]+579, (242,242,242), tolerance=15 ) #Bet_down_Light
     return ( (x1 and x2) or (x3 and x4) )
 
-def Click_on_Bet_Button():
+def click_on_bet_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if Bet_Button() :
+    if bet_button_pixel() :
         pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
         shout(paint.light_cyan.bold("Bet_Button is clicked"))
     else :
         time0 = time.time()
         Vital_Signs("Click_on_Bet_Button()")
         time1 = time.time() - time0
-        Bet_Button1 = Bet_Button()
-        if Cards( My_Seat_Number ) and Bet_Button1 and time1 <= 10 :
+        Bet_Button1 = bet_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and Bet_Button1 and time1 <= 10 :
             pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
             shout(paint.light_cyan.bold("Bet_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Bet_Button()")
 #
-def Raise_Button(): # celeb
+def raise_button_pixel(): # celeb
+    # It checks if Raise button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (25,117,0), tolerance=15 ) #Raise_up
     x2 = pixelMatchesColor( GAME_POSITION[0]+448, GAME_POSITION[1]+579, (239,239,239), tolerance=15 ) #Raise_down
@@ -579,119 +593,127 @@ def Raise_Button(): # celeb
     x4 = pixelMatchesColor( GAME_POSITION[0]+448, GAME_POSITION[1]+579, (239,239,239), tolerance=15 ) #Raise_down_Light
     return ( (x1 and x2) or (x3 and x4) )
 
-def Click_on_Raise_Button():
+def click_on_raise_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if Raise_Button() :
+    if raise_button_pixel() :
         pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
         shout(paint.light_cyan.bold("Raise_Button is clicked"))
     else :
         time0 = time.time()
         Vital_Signs("Click_on_Raise_Button()")
         time1 = time.time() - time0
-        Raise_Button1 = Raise_Button()
-        if Cards( My_Seat_Number ) and Raise_Button1 and time1 <= 10 :
+        Raise_Button1 = raise_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and Raise_Button1 and time1 <= 10 :
             pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
             shout(paint.light_cyan.bold("Raise_Button is clicked"))
         else :
             Check_Mod_On("Click_on_Raise_Button()")
 #
-def Plus_Button():
+def plus_button_pixel():
+    # It checks if Plus button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+648, (58,68,83) ) #Plus_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+648, (77,88,105) ) #Plus_Button_Light
     return (x1 or x2)
 
-def Number_of_Clicks_on_Plus_Button(Number): #Number of clicks
+def number_of_clicks_on_plus_button(number): # Number of clicks
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    Number = int(Number)
-    if Plus_Button() :
-        for i in range (Number):
+    number = int(number)
+    if plus_button_pixel() :
+        for i in range (number):
             pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+648 )
-        shout(paint.light_cyan.bold("Plus_Button is clicked"))
+        shout(paint.light_cyan.bold("plus_button is clicked"))
     else :
         time0 = time.time()
-        Vital_Signs("Number_of_Clicks_on_Plus_Button(Number)")
+        Vital_Signs("number_of_clicks_on_plus_button(number)")
         time1 = time.time() - time0
-        Plus_Button1 = Plus_Button()
-        if Cards( My_Seat_Number ) and Plus_Button1 and time1 <= 10 :
-            for i in range (Number):
+        Plus_Button1 = plus_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and Plus_Button1 and time1 <= 10 :
+            for i in range (number):
                 pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+648 )
-            shout(paint.light_cyan.bold("Plus_Button is clicked"))
+            shout(paint.light_cyan.bold("plus_button is clicked"))
         else :
-            Check_Mod_On("Number_of_Clicks_on_Plus_Button()")
+            Check_Mod_On("number_of_clicks_on_plus_button()")
 #
-def Minus_Button():
+def minus_button_pixel():
+    # It checks if Minus button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-9, GAME_POSITION[1]+648, (58,68,83) ) #Minus_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]-9, GAME_POSITION[1]+648, (77,88,105) ) #Minus_Button_Light
     return (x1 or x2)
 
-def Number_of_Click_on_Minus_Button(Number): #Number of clicks
+def number_of_click_on_minus_button(number): # Number of clicks
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    Number = int(Number)
-    if Minus_Button() :
-        for i in range (Number):
+    number = int(number)
+    if minus_button_pixel() :
+        for i in range (number):
             pyautogui.click( GAME_POSITION[0]-9, GAME_POSITION[1]+648 )
-        shout(paint.light_cyan.bold("Minus_Button is clicked"))
+        shout(paint.light_cyan.bold("minus_button is clicked"))
     else :
         time0 = time.time()
-        Vital_Signs("Number_of_Click_on_Minus_Button(Number)")
+        Vital_Signs("number_of_click_on_minus_button(number)")
         time1 = time.time() - time0
-        Minus_Button1 = Minus_Button()
-        if Cards( My_Seat_Number ) and Minus_Button1 and time1 <= 10 :
-            for i in range (Number):
+        Minus_Button1 = minus_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and Minus_Button1 and time1 <= 10 :
+            for i in range (number):
                 pyautogui.click( GAME_POSITION[0]-9, GAME_POSITION[1]+648 )
             shout(paint.light_cyan.bold("Minus_Button is clicked"))
         else :
             Check_Mod_On("Number_of_Click_on_Minus_Button()")
 #
-def All_In_Button():
+def all_in_button_pixel():
+    # It checks if All In button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+531, GAME_POSITION[1]+648, (207,90,6) ) #All_In_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+531, GAME_POSITION[1]+648, (235,98,0) ) #All_In_Button_Light
     return (x1 or x2)
 
-def Click_on_All_In_Button():
+def click_on_all_in_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if All_In_Button() :
+    if all_in_button_pixel() :
         pyautogui.click( GAME_POSITION[0]+531, GAME_POSITION[1]+648 )
         shout(paint.light_cyan.bold("All_In_Button is clicked"))
     else :
         time0 = time.time()
         Vital_Signs("Click_on_All_In_Button()")
         time1 = time.time() - time0
-        All_In_Button1 = All_In_Button()
-        if Cards( My_Seat_Number ) and All_In_Button1 and time1 <= 10 :
+        All_In_Button1 = all_in_button_pixel()
+        if player_cards_pixel( My_Seat_Number ) and All_In_Button1 and time1 <= 10 :
             pyautogui.click( GAME_POSITION[0]+531, GAME_POSITION[1]+648 )
             shout(paint.light_cyan.bold("All_In_Button is clicked"))
         else :
             Check_Mod_On("Click_on_All_In_Button()")
 #
-def Exit_Button():
+def exit_button_pixel():
+    # It checks if Exit button is existed and it's on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+378, GAME_POSITION[1]+21, (130,135,146) ) #Exit_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+378, GAME_POSITION[1]+21, (156,160,168) ) #Exit_Button_Light
     return (x1 or x2)
 
-def Click_on_Exit_Button():
+def click_on_exit_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     globalization()
-    if Exit_Button():
+    if exit_button_pixel():
         pyautogui.click( GAME_POSITION[0]+378, GAME_POSITION[1]+21 )
         shout(paint.light_cyan.bold("Exit_Button is clicked"))
+        Just_Seated = None
     else :
         Vital_Signs("Click_on_Exit_Button()")
-        if Exit_Button():
+        if exit_button_pixel():
             pyautogui.click( GAME_POSITION[0]+378, GAME_POSITION[1]+21 )
             shout(paint.light_cyan.bold("Exit_Button is clicked"))
+            Just_Seated = None
         else : #can't proceed to here
             Raise_What_is_Problem("Click_on_Exit_Button")
+
 #            
 def Exit_Yes_Button():
+    # It checks if Yes button when exiting is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+47, GAME_POSITION[1]+355, (168,11,16) ) #Exit_Yes_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+47, GAME_POSITION[1]+355, (177,13,19) ) #Exit_Yes_Button_Light
@@ -706,6 +728,7 @@ def Click_on_Exit_Yes_Button():
         Raise_What_is_Problem("Click_on_Exit_Yes_Button")
 #
 def Menu_Button(): # celeb
+    # It checks if Menu button is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-399, GAME_POSITION[1]-66, (38,44,47), tolerance=5 ) #Menu_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]-399, GAME_POSITION[1]-66, (78,83,97), tolerance=5 ) #Menu_Button_Light
@@ -719,13 +742,14 @@ def Click_on_Menu_Button():
         shout(paint.light_cyan.bold("Menu_Button is clicked"))
     else :
         Vital_Signs("Click_on_Menu_Button()")
-        if Exit_Button():
+        if exit_button_pixel():
             pyautogui.click( GAME_POSITION[0]-399, GAME_POSITION[1]-66 )
             shout(paint.light_cyan.bold("Menu_Button is clicked"))
         else :
             Raise_What_is_Problem("Click_on_Exit_Button")
 #
 def Rebuy_Menu_Button():
+    # It checks if Rebuy Menu button is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+513, GAME_POSITION[1]+14, (203,0,6) ) #Rebuy_Menu_Button
     return (x1)
@@ -745,6 +769,8 @@ def Click_on_Rebuy_Menu_Button():
             Raise_What_is_Problem("Click_on_Rebuy_Menu_Button")
 #
 def Leave_Next_Hand_OK_Button():
+    # It checks if OK button for leaving next hand is existed on its position or not.
+    # I think this button appears after being idle
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+108, GAME_POSITION[1]+342, (0,83,171) ) #Leave_Next_Hand_OK_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+108, GAME_POSITION[1]+342, (0,95,193) ) #Leave_Next_Hand_OK_Button_Light
@@ -759,6 +785,7 @@ def Click_on_Leave_Next_Hand_OK_Button():
         Raise_What_is_Problem("Click_on_Leave_Next_Hand_OK_Button")
 #    
 def Buy_In_Button():
+    # It checks if Buy In button is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+71, GAME_POSITION[1]+448, (26,123,0) ) #Buy_In_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+71, GAME_POSITION[1]+448, (32,149,0) ) #Buy_In_Button_Light
@@ -773,6 +800,7 @@ def Click_on_Buy_In_Button():
         Raise_What_is_Problem("Click_on_Buy_In_Button")   
 #
 def Buy_In_Plus_Button(): 
+    # It checks if plus button for buying in is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+236, (58,68,83) ) #Buy_In_Plus_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+236, (77,88,105) ) #Buy_In_Plus_Button_Light
@@ -795,6 +823,7 @@ def Hold_Click_on_Buy_In_Plus_Button(): #hold left click for 10s
             Raise_What_is_Problem("Hold_Click_on_Buy_In_Plus_Button") 
 #
 def Buy_In_Minus_Button():
+    # It checks if Minus button for buying in is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+244, (54,62,76) ) #Buy_In_Minus_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+244, (70,80,96) ) #Buy_In_Minus_Button_Light
@@ -817,6 +846,7 @@ def Hold_Click_Buy_In_Minus_Button(): #hold left click for 10s
             Raise_What_is_Problem("Hold_Click_Buy_In_Minus_Button")
 #
 def Re_Buy_Button():
+    # It checks if Re Buy button is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+91, GAME_POSITION[1]+430, (26,124,0) ) #Re_Buy_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+91, GAME_POSITION[1]+430, (32,150,0) ) #Re_Buy_Button_Light
@@ -831,6 +861,7 @@ def Click_on_Re_Buy_Button():
         Raise_What_is_Problem("Click_on_Re_Buy_Button")
 #
 def Re_Buy_Plus_Button(): 
+    # It checks Plus button for re buying is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+254, (58,68,83) ) #Re_Buy_Plus_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+254, (77,88,105) ) #Re_Buy_Plus_Button_Light
@@ -853,6 +884,7 @@ def Hold_Click_on_Re_Buy_Plus_Button(): #hold left click for 10s
             Raise_What_is_Problem("Hold_Click_on_Re_Buy_Plus_Button")
 #
 def Re_Buy_Minus_Button():
+    # It checks Minus button for re buying is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+261, (54,62,76) ) #Re_Buy_Minus_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+261, (70,80,96) ) #Re_Buy_Minus_Button_Light
@@ -875,6 +907,7 @@ def Hold_Click_on_Re_Buy_Minus_Button(): #hold left click for 10s
             Raise_What_is_Problem("Hold_Click_on_Re_Buy_Minus_Button")
 #
 def I_am_back_Button():
+    # It checks if I am back button is existed on its position or not.
     globalization()
     x1 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,80,165) ) #I_am_back_Button
     x2 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,91,188) ) #I_am_back_Button_Light
@@ -894,15 +927,15 @@ def Click_on_I_am_back_Button(): #this function is already satisfied in vital si
 
 def fold():
     global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    return Click_on_Fold_Button()
+    return click_on_fold_button()
 
 def check():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    return Click_on_Check_Button()
+    return click_on_check_button()
 
 def call():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    return Click_on_Call_Button()
+    return click_on_call_button()
 
 def raising_old( Blinds ): # tested ok, not usable, new Raise() function work for it
     """ 
@@ -950,8 +983,8 @@ def raising_old( Blinds ): # tested ok, not usable, new Raise() function work fo
     else :
         My_last_raise[stage] = Raise_base + Raise_add
 
-    Number_of_Clicks_on_Plus_Button( ( Blinds - (Raise_base + Raise_add) ) // BLIND )
-    return  Click_on_Raise_Button()
+    number_of_clicks_on_plus_button( ( Blinds - (Raise_base + Raise_add) ) // BLIND )
+    return  click_on_raise_button()
 
 def bet( Blinds ): # not usable since there is raising() function act for both raising and betting for all stages
     """ 
@@ -975,41 +1008,41 @@ def bet( Blinds ): # not usable since there is raising() function act for both r
     Did_i_raised_at[stage] = True
     My_last_raise[stage] = Blinds
 
-    Number_of_Clicks_on_Plus_Button( ( Blinds // BLIND ) - 1 )
-    return Click_on_Bet_Button()
+    number_of_clicks_on_plus_button( ( Blinds // BLIND ) - 1 )
+    return click_on_bet_button()
 
 def all_in_old( Minus_Blinds = 0 ): #not completed on Did_i_raised_at and My_last_raise. i won't use this fuction anymore
     """ if 0 : all_in everything """
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
-    if All_In_Button() == False and Call_Button() == True and Bet_Button() == False and Raise_Button() == False :
-        return Click_on_Call_Button()
+    if all_in_button_pixel() == False and call_button_pixel() == True and bet_button_pixel() == False and raise_button_pixel() == False :
+        return click_on_call_button()
     
     if Minus_Blinds == 0 :
-        Click_on_All_In_Button()
-        if Bet_Button() == True :
-            return Click_on_Bet_Button()
+        click_on_all_in_button()
+        if bet_button_pixel() == True :
+            return click_on_bet_button()
         else :
-            return Click_on_Raise_Button()
+            return click_on_raise_button()
     else :
-        Click_on_All_In_Button()
-        Number_of_Click_on_Minus_Button( Minus_Blinds )
-        if Bet_Button() == True :
-            return Click_on_Bet_Button()
+        click_on_all_in_button()
+        number_of_click_on_minus_button( Minus_Blinds )
+        if bet_button_pixel() == True :
+            return click_on_bet_button()
         else :
-            return Click_on_Raise_Button()
+            return click_on_raise_button()
 
 def all_in():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
-    if All_In_Button() == False and Call_Button() == True and Bet_Button() == False and Raise_Button() == False :
-        return Click_on_Call_Button()
+    if all_in_button_pixel() == False and call_button_pixel() == True and bet_button_pixel() == False and raise_button_pixel() == False :
+        return click_on_call_button()
     
-    Click_on_All_In_Button()
-    if Bet_Button() == True :
-        return Click_on_Bet_Button()
+    click_on_all_in_button()
+    if bet_button_pixel() == True :
+        return click_on_bet_button()
     else :
-        return Click_on_Raise_Button()
+        return click_on_raise_button()
 
 def raising( Blinds ):
     """ 
@@ -1057,37 +1090,37 @@ def raising( Blinds ):
     else :
         My_last_raise[stage] = Raise_base + Raise_add
 
-    Number_of_Clicks_on_Plus_Button( ( Blinds - (Raise_base + Raise_add) ) // BLIND )
+    number_of_clicks_on_plus_button( ( Blinds - (Raise_base + Raise_add) ) // BLIND )
     #Till here as same as raising()
 
-    if Raise_Button() :
-        Click_on_Raise_Button()
-    elif Bet_Button() :
-        Click_on_Bet_Button()
+    if raise_button_pixel() :
+        click_on_raise_button()
+    elif bet_button_pixel() :
+        click_on_bet_button()
     else :
 
         Vital_Signs("RAISE() Button, No Raise nor Bet Button founded")
-        if Raise_Button() :
-            Click_on_Raise_Button()
-        elif Bet_Button() :
-            Click_on_Bet_Button()  
+        if raise_button_pixel() :
+            click_on_raise_button()
+        elif bet_button_pixel() :
+            click_on_bet_button()  
         else :
             Check_Mod_On("No Raise nor Bet Button founded")
 
 def check_fold():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    if Check_Button() :
-        Click_on_Check_Button()
-    elif Fold_Button() :
-        Click_on_Fold_Button()
+    if check_button_pixel() :
+        click_on_check_button()
+    elif fold_button_pixel() :
+        click_on_fold_button()
     else :
 
         Check_Mod_On("check_fold()(It's already True)") #It's already True
         Vital_Signs("check_fold()")
-        if Check_Button() :
-            Click_on_Check_Button()
-        elif Fold_Button() :
-            Click_on_Fold_Button()        
+        if check_button_pixel() :
+            click_on_check_button()
+        elif fold_button_pixel() :
+            click_on_fold_button()        
 
 
 
@@ -1649,23 +1682,23 @@ def OCR_Others_Name_String(Seat_Num):
 
 def OCR_Others_Name(Seat_Num):
     x1 = other_seat_won(Seat_Num)
-    y1 = Gray_Sign_Seat(Seat_Num)
+    y1 = notification_banner_pixel(Seat_Num)
     string = OCR_Others_Name_String(Seat_Num)
     x2 = other_seat_won(Seat_Num)
-    y2 = Gray_Sign_Seat(Seat_Num)
+    y2 = notification_banner_pixel(Seat_Num)
     if (x1 or x2) :
         return None
     elif ( y1 or y2 ):
         while ( y1 or y2 ):
-            y1 = Gray_Sign_Seat(Seat_Num)
-            y2 = Gray_Sign_Seat(Seat_Num)
+            y1 = notification_banner_pixel(Seat_Num)
+            y2 = notification_banner_pixel(Seat_Num)
         return OCR_Others_Name_String(Seat_Num)
     else :
         return string
 
 def Easy_OCR_Others_Name(Seat_Num):
     x1 = other_seat_won(Seat_Num)
-    y1 = Gray_Sign_Seat(Seat_Num)
+    y1 = notification_banner_pixel(Seat_Num)
     if x1 or y1 :
         return None
     else :
@@ -1776,35 +1809,12 @@ def Me_In(Number):
         return (x1)
 
 #
-#def Available_Seat(Number):
+#def available_seat_pixel(Number):
 
 
-def Click_on_Available_Seat(Number):
-    globalization()
+#def click_on_available_seat(seat):
 
-    if Number == 1 :
-        pyautogui.click( GAME_POSITION[0]+362, GAME_POSITION[1]+408 ) #Seat1
-        shout("Available_Seat 1 is clicked")
-    if Number == 2 :
-        pyautogui.click( GAME_POSITION[0]+107, GAME_POSITION[1]+411 ) #Seat2
-        shout("Available_Seat 2 is clicked")
-    if Number == 3 :
-        pyautogui.click( GAME_POSITION[0]-148, GAME_POSITION[1]+408 ) #Seat3
-        shout("Available_Seat 3 is clicked")
-    if Number == 4 :
-        pyautogui.click( GAME_POSITION[0]-178, GAME_POSITION[1]+103 ) #Seat4
-        shout("Available_Seat 4 is clicked")
-    if Number == 5 :
-        pyautogui.click( GAME_POSITION[0]+392, GAME_POSITION[1]+103 ) #Seat5
-        shout("Available_Seat 5 is clicked")
-
-def Click_on_Exit_Button(): #this should be compeleted at future for Sit_In!!!!!!!!!!!!!!!!!!!!!  (maybe should be compeleted, maybe not)
-    globalization()
-
-    pyautogui.click( GAME_POSITION[0]+378, GAME_POSITION[1]+21 )
-    shout(paint.yellow.bold("Exit_Button is clicked"))
-    Just_Seated = None
-    shout(paint.yellow.bold("Just_Seated is None."))
+#def click_on_exit_button(): 
 
 def Sit_In(Chips): # "Min buy in" or "Max buy in"
     global My_Seat_Number , Just_Seated
@@ -1813,14 +1823,14 @@ def Sit_In(Chips): # "Min buy in" or "Max buy in"
     shout(paint.yellow.bold("Searching for a seat to sit in"))
     My_Seat_Number = None
     for i in range(1 ,6 ):
-        if Available_Seat(i) == True :
-            Click_on_Available_Seat(i)
+        if available_seat_pixel(i) == True :
+            click_on_available_seat(i)
             My_Seat_Number = i
             Just_Seated = True
             shout(paint.yellow.bold("Sit_In() --> Just_Seated is True."))
             break
     if My_Seat_Number == None :
-        Click_on_Exit_Button()
+        click_on_exit_button()
         
         raise Exception("Sit_In(Chips):This can not happen IN FUTURE becuase main menu automation is built")
     else :
@@ -1974,7 +1984,7 @@ def Vital_Signs(String = None): #if getpo() == None or ...
         shout(paint.yellow.bold("Game region refounded after Vital_Signs()"))
     
     if I_am_back_Button() == True :
-        if Cards( My_Seat_Number ) == True :
+        if player_cards_pixel( My_Seat_Number ) == True :
             Check_Mod = True
             shout(paint.yellow.bold("After Vital_Signs() --> Check_Mod is True."))
         else :
@@ -2079,7 +2089,7 @@ def Read_Bets() :
         Last_Bet_cache = {}
         
         for Seat in range(1,6) :
-            Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = Cards(Seat)
+            Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = player_cards_pixel(Seat)
             White_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = white(Seat)
             Red_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
@@ -2107,7 +2117,7 @@ def Read_Bets() :
         Last_Bet_cache = {}
 
         for Seat in range(1,6) :
-            Cards_cache["Flop %s" %Round_Flop][Seat] = Cards(Seat)
+            Cards_cache["Flop %s" %Round_Flop][Seat] = player_cards_pixel(Seat)
             White_cache["Flop %s" %Round_Flop][Seat] = white(Seat)
             Red_cache["Flop %s" %Round_Flop][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["Flop %s" %Round_Flop][Seat]
@@ -2135,7 +2145,7 @@ def Read_Bets() :
         Last_Bet_cache = {}
 
         for Seat in range(1,6) :
-            Cards_cache["Turn %s" %Round_Turn][Seat] = Cards(Seat)
+            Cards_cache["Turn %s" %Round_Turn][Seat] = player_cards_pixel(Seat)
             White_cache["Turn %s" %Round_Turn][Seat] = white(Seat)
             Red_cache["Turn %s" %Round_Turn][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["Turn %s" %Round_Turn][Seat]
@@ -2163,7 +2173,7 @@ def Read_Bets() :
         Last_Bet_cache = {}
 
         for Seat in range(1,6) :
-            Cards_cache["River %s" %Round_River][Seat] = Cards(Seat)
+            Cards_cache["River %s" %Round_River][Seat] = player_cards_pixel(Seat)
             White_cache["River %s" %Round_River][Seat] = white(Seat)
             Red_cache["River %s" %Round_River][Seat] = red(Seat)
             Last_Cards_cache[Seat] = Cards_cache["River %s" %Round_River][Seat]
@@ -2231,7 +2241,7 @@ def Pickle_Var() :
     """
     functions i used Pickle_Var() at: 1.Decide() 2.Vital_Signs() (containting funcs are not used anywhere else, so variables will overlap) 
     3.Check_Mod_On() 4.getpo() 5.getpo_for_starting() 6.Create_file_directories()
-    Pickling at Decide() will support Pickling variables at funcs like Read Cards(), Determind small blind(), and.... because Decide() is run after them.
+    Pickling at Decide() will support Pickling variables at funcs like Read player_cards_pixel(), Determind small blind(), and.... because Decide() is run after them.
 
     Where ever i use Pickle_Var() at the end of a function i should Implement globalization() at the first line of that function.
     To Pickle real updated variables.
@@ -2240,7 +2250,7 @@ def Pickle_Var() :
     Decide() should not use globalization() because it's running at main file and it is a gate way. some varibiales may have changed in main while True.
 
     At gate way lines to the other files use Pickle_Var() before and globalization() after them. 
-    The only gate way line is currently in Decide() function now. By seperating read cards files, I can expand gate ways to lines like read cards() 
+    The only gate way line is currently in Decide() function now. By seperating read cards files, I can expand gate ways to lines like read player_cards_pixel() 
 
     delete variables.p or set all variables to None at the beggining. (Done)
     By running main file if i have not assigned varibales from before, it will error. 
@@ -2365,11 +2375,11 @@ while True :
             shout("My Bank can't be read")
             My_Bank = None
         
-        Hand_End_Cheker1 = Hand_End_Cheker()
+        Hand_End_Cheker1 = hand_is_ended()
         while Hand_End_Cheker1 :
-            Hand_End_Cheker1 = Hand_End_Cheker()
+            Hand_End_Cheker1 = hand_is_ended()
 
-        if Light(My_Seat_Number) != True or ( Light(My_Seat_Number) == True and Gray_Sign_Seat(My_Seat_Number) == True ) :
+        if active_player_pixel(My_Seat_Number) != True or ( active_player_pixel(My_Seat_Number) == True and notification_banner_pixel(My_Seat_Number) == True ) :
             Read_Players_Info() #
         else :
             shout( paint.on_light_red.bold("Players Info is not Read") )
@@ -2379,7 +2389,7 @@ while True :
         Cards1 = False
         shout(paint.light_magenta.bold("Looking for cards in Just_Seated == True Section..."))
         while Cards1 == False and time02 < 5 * 60 : #being alone time
-            Cards1 = Cards( My_Seat_Number )
+            Cards1 = player_cards_pixel( My_Seat_Number )
             time2 = time.time() - time1
             n60 = ( time2 - 120 ) // 60
             if not time2 < 2 * 60 and n60 >= fo :
@@ -2414,21 +2424,21 @@ while True :
         Pre_Flop1 = True
         Pre_Flop1_Deside = True
 
-    if Hand_End_Cheker1 == False and Cards( My_Seat_Number ) == True and Just_Seated == False :  
+    if Hand_End_Cheker1 == False and player_cards_pixel( My_Seat_Number ) == True and Just_Seated == False :  
         Read_My_Cards() #
         Play_sound() #
 
 
-    Light1 = False
+    its_my_turn = False
     Gray1 = True ; fo = 0 
     time1 = time.time()
     shout(paint.light_magenta.bold("Looking for light...")) 
-    while Hand_End_Cheker1 == False and (Light1 == False or Gray1 == True) and Flop1_Deside == False and Just_Seated == False and time.time() - time1 < 5 * 60 :
+    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and Flop1_Deside == False and Just_Seated == False and time.time() - time1 < 5 * 60 :
         if I_am_back_Button() :
             Vital_Signs("2.5 I am back Button is True")
-        Hand_End_Cheker1 = Hand_End_Cheker()
-        Light1 = Light( My_Seat_Number )
-        Gray1 = Gray_Sign_Seat( My_Seat_Number )
+        Hand_End_Cheker1 = hand_is_ended()
+        its_my_turn = active_player_pixel( My_Seat_Number )
+        Gray1 = notification_banner_pixel( My_Seat_Number )
         Flop1_Deside = flop()
         n20 = (time.time() - time1 - 60 ) // 20
         if time.time() - time1 > 1 * 60 and n20 >= fo :
@@ -2444,12 +2454,12 @@ while True :
         
          
     Round_Pre_Flop = 0 #(2018) shouldn't it be -1 ?! test it by printing for example Cards_cache dic which prints rounds too
-    if Light( My_Seat_Number ) == True and Gray1 == False and Hand_End_Cheker() == False and Flop1_Deside == False and Just_Seated == False :
+    if active_player_pixel( My_Seat_Number ) == True and Gray1 == False and hand_is_ended() == False and Flop1_Deside == False and Just_Seated == False :
         Round_Pre_Flop += 1
         shout(paint.light_magenta.bold("light is founded"))
         Read_Bets() #
         Decide() # preflop
-    elif Hand_End_Cheker() == False and Flop1_Deside == False and Just_Seated == False :
+    elif hand_is_ended() == False and Flop1_Deside == False and Just_Seated == False :
         Vital_Signs("4 Entering This section is not possible")
         Screenshot_Error("6.6 Entering This section is not possible")
         #(2018) shouldn't Round_Pre_Flop += 1 line be here too ?!
@@ -2473,17 +2483,17 @@ while True :
                 
             time1 = time.time()
             time2 = time.time() - time1
-            Light1 = False ; Flop1 = False ; fo = 0
+            its_my_turn = False ; Flop1 = False ; fo = 0
             shout(paint.light_magenta.bold("Looking for Next sign..."))
-            while Hand_End_Cheker1 == False and Light1 == False and Flop1 == False and time2 < 1 * 60 :
+            while Hand_End_Cheker1 == False and its_my_turn == False and Flop1 == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
                     getpo()
                     fo = 1
                 if I_am_back_Button() :
                     Vital_Signs("4.5 I am back Button is True")
-                Hand_End_Cheker1 = Hand_End_Cheker()
-                Light1 = Light( My_Seat_Number )
+                Hand_End_Cheker1 = hand_is_ended()
+                its_my_turn = active_player_pixel( My_Seat_Number )
                 Flop1 = flop()
                 time2 = time.time() - time1
                     
@@ -2492,7 +2502,7 @@ while True :
 
             if Hand_End_Cheker1 == False :
 
-                if Light1 == True and Flop1 == False :
+                if its_my_turn == True and Flop1 == False :
                     Round_Pre_Flop += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
@@ -2529,17 +2539,17 @@ while True :
                 
             time1 = time.time()
             time2 = time.time() - time1
-            Light1 = False ; Turn1 = False ; fo = 0
+            its_my_turn = False ; Turn1 = False ; fo = 0
             shout(paint.light_magenta.bold("Looking for Next sign..."))
-            while Hand_End_Cheker1 == False and Light1 == False and Turn1 == False and time2 < 1 * 60 :
+            while Hand_End_Cheker1 == False and its_my_turn == False and Turn1 == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
                     getpo()
                     fo = 1
                 if I_am_back_Button() :
                     Vital_Signs("6.5 I am back Button is True")
-                Hand_End_Cheker1 = Hand_End_Cheker()
-                Light1 = Light( My_Seat_Number )
+                Hand_End_Cheker1 = hand_is_ended()
+                its_my_turn = active_player_pixel( My_Seat_Number )
                 Turn1 = turn()
                 time2 = time.time() - time1
 
@@ -2548,7 +2558,7 @@ while True :
                 
             if Hand_End_Cheker1 == False :
 
-                if Light1 == True and Turn1 == False :
+                if its_my_turn == True and Turn1 == False :
                     Round_Flop += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
@@ -2589,17 +2599,17 @@ while True :
                 
             time1 = time.time()
             time2 = time.time() - time1
-            Light1 = False ; River1 = False ; fo = 0
+            its_my_turn = False ; River1 = False ; fo = 0
             shout(paint.light_magenta.bold("Looking for Next sign..."))
-            while Hand_End_Cheker1 == False and Light1 == False and River1 == False and time2 < 1 * 60 :
+            while Hand_End_Cheker1 == False and its_my_turn == False and River1 == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
                     getpo()
                     fo = 1
                 if I_am_back_Button() :
                     Vital_Signs("8.5 I am back Button is True")
-                Hand_End_Cheker1 = Hand_End_Cheker()
-                Light1 = Light( My_Seat_Number )
+                Hand_End_Cheker1 = hand_is_ended()
+                its_my_turn = active_player_pixel( My_Seat_Number )
                 River1 = river()
                 time2 = time.time() - time1
 
@@ -2608,7 +2618,7 @@ while True :
                 
             if Hand_End_Cheker1 == False :
 
-                if Light1 == True and River1 == False :
+                if its_my_turn == True and River1 == False :
                     Round_Turn += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
@@ -2648,17 +2658,17 @@ while True :
                 
             time1 = time.time()
             time2 = time.time() - time1
-            Light1 = False ; fo = 0
+            its_my_turn = False ; fo = 0
             shout(paint.light_magenta.bold("Looking for Next sign..."))
-            while Hand_End_Cheker1 == False and Light1 == False and time2 < 1 * 60 :
+            while Hand_End_Cheker1 == False and its_my_turn == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
                     getpo()
                     fo = 1
                 if I_am_back_Button() :
                     Vital_Signs("10.5 I am back Button is True")
-                Hand_End_Cheker1 = Hand_End_Cheker()
-                Light1 = Light( My_Seat_Number )
+                Hand_End_Cheker1 = hand_is_ended()
+                its_my_turn = active_player_pixel( My_Seat_Number )
                 time2 = time.time() - time1
 
             if not time2 < 1 * 60 :
@@ -2666,7 +2676,7 @@ while True :
                 
             if Hand_End_Cheker1 == False :
 
-                if Light1 == True and river() == True :
+                if its_my_turn == True and river() == True :
                     Round_River += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
@@ -2721,7 +2731,7 @@ while True :
         time02 = 0 ; fo = 0 
         time1 = time.time()
         while Hand_End_Cheker1 == True and time02 < 1.5 * 60 :
-            Hand_End_Cheker1 = Hand_End_Cheker()
+            Hand_End_Cheker1 = hand_is_ended()
             time2 = time.time() - time1
             if not time2 < 2 * 60 :
                 if fo == 0 :
@@ -2736,7 +2746,7 @@ while True :
 
     if Hand_End_Cheker1 == False and Just_Seated == False :
 
-        if Light(My_Seat_Number) != True or ( Light(My_Seat_Number) == True and Gray_Sign_Seat(My_Seat_Number) == True ) :
+        if active_player_pixel(My_Seat_Number) != True or ( active_player_pixel(My_Seat_Number) == True and notification_banner_pixel(My_Seat_Number) == True ) :
             Read_Players_Info() #
         else :
             shout( paint.on_light_red.bold("Players Info is not Read") )
@@ -2745,7 +2755,7 @@ while True :
         time02 = 0 ; fo = 0 
         time1 = time.time()
         while Coins_Appeared == False and time02 < 5 * 60 : #being alone time
-            Coins_Appeared = coins_founded()
+            Coins_Appeared = sb_b_d_buttons_are_founded()
             time2 = time.time() - time1
             if not time2 < 8 and fo == 0 :
                 getpo()
@@ -2762,9 +2772,9 @@ while True :
         elif Just_Seated == False :
             shout (paint.on_green.bold("-------- New Hand Started --------"))
             shout ("Coins are Founded")
-            Determine_Small_Blind_Seat()
-            Determine_Big_Blind_Seat()
-            Determine_Dealer_Seat()       
+            determine_small_blind_seat()
+            determine_big_blind_seat()
+            determine_dealer_seat()       
 
 
                     
@@ -2775,8 +2785,8 @@ while True :
             while Hand_End_Cheker1 == False and Cards1 == False and Just_Seated == False and time02 < 1.5 * 60 :
                 if I_am_back_Button() :
                     Vital_Signs("14.5 I am back Button is True")
-                Hand_End_Cheker1 = Hand_End_Cheker()
-                Cards1 = Cards( My_Seat_Number )
+                Hand_End_Cheker1 = hand_is_ended()
+                Cards1 = player_cards_pixel( My_Seat_Number )
                 time2 = time.time() - time1
                 if not time2 < 2 * 60 :
                     if fo == 0 :
