@@ -11,7 +11,7 @@ Table functions has no rankings in Flush and Pair files. in Str file there are T
 """
 
 # Supporting Functions:-------------------------
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -304,7 +304,7 @@ def Table_str_1_cards( table_cards_list = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
 
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -323,7 +323,7 @@ def Table_str_2_cards( table_cards_list = None ) :
     """ Only Table_str_1_cards and Table_str_2_cards Functions can be True at the same time """    
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -342,7 +342,7 @@ def Table_str_1_cards_Number( table_cards_list = None ) :
     """ Min Number is 0 if Table_str_1_cards == Flase, Max Number is 2 """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -361,7 +361,7 @@ def Table_str_2_cards_Number( table_cards_list = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -377,7 +377,7 @@ def Table_str_5_cards( table_cards_list = None ):
     """ At River happens. returns True or False """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -399,7 +399,7 @@ def Me_str_1_cards( table_cards_list = None ) :
     """ if Me_str_2_cards == True : return False """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -428,7 +428,7 @@ def Me_str_2_cards( table_cards_list = None ) :
     """ if Me_str_1_cards == True : return False """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -459,7 +459,7 @@ def Me_str_1_cards_Ranking( table_cards_list = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -491,7 +491,7 @@ def Me_str_2_cards_Ranking( table_cards_list = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -519,7 +519,7 @@ def Me_str( table_cards_list = None ) :
     """ if Me_str_2_cards or Me_str_1_cards """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -557,7 +557,7 @@ def is_there_any_better_possible_1_card_straight_on_table( table_cards_list = No
 
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -586,7 +586,7 @@ def Me_Open_str_draw_1_cards( table_cards_list = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -609,7 +609,7 @@ def Me_Open_str_draw_2_cards( table_cards_list = None ) :
     """ if Me_str == True: retun False """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -636,7 +636,7 @@ def Me_Open_str_draw_1_cards_Ranking( table_cards_list = None ) :
     """ Rank 1,2 & None """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -660,7 +660,7 @@ def Me_Open_str_draw_2_cards_Ranking( table_cards_list = None ) :
     """ Rank 1,2,3 & None """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if table_cards_list == None :
         if Flop1_Deside == True and Turn1_Deside == False :

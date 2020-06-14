@@ -10,7 +10,7 @@ Table functions has no rankings in Flush and Pair files. in Str file there are T
 """
 
 
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -38,7 +38,7 @@ def Me_Flush_by_3_table_cards( List = None ) :
     """ ( ['6 c','8 c','10 c','K c','A d'] , '2 c' , '3 c' ) return False """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -61,7 +61,7 @@ def Me_Flush_by_4_table_cards( List = None ) :
     """ ( ['6 c','8 c','10 c','K c','A c'] , 'Q c' , '3 c' ) return False """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -89,7 +89,7 @@ def Me_Flush_by_5_table_cards( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -124,7 +124,7 @@ def Me_Flush( List = None ) :
     """ if Me_Flush_by_3_table_cards or Me_Flush_by_4_table_cards or Me_Flush_by_5_table_cards """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -148,7 +148,7 @@ def Me_Flush_Ranking( List = None ) :
     """    
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -224,7 +224,7 @@ def Me_Flush_Ranking( List = None ) :
 def Me_Flush_draw_by_2_table_cards( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -246,7 +246,7 @@ def Me_Flush_draw_by_2_table_cards( List = None ) :
 def Me_Flush_draw_by_3_table_cards( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -276,7 +276,7 @@ def Me_Flush_draw_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -354,7 +354,7 @@ def Me_Flush_draw_Ranking( List = None ) :
 def Table_Flush_3_cards( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -378,7 +378,7 @@ def Table_Flush_3_cards( List = None ) :
 def Table_Flush_4_cards( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -402,7 +402,7 @@ def Table_Flush_4_cards( List = None ) :
 def Table_Flush_5_cards( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -430,7 +430,7 @@ def Table_Flush_draw( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -458,7 +458,7 @@ def Table_Flush( List = None ) :
     """ if Table_Flush_3_cards( List ) or Table_Flush_4_cards( List ) or Table_Flush_5_cards( List ) """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :

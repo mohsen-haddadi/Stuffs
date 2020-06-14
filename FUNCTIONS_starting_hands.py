@@ -1,7 +1,7 @@
 from FUNCTIONS_suit_and_value import s, n 
 
 
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -28,7 +28,7 @@ def globalization():
 def hand1() :
     """ AA,KK """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if  n( My_1th_Card ) == n( My_2th_Card )  and 13 <= n( My_1th_Card ) <= 14 :
         #shout("hand1 is True")
         return True
@@ -38,7 +38,7 @@ def hand1() :
 def hand2() :
     """ QQ,JJ """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if  n( My_1th_Card ) == n( My_2th_Card )  and 11 <= n( My_1th_Card ) <= 12 :
         #shout("hand2 is True")
         return True
@@ -48,7 +48,7 @@ def hand2() :
 def hand3() :
     """ 1010,99 """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if  n( My_1th_Card ) == n( My_2th_Card )  and 9 <= n( My_1th_Card ) <= 10 :
         #shout("hand3 is True")
         return True
@@ -58,7 +58,7 @@ def hand3() :
 def hand4() :
     """ 88,77,...,22 """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if  n( My_1th_Card ) == n( My_2th_Card )  and 2 <= n( My_1th_Card ) <= 8 :
         #shout("hand4 is True")
         return True
@@ -68,7 +68,7 @@ def hand4() :
 def hand5() :
     """ A10,...,KQ  3 Blind raise """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if  n( My_1th_Card ) != n( My_2th_Card ) :
         if ( 12 <= n( My_1th_Card ) <= 13 and 12 <= n( My_2th_Card ) <= 13 ) \
         or ( 14 in [ n( My_1th_Card ) , n( My_2th_Card ) ] and n( My_1th_Card ) >= 10 and n( My_2th_Card ) >= 10 ) :
@@ -80,7 +80,7 @@ def hand5() :
 def hand6() :
     """ KJ,QJ,,...,A2,...,(108,98 rang),109  1 Blind call """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if  n( My_1th_Card ) != n( My_2th_Card ) :
         if hand5() != True :
             if 14 in [ n( My_1th_Card ) , n( My_2th_Card ) ] \
@@ -94,7 +94,7 @@ def hand6() :
 def hand7() :
     """ 72,73,...,96,107 (gheir rang)  Fold small blind position (otherwise Small always call Blind) """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if not( hand1() or hand2() or hand3() or \
             hand4() or hand5() or hand6() \
             or s( My_1th_Card ) == s( My_2th_Card ) ) :
@@ -113,7 +113,7 @@ def hand7() :
 def hand8() :
     """ AK,...,1010,...22,...,(65 rang) Blind position call 2 blind raise, otherwise fold that """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if not( hand1() or hand2() ) :
         if hand3() or hand4() \
         or hand5() or hand6() \
@@ -127,7 +127,7 @@ def hand8() :
 def hand9() :
     """ AK,...,1010,...,(98 rang) Small position call 2 blind raise, otherwise fold that """
     global  My_1th_Card , My_2th_Card 
-    globalization()
+    load_variables()
     if not( hand1() or hand2() ) :
         if hand3() or hand4() \
         or hand5() or hand6() :

@@ -10,7 +10,7 @@ All functions in this file with True or False returning won't return None at any
 # 10.am_i_first_player_from_last_raiser() #ok
 # For examination when everything is ready, creat a function which print every function returnings in this file and var like My_last_raise in Decition function if check mod is off. and Turn off the other prints and shouts by manipulating the shout function.
 
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -39,7 +39,7 @@ def Pre_Flop_Deside() : #tested ok #screen shot and add to cheat sheet
     only one of them can be True at a certain time 
     """
     global Pre_Flop1_Deside , Flop1_Deside 
-    globalization()
+    load_variables()
 
     if Pre_Flop1_Deside and not Flop1_Deside :
         return True
@@ -48,7 +48,7 @@ def Pre_Flop_Deside() : #tested ok #screen shot and add to cheat sheet
 
 def Flop_Deside() : #tested ok #screen shot and add to cheat sheet
     global Flop1_Deside , Turn1_Deside 
-    globalization()
+    load_variables()
 
     if Flop1_Deside and not Turn1_Deside :
         return True
@@ -57,7 +57,7 @@ def Flop_Deside() : #tested ok #screen shot and add to cheat sheet
         
 def Turn_Deside() : #tested ok #screen shot and add to cheat sheet
     global Turn1_Deside , River1_Deside
-    globalization()
+    load_variables()
 
     if Turn1_Deside and not River1_Deside :
         return True
@@ -66,7 +66,7 @@ def Turn_Deside() : #tested ok #screen shot and add to cheat sheet
         
 def River_Deside() : #tested ok #screen shot and add to cheat sheet
     global River1_Deside
-    globalization()
+    load_variables()
 
     if River1_Deside :
         return True
@@ -82,7 +82,7 @@ def Max_raise_sofar():
     calls blinds at pre_flop are not counted as raises. so if no raises it will return 0.
     """
     global Bet_cache , Red_cache , My_last_raise , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River
-    globalization()
+    load_variables()
     
     return max( last_raise_at("Pre_Flop") , last_raise_at("Flop") , last_raise_at("Turn") , last_raise_at("River") )
 
@@ -94,7 +94,7 @@ def last_raise_now() :
     returns 0 if it's only blinds at pre flop or no raise at current stage
     """
     global Last_Bet_cache , My_Seat_Number , Last_Red_cache
-    globalization()
+    load_variables()
     
     a = []
     for Seat in range(1,6) :
@@ -114,7 +114,7 @@ def last_raise_at(stage) : #screen shot again and add to cheat sheet with these 
     not reached stages or no raises at current stage returns 0.calls blinds at pre_flop returns 0.
     """
     global Bet_cache , Red_cache , My_last_raise , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River
-    globalization()
+    load_variables()
     
     if stage == "Pre_Flop" : Round = Round_Pre_Flop
     elif stage == "Flop" : Round = Round_Flop
@@ -140,7 +140,7 @@ def Any_raiser_sofar() :
     Except me (Automatically it's Except me when scaning Red_cache in a Round) 
     """
     global Red_cache
-    globalization()
+    load_variables()
     
     for i in range(len(list( Red_cache.items() ))) :
         for Seat in range ( len( list(list( Red_cache.items() )[i][1].items()) ) ) :
@@ -154,7 +154,7 @@ def Any_raiser_now():
     Except me ,for current stage
     """
     global My_Seat_Number , Last_Red_cache
-    globalization()
+    load_variables()
     
     for Seat in range(1,6):
         if Seat == My_Seat_Number :
@@ -171,7 +171,7 @@ def number_of_players_in() :
     Included me
     """
     global Last_Cards_cache
-    globalization()
+    load_variables()
     
     count = 0
     for Seat in range(1,6) :
@@ -187,7 +187,7 @@ def am_i_last_player_by_seat_order():
     At preflop last possible player is always big blind, At non preflop last possible player is always dealer
     """
     global My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat, Last_Cards_cache , Pre_Flop1_Deside , Flop1_Deside #, Check_Mod
-    globalization()
+    load_variables()
     
     my_position = my_turn_by_seat_order()
 
@@ -204,7 +204,7 @@ def am_i_last_player_by_seat_order_at_non_preflop_stage() :
     This function is usefull when deciding at pre_flop 
     """
     global My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat, Last_Cards_cache #, Check_Mod
-    globalization()
+    load_variables()
     
     #Pre_Flop1 = Pre_Flop()
 
@@ -248,7 +248,7 @@ def am_i_first_player_by_seat_order():
     At preflop last possible player is always big blind, At non preflop last possible player is always dealer 
     """
     global My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat, Last_Cards_cache , Pre_Flop1_Deside , Flop1_Deside #, Check_Mod
-    globalization()
+    load_variables()
     
     if my_turn_by_seat_order()[0] == 1 :
         return True
@@ -263,7 +263,7 @@ def my_turn_by_seat_order() :
     At preflop last possible player is always big blind, At non preflop last possible player is always dealer
     """
     global My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat, Last_Cards_cache , Pre_Flop1_Deside , Flop1_Deside #, Check_Mod
-    globalization()
+    load_variables()
     
     #Pre_Flop1 = Pre_Flop()
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
@@ -311,7 +311,7 @@ def my_turn_by_seat_order_at_non_preflop_stage() :
     This function is usefull when deciding at pre_flop 
     """
     global My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat, Last_Cards_cache , Pre_Flop1_Deside , Flop1_Deside #, Check_Mod
-    globalization()
+    load_variables()
     
     #Pre_Flop1 = Pre_Flop()
 
@@ -354,7 +354,7 @@ def am_i_last_player_from_last_raiser() :
     Example: Stage is River and only raise has occur at preflop; dealer at seat 5 had raised and my seat is 3 and seat 4 is empty ; it returns True
     """
     global My_Seat_Number , Last_Cards_cache , Bet_cache , Red_cache , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River #, Check_Mod
-    globalization()
+    load_variables()
     
     my_position = my_turn_from_last_raiser_sofar()
     if my_position == None :
@@ -372,7 +372,7 @@ def am_i_first_player_from_last_raiser() :
     Example: Stage is River and only raise has occur at preflop; dealer at seat 5 had raised and my seat is 2 and seat 1 is empty ; it returns True
     """
     global My_Seat_Number , Last_Cards_cache , Bet_cache , Red_cache , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River #, Check_Mod
-    globalization()
+    load_variables()
     
     my_position = my_turn_from_last_raiser_sofar()
     if my_position == None :
@@ -391,7 +391,7 @@ def am_i_after_last_raiser_by_seat_order() :
     """
     global Bet_cache , Red_cache , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
             My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
-    globalization()
+    load_variables()
     
     last_raiser_seat = last_raiser_seat_sofar() 
 
@@ -422,7 +422,7 @@ def my_turn_from_last_raiser_sofar():
     Example: Stage is River and only raise has occur at preflop; dealer at seat 5 had raised and my seat is 3 and only seat 4 is empty ; it returns (4,4)
     """
     global My_Seat_Number , Last_Cards_cache , Bet_cache , Red_cache , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River #, Check_Mod
-    globalization()
+    load_variables()
     
     Last_Red_Seat = last_raiser_seat_sofar()
 
@@ -465,7 +465,7 @@ def did_i_checked() :
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River, BLIND , My_Seat_Number , Last_Bet_cache , My_last_raise , Bet_cache , Red_cache 
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         stage = "Pre_Flop" ; Round = Round_Pre_Flop
@@ -498,7 +498,7 @@ def did_i_called() :
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River, BLIND , My_Seat_Number , Last_Bet_cache , Last_White_cache , My_last_raise , Bet_cache , Red_cache 
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         stage = "Pre_Flop" ; Round = Round_Pre_Flop
@@ -536,7 +536,7 @@ def did_i_raised() :
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River, BLIND , My_Seat_Number , Last_Red_cache , My_last_raise , Bet_cache , Red_cache 
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         stage = "Pre_Flop" ; Round = Round_Pre_Flop
@@ -570,7 +570,7 @@ def did_i_raised() :
 def did_i_raise_sofar(): 
     """ Return True or False """
     global Did_i_raised_at
-    globalization()
+    load_variables()
     
     return Did_i_raised_at["Pre_Flop"] or Did_i_raised_at["Flop"] or Did_i_raised_at["Turn"] or Did_i_raised_at["River"]
 
@@ -580,7 +580,7 @@ def did_i_raise_at(stage) :
     stage argument should be written in These string formats: "Pre_Flop" "Flop" "Turn" "River" otherwise it will error
     """
     global Did_i_raised_at
-    globalization()
+    load_variables()
     
     return Did_i_raised_at[stage]
 
@@ -593,7 +593,7 @@ def am_i_last_raiser_at(stage) :
     If i've not raised at all but the others have raised, returns False
     """
     global Bet_cache , Red_cache , My_last_raise , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River
-    globalization()
+    load_variables()
     
     List = ["River" , "Turn" , "Flop" , "Pre_Flop"]
     start = List.index(stage)
@@ -619,7 +619,7 @@ def am_i_last_raiser() :
     """
     global Bet_cache , Red_cache , My_last_raise , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         stage = "Pre_Flop" 
@@ -638,7 +638,7 @@ def is_it_first_round() :
     """ Return True or False """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         Round = Round_Pre_Flop
@@ -666,7 +666,7 @@ def number_of_raisers_sofar() : #tested ok #check if Rounds are started from 0 a
     Except me 
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , My_Seat_Number , Red_cache
-    globalization()
+    load_variables()
     
 
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
@@ -710,7 +710,7 @@ def number_of_raisers_now() :
     Except me 
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , My_Seat_Number , Red_cache
-    globalization()
+    load_variables()
     
 
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
@@ -731,7 +731,7 @@ def number_of_raisers_at( stage ) :
     stage variable should be written in string format : "Pre_Flop" ; "Flop"  ; "Turn" ; "River" otherwise it will return 0.
     """
     global Red_cache , My_Seat_Number
-    globalization()
+    load_variables()
     
     Players_count = 0
     for Seat in range(1,6): 
@@ -755,7 +755,7 @@ def number_of_players_more_than_once_raised_at( stage ) :
     stage variable should be written in string format : "Pre_Flop" ; "Flop"  ; "Turn" ; "River" otherwise it will return 0.
     """
     global Red_cache , My_Seat_Number
-    globalization()
+    load_variables()
     
     Players_count = 0
     for Seat in range(1,6):
@@ -783,7 +783,7 @@ def any_double_raiser_now() :
     returns True or False only. if a raiser has raised triple it returns True too.
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , My_Seat_Number , Red_cache
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         stage = "Pre_Flop" 
@@ -819,7 +819,7 @@ def any_triple_raiser_now() :
     returns True or False only. if a raiser has more raised than triple it returns True too.
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , My_Seat_Number , Red_cache
-    globalization()
+    load_variables()
     
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
         stage = "Pre_Flop" 
@@ -855,7 +855,7 @@ def any_double_raiser_sofar() :
     returns True or False only. if a raiser has raised triple it returns True too.
     """  
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , My_Seat_Number , Red_cache
-    globalization()
+    load_variables()
     
 
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
@@ -899,7 +899,7 @@ def any_triple_raiser_sofar() :
     returns True or False only. if a raiser has more raised than triple it returns True too.
     """
     global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , My_Seat_Number , Red_cache
-    globalization()
+    load_variables()
     
 
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
@@ -956,7 +956,7 @@ def last_raiser_seat_sofar() :
     Except me (because after ocr, max of Bet_cache at any stage and round is not me for sure), if no raising is found: returns None 
     """
     global Bet_cache , Red_cache , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River # if an stage is not reached, its Round is 0
-    globalization()
+    load_variables()
     
     Seat = None
     for Stage in [ ("Pre_Flop",Round_Pre_Flop ) , ("Flop",Round_Flop) , ("Turn",Round_Turn) , ("River",Round_River) ] : 
@@ -981,7 +981,7 @@ def last_raisers_list_seat_now() :
     Except me. My_Seat_Number = 1, raisers seat: 3 , 5. returns : [5,3]. if no raisers: [] 
     """
     global Last_Red_cache , My_Seat_Number
-    globalization()
+    load_variables()
     
     last_raisers_list = []
     for i in range(1,5) :
@@ -999,7 +999,7 @@ def next_playing_player_seat( forward_backward_number ) :
     if abs(forward_backward_number) > (4 or more than playing players) : return None 
     """
     global Last_Cards_cache , My_Seat_Number #, Check_Mod
-    globalization()
+    load_variables()
     
     if forward_backward_number > 0 :
         sign = +1
@@ -1028,7 +1028,7 @@ def Players_turn_by_seat_order( Player_Seat ) : # just for below function usage
     """
     global Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat,\
            Last_Cards_cache , Pre_Flop1_Deside , Flop1_Deside #, Check_Mod
-    globalization()
+    load_variables()
     
     #Pre_Flop1 = Pre_Flop() 
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
@@ -1076,7 +1076,7 @@ def Players_turn_from_me_by_seat_order( Player_Seat ) :
     """
     global My_Seat_Number , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat,\
            Last_Cards_cache , Pre_Flop1_Deside , Flop1_Deside #, Check_Mod
-    globalization()
+    load_variables()
     
     Answer = Players_turn_by_seat_order( Player_Seat )[0] - my_turn_by_seat_order()[0]
     return Answer

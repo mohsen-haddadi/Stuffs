@@ -1,7 +1,7 @@
 import pickle
 from FUNCTIONS_play import * 
 
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -24,9 +24,8 @@ def globalization():
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( "variables.p", "rb" ) )
 
 
-
 def decide():
-    globalization()
+    load_variables()
 
     if Pre_Flop1_Deside == True and Flop1_Deside == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
         shout(paint.light_cyan.bold("*Deciding on Preflop*"))

@@ -113,7 +113,7 @@ def read_river_card():
 def test(my_seat):
     """
     Before start testing, put a poker game table on top of your monitor screen. 
-    Tests card reading functionality, and shows the screen shot cards from
+    It tests card reading functionality, and shows the screen shot cards from
     screen to make sure that pre_process_query_image() function works fine
     and coordinates like: TABLE_CARD_VALUE_COORDINATE,...
     ,table_card_region are set correctly.
@@ -173,9 +173,6 @@ def test(my_seat):
     show_my_pre_process_card_images(my_seat)
     show_table_pre_process_card_images()
 
-    for xth_card in [1,2,3]:    
-        query_image = download_table_card(xth_card)
-        value_image, suit_image = match_card.pre_process_query_image(query_image, True)
 
 if __name__ == '__main__':
     test(1)

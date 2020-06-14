@@ -13,7 +13,7 @@ some Play functions are in calendare. add them here later
 Me_str() or Me_Flush() can overlap lower than Me_full_house() (Except Me_str() and Me_2_pair() won't overlap) 
 so for all functions lower than Me_full_house() like: 1. Play_hand5_no_raiser() and 2. Play_1_pair() .... , (Me_str() or Me_Flush()) are excluded.
 """
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -36,7 +36,7 @@ def globalization():
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( "variables.p", "rb" ) )
 
 def bluff_table_flush_4_cards():
-    globalization()
+    load_variables()
 
     if River_Deside() and Table_Flush_4_cards() and not Me_str() and not Me_Flush() and Me_Individual() \
     and ( Table_Individual() or Table_1_pair() ) and Table_str_1_cards_Number()\
@@ -51,7 +51,7 @@ def play_hand5_no_raiser(): # Check the logic
     lower than or 1 pair, but overall full house or overall 4 of kind are possible 
     so if hand5() is True, Play_individual_cards() and Play_1_pair() should not run anyway.
     """
-    globalization()
+    load_variables()
 
     if not hand5() or Any_raiser_sofar() or ( not Pre_Flop_Deside() and not Me_Individual() and not Me_1_pair() ) or \
     ( not Pre_Flop_Deside() and (Me_str() or Me_Flush()) ) :
@@ -104,7 +104,7 @@ def play_hand5_no_raiser(): # Check the logic
             return ("raise", 3)
 
     def bluff_hand5_flop_table_2_cards(): # define it inside the function
-        globalization()
+        load_variables()
 
         if Flop_Deside() and not Any_raiser_sofar() and hand5() and ( Table_1_pair() or Table_3_of_kinds() ) and Me_Individual() :
             shout("Bluffing hand5 flop table 2 cards")
@@ -122,7 +122,7 @@ def play_hand1():
 
 def play_individual_cards():
 
-    globalization()
+    load_variables()
 
     if Any_raiser_sofar() or Pre_Flop_Deside() or hand5() or not Me_Individual() or\
     ( Me_str() or Me_Flush() ) :
@@ -149,7 +149,7 @@ def play_individual_cards():
 
 
     def bluff_table_1_pair() :
-        globalization()
+        load_variables()
 
         if not Pre_Flop_Deside() and Me_Individual() and Table_1_pair() and not Any_raiser_sofar() :
             shout("Bluffing table 1 pair")
@@ -162,7 +162,7 @@ def play_1_pair():
     Only with Rank == 1 will be bet. if Kicker card was good bet 2*BLIND if not bet 1*BLIND
     Easily in case of danger like Table flush 4 or 5 cards ,or str 1 cards == 2  ;it will be checked 
     """
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or hand5() or ( Me_str() or Me_Flush() ) :
         return False
@@ -223,7 +223,7 @@ def play_1_pair():
 
 def play_2_pair():
 
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or ( Me_str() or Me_Flush() ) :
         return False
@@ -263,7 +263,7 @@ def play_2_pair():
 
 def play_3_of_kind():
 
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or ( Me_str() or Me_Flush() ) :
         return False
@@ -330,7 +330,7 @@ def play_straight():
     """
     If Me_str() is True, functions lower than Me_full_house() like : 1. Play_hand5_no_raiser() and 2. Play_1_pair()... should return False
     """
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or Me_Flush() or not Me_str() :
         return False
@@ -461,7 +461,7 @@ def play_flush():
     """
     If Me_Flush() is True, functions lower than Me_full_house() like : 1. Play_hand5_no_raiser() and 2. Play_1_pair()... should return False
     """
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or not Me_Flush() :
         return False
@@ -587,7 +587,7 @@ def play_flush():
 
 def play_full_house():
 
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or not Me_full_house() :
         return False
@@ -619,7 +619,7 @@ def play_full_house():
 
 def play_4_of_kind():
 
-    globalization()
+    load_variables()
 
     if Pre_Flop_Deside() or Any_raiser_sofar() or not Me_4_of_kinds() :
         return False

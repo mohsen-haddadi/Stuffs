@@ -11,7 +11,7 @@ Ranking Functions return 1.a Number or 2.a tuple or 3.None value if their True o
 
 
 
-def globalization():
+def load_variables():
     """ variables order is important while loading """
     global GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -40,7 +40,7 @@ def Table_Individual_Cards_List( List = None ) :
     """ [7,7,5,10] returns [10, 5]"""
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -59,7 +59,7 @@ def Table_2_same_Cards_List( List = None  ) :
     """ [7,7,5,5,6] returns [7, 5]"""
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -82,7 +82,7 @@ def Table_3_same_Cards_List( List = None  ) :
     """ [] or max one index"""
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -105,7 +105,7 @@ def Table_4_same_Cards_List( List = None  ) :
     """ [] or max one index"""
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -128,7 +128,7 @@ def Table_4_same_Cards_List( List = None  ) :
 def Table_Individual( List = None  ) : 
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -152,7 +152,7 @@ def Table_Individual( List = None  ) :
 def Table_1_pair( List = None  ) : 
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -178,7 +178,7 @@ def Table_1_pair( List = None  ) :
 def Table_2_pair( List = None  ) : 
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -203,7 +203,7 @@ def Table_2_pair( List = None  ) :
 def Table_3_of_kinds( List = None  ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -229,7 +229,7 @@ def Table_3_of_kinds( List = None  ) :
 def Table_full_house( List = None  ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -255,7 +255,7 @@ def Table_full_house( List = None  ) :
 def Table_4_of_kinds( List = None  ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -283,7 +283,7 @@ def Table_4_of_kinds( List = None  ) :
 def Me_Individual( List = None  ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -303,7 +303,7 @@ def Me_Individual( List = None  ) :
 def Me_pocket_pair( List = None  ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -324,7 +324,7 @@ def Me_pocket_pair( List = None  ) :
 def Me_1_pair( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -345,7 +345,7 @@ def Me_1_pair( List = None ) :
 def Me_2_pair( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -365,7 +365,7 @@ def Me_2_pair( List = None ) :
 def Me_3_of_kinds( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -386,7 +386,7 @@ def Me_3_of_kinds( List = None ) :
 def Me_pocket_3_of_kinds( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -406,7 +406,7 @@ def Me_pocket_3_of_kinds( List = None ) :
 def Me_full_house( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -427,7 +427,7 @@ def Me_full_house( List = None ) :
 def Me_pocket_full_house( List = None ) :
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -448,7 +448,7 @@ def Me_pocket_full_house( List = None ) :
 def Me_4_of_kinds( List = None ) : 
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -468,7 +468,7 @@ def Me_4_of_kinds( List = None ) :
 def Me_pocket_4_of_kinds( List = None ) : 
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -519,7 +519,7 @@ def cards_ranking( My_Card , List = None ) : # screenshot va be cheat sheet e pa
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -551,7 +551,7 @@ def Me_Individual_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -585,7 +585,7 @@ def Me_pocket_pair_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -619,7 +619,7 @@ def Me_1_pair_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -651,7 +651,7 @@ def Me_2_pair_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -678,7 +678,7 @@ def Me_3_of_kinds_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -715,7 +715,7 @@ def Me_pocket_3_of_kinds_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -744,7 +744,7 @@ def Me_full_house_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
@@ -804,7 +804,7 @@ def Me_pocket_full_house_Ranking( List = None ) :
     """
     global Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
-    globalization()
+    load_variables()
     
     if List == None :
         if Flop1_Deside == True and Turn1_Deside == False :
