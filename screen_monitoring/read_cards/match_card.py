@@ -123,7 +123,7 @@ def match_floating_card(value_image, suit_image, is_it_table_card, BORDER_WIDTH 
            "time consumption:%s"%round(time_consumption, 4),
            "deviation from center:%s,%s"%(deviation_from_center_x,deviation_from_center_y))#, best_suit_match_diff)
 
-def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT = 1000 , SUIT_DIFFERENCE_LIMIT = 400):
+def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT = 830 , SUIT_DIFFERENCE_LIMIT = 330):
 
     #All calculated diffrences amounts are lower than this large number.
     best_value_difference_amount = 1000000 

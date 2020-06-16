@@ -127,7 +127,7 @@ def white(game_position, seat):
     # by returning True or False, to find out if a player has call or not
 
     if pm.player_chips_pixel(game_position, seat):
-        return not are_chips_white_or_red_pixel(seat)
+        return not pm.are_chips_white_or_red_pixel(game_position, seat)
     else :
         return False
 #
@@ -136,7 +136,7 @@ def red(game_position, seat):
     # by returning True or False, to find out if a player has bet/raised or not.
     # (In accordance to Google: 'A bet is the first wager of a round.')
     if pm.player_chips_pixel(game_position, seat):
-        return are_chips_white_or_red_pixel(seat)
+        return pm.are_chips_white_or_red_pixel(game_position, seat)
     else :
         return False
 
@@ -1022,7 +1022,13 @@ def Read_My_Cards():
 
 
 # OCR Bet Number Positions new 2016: ---------------------------------------------------------------------------------------------
-
+def replace_letters_comma_space_m_k(ocr_string):
+    string = ocr_string
+    string = string.replace(" ","")
+    string = string.replace(",","")
+    string = string.replace("M","*1000000")
+    string = string.replace("K","*1000")
+    return string
 
 #########
 def ocr_bet(game_position, seat):
@@ -1046,7 +1052,7 @@ def ocr_bet(game_position, seat):
             fix_game_disruption("Easy_OCR_Bet_Number(%s)" %seat)
             x1 = white(seat)
             y1 = red(seat)
-            string1 = ocr_bet_to_string(game_position, seat)
+            string1 = ocr.ocr_bet_to_string(game_position, seat)
             x2 = white(seat)
             y2 = red(seat)
             string2 = replace_letters_comma_space_m_k( string1 )
@@ -1073,7 +1079,7 @@ def ocr_bet(game_position, seat):
 def ocr_other_players_bank(game_position, seat):
     global Lost_Connection_Time , My_seatber , My_Profile_Name , Just_Seated , Check_Mod
 
-    string1 = ocr_other_players_bank_to_string(game_position, seat)
+    string1 = ocr.ocr_other_players_bank_to_string(game_position, seat)
 
     string2 = replace_letters_comma_space_m_k(string1)
     string2 = string2.replace("*","")
@@ -1093,7 +1099,7 @@ def ocr_my_bank(game_position, seat):
     load_variables()
 
     x1 = pm.my_seat_won_pixel(game_position, seat)
-    string1 = ocr_my_bank_to_string(game_position, seat)
+    string1 = ocr.ocr_my_bank_to_string(game_position, seat)
     x2 = pm.my_seat_won_pixel(game_position, seat)
     string2 = replace_letters_comma_space_m_k( string1 )
     string2 = string2.replace("*","")
@@ -1106,7 +1112,7 @@ def ocr_my_bank(game_position, seat):
             fix_game_disruption("OCR_My_Bank_Number(seat)")
             seat = My_seatber
             x1 = pm.my_seat_won_pixel(game_position, seat)
-            string1 = ocr_my_bank_to_string(game_position, seat)
+            string1 = ocr.ocr_my_bank_to_string(game_position, seat)
             x2 = pm.my_seat_won_pixel(game_position, seat)
             string2 = replace_letters_comma_space_m_k( string1 )
             string2 = string2.replace("*","")
@@ -1137,7 +1143,7 @@ def ocr_other_names(game_position, seat):
     if x1 or y1 :
         return None
     else :
-        string = ocr_other_names_to_string(game_position, seat)
+        string = ocr.ocr_other_names_to_string(game_position, seat)
         return string
 
 #########
@@ -1147,7 +1153,7 @@ def ocr_my_name(game_position, seat):
         return True
     if pm.notification_banner_pixel(game_position, seat):
         return None
-    return ocr_my_name_to_string(game_position, seat)
+    return ocr.ocr_my_name_to_string(game_position, seat)
 
 
 

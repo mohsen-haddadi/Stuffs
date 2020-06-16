@@ -63,20 +63,20 @@ def crop_raw_card_image(create_table_cards = True):
     for name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King',
                  'Spade','Heart','Club','Diamond']: 
 
-        GAME_POSITION = find_game_reference_point_from_image_file(name)
-        if GAME_POSITION == None:
+        game_position = find_game_reference_point_from_image_file(name)
+        if game_position == None:
             print("Can not find game reference point at %s.png image" %name)
             continue
-        table_card_region = { 1:(GAME_POSITION[0]-38, GAME_POSITION[1]+215, 20, 40) , 
-                              2:(GAME_POSITION[0]+25, GAME_POSITION[1]+215, 20, 40) ,
-                              3:(GAME_POSITION[0]+87, GAME_POSITION[1]+215, 20, 40) ,
-                              4:(GAME_POSITION[0]+150, GAME_POSITION[1]+215, 20, 40) ,
-                              5:(GAME_POSITION[0]+212, GAME_POSITION[1]+215, 20, 40) }
-        my_1th_card_region = { 1:(GAME_POSITION[0]+369, GAME_POSITION[1]+391, 10, 40) ,
-                               2:(GAME_POSITION[0]+115, GAME_POSITION[1]+393, 10, 40) ,
-                               3:(GAME_POSITION[0]-140, GAME_POSITION[1]+390, 10, 40) ,
-                               4:(GAME_POSITION[0]-171, GAME_POSITION[1]+85, 10, 40) ,
-                               5:(GAME_POSITION[0]+399, GAME_POSITION[1]+85, 10, 40) }
+        table_card_region = { 1:(game_position[0]-38, game_position[1]+215, 20, 40) , 
+                              2:(game_position[0]+25, game_position[1]+215, 20, 40) ,
+                              3:(game_position[0]+87, game_position[1]+215, 20, 40) ,
+                              4:(game_position[0]+150, game_position[1]+215, 20, 40) ,
+                              5:(game_position[0]+212, game_position[1]+215, 20, 40) }
+        my_1th_card_region = { 1:(game_position[0]+369, game_position[1]+391, 10, 40) ,
+                               2:(game_position[0]+115, game_position[1]+393, 10, 40) ,
+                               3:(game_position[0]-140, game_position[1]+390, 10, 40) ,
+                               4:(game_position[0]-171, game_position[1]+85, 10, 40) ,
+                               5:(game_position[0]+399, game_position[1]+85, 10, 40) }
 
         if create_table_cards == True:
             image = cv2.imread("Raw Images/First Table Cards Raw Images/%s.png" %name )
@@ -147,7 +147,7 @@ def create_source_cards(create_table_cards = True ):
 def find_game_reference_point_from_image_file(file_name):
     """
     https://stackoverflow.com/questions/38473952/find-location-of-image-inside-bigger-image
-    it will set GAME_POSITION to (x,y) position
+    it will set game_position to (x,y) position
     there is no need to open image on top screen to sreen shot from it.
     """
     t0 = time.time()
@@ -173,8 +173,8 @@ def find_game_reference_point_from_image_file(file_name):
             if test.all():
                 print("game reference point for image '%s' is founded"%file_name)
                 #print(time.time()-t0)
-                GAME_POSITION = (x,y)
-                return GAME_POSITION
+                game_position = (x,y)
+                return game_position
     print("###Unable to find game reference point for image file %s###"%file_name)
     return None
 """
@@ -182,7 +182,7 @@ def find_game_reference_point_from_image_file():
     #If exact same pixel to pixel sub image is not existed, 
     #It will find the most look like sub image position.
 
-    global GAME_POSITION
+    global game_position
     t0 = time.time()
     image = cv2.imread("Raw Images/First Table Cards Raw Images/%s.png" %'Nine')  
     template = cv2.imread("reference image.png")  

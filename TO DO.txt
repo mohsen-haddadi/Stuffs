@@ -1,18 +1,23 @@
-1. dircetory file e variables.p ro dar hame module haye sub package e
+(OK)1. dircetory file e variables.p ro dar hame module haye sub package e
  decision_making, ba komake mohtaviate file e pathh.py eslah konam.
-2. dar hame module haye sub package read_cards, GAME_POSITION ro 
+(OK)2. dar hame module haye sub package read_cards, GAME_POSITION ro 
  be game_position taghir bedam.
-3. argument e game_postion ro be tavabe dakhele module haye read_cards va ocr , 
+(OK)3. argument e game_postion ro be tavabe dakhele module haye read_cards va ocr , 
  mesle module pixel_matching, ezafe konam. 
 4. dar file 2020-3.py ba komake module ocr, tavabe estefade shode dar 2020-3.py ro
- peyda karde va ebtedayeshan ocr. ro ezafe konam.
+ peyda karde va ebtedayeshan ocr. va argumente '(game_position,' ro ezafe konam.
+4.5 shout ra az module e pure e ocr hazf konam. dar file 2020-3 shout ra baraye
+ ocr va read_cards ezafe konam.
 5. dar file 2020-3.py read_card ghadimi ro ba read_card jadid ba raayate 
- fix_game_diruption() jaygozin konam, va read_card. ra dar ebtaye tavabeshan ezafe konam
+ fix_game_diruption() jaygozin konam, va read_card. ra dar ebtaye tavabeshan va argumente 
+ '(game_position,' ro dar entehayeshan ezafe konam.
 6.(Nokte): tanha 3 module e click_buttons.py, read_variables.py, va fix_game_disruption.py 
- az save_variables() estefade khahad kard.
-7. tavabe mortabet ra dar har kodam az 3 module gofte shode dar nokte 6, enteghal daham,
- va tak take tavabeshan ra barresi karde va haja moteghayeri mesle Check_Mod taghiri karde
- bod, tabe save_variables() ra be entehaye an tabe ezafe konam.
+ az save_variables() estefade khahand kard. module haye sub package e decision_making faghat 
+ az load_variables() estefade khahand kard. module haye sub package e screen_monitoring
+ pure hastand va az pickel be hich onvan estefade nakhahand kard.
+7. tavabe mortabet ra dar 3 module click_buttons.py, read_variables.py, va fix_game_disruption.py,
+ enteghal daham,va tak take tavabeshan ra barresi karde va harja moteghayeri 
+ mesle Check_Mod taghiri karde bod, tabe save_variables() ra be entehaye an tabe ezafe konam.
 8. yek baznegari dar moteghayer ha va tavabei mesle :read_and_save_bets() va 
  read_and_save_players_banks_and_names() va..., ke read variables mikonand,
  anjam shavad, ta etminan hasel shavad ke aya mihsavad anha ra edgham ya

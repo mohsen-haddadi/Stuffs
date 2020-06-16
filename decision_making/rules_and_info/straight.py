@@ -1,4 +1,5 @@
 import pickle
+from pathlib import Path
 from suit_and_value import s, n
 
 """
@@ -24,6 +25,8 @@ def load_variables():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
+    pickle_path = Path().absolute().parent.parent / 'pickled variables.p'
+
     GAME_POSITION , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
@@ -32,7 +35,7 @@ def load_variables():
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( "variables.p", "rb" ) )
+    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( str(pickle_path), "rb" ) )
 
 
 def str_length( List ):
