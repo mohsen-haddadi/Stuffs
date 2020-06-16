@@ -14,29 +14,29 @@ def n(card) :
     if isinstance(card, int) and 2 <= card <= 14:
         return card 
     else:
-        if Card[0] == 'Two':
+        if card[0] == 'Two':
             return 2
-        elif Card[0] == 'Three':
+        elif card[0] == 'Three':
             return 3
-        elif Card[0] == 'Four':
+        elif card[0] == 'Four':
             return 4
-        elif Card[0] == 'Five':
+        elif card[0] == 'Five':
             return 5
-        elif Card[0] == 'Six':
+        elif card[0] == 'Six':
             return 6
-        elif Card[0] == 'Seven':
+        elif card[0] == 'Seven':
             return 7
-        elif Card[0] == 'Eight':
+        elif card[0] == 'Eight':
             return 8
-        elif Card[0] == 'Nine':
+        elif card[0] == 'Nine':
             return 9
-        elif Card[0] == 'Ten':
+        elif card[0] == 'Ten':
             return 10
-        elif Card[0] == 'Jack':
+        elif card[0] == 'Jack':
             return 11
-        elif Card[0] == 'Queen':
+        elif card[0] == 'Queen':
             return 12
-        elif Card[0] == 'King':
+        elif card[0] == 'King':
             return 13
-        elif Card[0] == 'Ace':
+        elif card[0] == 'Ace':
             return 14

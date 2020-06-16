@@ -1,5 +1,5 @@
 import pickle
-from FUNCTIONS_play import * 
+from play import * 
 
 def load_variables():
     """ variables order is important while loading """

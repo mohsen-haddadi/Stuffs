@@ -1,10 +1,10 @@
 import pickle
-from FUNCTIONS_table_information import *
-from FUNCTIONS_straight import *
-from FUNCTIONS_flush import *
-from FUNCTIONS_non_straight_and_flush import *
-from FUNCTIONS_suit_and_value import *
-from FUNCTIONS_starting_hands import *
+from rules_and_info.table_information import *
+from rules_and_info.straight import *
+from rules_and_info.flush import *
+from rules_and_info.non_straight_and_flush import *
+from rules_and_info.suit_and_value import *
+from rules_and_info.starting_hands import *
 
 #from str & flush & pair files import *
 #from FUNCTIONS_hands_category import *

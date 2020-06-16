@@ -4,11 +4,11 @@ from datetime import datetime
 #from pyautogui import pixelMatchesColor
 #from pytesseract import image_to_string
 from painter import paint
-import decide
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.ocr.ocr as ocr
 import screen_monitoring.read_cards.read_cards as read_cards
-
+import decision_making.decide
+import click_button 
 
 if __name__ == '__main__':
     hwnd = win32gui.GetForegroundWindow()
@@ -1443,6 +1443,7 @@ def reset_check_mode_to_false() :
     if Check_Mod == True :
         shout("Check_Mod is reset to False")
         Check_Mod = False
+    save_variables()
 
 
 def read_and_save_bets() :
@@ -1565,7 +1566,9 @@ def read_and_save_bets() :
             Last_Bet_cache[Seat] = Bet_cache["River %s" %Round_River][Seat]
 
     shout("shouting from read_and_save_bets(), Bet_cache is: %s"%Bet_cache) #(2018) delete this later. just for testing if rounds are started from 0, esp at preflop stage
-    
+    save_variables()
+
+
 ### Read_Bets & dinctionaries & Reset var funcs Ended ***********************************************************************************************************************
             
 def play_sound() :
@@ -1613,18 +1616,18 @@ def load_variables():
 
 def save_variables() :
     """
-    functions i used save_variables() at: 1.Decide() 2.fix_game_disruption() (containting funcs are not used anywhere else, so variables will overlap) 
+    functions i used save_variables() at: 1.click_decision() 2.fix_game_disruption() (containting funcs are not used anywhere else, so variables will overlap) 
     3.Check_Mod_On() 4.getpo() 5.getpo_for_starting() 6.Create_file_directories()
-    Pickling at Decide() will support Pickling variables at funcs like Read pm.player_cards_pixel(game_position, ), Determind small blind(), and.... because Decide() is run after them.
+    Pickling at click_decision() will support Pickling variables at funcs like Read pm.player_cards_pixel(game_position, ), Determind small blind(), and.... because click_decision() is run after them.
 
     Where ever i use save_variables() at the end of a function i should Implement load_variables() at the first line of that function.
     To Pickle real updated variables.
     Becuase by running main file functions from the other files, the variables will update for that file but will not update for mian file. 
     like Check_Mod variable in fix_game_disruption() run from Buttons which is run from decide file.
-    Decide() should not use load_variables() because it's running at main file and it is a gate way. some varibiales may have changed in main while True.
+    click_decision() should not use load_variables() because it's running at main file and it is a gate way. some varibiales may have changed in main while True.
 
     At gate way lines to the other files use save_variables() before and load_variables() after them. 
-    The only gate way line is currently in Decide() function now. By seperating read cards files, I can expand gate ways to lines like read pm.player_cards_pixel(game_position, ) 
+    The only gate way line is currently in click_decision() function now. By seperating read cards files, I can expand gate ways to lines like read pm.player_cards_pixel(game_position, ) 
 
     delete variables.p or set all variables to None at the beggining. (Done)
     By running main file if i have not assigned varibales from before, it will error. 
@@ -1651,33 +1654,30 @@ def save_variables() :
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat], open( "variables.p", "wb" ) )
 
-def click_button():
-    load_variables() 
+def click_decision():
 
-    save_variables()
-    # The only gate way to the other files
-    decision = decide.decide()
+    decision = decision_making.decide.decide()
     if decision[0] == "check" :
-        check()
+        click_button.check()
     elif decision[0] == "call" :
-        call()
+        click_button.call()
     elif decision[0] == "fold" :
-        fold()
+        click_button.fold()
     elif decision[0] == "raise" :
-        raising(decide.decide()[1] * BLIND)
+        click_button.raising(decision[1] * BLIND)
     elif decision[0] == "all_in" :
-        all_in()
+        click_button.all_in()
     elif decision[0] == "check_fold" :
-        check_fold()
+        click_button.check_fold()
     elif decision[0] == "not defined" :
         screenshot_error("decide function deficiency")
-        check_fold()
+        click_button.check_fold()
     elif decision == None:
         screenshot_error("A play function returned None")
-        check_fold()
+        click_button.check_fold()
     else :
         screenshot_error("returned string is not in standard format")
-        check_fold()
+        click_button.check_fold()
     time.sleep(1)
 
 def set_all_variables_to_none():
@@ -1833,13 +1833,13 @@ while True :
         Round_Pre_Flop += 1
         shout(paint.light_magenta.bold("light is founded"))
         read_and_save_bets() #
-        Decide() # preflop
+        click_decision() # preflop
     elif hand_is_ended() == False and Flop1_Deside == False and Just_Seated == False :
         fix_game_disruption("4 Entering This section is not possible")
         screenshot_error("6.6 Entering This section is not possible")
         #(2018) shouldn't Round_Pre_Flop += 1 line be here too ?!
         read_and_save_bets() #
-        Decide() # preflop
+        click_decision() # preflop
 
 
 
@@ -1882,12 +1882,12 @@ while True :
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
-                        Decide() # preflop
+                        click_decision() # preflop
                     elif Check_Mod != True :
                         set_check_mode_to_true("3")
                         screenshot_error("7.Red should be True here, check later why this happens")
                         read_and_save_bets() #
-                        Decide() # preflop
+                        click_decision() # preflop
                         
                 if Flop1 == True :
                     Flop1_Deside = True
@@ -1938,15 +1938,15 @@ while True :
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
-                        Decide() # Flop
+                        click_decision() # Flop
                     elif Round_Flop > 0 :
                         set_check_mode_to_true("4")
                         screenshot_error("9.Red should be True here")
                         read_and_save_bets() #
-                        Decide() # Flop
+                        click_decision() # Flop
                     else :
                         read_and_save_bets() #
-                        Decide() # Flop
+                        click_decision() # Flop
                         
                 if Turn1 == True :            
                     Turn1_Deside = True
@@ -1998,15 +1998,15 @@ while True :
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
-                        Decide() # Turn
+                        click_decision() # Turn
                     elif Round_Turn > 0 :
                         set_check_mode_to_true("5")
                         screenshot_error("11.Red should be True here")
                         read_and_save_bets() #
-                        Decide() # Turn
+                        click_decision() # Turn
                     else :
                         read_and_save_bets() #
-                        Decide() # Turn
+                        click_decision() # Turn
                         
                 if River1 == True :            
                     River1_Deside = True
@@ -2056,15 +2056,15 @@ while True :
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
-                        Decide() # River
+                        click_decision() # River
                     elif Round_River > 0 :
                         set_check_mode_to_true("6")
                         screenshot_error("13.Red should be True here")
                         read_and_save_bets() #
-                        Decide() # River
+                        click_decision() # River
                     else :
                         read_and_save_bets() #
-                        Decide() # River
+                        click_decision() # River
 
 
                                

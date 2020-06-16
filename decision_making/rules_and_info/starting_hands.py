@@ -1,4 +1,5 @@
-from FUNCTIONS_suit_and_value import s, n 
+import pickle
+from suit_and_value import s, n 
 
 
 def load_variables():

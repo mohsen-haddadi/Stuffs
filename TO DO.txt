@@ -1,0 +1,27 @@
+1. dircetory file e variables.p ro dar hame module haye sub package e
+ decision_making, ba komake mohtaviate file e pathh.py eslah konam.
+2. dar hame module haye sub package read_cards, GAME_POSITION ro 
+ be game_position taghir bedam.
+3. argument e game_postion ro be tavabe dakhele module haye read_cards va ocr , 
+ mesle module pixel_matching, ezafe konam. 
+4. dar file 2020-3.py ba komake module ocr, tavabe estefade shode dar 2020-3.py ro
+ peyda karde va ebtedayeshan ocr. ro ezafe konam.
+5. dar file 2020-3.py read_card ghadimi ro ba read_card jadid ba raayate 
+ fix_game_diruption() jaygozin konam, va read_card. ra dar ebtaye tavabeshan ezafe konam
+6.(Nokte): tanha 3 module e click_buttons.py, read_variables.py, va fix_game_disruption.py 
+ az save_variables() estefade khahad kard.
+7. tavabe mortabet ra dar har kodam az 3 module gofte shode dar nokte 6, enteghal daham,
+ va tak take tavabeshan ra barresi karde va haja moteghayeri mesle Check_Mod taghiri karde
+ bod, tabe save_variables() ra be entehaye an tabe ezafe konam.
+8. yek baznegari dar moteghayer ha va tavabei mesle :read_and_save_bets() va 
+ read_and_save_players_banks_and_names() va..., ke read variables mikonand,
+ anjam shavad, ta etminan hasel shavad ke aya mihsavad anha ra edgham ya
+ kholase tar kard ya na.
+9. tamam moteghayer hayi mesle My_Bank, Just_seated va... ke dar loope asli While True,
+ assign shodan, peyda shavad va ya anha ra be tabe digari baraye assign shodan jabe ja karde,
+ va ya tabei mesle reset_just_seated_to_true() barayeshan tarif karde, ta betavanim anha ra dar
+ an tavabe save_variables() konim. banabar in dar khode While True hich moteghayeri nabayad 
+ assign shavad.
+10. agar vaght yari mikard esme tamame moteghayer ha ro be ye chize behtar dar halate standard taghir daham.
+ Nokte:in moteghayer ha dar hame module ha hastan be gheir az module haye sub package e screen_monitoring,
+ ke module haye pure hastand.
