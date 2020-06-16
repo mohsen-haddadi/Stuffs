@@ -1,10 +1,13 @@
 import pyautogui, time, os, pygame , win32gui , win32con , socket , wmi , cv2 , numpy , re , pickle
 from PIL import Image
 from datetime import datetime
-from pyautogui import pixelMatchesColor
+#from pyautogui import pixelMatchesColor
 from pytesseract import image_to_string
 from painter import paint
 import decide
+
+
+
 
 if __name__ == '__main__':
     hwnd = win32gui.GetForegroundWindow()
@@ -98,36 +101,6 @@ def sb_b_d_buttons_are_founded():
                and ( dealer_pixel(1) or dealer_pixel(2) or dealer_pixel(3) or dealer_pixel(4) or dealer_pixel(5) ) )
     return founded
 
-#2020
-def my_seat_won_pixel(seat):
-    # looking for a sign of winning on my seat to check if I have won the game by returning True or False    
-    i_won_on_seat_1 = pixelMatchesColor( GAME_POSITION[0]+442, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
-    i_won_on_seat_2 = pixelMatchesColor( GAME_POSITION[0]+187, GAME_POSITION[1]+422, (248,123,10), tolerance=5 ) #Win-Finish-Me-seat-2
-    i_won_on_seat_3 = pixelMatchesColor( GAME_POSITION[0]-68, GAME_POSITION[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-3
-    i_won_on_seat_4 = pixelMatchesColor( GAME_POSITION[0]-98, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-4
-    i_won_on_seat_5 = pixelMatchesColor( GAME_POSITION[0]+472, GAME_POSITION[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-5
-
-    if seat == 1: return i_won_on_seat_1
-    if seat == 2: return i_won_on_seat_2
-    if seat == 3: return i_won_on_seat_3
-    if seat == 4: return i_won_on_seat_4
-    if seat == 5: return i_won_on_seat_5
-
-#2020
-def other_seat_won_pixel(seat):
-    # looking for a sign on other's seat to check if they have won the game by returning True or False
-    others_won_on_seat_1 = pixelMatchesColor( GAME_POSITION[0]+419, GAME_POSITION[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
-    others_won_on_seat_2 = pixelMatchesColor( GAME_POSITION[0]+164, GAME_POSITION[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
-    others_won_on_seat_3 = pixelMatchesColor( GAME_POSITION[0]-91, GAME_POSITION[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
-    others_won_on_seat_4 = pixelMatchesColor( GAME_POSITION[0]-121, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
-    others_won_on_seat_5 = pixelMatchesColor( GAME_POSITION[0]+449, GAME_POSITION[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
-
-    if seat == 1: return others_won_on_seat_1
-    if seat == 2: return others_won_on_seat_2
-    if seat == 3: return others_won_on_seat_3
-    if seat == 4: return others_won_on_seat_4
-    if seat == 5: return others_won_on_seat_5
-    
 
 #
 def declare_the_winners():
@@ -145,97 +118,15 @@ def declare_the_winners():
         return shout("Seat 4 won the game!")
     if( other_seat_won_pixel(5) == True ):
         return shout("Seat 5 won the game!")
-#
-def pre_flop(): 
-    # Check if the game is on pre flop by returning True or False
-    return not flop()
-#
-def flop():
-    # Check if the game is on flop by returning True or False
-    load_variables()
-    flop = pixelMatchesColor( GAME_POSITION[0]+136, GAME_POSITION[1]+218, (237,237,237) ) #Flop
-    return flop 
-#
-def turn():
-    # Check if the game is on turn by returning True or False
-    load_variables()
-    turn = pixelMatchesColor( GAME_POSITION[0]+196, GAME_POSITION[1]+218, (237,237,237) ) #Turn
-    return turn 
-#
-def river():
-    # Check if the game is on river by returning True or False
-    load_variables()
-    river = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+218, (237,237,237) ) #River
-    return river 
 
 
-#    
-def avg_color(x,y,h,w) :
-    pil_image=pyautogui.screenshot(region=(x, y , h, w) )
-    pil_image.convert('RGB')
-    open_cv_image = numpy.array(pil_image)
 
-    avg_color_per_row = numpy.average(open_cv_image, axis=0)
-    avg_color = numpy.average(avg_color_per_row, axis=0)
-
-    return avg_color
-
-#
-def are_chips_white_or_red(seat): #celeb
-    # If the color of the sign behind chips is
-    # red it returns True (bet/raise), if the color is white it returns False (call)
-    load_variables()
-    if seat == 1 :
-        x = avg_color(GAME_POSITION[0]+313,GAME_POSITION[1]+310,15,15) #Bet_White_or_Red_seat1
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 2 :
-        x = avg_color(GAME_POSITION[0]+95,GAME_POSITION[1]+312,15,15) #Bet_White_or_Red_seat2
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 3 :
-        x = avg_color(GAME_POSITION[0]-123,GAME_POSITION[1]+310,15,15) #Bet_White_or_Red_seat3
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 4 :
-        x = avg_color(GAME_POSITION[0]-128,GAME_POSITION[1]+223,15,15) #Bet_White_or_Red_seat4
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 5 :
-        x = avg_color(GAME_POSITION[0]+318,GAME_POSITION[1]+223,15,15) #Bet_White_or_Red_seat5
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-#
-def player_chips_pixel(seat): #New define function for celeb
-    # Checks if there is any call/bet/raising chips in front of a seat or not, by returning True or False
-    load_variables()
-    if seat==1:
-        return pixelMatchesColor( GAME_POSITION[0]+298, GAME_POSITION[1]+317, (240,16,0), tolerance=10 ) #Bet_coin_seat_1
-    if seat==2:
-        return pixelMatchesColor( GAME_POSITION[0]+79, GAME_POSITION[1]+320, (237,16,0), tolerance=10 ) #Bet_coin_seat_2
-    if seat==3:
-        return pixelMatchesColor( GAME_POSITION[0]-138, GAME_POSITION[1]+317, (241,17,0), tolerance=10 ) #Bet_coin_seat_3
-    if seat==4:
-        return pixelMatchesColor( GAME_POSITION[0]-143, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_4
-    if seat==5:
-        return pixelMatchesColor( GAME_POSITION[0]+302, GAME_POSITION[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_5
-#
 def white(seat):
     # It checks if there is a white color sign in front of a seat,
     # by returning True or False, to find out if a player has call or not
 
     if player_chips_pixel(seat):
-        return not are_chips_white_or_red(seat)
+        return not are_chips_white_or_red_pixel(seat)
     else :
         return False
 #
@@ -244,112 +135,10 @@ def red(seat):
     # by returning True or False, to find out if a player has bet/raised or not.
     # (In accordance to Google: 'A bet is the first wager of a round.')
     if player_chips_pixel(seat):
-        return are_chips_white_or_red(seat)
+        return are_chips_white_or_red_pixel(seat)
     else :
         return False
 
-#
-def player_cards_pixel(seat):
-    # It checks if a player has cards in his hands or not, by returning True of False
-    load_variables()
-    if seat==1:
-        c1 = pixelMatchesColor( GAME_POSITION[0]+330, GAME_POSITION[1]+331, (154,7,13), tolerance=5 ) #Cards_seat_1
-        c2 = pixelMatchesColor( GAME_POSITION[0]+328, GAME_POSITION[1]+333, (154,7,13), tolerance=5 ) 
-        return c1 or c2
-    if seat==2:
-        c1 = pixelMatchesColor( GAME_POSITION[0]+74, GAME_POSITION[1]+332, (154,7,13), tolerance=5 ) #Cards_seat_2
-        c2 = pixelMatchesColor( GAME_POSITION[0]+72, GAME_POSITION[1]+334, (154,7,13), tolerance=5 ) 
-        return c1 or c2
-    if seat==3:
-        c1 = pixelMatchesColor( GAME_POSITION[0]-181, GAME_POSITION[1]+331, (154,7,13), tolerance=5 ) #Cards_seat_3
-        c2 = pixelMatchesColor( GAME_POSITION[0]-183, GAME_POSITION[1]+333, (154,7,13), tolerance=5 ) 
-        return c1 or c2
-    if seat==4:
-        c1 = pixelMatchesColor( GAME_POSITION[0]-140, GAME_POSITION[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_4
-        c2 = pixelMatchesColor( GAME_POSITION[0]-142, GAME_POSITION[1]+193, (154,7,13), tolerance=20 )
-        return c1 or c2
-    if seat==5:
-        c1 = pixelMatchesColor( GAME_POSITION[0]+359, GAME_POSITION[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_5 
-        c2 = pixelMatchesColor( GAME_POSITION[0]+357, GAME_POSITION[1]+193, (154,7,13), tolerance=20 ) 
-        return c1 or c2
-#
-def active_player_pixel(seat): # celeb
-    # It checks whose player turn is, 
-    # using the lighting pixel on a seat, by returning True or False 
-    load_variables()
-    if seat==1:
-        return pixelMatchesColor( GAME_POSITION[0]+346, GAME_POSITION[1]+328, (34,41,48), tolerance=5 ) #Light_Turn_seat_1
-    if seat==2:
-        return pixelMatchesColor( GAME_POSITION[0]+96, GAME_POSITION[1]+330, (47,59,69), tolerance=5 ) #Light_Turn_seat_2
-    if seat==3:
-        return pixelMatchesColor( GAME_POSITION[0]-116, GAME_POSITION[1]+328, (34,41,48), tolerance=5 ) #Light_Turn_seat_3
-    if seat==4:
-        return pixelMatchesColor( GAME_POSITION[0]-161, GAME_POSITION[1]+219, (33,41,47), tolerance=5 ) #Light_Turn_seat_4
-    if seat==5:
-        return pixelMatchesColor( GAME_POSITION[0]+383, GAME_POSITION[1]+217, (31,40,45), tolerance=5 ) #Light_Turn_seat_5
-
-#
-def notification_banner_pixel(Number): # celeb
-    # It checks if a notification banner which contains messages like:
-    # 'FOLD, CHECK, BET, RAISE, CALL, ALL_IN' has covered player name or not,
-    # by returning True of False.
-    load_variables()
-    if Number == 1 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+291, GAME_POSITION[1]+348, (62,72,86), tolerance=5 ) #Gray_Sign_Me_seat_1
-        x2 = pixelMatchesColor( GAME_POSITION[0]+315, GAME_POSITION[1]+351, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_1
-        return (x1 or x2)
-    if Number == 2 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+36, GAME_POSITION[1]+351, (61,70,85), tolerance=5 ) #Gray_Sign_Me_seat_2
-        x2 = pixelMatchesColor( GAME_POSITION[0]+60, GAME_POSITION[1]+353, (61,71,86), tolerance=5 ) #Gray_Sign_Other_seat_2
-        return (x1 or x2)
-    if Number == 3 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-219, GAME_POSITION[1]+348, (62,72,86), tolerance=5 ) #Gray_Sign_Me_seat_3
-        x2 = pixelMatchesColor( GAME_POSITION[0]-195, GAME_POSITION[1]+351, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_3
-        return (x1 or x2)
-    if Number == 4 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-249, GAME_POSITION[1]+43, (62,72,87), tolerance=5 ) #Gray_Sign_Me_seat_4
-        x2 = pixelMatchesColor( GAME_POSITION[0]-225, GAME_POSITION[1]+46, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_4
-        return (x1 or x2)
-    if Number == 5 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+321, GAME_POSITION[1]+43, (62,72,87), tolerance=5 ) #Gray_Sign_Me_seat_5
-        x2 = pixelMatchesColor( GAME_POSITION[0]+345, GAME_POSITION[1]+46, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_5
-        return (x1 or x2)
-
-#
-def player_seated_pixel(seat): # celeb
-    # It checks at ordinary situations if there is a player on the seat or not
-    load_variables()
-
-    if seat == 1:
-        return pixelMatchesColor( GAME_POSITION[0]+321, GAME_POSITION[1]+403, (4,6,7), tolerance=2 ) #Others_In_seat_1
-    if seat == 2:
-        return pixelMatchesColor( GAME_POSITION[0]+161, GAME_POSITION[1]+398, (5,7,8), tolerance=2 ) #Others_In_seat_2
-    if seat == 3:
-        return pixelMatchesColor( GAME_POSITION[0]-94, GAME_POSITION[1]+403, (4,6,7), tolerance=2 ) #Others_In_seat_3
-    if seat == 4:
-        return pixelMatchesColor( GAME_POSITION[0]-124, GAME_POSITION[1]+163, (4,6,7), tolerance=2 ) #Others_In_seat_4
-    if seat == 5:
-        return pixelMatchesColor( GAME_POSITION[0]+431, GAME_POSITION[1]+183, (4,5,6), tolerance=2 ) #Others_In_seat_5
-#
-def i_am_seated_pixel(seat):
-    # It checks at ordinary situations if I am on the seat or not
-    load_variables()
-
-    if seat == 1 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+426, GAME_POSITION[1]+381, (8,9,11) ) #me_in_1
-        return (x1)
-    if seat == 2 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+177, GAME_POSITION[1]+382, (10,12,14) ) #me_in_2
-        return (x1)
-    if seat == 3 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-75, GAME_POSITION[1]+379, (8,10,12) ) #me_in_3
-        return (x1)
-    if seat == 4 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-106, GAME_POSITION[1]+161, (9,11,13) ) #me_in_4
-        return (x1)
-    if seat == 5 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+458, GAME_POSITION[1]+181, (7,8,10) ) #me_in_5
-        return (x1)
 
 #
 def hand_is_ended():
@@ -361,20 +150,6 @@ def hand_is_ended():
 
 # 2017 :------------------------------
 
-#2020
-def small_blind_pixel(seat):
-    # check if a seat is on small blind position by returning True or False
-    small_blind_seat_1 = pixelMatchesColor( GAME_POSITION[0]+369, GAME_POSITION[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
-    small_blind_seat_2 = pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (21,124,218), tolerance=10 ) #Small_seat_2
-    small_blind_seat_3 = pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (16,105,211), tolerance=10 ) #Small_seat_3
-    small_blind_seat_4 = pixelMatchesColor( GAME_POSITION[0]-173, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_4
-    small_blind_seat_5 = pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (22,112,212), tolerance=10 ) #Small_seat_5
-
-    if seat == 1: return small_blind_seat_1
-    if seat == 2: return small_blind_seat_2
-    if seat == 3: return small_blind_seat_3
-    if seat == 4: return small_blind_seat_4
-    if seat == 5: return small_blind_seat_5
 
 ###
 def determine_small_blind_seat():
@@ -397,20 +172,6 @@ def determine_small_blind_seat():
         Small_Blind_Seat = 5
         shout("Seat 5 is at Small Blind Seat")
 
-#2020
-def big_blind_pixel(seat):
-    # check if a seat is on big blind position by returning True or False
-    big_blind_seat_1 = pixelMatchesColor( GAME_POSITION[0]+367, GAME_POSITION[1]+329, (180,180,180), tolerance=10 ) #Big_seat_1
-    big_blind_seat_2 = pixelMatchesColor( GAME_POSITION[0]+111, GAME_POSITION[1]+332, (200,200,200), tolerance=10 ) #Big_seat_2
-    big_blind_seat_3 = pixelMatchesColor( GAME_POSITION[0]-145, GAME_POSITION[1]+329, (185,185,185), tolerance=10 ) #Big_seat_3
-    big_blind_seat_4 = pixelMatchesColor( GAME_POSITION[0]-174, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_4
-    big_blind_seat_5 = pixelMatchesColor( GAME_POSITION[0]+400, GAME_POSITION[1]+212, (185,185,185), tolerance=10 ) #Big_seat_5
-
-    if seat == 1: return big_blind_seat_1
-    if seat == 2: return big_blind_seat_2
-    if seat == 3: return big_blind_seat_3
-    if seat == 4: return big_blind_seat_4
-    if seat == 5: return big_blind_seat_5
 
 ### 
 def determine_big_blind_seat():
@@ -433,20 +194,7 @@ def determine_big_blind_seat():
         Big_Blind_Seat = 5
         shout("Seat 5 is at Big Blind Seat") 
 
-#2020
-def dealer_pixel(seat):
-    # check if a seat is on dealer position by returning True or False
-    dealer_seat_1 = pixelMatchesColor( GAME_POSITION[0]+397, GAME_POSITION[1]+330, (255,155,0), tolerance=10 ) #Dealer_seat_1
-    dealer_seat_2 = pixelMatchesColor( GAME_POSITION[0]+144, GAME_POSITION[1]+333, (254,193,0), tolerance=10 ) #Dealer_seat_2
-    dealer_seat_3 = pixelMatchesColor( GAME_POSITION[0]-116, GAME_POSITION[1]+330, (255,154,0), tolerance=10 ) #Dealer_seat_3
-    dealer_seat_4 = pixelMatchesColor( GAME_POSITION[0]-202, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_4
-    dealer_seat_5 = pixelMatchesColor( GAME_POSITION[0]+429, GAME_POSITION[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_5 
 
-    if seat == 1: return dealer_seat_1
-    if seat == 2: return dealer_seat_2
-    if seat == 3: return dealer_seat_3
-    if seat == 4: return dealer_seat_4
-    if seat == 5: return dealer_seat_5
 ###
 def determine_dealer_seat():
     global Dealer_Seat
@@ -480,83 +228,45 @@ def determine_dealer_seat():
 
 # def_Buttons_new: ---------------------------------------------------------------------------------------------------------------
 
-#
-def available_seat_pixel(seat):
-    # It checks if the seat is free to be seated or not, by returning True or False
-    load_variables()
-    if seat == 1 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+362, GAME_POSITION[1]+408, (1,79,164) ) #Seat1
-        x2 = pixelMatchesColor( GAME_POSITION[0]+362, GAME_POSITION[1]+408, (21,102,189) ) #Seat1_Light
-        return (x1 or x2)
-    if seat == 2 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+107, GAME_POSITION[1]+411, (1,78,163) ) #Seat2
-        x2 = pixelMatchesColor( GAME_POSITION[0]+107, GAME_POSITION[1]+411, (21,101,188) ) #Seat2_Light
-        return (x1 or x2)
-    if seat == 3 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-148, GAME_POSITION[1]+408, (1,79,164) ) #Seat3
-        x2 = pixelMatchesColor( GAME_POSITION[0]-148, GAME_POSITION[1]+408, (21,102,189) ) #Seat3_Light
-        return (x1 or x2)
-    if seat == 4 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]-178, GAME_POSITION[1]+103, (1,79,164) ) #Seat4
-        x2 = pixelMatchesColor( GAME_POSITION[0]-178, GAME_POSITION[1]+103, (21,102,189) ) #Seat4_Light
-        return (x1 or x2)
-    if seat == 5 :
-        x1 = pixelMatchesColor( GAME_POSITION[0]+392, GAME_POSITION[1]+103, (1,79,164) ) #Seat5
-        x2 = pixelMatchesColor( GAME_POSITION[0]+392, GAME_POSITION[1]+103, (21,102,189) ) #Seat5_Light
-        return (x1 or x2)
 
 def click_on_available_seat(seat):
     load_variables()
     if seat == 1 :
-        pyautogui.click( GAME_POSITION[0]+362, GAME_POSITION[1]+408 ) #Seat1
+        pyautogui.click( game_position[0]+362, game_position[1]+408 ) #Seat1
         shout(paint.light_cyan.bold("Available_Seat 1 is clicked"))
     if seat == 2 :
-        pyautogui.click( GAME_POSITION[0]+107, GAME_POSITION[1]+411 ) #Seat2
+        pyautogui.click( game_position[0]+107, game_position[1]+411 ) #Seat2
         shout(paint.light_cyan.bold("Available_Seat 2 is clicked"))
     if seat == 3 :
-        pyautogui.click( GAME_POSITION[0]-148, GAME_POSITION[1]+408 ) #Seat3
+        pyautogui.click( game_position[0]-148, game_position[1]+408 ) #Seat3
         shout(paint.light_cyan.bold("Available_Seat 3 is clicked"))
     if seat == 4 :
-        pyautogui.click( GAME_POSITION[0]-178, GAME_POSITION[1]+103 ) #Seat4
+        pyautogui.click( game_position[0]-178, game_position[1]+103 ) #Seat4
         shout(paint.light_cyan.bold("Available_Seat 4 is clicked"))
     if seat == 5 :
-        pyautogui.click( GAME_POSITION[0]+392, GAME_POSITION[1]+103 ) #Seat5
+        pyautogui.click( game_position[0]+392, game_position[1]+103 ) #Seat5
         shout(paint.light_cyan.bold("Available_Seat 5 is clicked"))
 #
-def fold_button_pixel():
-    # It checks if Fold button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+51, GAME_POSITION[1]+581, (190,22,28) ) #Fold
-    x2 = pixelMatchesColor( GAME_POSITION[0]+51, GAME_POSITION[1]+581, (220,27,33) ) #Fold_Light
-    return (x1 or x2)
 
 def click_on_fold_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if fold_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+51, GAME_POSITION[1]+581 )
+        pyautogui.click( game_position[0]+51, game_position[1]+581 )
         shout(paint.light_cyan.bold("Fold_Button is clicked"))
     else :
         fix_game_disruption("Click_on_Fold_Button()")
         if player_cards_pixel( My_Seat_Number ) and fold_button_pixel() :
-            pyautogui.click( GAME_POSITION[0]+51, GAME_POSITION[1]+581 )
+            pyautogui.click( game_position[0]+51, game_position[1]+581 )
             shout(paint.light_cyan.bold("Fold_Button is clicked"))
         set_check_mode_to_true("Click_on_Fold_Button()")
 #
-def check_button_pixel():
-    # It checks if Check button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+578, (1,83,170) ) #Check_up
-    x2 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+584, (254,254,254) ) #Check_down
-    x3 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+578, (1,95,194) ) #Check_up_Light
-    x4 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+584, (254,254,254) ) #Check_down_Light
-    return ( (x1 and x2) or (x3 and x4) )
 
 def click_on_check_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if check_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+578 )
+        pyautogui.click( game_position[0]+246, game_position[1]+578 )
         shout(paint.light_cyan.bold("Check_Button is clicked"))
     else :
         time0 = time.time()
@@ -564,25 +274,17 @@ def click_on_check_button():
         time1 = time.time() - time0
         Check_Button1 = check_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and Check_Button1 and time1 <= 10 :
-            pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+578 )
+            pyautogui.click( game_position[0]+246, game_position[1]+578 )
             shout(paint.light_cyan.bold("Check_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Check_Button()")
 #            
-def call_button_pixel():
-    # It checks if Call button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+575, (0,84,172) ) #Call_up
-    x2 = pixelMatchesColor( GAME_POSITION[0]+260, GAME_POSITION[1]+579, (249,249,249) ) #Call_down
-    x3 = pixelMatchesColor( GAME_POSITION[0]+261, GAME_POSITION[1]+575, (0,97,198) ) #Call_up_Light
-    x4 = pixelMatchesColor( GAME_POSITION[0]+260, GAME_POSITION[1]+579, (249,249,249) ) #Call_down_Light
-    return ( (x1 and x2) or (x3 and x4) )
 
 def click_on_call_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if call_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+261, GAME_POSITION[1]+575 )
+        pyautogui.click( game_position[0]+261, game_position[1]+575 )
         shout(paint.light_cyan.bold("Call_Button is clicked"))
     else :
         time0 = time.time()
@@ -590,25 +292,17 @@ def click_on_call_button():
         time1 = time.time() - time0
         Call_Button1 = call_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and Call_Button1 and time1 <= 10 :
-            pyautogui.click( GAME_POSITION[0]+261, GAME_POSITION[1]+575 )
+            pyautogui.click( game_position[0]+261, game_position[1]+575 )
             shout(paint.light_cyan.bold("Call_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Call_Button()")
 #
-def bet_button_pixel(): # celeb
-    # It checks if Bet button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (24,115,0), tolerance=15 ) #Bet_up
-    x2 = pixelMatchesColor( GAME_POSITION[0]+463, GAME_POSITION[1]+579, (242,242,242), tolerance=15 ) #Bet_down
-    x3 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (28,135,0), tolerance=15 ) #Bet_up_Light
-    x4 = pixelMatchesColor( GAME_POSITION[0]+463, GAME_POSITION[1]+579, (242,242,242), tolerance=15 ) #Bet_down_Light
-    return ( (x1 and x2) or (x3 and x4) )
 
 def click_on_bet_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if bet_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
+        pyautogui.click( game_position[0]+461, game_position[1]+576 )
         shout(paint.light_cyan.bold("Bet_Button is clicked"))
     else :
         time0 = time.time()
@@ -616,25 +310,17 @@ def click_on_bet_button():
         time1 = time.time() - time0
         Bet_Button1 = bet_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and Bet_Button1 and time1 <= 10 :
-            pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
+            pyautogui.click( game_position[0]+461, game_position[1]+576 )
             shout(paint.light_cyan.bold("Bet_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Bet_Button()")
 #
-def raise_button_pixel(): # celeb
-    # It checks if Raise button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (25,117,0), tolerance=15 ) #Raise_up
-    x2 = pixelMatchesColor( GAME_POSITION[0]+448, GAME_POSITION[1]+579, (239,239,239), tolerance=15 ) #Raise_down
-    x3 = pixelMatchesColor( GAME_POSITION[0]+461, GAME_POSITION[1]+576, (29,137,0), tolerance=15 ) #Raise_up_Light
-    x4 = pixelMatchesColor( GAME_POSITION[0]+448, GAME_POSITION[1]+579, (239,239,239), tolerance=15 ) #Raise_down_Light
-    return ( (x1 and x2) or (x3 and x4) )
 
 def click_on_raise_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if raise_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
+        pyautogui.click( game_position[0]+461, game_position[1]+576 )
         shout(paint.light_cyan.bold("Raise_Button is clicked"))
     else :
         time0 = time.time()
@@ -642,17 +328,11 @@ def click_on_raise_button():
         time1 = time.time() - time0
         Raise_Button1 = raise_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and Raise_Button1 and time1 <= 10 :
-            pyautogui.click( GAME_POSITION[0]+461, GAME_POSITION[1]+576 )
+            pyautogui.click( game_position[0]+461, game_position[1]+576 )
             shout(paint.light_cyan.bold("Raise_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Raise_Button()")
 #
-def plus_button_pixel():
-    # It checks if Plus button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+648, (58,68,83) ) #Plus_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+246, GAME_POSITION[1]+648, (77,88,105) ) #Plus_Button_Light
-    return (x1 or x2)
 
 def number_of_clicks_on_plus_button(number): # Number of clicks
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -660,7 +340,7 @@ def number_of_clicks_on_plus_button(number): # Number of clicks
     number = int(number)
     if plus_button_pixel() :
         for i in range (number):
-            pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+648 )
+            pyautogui.click( game_position[0]+246, game_position[1]+648 )
         shout(paint.light_cyan.bold("plus_button is clicked"))
     else :
         time0 = time.time()
@@ -669,17 +349,11 @@ def number_of_clicks_on_plus_button(number): # Number of clicks
         Plus_Button1 = plus_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and Plus_Button1 and time1 <= 10 :
             for i in range (number):
-                pyautogui.click( GAME_POSITION[0]+246, GAME_POSITION[1]+648 )
+                pyautogui.click( game_position[0]+246, game_position[1]+648 )
             shout(paint.light_cyan.bold("plus_button is clicked"))
         else :
             set_check_mode_to_true("number_of_clicks_on_plus_button()")
 #
-def minus_button_pixel():
-    # It checks if Minus button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]-9, GAME_POSITION[1]+648, (58,68,83) ) #Minus_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]-9, GAME_POSITION[1]+648, (77,88,105) ) #Minus_Button_Light
-    return (x1 or x2)
 
 def number_of_click_on_minus_button(number): # Number of clicks
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -687,7 +361,7 @@ def number_of_click_on_minus_button(number): # Number of clicks
     number = int(number)
     if minus_button_pixel() :
         for i in range (number):
-            pyautogui.click( GAME_POSITION[0]-9, GAME_POSITION[1]+648 )
+            pyautogui.click( game_position[0]-9, game_position[1]+648 )
         shout(paint.light_cyan.bold("minus_button is clicked"))
     else :
         time0 = time.time()
@@ -696,23 +370,17 @@ def number_of_click_on_minus_button(number): # Number of clicks
         Minus_Button1 = minus_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and Minus_Button1 and time1 <= 10 :
             for i in range (number):
-                pyautogui.click( GAME_POSITION[0]-9, GAME_POSITION[1]+648 )
+                pyautogui.click( game_position[0]-9, game_position[1]+648 )
             shout(paint.light_cyan.bold("Minus_Button is clicked"))
         else :
             set_check_mode_to_true("Number_of_Click_on_Minus_Button()")
 #
-def all_in_button_pixel():
-    # It checks if All In button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+531, GAME_POSITION[1]+648, (207,90,6) ) #All_In_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+531, GAME_POSITION[1]+648, (235,98,0) ) #All_In_Button_Light
-    return (x1 or x2)
 
 def click_on_all_in_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if all_in_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+531, GAME_POSITION[1]+648 )
+        pyautogui.click( game_position[0]+531, game_position[1]+648 )
         shout(paint.light_cyan.bold("All_In_Button is clicked"))
     else :
         time0 = time.time()
@@ -720,240 +388,159 @@ def click_on_all_in_button():
         time1 = time.time() - time0
         All_In_Button1 = all_in_button_pixel()
         if player_cards_pixel( My_Seat_Number ) and All_In_Button1 and time1 <= 10 :
-            pyautogui.click( GAME_POSITION[0]+531, GAME_POSITION[1]+648 )
+            pyautogui.click( game_position[0]+531, game_position[1]+648 )
             shout(paint.light_cyan.bold("All_In_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_All_In_Button()")
 #
-def exit_button_pixel():
-    # It checks if Exit button is existed and it's on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+378, GAME_POSITION[1]+21, (130,135,146) ) #Exit_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+378, GAME_POSITION[1]+21, (156,160,168) ) #Exit_Button_Light
-    return (x1 or x2)
 
 def click_on_exit_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if exit_button_pixel():
-        pyautogui.click( GAME_POSITION[0]+378, GAME_POSITION[1]+21 )
+        pyautogui.click( game_position[0]+378, game_position[1]+21 )
         shout(paint.light_cyan.bold("Exit_Button is clicked"))
         Just_Seated = None
     else :
         fix_game_disruption("click_on_exit_button()")
         if exit_button_pixel():
-            pyautogui.click( GAME_POSITION[0]+378, GAME_POSITION[1]+21 )
+            pyautogui.click( game_position[0]+378, game_position[1]+21 )
             shout(paint.light_cyan.bold("Exit_Button is clicked"))
             Just_Seated = None
         else : #can't proceed to here
             raise_exception_the_problem("click_on_exit_button")
 #            
-def exit_yes_button_pixel():
-    # It checks if Yes button when exiting is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+47, GAME_POSITION[1]+355, (168,11,16) ) #Exit_Yes_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+47, GAME_POSITION[1]+355, (177,13,19) ) #Exit_Yes_Button_Light
-    return (x1 or x2)
 
 def click_on_exit_yes_button():
     load_variables()
     if exit_yes_button_pixel():
-        pyautogui.click( GAME_POSITION[0]+47, GAME_POSITION[1]+355 )
+        pyautogui.click( game_position[0]+47, game_position[1]+355 )
         shout(paint.light_cyan.bold("exit_yes_button is clicked"))
     else :
         raise_exception_the_problem("click_on_exit_yes_button")
 #
-def menu_button_pixel(): # celeb
-    # It checks if Menu button is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]-399, GAME_POSITION[1]-66, (38,44,47), tolerance=5 ) #Menu_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]-399, GAME_POSITION[1]-66, (78,83,97), tolerance=5 ) #Menu_Button_Light
-    return (x1 or x2)
-#
+
 def click_on_menu_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if menu_button_pixel():
-        pyautogui.click( GAME_POSITION[0]-399, GAME_POSITION[1]-66 )
+        pyautogui.click( game_position[0]-399, game_position[1]-66 )
         shout(paint.light_cyan.bold("Menu_Button is clicked"))
     else :
         fix_game_disruption("click_on_menu_button()")
         if exit_button_pixel():
-            pyautogui.click( GAME_POSITION[0]-399, GAME_POSITION[1]-66 )
+            pyautogui.click( game_position[0]-399, game_position[1]-66 )
             shout(paint.light_cyan.bold("Menu_Button is clicked"))
         else :
             raise_exception_the_problem("click_on_menu_button")
-#
-def rebuy_menu_button_pixel():
-    # It checks if Rebuy Menu button is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+513, GAME_POSITION[1]+14, (203,0,6) ) #Rebuy_Menu_Button
-    return (x1)
 
 def click_on_rebuy_menu_button():
     global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     if rebuy_menu_button_pixel():
-        pyautogui.click( GAME_POSITION[0]+513, GAME_POSITION[1]+14 )
+        pyautogui.click( game_position[0]+513, game_position[1]+14 )
         shout(paint.light_cyan.bold("Rebuy_Menu_Button is clicked"))
     else :
         fix_game_disruption("click_on_rebuy_menu_button()")
         if rebuy_menu_button_pixel():
-            pyautogui.click( GAME_POSITION[0]+513, GAME_POSITION[1]+14 )
+            pyautogui.click( game_position[0]+513, game_position[1]+14 )
             shout(paint.light_cyan.bold("Rebuy_Menu_Button is clicked"))
         else :
             raise_exception_the_problem("click_on_rebuy_menu_button")
-#
-def leave_next_hand_ok_button_pixel():
-    # It checks if OK button for leaving next hand is existed on its position or not.
-    # I think this button appears after being idle
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+108, GAME_POSITION[1]+342, (0,83,171) ) #Leave_Next_Hand_OK_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+108, GAME_POSITION[1]+342, (0,95,193) ) #Leave_Next_Hand_OK_Button_Light
-    return (x1 or x2)
 
 def click_on_leave_next_hand_ok_button():
     load_variables()
     if leave_next_hand_ok_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+108, GAME_POSITION[1]+342 )
+        pyautogui.click( game_position[0]+108, game_position[1]+342 )
         shout(paint.light_cyan.bold("Leave_Next_Hand_OK_Button is clicked"))
     else :
         raise_exception_the_problem("click_on_leave_next_hand_ok_button")
-#    
-def buy_in_button_pixel():
-    # It checks if Buy In button is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+71, GAME_POSITION[1]+448, (26,123,0) ) #Buy_In_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+71, GAME_POSITION[1]+448, (32,149,0) ) #Buy_In_Button_Light
-    return (x1 or x2)
 
 def click_on_buy_in_button():
     load_variables()
     if buy_in_button_pixel() :
-        pyautogui.click( GAME_POSITION[0]+71, GAME_POSITION[1]+448 )
+        pyautogui.click( game_position[0]+71, game_position[1]+448 )
         shout(paint.light_cyan.bold("Buy_In_Button is clicked"))
     else :
         raise_exception_the_problem("click_on_buy_in_button")   
-#
-def buy_in_plus_button_pixel(): 
-    # It checks if plus button for buying in is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+236, (58,68,83) ) #Buy_In_Plus_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+236, (77,88,105) ) #Buy_In_Plus_Button_Light
-    return (x1 or x2)
 
 def hold_click_on_buy_in_plus_button(): 
     # It holds left click for 10s
     load_variables()
     if buy_in_plus_button_pixel() :
-        pyautogui.mouseDown(x=GAME_POSITION[0]+264, y=GAME_POSITION[1]+236)
+        pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+236)
         time.sleep(10)
         pyautogui.mouseUp()
     else :
         time.sleep(0.5)
         
         if buy_in_plus_button_pixel() :
-            pyautogui.mouseDown(x=GAME_POSITION[0]+264, y=GAME_POSITION[1]+236)
+            pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+236)
             time.sleep(10)
             pyautogui.mouseUp()
         else :
             raise_exception_the_problem("hold_click_on_buy_in_plus_button") 
-#
-def buy_in_minus_button_pixel():
-    # It checks if Minus button for buying in is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+244, (54,62,76) ) #Buy_In_Minus_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+244, (70,80,96) ) #Buy_In_Minus_Button_Light
-    return (x1 or x2)
 
 def hold_click_buy_in_minus_button(): #hold left click for 10s
     load_variables()
     if buy_in_minus_button_pixel():
-        pyautogui.mouseDown(x=GAME_POSITION[0]-46, y=GAME_POSITION[1]+244)
+        pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+244)
         time.sleep(10)
         pyautogui.mouseUp()
     else :
         time.sleep(0.5)
         
         if buy_in_minus_button_pixel():
-            pyautogui.mouseDown(x=GAME_POSITION[0]-46, y=GAME_POSITION[1]+244)
+            pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+244)
             time.sleep(10)
             pyautogui.mouseUp()
         else :
             raise_exception_the_problem("Hold_Click_Buy_In_Minus_Button")
-#
-def re_buy_button_pixel():
-    # It checks if Re Buy button is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+91, GAME_POSITION[1]+430, (26,124,0) ) #Re_Buy_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+91, GAME_POSITION[1]+430, (32,150,0) ) #Re_Buy_Button_Light
-    return (x1 or x2)
 
 def click_on_re_buy_button():
     load_variables()
     if click_on_re_buy_button():
-        pyautogui.click( GAME_POSITION[0]+91, GAME_POSITION[1]+430 )
+        pyautogui.click( game_position[0]+91, game_position[1]+430 )
         shout(paint.light_cyan.bold("Re_Buy_Button is clicked"))
     else :
         raise_exception_the_problem("click_on_re_buy_button")
-#
-def re_buy_plus_button_pixel(): 
-    # It checks Plus button for re buying is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+254, (58,68,83) ) #Re_Buy_Plus_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+264, GAME_POSITION[1]+254, (77,88,105) ) #Re_Buy_Plus_Button_Light
-    return (x1 or x2)
 
 def hold_click_on_re_buy_plus_button(): #hold left click for 10s
     load_variables()
     if re_buy_plus_button_pixel() :
-        pyautogui.mouseDown(x=GAME_POSITION[0]+264, y=GAME_POSITION[1]+254)
+        pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+254)
         time.sleep(10)
         pyautogui.mouseUp()
     else :
         time.sleep(0.5)
         
         if re_buy_plus_button_pixel() :
-            pyautogui.mouseDown(x=GAME_POSITION[0]+264, y=GAME_POSITION[1]+254)
+            pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+254)
             time.sleep(10)
             pyautogui.mouseUp()        
         else :
             raise_exception_the_problem("hold_click_on_re_buy_plus_button")
-#
-def re_buy_minus_button_pixel():
-    # It checks Minus button for re buying is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+261, (54,62,76) ) #Re_Buy_Minus_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]-46, GAME_POSITION[1]+261, (70,80,96) ) #Re_Buy_Minus_Button_Light
-    return (x1 or x2)
 
 def hold_click_on_re_buy_minus_button(): #hold left click for 10s
     load_variables()
     if re_buy_minus_button_pixel() :
-        pyautogui.mouseDown(x=GAME_POSITION[0]-46, y=GAME_POSITION[1]+261)
+        pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+261)
         time.sleep(10)
         pyautogui.mouseUp()
     else :
         time.sleep(0.5)
         
         if re_buy_minus_button_pixel() :
-            pyautogui.mouseDown(x=GAME_POSITION[0]-46, y=GAME_POSITION[1]+261)
+            pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+261)
             time.sleep(10)
             pyautogui.mouseUp()
         else :
             raise_exception_the_problem("hold_click_on_re_buy_minus_button")
-#
-def i_am_back_button_pixel():
-    # It checks if I am back button is existed on its position or not.
-    load_variables()
-    x1 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,80,165) ) #I_am_back_Button
-    x2 = pixelMatchesColor( GAME_POSITION[0]+137, GAME_POSITION[1]+608, (1,91,188) ) #I_am_back_Button_Light
-    return (x1 or x2)
 
 def click_on_i_am_back_button(): 
     global Check_Mod
     load_variables()
-    pyautogui.click( GAME_POSITION[0]+137, GAME_POSITION[1]+608 )
+    pyautogui.click( game_position[0]+137, game_position[1]+608 )
     shout(paint.yellow.bold("I_am_back_Button is clicked"))
     set_check_mode_to_true("click_on_i_am_back_button()")
 
@@ -1207,7 +794,7 @@ def Download_Table_Cards(Card_xth) :
     global Cards_names
     load_variables()
 
-    region_table_card = { 1:(GAME_POSITION[0]-38, GAME_POSITION[1]+215, 20, 40) , 2:(GAME_POSITION[0]+25, GAME_POSITION[1]+215, 20, 40) , 3:(GAME_POSITION[0]+87, GAME_POSITION[1]+215, 20, 40) , 4:(GAME_POSITION[0]+150, GAME_POSITION[1]+215, 20, 40) , 5:(GAME_POSITION[0]+212, GAME_POSITION[1]+215, 20, 40) }
+    region_table_card = { 1:(game_position[0]-38, game_position[1]+215, 20, 40) , 2:(game_position[0]+25, game_position[1]+215, 20, 40) , 3:(game_position[0]+87, game_position[1]+215, 20, 40) , 4:(game_position[0]+150, game_position[1]+215, 20, 40) , 5:(game_position[0]+212, game_position[1]+215, 20, 40) }
 
     i = 1 
     while True :
@@ -1250,7 +837,7 @@ def Read_Flop_Cards():
 
         Card_1th = Download_Table_Cards(1)
 
-        if Card_1th == None or not flop() or turn() :
+        if Card_1th == None or not flop_pixel() or turn_pixel() :
             set_check_mode_to_true("Read_Flop_Cards():Card_1th")
             shout("Reading Flop cards is stoped")
             return None # to stop fix_game_disruption for 2 and 3 cards
@@ -1263,7 +850,7 @@ def Read_Flop_Cards():
 
         Card_2th = Download_Table_Cards(2)
 
-        if Card_2th == None or not flop() or turn() :
+        if Card_2th == None or not flop_pixel() or turn_pixel() :
             set_check_mode_to_true("Read_Flop_Cards():Card_2th")
             shout("Reading Flop cards is stoped")
             return None # to stop fix_game_disruption for 3 card   
@@ -1280,7 +867,7 @@ def Read_Flop_Cards():
 
         Card_3th = Download_Table_Cards(3)
 
-        if Card_3th == None or not flop() or turn():
+        if Card_3th == None or not flop_pixel() or turn_pixel():
             set_check_mode_to_true("Read_Flop_Cards():Card_3th")
         
 
@@ -1300,7 +887,7 @@ def Read_Turn_Cards():
 
         Card_4th = Download_Table_Cards(4)
 
-        if Card_4th == None or not turn() or river() :
+        if Card_4th == None or not turn_pixel() or river_pixel() :
             set_check_mode_to_true("Read_Flop_Cards():Card_4th")
 
 
@@ -1320,7 +907,7 @@ def Read_River_Cards():
 
         Card_5th = Download_Table_Cards(5)
 
-        if Card_5th == None or not river():
+        if Card_5th == None or not river_pixel():
             set_check_mode_to_true("Read_Flop_Cards():Card_5th")
 
 
@@ -1332,8 +919,8 @@ def Download_My_Cards( My_Seat , Card_xth ) :
     global Cards_names
     load_variables()
 
-    region_1th_card = { 1:(GAME_POSITION[0]+369, GAME_POSITION[1]+391, 10, 30) , 2:(GAME_POSITION[0]+115, GAME_POSITION[1]+393, 10, 30) , 3:(GAME_POSITION[0]-140, GAME_POSITION[1]+390, 10, 30) , 4:(GAME_POSITION[0]-171, GAME_POSITION[1]+85, 10, 30) , 5:(GAME_POSITION[0]+399, GAME_POSITION[1]+85, 10, 30) }
-    region_2th_card = { 1:(GAME_POSITION[0]+388, GAME_POSITION[1]+391, 10, 30) , 2:(GAME_POSITION[0]+133, GAME_POSITION[1]+393, 10, 30) , 3:(GAME_POSITION[0]-122, GAME_POSITION[1]+390, 10, 30) , 4:(GAME_POSITION[0]-152, GAME_POSITION[1]+85, 10, 30) , 5:(GAME_POSITION[0]+418, GAME_POSITION[1]+85, 10, 30) }
+    region_1th_card = { 1:(game_position[0]+369, game_position[1]+391, 10, 30) , 2:(game_position[0]+115, game_position[1]+393, 10, 30) , 3:(game_position[0]-140, game_position[1]+390, 10, 30) , 4:(game_position[0]-171, game_position[1]+85, 10, 30) , 5:(game_position[0]+399, game_position[1]+85, 10, 30) }
+    region_2th_card = { 1:(game_position[0]+388, game_position[1]+391, 10, 30) , 2:(game_position[0]+133, game_position[1]+393, 10, 30) , 3:(game_position[0]-122, game_position[1]+390, 10, 30) , 4:(game_position[0]-152, game_position[1]+85, 10, 30) , 5:(game_position[0]+418, game_position[1]+85, 10, 30) }
 
     i = 1
     while True :
@@ -1390,7 +977,7 @@ def Read_My_Cards():
 
         My_1th_Card = Download_My_Cards(My_Seat_Number, 1)
 
-        if My_1th_Card == None or flop() :
+        if My_1th_Card == None or flop_pixel() :
             set_check_mode_to_true("Read_My_Cards():My_1th_Card")
             shout("Reading my 2th card is stoped")
             return None # to stop fix_game_disruption for my 2th card
@@ -1406,7 +993,7 @@ def Read_My_Cards():
 
         My_2th_Card = Download_My_Cards(My_Seat_Number, 2)
 
-        if My_2th_Card == None or flop() :
+        if My_2th_Card == None or flop_pixel() :
             set_check_mode_to_true("Read_My_Cards():My_2th_Card")
 
 
@@ -1447,23 +1034,23 @@ def ocr_bet_to_string(seat): #corrected for celeb poker
     load_variables()
 
     if seat == 1:
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+313,GAME_POSITION[1]+310,90,15) )#seat1_bet
+        string = replace_letters_s_o( ocr(game_position[0]+313,game_position[1]+310,90,15) )#seat1_bet
         shout("OCR Bet string Seat1: %s" %string)
         return string
     if seat == 2:
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+95,GAME_POSITION[1]+312,90,15) )#seat2_bet
+        string = replace_letters_s_o( ocr(game_position[0]+95,game_position[1]+312,90,15) )#seat2_bet
         shout("OCR Bet string Seat2: %s" %string)
         return string
     if seat == 3:
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]-123,GAME_POSITION[1]+310,90,15) )#seat3_bet
+        string = replace_letters_s_o( ocr(game_position[0]-123,game_position[1]+310,90,15) )#seat3_bet
         shout("OCR Bet string Seat3: %s" %string)
         return string
     if seat == 4:
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]-128,GAME_POSITION[1]+223,80,15) )#seat4_bet
+        string = replace_letters_s_o( ocr(game_position[0]-128,game_position[1]+223,80,15) )#seat4_bet
         shout("OCR Bet string Seat4: %s" %string)
         return string
     if seat == 5:
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+318,GAME_POSITION[1]+223,90,15) )#seat5_bet
+        string = replace_letters_s_o( ocr(game_position[0]+318,game_position[1]+223,90,15) )#seat5_bet
         shout("OCR Bet string Seat5: %s" %string)
         return string
 
@@ -1527,23 +1114,23 @@ def ocr_other_players_bank_to_string(seat): #corrected for celeb poker
     load_variables()
 
     if seat==1 :
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+334+6,GAME_POSITION[1]+471,75-6,15) )#seat1_Others_Bank
+        string = replace_letters_s_o( ocr(game_position[0]+334+6,game_position[1]+471,75-6,15) )#seat1_Others_Bank
         shout("OCR Others Bank string Seat1: %s" %string)
         return string
     if seat==2 :
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+79+6,GAME_POSITION[1]+473,75-6,15) )#seat2_Others_Bank
+        string = replace_letters_s_o( ocr(game_position[0]+79+6,game_position[1]+473,75-6,15) )#seat2_Others_Bank
         shout("OCR Others Bank string Seat2: %s" %string)
         return string
     if seat==3 :
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]-176+6,GAME_POSITION[1]+471,75-6,15) )#seat3_Others_Bank
+        string = replace_letters_s_o( ocr(game_position[0]-176+6,game_position[1]+471,75-6,15) )#seat3_Others_Bank
         shout("OCR Others Bank string Seat3: %s" %string)
         return string
     if seat==4 :
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]-206+6,GAME_POSITION[1]+166,75-6,15) )#seat4_Others_Bank
+        string = replace_letters_s_o( ocr(game_position[0]-206+6,game_position[1]+166,75-6,15) )#seat4_Others_Bank
         shout("OCR Others Bank string Seat4: %s" %string)
         return string
     if seat==5 :
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+364+6,GAME_POSITION[1]+166,75-6,15) )#seat5_Others_Bank
+        string = replace_letters_s_o( ocr(game_position[0]+364+6,game_position[1]+166,75-6,15) )#seat5_Others_Bank
         shout("OCR Others Bank string Seat5: %s" %string)
         return string
 
@@ -1577,23 +1164,23 @@ def ocr_my_bank_to_string(seat): #corrected for celeb poker
     load_variables()
 
     if seat==1 :
-        string = replace_letters_s_o( ocr(GAME_POSITION[0]+332+7,GAME_POSITION[1]+468,75-7,14) )#seat1_Me_Bank
+        string = replace_letters_s_o( ocr(game_position[0]+332+7,game_position[1]+468,75-7,14) )#seat1_Me_Bank
         shout("OCR My Bank string Seat1: %s" %string)
         return string
     if seat==2 :
-        return replace_letters_s_o( ocr(GAME_POSITION[0]+77+7,GAME_POSITION[1]+471,75-7,14) )#seat2_Me_Bank
+        return replace_letters_s_o( ocr(game_position[0]+77+7,game_position[1]+471,75-7,14) )#seat2_Me_Bank
         shout("OCR My Bank string Seat2: %s" %string)
         return string
     if seat==3 :
-        return replace_letters_s_o( ocr(GAME_POSITION[0]-178+7,GAME_POSITION[1]+468,75-7,14) )#seat3_Me_Bank
+        return replace_letters_s_o( ocr(game_position[0]-178+7,game_position[1]+468,75-7,14) )#seat3_Me_Bank
         shout("OCR My Bank string Seat3: %s" %string)
         return string
     if seat==4 :
-        return replace_letters_s_o( ocr(GAME_POSITION[0]-207+7,GAME_POSITION[1]+163,75-7,14) )#seat4_Me_Bank
+        return replace_letters_s_o( ocr(game_position[0]-207+7,game_position[1]+163,75-7,14) )#seat4_Me_Bank
         shout("OCR My Bank string Seat4: %s" %string)
         return string
     if seat==5 :
-        return replace_letters_s_o( ocr(GAME_POSITION[0]+362+7,GAME_POSITION[1]+163,75-7,14) )#seat5_Me_Bank
+        return replace_letters_s_o( ocr(game_position[0]+362+7,game_position[1]+163,75-7,14) )#seat5_Me_Bank
         shout("OCR My Bank string Seat5: %s" %string)
         return string
     
@@ -1651,23 +1238,23 @@ def ocr_other_names_to_string(seat):
     load_variables()
 
     if seat == 1 :
-        string = ocr(GAME_POSITION[0]+317,GAME_POSITION[1]+366,104,16)  #seat1_Others_Name
+        string = ocr(game_position[0]+317,game_position[1]+366,104,16)  #seat1_Others_Name
         shout("OCR Others Name string Seat1: %s" %string)
         return string
     if seat == 2 :
-        string = ocr(GAME_POSITION[0]+62,GAME_POSITION[1]+368,104,16)  #seat2_Others_Name
+        string = ocr(game_position[0]+62,game_position[1]+368,104,16)  #seat2_Others_Name
         shout("OCR Others Name string Seat2: %s" %string)
         return string
     if seat == 3 :
-        string = ocr(GAME_POSITION[0]-193,GAME_POSITION[1]+366,104,16)  #seat3_Others_Name
+        string = ocr(game_position[0]-193,game_position[1]+366,104,16)  #seat3_Others_Name
         shout("OCR Others Name string Seat3: %s" %string)
         return string
     if seat == 4 :
-        string = ocr(GAME_POSITION[0]-223,GAME_POSITION[1]+61,104,16)  #seat4_Others_Name
+        string = ocr(game_position[0]-223,game_position[1]+61,104,16)  #seat4_Others_Name
         shout("OCR Others Name string Seat4: %s" %string)
         return string
     if seat == 5 :
-        string = ocr(GAME_POSITION[0]+347,GAME_POSITION[1]+61,104,16)  #seat5_Others_Name
+        string = ocr(game_position[0]+347,game_position[1]+61,104,16)  #seat5_Others_Name
         shout("OCR Others Name string Seat5: %s" %string)
         return string
 
@@ -1687,23 +1274,23 @@ def ocr_my_name_to_string(seat):
     load_variables()
 
     if seat == 1 :
-        return ocr(GAME_POSITION[0]+298,GAME_POSITION[1]+363,140,16)  #seat1_Me_Name
+        return ocr(game_position[0]+298,game_position[1]+363,140,16)  #seat1_Me_Name
         shout("OCR My Name string Seat1: %s" %string)
         return string
     if seat == 2 :
-        return ocr(GAME_POSITION[0]+43,GAME_POSITION[1]+366,140,16)  #seat2_Me_Name
+        return ocr(game_position[0]+43,game_position[1]+366,140,16)  #seat2_Me_Name
         shout("OCR My Name string Seat2: %s" %string)
         return string
     if seat == 3 :
-        return ocr(GAME_POSITION[0]-212,GAME_POSITION[1]+363,140,16)  #seat3_Me_Name
+        return ocr(game_position[0]-212,game_position[1]+363,140,16)  #seat3_Me_Name
         shout("OCR My Name string Seat3: %s" %string)
         return string
     if seat == 4 :
-        return ocr(GAME_POSITION[0]-243,GAME_POSITION[1]+58,140,16)  #seat4_Me_Name
+        return ocr(game_position[0]-243,game_position[1]+58,140,16)  #seat4_Me_Name
         shout("OCR My Name string Seat4: %s" %string)
         return string
     if seat == 5 :
-        return ocr(GAME_POSITION[0]+328,GAME_POSITION[1]+58,140,16)  #seat5_Me_Name
+        return ocr(game_position[0]+328,game_position[1]+58,140,16)  #seat5_Me_Name
         shout("OCR My Name string Seat5: %s" %string)
         return string
 
@@ -1727,43 +1314,43 @@ def ocr_my_name(seat):
 
 
 def find_game_reference_point_for_starting(): #when i am watching the game myself, raise the Exeption 
-    global GAME_POSITION
+    global game_position
     load_variables()
 
     shout(paint.yellow.bold("Looking for game on screen..."))
-    GAME_POSITION = pyautogui.locateOnScreen('mainpic celeb.png')
-    if GAME_POSITION == None:
-        GAME_POSITION_NEW=pyautogui.locateOnScreen('Alternative main pic celeb.png')
-        if GAME_POSITION_NEW is None:
+    game_position = pyautogui.locateOnScreen('mainpic celeb.png')
+    if game_position == None:
+        game_position_new = pyautogui.locateOnScreen('Alternative main pic celeb.png')
+        if game_position_new is None:
             screenshot_error("Could not find game on screen") #Type_of_Error in string
             raise Exception('Could not find game on screen. Is the game visible?')
-        GAME_POSITION = ( GAME_POSITION_NEW[0]+328 , GAME_POSITION_NEW[1]-245 )
-    if GAME_POSITION != None :
-        GAME_POSITION = (int(GAME_POSITION[0]),int(GAME_POSITION[1]))
+        game_position = ( game_position_new[0]+328 , game_position_new[1]-245 )
+    if game_position != None :
+        game_position = (int(game_position[0]),int(game_position[1]))
     save_variables()
 
 def find_game_reference_point():
-    global GAME_POSITION
+    global game_position
     load_variables()
 
-    GAME_POSITION_OLD = GAME_POSITION
-    GAME_POSITION = None ; fo = 0
-    while GAME_POSITION == None and fo <= 2 :
+    game_position_old = game_position
+    game_position = None ; fo = 0
+    while game_position == None and fo <= 2 :
         fo += 1
-        GAME_POSITION = pyautogui.locateOnScreen('mainpic celeb.png')
-        if GAME_POSITION == None:
-            GAME_POSITION_NEW = pyautogui.locateOnScreen('Alternative main pic celeb.png')
-            if GAME_POSITION_NEW == None and fo == 2 :
+        game_position = pyautogui.locateOnScreen('mainpic celeb.png')
+        if game_position == None:
+            game_position_new = pyautogui.locateOnScreen('Alternative main pic celeb.png')
+            if game_position_new == None and fo == 2 :
                 shout(paint.yellow.bold("Could not find game on screen,program will use old position"))
                 screenshot_error("Could not find game on screen, Program will use former position")
-                GAME_POSITION = GAME_POSITION_OLD # vital signs --> find_game_reference_point_for_starting() will compensate
-            elif GAME_POSITION_NEW != None :
-                GAME_POSITION_NEW = ( GAME_POSITION_NEW[0]+328 , GAME_POSITION_NEW[1]-245 )
-        if GAME_POSITION == None and fo == 1 :
+                game_position = game_position_old # vital signs --> find_game_reference_point_for_starting() will compensate
+            elif game_position_new != None :
+                game_position_new = ( game_position_new[0]+328 , game_position_new[1]-245 )
+        if game_position == None and fo == 1 :
             shout(paint.yellow.bold("Adjust the game screen! Researching will be started again in 10s...."))
             time.sleep(10)
-    if GAME_POSITION != None :
-        GAME_POSITION = (int(GAME_POSITION[0]),int(GAME_POSITION[1]))
+    if game_position != None :
+        game_position = (int(game_position[0]),int(game_position[1]))
     save_variables()
 
 #def ocr(x,y,h,w):
@@ -1901,11 +1488,11 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     shout(paint.yellow.bold("Position (0,720) is clicked"))
     pyautogui.press('esc')
     
-    GAME_POSITION = pyautogui.locateOnScreen('mainpic celeb.png')
-    if GAME_POSITION == None:
-        GAME_POSITION_NEW =pyautogui.locateOnScreen('Alternative main pic celeb.png')    
-    if GAME_POSITION != None :
-        GAME_POSITION = (int(GAME_POSITION[0]),int(GAME_POSITION[1]))
+    game_position = pyautogui.locateOnScreen('mainpic celeb.png')
+    if game_position == None:
+        game_position_new =pyautogui.locateOnScreen('Alternative main pic celeb.png')    
+    if game_position != None :
+        game_position = (int(game_position[0]),int(game_position[1]))
     else:
         for process in wmi.WMI().Win32_Process ():
             if process.Name == 'SystemSettings.exe' :
@@ -1915,9 +1502,9 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
                 pyautogui.click(1570, 10) 
                 break        
 
-    if GAME_POSITION == None :
+    if game_position == None :
         find_game_reference_point_for_starting() #if None,it will raise the Exeption
-    if GAME_POSITION != None :
+    if game_position != None :
         shout(paint.yellow.bold("Game region refounded after fix_game_disruption()"))
     
     if i_am_back_button_pixel() == True :
@@ -1963,7 +1550,7 @@ def read_and_save_players_banks_and_names() :
     load_variables()
 
     for Seat in range(1,6):
-        if player_seated_pixel(Seat) == True :
+        if other_player_seated_pixel(Seat) == True :
             Players_bank_dic[Seat] = ocr_other_players_bank(Seat)
             Players_name_dic[Seat] = ocr_other_names(Seat)
             if red(Seat) :
@@ -2154,7 +1741,7 @@ def play_sound() :
 
 def load_variables():
     """ variables order is important while loading """
-    global GAME_POSITION , file_name , Reports_directory ,\
+    global game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -2164,7 +1751,7 @@ def load_variables():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    GAME_POSITION , file_name , Reports_directory ,\
+    game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -2194,7 +1781,7 @@ def save_variables() :
     By implementing load_variables() I can delete all global lines from supporting and... funcitons. 
     But I keep them to see the varibales I've used for that functions. 
     """
-    global GAME_POSITION , file_name , Reports_directory ,\
+    global game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -2204,7 +1791,7 @@ def save_variables() :
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    pickle.dump( [GAME_POSITION , file_name , Reports_directory ,\
+    pickle.dump( [game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -2243,7 +1830,7 @@ def click_button():
     time.sleep(1)
 
 def set_all_variables_to_none():
-    global GAME_POSITION , file_name , Reports_directory ,\
+    global game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -2253,7 +1840,7 @@ def set_all_variables_to_none():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    GAME_POSITION , file_name , Reports_directory ,\
+    game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -2338,7 +1925,7 @@ while True :
             raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), Just_Seated == None")
 
         if Cards1 == True :
-            if pre_flop() == False or (pre_flop() == True and is_there_any_raiser() == True) :
+            if pre_flop_pixel() == False or ( pre_flop_pixel() == True and is_there_any_raiser() == True) :
                 set_check_mode_to_true("this is Ok! Becuase i may start program from middle of the game")
 
             Just_Seated = False
@@ -2353,10 +1940,10 @@ while True :
 
 #-------    
 
-    if Hand_End_Cheker1 == False and pre_flop() == False and Just_Seated == False and Check_Mod != True :
+    if Hand_End_Cheker1 == False and pre_flop_pixel() == False and Just_Seated == False and Check_Mod != True :
         fix_game_disruption("2")
         set_check_mode_to_true("2")
-        screenshot_error('6.pre_flop() == False')
+        screenshot_error('6.pre_flop_pixel() == False')
     elif Hand_End_Cheker1 == False and Just_Seated == False and Check_Mod != True :
         Pre_Flop1 = True
         Pre_Flop1_Deside = True
@@ -2376,7 +1963,7 @@ while True :
         Hand_End_Cheker1 = hand_is_ended()
         its_my_turn = active_player_pixel( My_Seat_Number )
         Gray1 = notification_banner_pixel( My_Seat_Number )
-        Flop1_Deside = flop()
+        Flop1_Deside = flop_pixel()
         n20 = (time.time() - time1 - 60 ) // 20
         if time.time() - time1 > 1 * 60 and n20 >= fo :
             fix_game_disruption("3")
@@ -2431,7 +2018,7 @@ while True :
                     fix_game_disruption("4.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = active_player_pixel( My_Seat_Number )
-                Flop1 = flop()
+                Flop1 = flop_pixel()
                 time2 = time.time() - time1
                     
             if not time2 < 1 * 60 :
@@ -2487,7 +2074,7 @@ while True :
                     fix_game_disruption("6.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = active_player_pixel( My_Seat_Number )
-                Turn1 = turn()
+                Turn1 = turn_pixel()
                 time2 = time.time() - time1
 
             if not time2 < 1 * 60 :
@@ -2547,7 +2134,7 @@ while True :
                     fix_game_disruption("8.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = active_player_pixel( My_Seat_Number )
-                River1 = river()
+                River1 = river_pixel()
                 time2 = time.time() - time1
 
             if not time2 < 1 * 60 :
@@ -2613,7 +2200,7 @@ while True :
                 
             if Hand_End_Cheker1 == False :
 
-                if its_my_turn == True and river() == True :
+                if its_my_turn == True and river_pixel() == True :
                     Round_River += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
