@@ -20,6 +20,7 @@ pytesseract.pytesseract.tesseract_cmd =
 r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe' #(the tesseract installation path)
 """
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = r'F:\mohsen\POKER\Softwares\Installed programs\DeepMind Pokerbot\tesseract.exe'
 
 im = Image.open("phototest.TIF")
 text = pytesseract.image_to_string(im, lang = 'eng')

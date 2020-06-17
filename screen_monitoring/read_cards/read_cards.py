@@ -126,9 +126,9 @@ def test(my_seat):
             print('game reference point is set')
             return game_position
 
-    def show_my_pre_process_card_images(my_seat):
+    def show_my_pre_process_card_images(game_position, my_seat):
         for xth_card in [1,2]:    
-            query_image = download_my_card(my_seat , xth_card)
+            query_image = download_my_card(game_position, my_seat , xth_card)
             value_image, suit_image = match_card.pre_process_query_image(query_image, False)
             print('My %sth card value image' %xth_card)
             cv2.imshow('My %sth card value image' %xth_card, value_image)
@@ -141,9 +141,9 @@ def test(my_seat):
             #cv2.imwrite('My %sth card screenshot value_image.png' %xth_card, value_image)
             #cv2.imwrite('My %sth card screenshot suit_image.png' %xth_card, suit_image)
 
-    def show_table_pre_process_card_images():
+    def show_table_pre_process_card_images(game_position):
         for xth_card in [1,2,3,4,5]:    
-            query_image = download_table_card(xth_card)
+            query_image = download_table_card(game_position, xth_card)
             value_image, suit_image = match_card.pre_process_query_image(query_image, True)
             print('Table %sth card value image' %xth_card)
             cv2.imshow('Table %sth card value image' %xth_card, value_image)
@@ -167,8 +167,8 @@ def test(my_seat):
     print('table cards are:%s, %s, %s, %s, %s'
     %(table_1th_card, table_2th_card, table_3th_card, table_4th_card, table_5th_card))
 
-    #show_my_pre_process_card_images(my_seat)
-    #show_table_pre_process_card_images()
+    show_my_pre_process_card_images(game_position, my_seat)
+    show_table_pre_process_card_images(game_position)
 
 
 if __name__ == '__main__':
