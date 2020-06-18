@@ -19,21 +19,25 @@ using load_variables() inside save_variables() definition leads to wrong answers
    b: load_variables() 
    c: assign x
    d: save_variables()
+   e: other_module.other_module_function()
    
    (c always needs a)
    (d always needs b. exeption: set_variables_to_None() a <- c <- d (a and c cover all variables here) )
+   (e always needs d right before, and b right after)
 
    non pure:
    1. b <- d  (no usage)
    2. a <- b <- c <- d  
+   3. a <- b <- c <- deb <- d (first b is not nessacery)
 
    pure:
+   1. a <- b <- c <- deb <- return
    1. a <- b <- c <- return
    2. b <- return
    note: In Poker package i do not use global variables for pure function. 
          so they are real pure, like modules in pixel_matching sub package.
 
-   *look at directory below for example
+   *look at directory below for example:
     (Globalizing tips\globaling variables between modules\Right method. using pickle library)
 
    *only global the variables which you assing, not the one you read or use, 
@@ -47,7 +51,11 @@ using load_variables() inside save_variables() definition leads to wrong answers
     so while using save_variables() you must use load_variables() at first.
     ( exeption: set_variables_to_None() a <- c <- d )
 
-   *look at directory below for further old example
+   *Whenver shifting into another module to call a function (like: other_module.other_module_function())
+    use save_variables() right before that line and load_variables() right after that line.
+    so when you use save_variables() at the end of a function, it save real updated variables.
+
+   *look at directory below for further old example:
    ('Globalizing tips\Organize package like this in future\how to use load and save variables functions')
 
 6. pure functions uses return; non pure uses save_variables
