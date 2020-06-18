@@ -21,7 +21,7 @@ using load_variables() inside save_variables() definition leads to wrong answers
    d: save_variables()
    
    (c always needs a)
-   (d always needs b. exeption: set_variables_to_None() a <- c <- d )
+   (d always needs b. exeption: set_variables_to_None() a <- c <- d (a and c cover all variables here) )
 
    non pure:
    1. b <- d  (no usage)
@@ -40,7 +40,8 @@ using load_variables() inside save_variables() definition leads to wrong answers
     if there is no assiging variables just use load_variables(). 
 
    *save_variables() function read or use variables, so if a variable is not assigned inside a function
-    there is no need to global it in that function to affect it in the save_variables().
+    there is no need to global it in that function to affect it in the 
+    save_variables() while you had used load_variables() in that function.
 
    *globaling line in load_variables() works fine to affect all variables into save_variables().
     so while using save_variables() you must use load_variables() at first.

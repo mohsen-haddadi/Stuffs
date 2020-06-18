@@ -978,9 +978,9 @@ def Download_My_Cards( My_Seat , Card_xth ) :
 
 
 
-def Read_My_Cards(): 
+def read_my_cards(game_position, my_seat): 
     global game_position, My_1th_Card , My_2th_Card  , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-
+    load_variables()
     t0 = time.time()
     
     My_1th_Card = Download_My_Cards(My_Seat_Number, 1)
@@ -1030,14 +1030,14 @@ def replace_letters_comma_space_m_k(ocr_string):
     string = string.replace("K","*1000")
     return string
 
-#########
 def ocr_bet(game_position, seat):
-    global Lost_Connection_Time , My_seatber , My_Profile_Name , Just_Seated , Check_Mod , Last_White_cache , Last_Red_cache
+    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod , Last_White_cache , Last_Red_cache
     load_variables()
 
     x1 = Last_White_cache[seat]
     y1 = Last_Red_cache[seat]
     string1 = ocr.ocr_bet_to_string(game_position,  seat)
+    shout("string of bet OCR on seat%s is: %s" %(seat, string1) )
     x2 = white(seat)
     y2 = red(seat)
     string2 = replace_letters_comma_space_m_k(string1)
@@ -1053,6 +1053,7 @@ def ocr_bet(game_position, seat):
             x1 = white(seat)
             y1 = red(seat)
             string1 = ocr.ocr_bet_to_string(game_position, seat)
+            shout("string of bet OCR on seat%s is: %s" %(seat, string1) )
             x2 = white(seat)
             y2 = red(seat)
             string2 = replace_letters_comma_space_m_k( string1 )
@@ -1075,11 +1076,11 @@ def ocr_bet(game_position, seat):
         string1 = replace_letters_comma_space_m_k( string1 )
         return eval( string1 )
 
-  #########
 def ocr_other_players_bank(game_position, seat):
-    global Lost_Connection_Time , My_seatber , My_Profile_Name , Just_Seated , Check_Mod
+    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
 
     string1 = ocr.ocr_other_players_bank_to_string(game_position, seat)
+    shout("string of other players bank OCR on seat%s is: %s" %(seat, string1) )
 
     string2 = replace_letters_comma_space_m_k(string1)
     string2 = string2.replace("*","")
@@ -1092,14 +1093,13 @@ def ocr_other_players_bank(game_position, seat):
         string1 = replace_letters_comma_space_m_k( string1 )
         return eval( string1 )
 
-
-#########
 def ocr_my_bank(game_position, seat):
-    global Lost_Connection_Time , My_seatber , My_Profile_Name , Just_Seated , Check_Mod
+    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
     load_variables()
 
     x1 = pm.my_seat_won_pixel(game_position, seat)
     string1 = ocr.ocr_my_bank_to_string(game_position, seat)
+    shout("string of my bank OCR on seat%s is: %s" %(seat, string1) )
     x2 = pm.my_seat_won_pixel(game_position, seat)
     string2 = replace_letters_comma_space_m_k( string1 )
     string2 = string2.replace("*","")
@@ -1110,9 +1110,10 @@ def ocr_my_bank(game_position, seat):
         if ( x1==False and x2==False ) :
             
             fix_game_disruption("OCR_My_Bank_Number(seat)")
-            seat = My_seatber
+            seat = My_Seat_Number
             x1 = pm.my_seat_won_pixel(game_position, seat)
             string1 = ocr.ocr_my_bank_to_string(game_position, seat)
+            shout("string of my bank OCR on seat%s is: %s" %(seat, string1) )
             x2 = pm.my_seat_won_pixel(game_position, seat)
             string2 = replace_letters_comma_space_m_k( string1 )
             string2 = string2.replace("*","")
@@ -1135,8 +1136,6 @@ def ocr_my_bank(game_position, seat):
         string1 = replace_letters_comma_space_m_k( string1 )
         return eval( string1 )
 
-
-#########
 def ocr_other_names(game_position, seat):
     x1 = pm.other_seat_won_pixel(game_position, seat)
     y1 = pm.notification_banner_pixel(game_position, seat)
@@ -1144,16 +1143,18 @@ def ocr_other_names(game_position, seat):
         return None
     else :
         string = ocr.ocr_other_names_to_string(game_position, seat)
+        shout("string of other names OCR on seat%s is: %s" %(seat, string) )
         return string
 
-#########
 def ocr_my_name(game_position, seat):
 
     if pm.my_seat_won_pixel(game_position, seat):
         return True
     if pm.notification_banner_pixel(game_position, seat):
         return None
-    return ocr.ocr_my_name_to_string(game_position, seat)
+    string = ocr.ocr_my_name_to_string(game_position, seat)
+    shout("string of my bank OCR on seat%s is: %s" %(seat, string) )
+    return string
 
 
 

@@ -4,10 +4,10 @@
  be game_position taghir bedam.
 (OK)3. argument e game_postion ro be tavabe dakhele module haye read_cards va ocr , 
  mesle module pixel_matching, ezafe konam. 
-4. dar file 2020-3.py ba komake module ocr, tavabe estefade shode dar 2020-3.py ro
+(OK)4. dar file 2020-3.py ba komake module ocr, tavabe estefade shode dar 2020-3.py ro
  peyda karde va ebtedayeshan ocr. va argumente '(game_position,' ro ezafe konam.
 4.5 shout ra az module e pure e ocr hazf konam. dar file 2020-3 shout ra baraye
- ocr va read_cards ezafe konam.
+ ocr va read_cards ezafe konam. 
 5. dar file 2020-3.py read_card ghadimi ro ba read_card jadid ba raayate 
  fix_game_diruption() jaygozin konam, va read_card. ra dar ebtaye tavabeshan va argumente 
  '(game_position,' ro dar entehayeshan ezafe konam.
