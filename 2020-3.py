@@ -93,34 +93,35 @@ def sound(string_name) :
 # FUNCTIONS_Pixel-Maching ---------------------------------------------------------------------------------------------
 
 
-#
+
 def sb_b_d_buttons_are_founded():
     global game_position
     load_variables()
-   
-    founded = ( ( pm.small_blind_pixel(game_position, 1) or pm.small_blind_pixel(game_position, 2) or pm.small_blind_pixel(game_position, 3) or pm.small_blind_pixel(game_position, 4) or pm.small_blind_pixel(game_position, 5) )
-               and ( pm.big_blind_pixel(game_position, 1) or pm.big_blind_pixel(game_position, 2) or pm.big_blind_pixel(game_position, 3) or pm.big_blind_pixel(game_position, 4) or pm.big_blind_pixel(game_position, 5) )
-               and ( pm.dealer_pixel(game_position, 1) or pm.dealer_pixel(game_position, 2) or pm.dealer_pixel(game_position, 3) or pm.dealer_pixel(game_position, 4) or pm.dealer_pixel(game_position, 5) ) )
-    return founded
 
-#
+    small_blind_button_founded, big_blind_button_founded, dealer_button_founded = (False, False, False)
+    for seat in [1,2,3,4,5]:
+        if pm.small_blind_pixel(game_position, seat) == True:
+            small_blind_button_founded = True
+            break
+    for seat in [1,2,3,4,5]:
+        if pm.big_blind_pixel(game_position, seat) == True:
+            big_blind_button_founded = True
+            break
+    for seat in [1,2,3,4,5]:
+        if pm.dealer_pixel(game_position, seat) == True:
+            dealer_button_founded = True
+            break
+    return small_blind_button_founded and big_blind_button_founded and dealer_button_founded
+
 def declare_the_winners():
-    game_position
+    global game_position
     load_variables()
 
-    if( ( pm.my_seat_won_pixel(game_position, 1) or pm.my_seat_won_pixel(game_position, 2) or pm.my_seat_won_pixel(game_position, 3) or pm.my_seat_won_pixel(game_position, 4) or pm.my_seat_won_pixel(game_position, 5)) == True ):
-        return shout(paint.on_light_magenta.bold("I won the game!"))
-    if( pm.other_seat_won_pixel(game_position, 1) == True ):
-        return shout("Seat 1 won the game!")
-    if( pm.other_seat_won_pixel(game_position, 2) == True ):
-        return shout("Seat 2 won the game!")
-    if( pm.other_seat_won_pixel(game_position, 3) == True ):
-        return shout("Seat 3 won the game!")
-    if( pm.other_seat_won_pixel(game_position, 4) == True ):
-        return shout("Seat 4 won the game!")
-    if( pm.other_seat_won_pixel(game_position, 5) == True ):
-        return shout("Seat 5 won the game!")
-
+    for seat in [1,2,3,4,5]:
+        if pm.my_seat_won_pixel(game_position, seat) == True:
+            shout(paint.on_light_magenta.bold("I won the game!"))
+        if pm.other_seat_won_pixel(game_position, seat) == True :
+            shout("Seat %s won the game!" %seat)
 
 def white(game_position, seat):
     # It checks if there is a white color sign in front of a seat,
@@ -130,7 +131,7 @@ def white(game_position, seat):
         return not pm.are_chips_white_or_red_pixel(game_position, seat)
     else :
         return False
-#
+
 def red(game_position, seat):
     # It checks if there is a red color sign in front of a seat,
     # by returning True or False, to find out if a player has bet/raised or not.
@@ -140,14 +141,16 @@ def red(game_position, seat):
     else :
         return False
 
-#
 def hand_is_ended():
     game_position
     load_variables()
 
-    hand_ended= ( pm.my_seat_won_pixel(game_position, 1) or pm.my_seat_won_pixel(game_position, 2) or pm.my_seat_won_pixel(game_position, 3) or pm.my_seat_won_pixel(game_position, 4) or pm.my_seat_won_pixel(game_position, 5) or 
-                pm.other_seat_won_pixel(game_position, 1) or pm.other_seat_won_pixel(game_position, 2) or pm.other_seat_won_pixel(game_position, 3) or pm.other_seat_won_pixel(game_position, 4) or pm.other_seat_won_pixel(game_position, 5) )
-    return hand_ended
+    for seat in [1,2,3,4,5]:
+        if pm.my_seat_won_pixel(game_position, seat):
+            return True
+        if pm.other_seat_won_pixel(game_position, seat):
+            return True
+    return False
 
 # 2017 :------------------------------
 
@@ -156,65 +159,33 @@ def determine_small_blind_seat():
     global game_position, Small_Blind_Seat
     load_variables()
 
-    if pm.small_blind_pixel(game_position, 1) == True :
-        Small_Blind_Seat = 1
-        shout("Seat 1 is at Small Blind Seat")
-    elif pm.small_blind_pixel(game_position, 2) == True :
-        Small_Blind_Seat = 2
-        shout("Seat 2 is at Small Blind Seat")
-    elif pm.small_blind_pixel(game_position, 3) == True :
-        Small_Blind_Seat = 3
-        shout("Seat 3 is at Small Blind Seat")
-    elif pm.small_blind_pixel(game_position, 4) == True :
-        Small_Blind_Seat = 4
-        shout("Seat 4 is at Small Blind Seat")
-    elif pm.small_blind_pixel(game_position, 5) == True :
-        Small_Blind_Seat = 5
-        shout("Seat 5 is at Small Blind Seat")
-
+    for seat in [1,2,3,4,5]:
+        if pm.small_blind_pixel(game_position, seat):
+            Small_Blind_Seat = seat
+            shout("Seat %s is at Small Blind Seat" %seat)
+            break
 
 ### 
 def determine_big_blind_seat():
     global game_position, Big_Blind_Seat
     load_variables()
 
-    if pm.big_blind_pixel(game_position, 1) == True :
-        Big_Blind_Seat = 1
-        shout("Seat 1 is at Big Blind Seat")
-    elif  pm.big_blind_pixel(game_position, 2) == True :
-        Big_Blind_Seat = 2
-        shout("Seat 2 is at Big Blind Seat")
-    elif  pm.big_blind_pixel(game_position, 3) == True :
-        Big_Blind_Seat = 3
-        shout("Seat 3 is at Big Blind Seat")
-    elif  pm.big_blind_pixel(game_position, 4) == True :
-        Big_Blind_Seat = 4
-        shout("Seat 4 is at Big Blind Seat")
-    elif  pm.big_blind_pixel(game_position, 5) == True :
-        Big_Blind_Seat = 5
-        shout("Seat 5 is at Big Blind Seat") 
-
+    for seat in [1,2,3,4,5]:
+        if pm.big_blind_pixel(game_position, seat):
+            Big_Blind_Seat = seat
+            shout("Seat %s is at Big Blind Seat" %seat)
+            break
 
 ###
 def determine_dealer_seat():
     global game_position, Dealer_Seat
     load_variables()
 
-    if pm.dealer_pixel(game_position, 1) == True :
-        Dealer_Seat = 1
-        shout("Seat 1 is at Dealer Seat")
-    elif pm.dealer_pixel(game_position, 2) == True :
-        Dealer_Seat = 2
-        shout("Seat 2 is at Dealer Seat")
-    elif pm.dealer_pixel(game_position, 3) == True :
-        Dealer_Seat = 3
-        shout("Seat 3 is at Dealer Seat")
-    elif pm.dealer_pixel(game_position, 4) == True :
-        Dealer_Seat = 4
-        shout("Seat 4 is at Dealer Seat")
-    elif pm.dealer_pixel(game_position, 5) == True :
-        Dealer_Seat = 5
-        shout("Seat 5 is at Dealer Seat")
+    for seat in [1,2,3,4,5]:
+        if pm.dealer_pixel(game_position, seat):
+            Dealer_Seat = seat
+            shout("Seat %s is at Dealer Seat" %seat)
+            break
 
 
 # FUNCTIONS_Pixel-Maching Ended ---------------------------------------------------------------------------------------
@@ -247,7 +218,6 @@ def click_on_available_seat(seat):
     if seat == 5 :
         pyautogui.click( game_position[0]+392, game_position[1]+103 ) #Seat5
         shout(paint.light_cyan.bold("Available_Seat 5 is clicked"))
-#
 
 def click_on_fold_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -261,7 +231,6 @@ def click_on_fold_button():
             pyautogui.click( game_position[0]+51, game_position[1]+581 )
             shout(paint.light_cyan.bold("Fold_Button is clicked"))
         set_check_mode_to_true("Click_on_Fold_Button()")
-#
 
 def click_on_check_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -278,8 +247,7 @@ def click_on_check_button():
             pyautogui.click( game_position[0]+246, game_position[1]+578 )
             shout(paint.light_cyan.bold("Check_Button is clicked"))
         else :
-            set_check_mode_to_true("Click_on_Check_Button()")
-#            
+            set_check_mode_to_true("Click_on_Check_Button()")         
 
 def click_on_call_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -297,7 +265,6 @@ def click_on_call_button():
             shout(paint.light_cyan.bold("Call_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Call_Button()")
-#
 
 def click_on_bet_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -315,7 +282,6 @@ def click_on_bet_button():
             shout(paint.light_cyan.bold("Bet_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Bet_Button()")
-#
 
 def click_on_raise_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -333,7 +299,6 @@ def click_on_raise_button():
             shout(paint.light_cyan.bold("Raise_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_Raise_Button()")
-#
 
 def number_of_clicks_on_plus_button( number): # Number of clicks
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -354,7 +319,6 @@ def number_of_clicks_on_plus_button( number): # Number of clicks
             shout(paint.light_cyan.bold("plus_button is clicked"))
         else :
             set_check_mode_to_true("number_of_clicks_on_plus_button()")
-#
 
 def number_of_click_on_minus_button(number): # Number of clicks
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -375,7 +339,6 @@ def number_of_click_on_minus_button(number): # Number of clicks
             shout(paint.light_cyan.bold("Minus_Button is clicked"))
         else :
             set_check_mode_to_true("Number_of_Click_on_Minus_Button()")
-#
 
 def click_on_all_in_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -393,7 +356,7 @@ def click_on_all_in_button():
             shout(paint.light_cyan.bold("All_In_Button is clicked"))
         else :
             set_check_mode_to_true("Click_on_All_In_Button()")
-#
+
 
 def click_on_exit_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -409,8 +372,7 @@ def click_on_exit_button():
             shout(paint.light_cyan.bold("Exit_Button is clicked"))
             Just_Seated = None
         else : #can't proceed to here
-            raise_exception_the_problem("click_on_exit_button")
-#            
+            raise_exception_the_problem("click_on_exit_button")         
 
 def click_on_exit_yes_button():
     global game_position
@@ -420,7 +382,6 @@ def click_on_exit_yes_button():
         shout(paint.light_cyan.bold("exit_yes_button is clicked"))
     else :
         raise_exception_the_problem("click_on_exit_yes_button")
-#
 
 def click_on_menu_button():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
