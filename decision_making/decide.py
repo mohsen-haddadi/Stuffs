@@ -15,7 +15,7 @@ def load_variables():
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
     pickle_path = Path().absolute().parent / 'pickled variables.p'
-    
+
     game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\

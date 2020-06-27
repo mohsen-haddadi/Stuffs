@@ -1,14 +1,14 @@
-import pyautogui, time, os, pygame , win32gui , win32con , socket , wmi , cv2 , numpy , re , pickle
+import time, os, socket, re, pickle
 from PIL import Image
+import pyautogui, cv2, numpy, pygame, win32gui, win32con, wmi
 from datetime import datetime
-#from pyautogui import pixelMatchesColor
-#from pytesseract import image_to_string
 from painter import paint
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.ocr.ocr as ocr
 import screen_monitoring.read_cards.read_cards as read_cards
+import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 import decision_making.decide
-import click_button 
+
 
 if __name__ == '__main__':
     hwnd = win32gui.GetForegroundWindow()
@@ -123,7 +123,7 @@ def declare_the_winners():
         if pm.other_seat_won_pixel(game_position, seat) == True :
             shout("Seat %s won the game!" %seat)
 
-def white(game_position, seat):
+def white(seat):
     # It checks if there is a white color sign in front of a seat,
     # by returning True or False, to find out if a player has call or not
 
@@ -132,7 +132,7 @@ def white(game_position, seat):
     else :
         return False
 
-def red(game_position, seat):
+def red(seat):
     # It checks if there is a red color sign in front of a seat,
     # by returning True or False, to find out if a player has bet/raised or not.
     # (In accordance to Google: 'A bet is the first wager of a round.')
@@ -140,6 +140,17 @@ def red(game_position, seat):
         return pm.are_chips_white_or_red_pixel(game_position, seat)
     else :
         return False
+
+def is_there_any_raiser():
+    """ Except me """
+    global My_Seat_Number
+    
+    for seat in range(1,6):
+        if seat == My_Seat_Number :
+            continue
+        elif red(seat) :
+            return True
+    return False
 
 def hand_is_ended():
     game_position
@@ -192,351 +203,137 @@ def determine_dealer_seat():
 
 
 
-
-
-
-
-
 # def_Buttons_new: ---------------------------------------------------------------------------------------------------------------
+def click(name):
+    x, y = click_coordinates.click_coordinates(game_position, name)
+    pyautogui.click(x, y)
+    if name in ('available_seat_1', 'available_seat_2', 'available_seat_3',
+                'available_seat_4', 'available_seat_5', 'exit_probable_advertisement',
+                'close_update_window'):
+        shout(paint.light_cyan.bold("%s is clicked" %name))
+    else:
+        shout(paint.light_cyan.bold("%s button is clicked" %name))
 
+def hold_click(name ,seconds = 10):
+    x, y = click_coordinates.click_coordinates(game_position, name)
+    pyautogui.mouseDown(x=x, y=y)
+    time.sleep(seconds)
+    pyautogui.mouseUp()
+    shout(paint.light_cyan.bold("%s button is hold for %s seconds" %(name, seconds)))
 
-def click_on_available_seat(seat):
-    global game_position
+def click_on_button(button_name): 
+    # for call, check, fold, bet, raise,
+    # exit, menu, rebuy_menu,
+    # exit_yes, leave_next_hand_ok, buy_in, and re_buy buttons.
+    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated #waiting_for_next_hand
     load_variables()
-    if seat == 1 :
-        pyautogui.click( game_position[0]+362, game_position[1]+408 ) #Seat1
-        shout(paint.light_cyan.bold("Available_Seat 1 is clicked"))
-    if seat == 2 :
-        pyautogui.click( game_position[0]+107, game_position[1]+411 ) #Seat2
-        shout(paint.light_cyan.bold("Available_Seat 2 is clicked"))
-    if seat == 3 :
-        pyautogui.click( game_position[0]-148, game_position[1]+408 ) #Seat3
-        shout(paint.light_cyan.bold("Available_Seat 3 is clicked"))
-    if seat == 4 :
-        pyautogui.click( game_position[0]-178, game_position[1]+103 ) #Seat4
-        shout(paint.light_cyan.bold("Available_Seat 4 is clicked"))
-    if seat == 5 :
-        pyautogui.click( game_position[0]+392, game_position[1]+103 ) #Seat5
-        shout(paint.light_cyan.bold("Available_Seat 5 is clicked"))
 
-def click_on_fold_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.fold_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+51, game_position[1]+581 )
-        shout(paint.light_cyan.bold("Fold_Button is clicked"))
-    else :
-        fix_game_disruption("Click_on_Fold_Button()")
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and pm.fold_button_pixel(game_position) :
-            pyautogui.click( game_position[0]+51, game_position[1]+581 )
-            shout(paint.light_cyan.bold("Fold_Button is clicked"))
-        set_check_mode_to_true("Click_on_Fold_Button()")
-
-def click_on_check_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.check_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+246, game_position[1]+578 )
-        shout(paint.light_cyan.bold("Check_Button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("Click_on_Check_Button()")
-        time1 = time.time() - time0
-        Check_Button1 = pm.check_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and Check_Button1 and time1 <= 10 :
-            pyautogui.click( game_position[0]+246, game_position[1]+578 )
-            shout(paint.light_cyan.bold("Check_Button is clicked"))
-        else :
-            set_check_mode_to_true("Click_on_Check_Button()")         
-
-def click_on_call_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.call_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+261, game_position[1]+575 )
-        shout(paint.light_cyan.bold("Call_Button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("Click_on_Call_Button()")
-        time1 = time.time() - time0
-        Call_Button1 = pm.call_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and Call_Button1 and time1 <= 10 :
-            pyautogui.click( game_position[0]+261, game_position[1]+575 )
-            shout(paint.light_cyan.bold("Call_Button is clicked"))
-        else :
-            set_check_mode_to_true("Click_on_Call_Button()")
-
-def click_on_bet_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.bet_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+461, game_position[1]+576 )
-        shout(paint.light_cyan.bold("Bet_Button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("Click_on_Bet_Button()")
-        time1 = time.time() - time0
-        Bet_Button1 = pm.bet_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and Bet_Button1 and time1 <= 10 :
-            pyautogui.click( game_position[0]+461, game_position[1]+576 )
-            shout(paint.light_cyan.bold("Bet_Button is clicked"))
-        else :
-            set_check_mode_to_true("Click_on_Bet_Button()")
-
-def click_on_raise_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.raise_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+461, game_position[1]+576 )
-        shout(paint.light_cyan.bold("Raise_Button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("Click_on_Raise_Button()")
-        time1 = time.time() - time0
-        Raise_Button1 = pm.raise_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and Raise_Button1 and time1 <= 10 :
-            pyautogui.click( game_position[0]+461, game_position[1]+576 )
-            shout(paint.light_cyan.bold("Raise_Button is clicked"))
-        else :
-            set_check_mode_to_true("Click_on_Raise_Button()")
-
-def number_of_clicks_on_plus_button( number): # Number of clicks
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    number = int(number)
-    if pm.plus_button_pixel(game_position) :
-        for i in range (number):
-            pyautogui.click( game_position[0]+246, game_position[1]+648 )
-        shout(paint.light_cyan.bold("plus_button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("number_of_clicks_on_plus_button(number)")
-        time1 = time.time() - time0
-        Plus_Button1 = pm.plus_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and Plus_Button1 and time1 <= 10 :
-            for i in range (number):
-                pyautogui.click( game_position[0]+246, game_position[1]+648 )
-            shout(paint.light_cyan.bold("plus_button is clicked"))
-        else :
-            set_check_mode_to_true("number_of_clicks_on_plus_button()")
-
-def number_of_click_on_minus_button(number): # Number of clicks
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    number = int(number)
-    if pm.minus_button_pixel(game_position) :
-        for i in range (number):
-            pyautogui.click( game_position[0]-9, game_position[1]+648 )
-        shout(paint.light_cyan.bold("minus_button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("number_of_click_on_minus_button(number)")
-        time1 = time.time() - time0
-        Minus_Button1 = pm.minus_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and Minus_Button1 and time1 <= 10 :
-            for i in range (number):
-                pyautogui.click( game_position[0]-9, game_position[1]+648 )
-            shout(paint.light_cyan.bold("Minus_Button is clicked"))
-        else :
-            set_check_mode_to_true("Number_of_Click_on_Minus_Button()")
-
-def click_on_all_in_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.all_in_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+531, game_position[1]+648 )
-        shout(paint.light_cyan.bold("All_In_Button is clicked"))
-    else :
-        time0 = time.time()
-        fix_game_disruption("Click_on_All_In_Button()")
-        time1 = time.time() - time0
-        All_In_Button1 = pm.all_in_button_pixel(game_position)
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) and All_In_Button1 and time1 <= 10 :
-            pyautogui.click( game_position[0]+531, game_position[1]+648 )
-            shout(paint.light_cyan.bold("All_In_Button is clicked"))
-        else :
-            set_check_mode_to_true("Click_on_All_In_Button()")
-
-
-def click_on_exit_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.exit_button_pixel(game_position):
-        pyautogui.click( game_position[0]+378, game_position[1]+21 )
-        shout(paint.light_cyan.bold("Exit_Button is clicked"))
-        Just_Seated = None
-    else :
-        fix_game_disruption("click_on_exit_button()")
-        if pm.exit_button_pixel(game_position):
-            pyautogui.click( game_position[0]+378, game_position[1]+21 )
-            shout(paint.light_cyan.bold("Exit_Button is clicked"))
+    if pm.button_pixel(game_position, button_name) : 
+        click(button_name) 
+        if button_name == 'exit':
             Just_Seated = None
-        else : #can't proceed to here
-            raise_exception_the_problem("click_on_exit_button")         
 
-def click_on_exit_yes_button():
-    global game_position
-    load_variables()
-    if pm.exit_yes_button_pixel(game_position):
-        pyautogui.click( game_position[0]+47, game_position[1]+355 )
-        shout(paint.light_cyan.bold("exit_yes_button is clicked"))
     else :
-        raise_exception_the_problem("click_on_exit_yes_button")
 
-def click_on_menu_button():
+        if button_name in ('call', 'check', 'fold', 'bet', 'raise') :
+
+            time0 = time.time()
+            fix_game_disruption("button %s is not visible" %button_name )
+            time1 = time.time() - time0
+            if Just_Seated == True:
+                return None
+            elif Check_Mod == True:
+                if pm.button_pixel(game_position, 'check') :
+                    click('check')
+                elif pm.button_pixel(game_position, 'fold') :
+                    click('fold') 
+                else:
+                    screenshot_error("check and fold buttons are not visible")  
+            elif pm.player_cards_pixel(game_position,  My_Seat_Number ) \
+            and pm.button_pixel(game_position, button_name) and time1 <= 10 :
+                click(button_name) #new function
+            else :
+                set_check_mode_to_true("There is problem on clicking on button %s" %button_name)
+
+        elif button_name in ('exit', 'menu', 'rebuy_menu'):
+
+            fix_game_disruption("button %s is not visible" %button_name )
+            if pm.button_pixel(game_position, button_name):
+                click(button_name)
+                if button_name == 'exit':
+                    Just_Seated = None
+            else:
+                raise_exception_the_problem("button %s is not visible" %button_name)
+
+        elif button_name in ('exit_yes', 'leave_next_hand_ok', 'buy_in', 're_buy'):
+
+            raise_exception_the_problem("button %s is not visible" %button_name)
+
+def number_of_clicks_on_button(button_name, number): # Number of clicks 
+    # for plus and minus buttons
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
-    if pm.menu_button_pixel(game_position):
-        pyautogui.click( game_position[0]-399, game_position[1]-66 )
-        shout(paint.light_cyan.bold("Menu_Button is clicked"))
+
+    number = int(number)
+    if pm.button_pixel(game_position, button_name) :
+        for i in range (number):
+            click(button_name)
     else :
-        fix_game_disruption("click_on_menu_button()")
-        if pm.exit_button_pixel(game_position):
-            pyautogui.click( game_position[0]-399, game_position[1]-66 )
-            shout(paint.light_cyan.bold("Menu_Button is clicked"))
+        time0 = time.time()
+        fix_game_disruption("button %s is not visible" %button_name)
+        time1 = time.time() - time0
+        if Just_Seated == True:
+            return None
+        elif Check_Mod == True:
+            if pm.button_pixel(game_position, 'check') :
+                click('check')
+            elif pm.button_pixel(game_position, 'fold') :
+                click('fold') 
+            else:
+                screenshot_error("check and fold buttons are not visible") 
+        if pm.player_cards_pixel(game_position,  My_Seat_Number ) \
+        and pm.button_pixel(game_position, button_name) and time1 <= 10 :
+            for i in range (number):
+                click(button_name)
         else :
-            raise_exception_the_problem("click_on_menu_button")
+            set_check_mode_to_true("There is problem on clicking on button %s" %button_name)
 
-def click_on_rebuy_menu_button():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    load_variables()
-    if pm.rebuy_menu_button_pixel(game_position):
-        pyautogui.click( game_position[0]+513, game_position[1]+14 )
-        shout(paint.light_cyan.bold("Rebuy_Menu_Button is clicked"))
-    else :
-        fix_game_disruption("click_on_rebuy_menu_button()")
-        if pm.rebuy_menu_button_pixel(game_position):
-            pyautogui.click( game_position[0]+513, game_position[1]+14 )
-            shout(paint.light_cyan.bold("Rebuy_Menu_Button is clicked"))
-        else :
-            raise_exception_the_problem("click_on_rebuy_menu_button")
-
-def click_on_leave_next_hand_ok_button():
-    global game_position
-    load_variables()
-    if pm.leave_next_hand_ok_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+108, game_position[1]+342 )
-        shout(paint.light_cyan.bold("Leave_Next_Hand_OK_Button is clicked"))
-    else :
-        raise_exception_the_problem("click_on_leave_next_hand_ok_button")
-
-def click_on_buy_in_button():
-    global game_position
-    load_variables()
-    if pm.buy_in_button_pixel(game_position) :
-        pyautogui.click( game_position[0]+71, game_position[1]+448 )
-        shout(paint.light_cyan.bold("Buy_In_Button is clicked"))
-    else :
-        raise_exception_the_problem("click_on_buy_in_button")   
-
-def hold_click_on_buy_in_plus_button(): 
+def hold_click_on_button(button_name, seconds = 10): 
+    # for buy_in_plus and buy_in_minus and re_buy_plus and re_buy_minus buttons
     # It holds left click for 10s
     global game_position
     load_variables()
-    if pm.buy_in_plus_button_pixel(game_position) :
-        pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+236)
-        time.sleep(10)
-        pyautogui.mouseUp()
+    if pm.button_pixel(game_position, button_name) :
+        hold_click(button_name ,seconds = seconds)
+
     else :
-        time.sleep(0.5)
-        
-        if pm.buy_in_plus_button_pixel(game_position) :
-            pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+236)
-            time.sleep(10)
-            pyautogui.mouseUp()
+        time.sleep(2)
+        if pm.button_pixel(game_position, button_name) :
+            hold_click(button_name ,seconds = seconds)
         else :
-            raise_exception_the_problem("hold_click_on_buy_in_plus_button") 
+            raise_exception_the_problem("button %s is not visible" %button_name) 
 
-def hold_click_buy_in_minus_button(): #hold left click for 10s
-    global game_position
-    load_variables()
-    if pm.buy_in_minus_button_pixel(game_position):
-        pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+244)
-        time.sleep(10)
-        pyautogui.mouseUp()
-    else :
-        time.sleep(0.5)
-        
-        if pm.buy_in_minus_button_pixel(game_position):
-            pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+244)
-            time.sleep(10)
-            pyautogui.mouseUp()
-        else :
-            raise_exception_the_problem("Hold_Click_Buy_In_Minus_Button")
-
-def click_on_re_buy_button():
-    global game_position
-    load_variables()
-    if pm.re_buy_button_pixel(game_position):
-        pyautogui.click( game_position[0]+91, game_position[1]+430 )
-        shout(paint.light_cyan.bold("Re_Buy_Button is clicked"))
-    else :
-        raise_exception_the_problem("click_on_re_buy_button")
-
-def hold_click_on_re_buy_plus_button(): 
-    # It holds left click for 10s on re_buy_plus_button
-    global game_position
-    load_variables()
-    if pm.re_buy_plus_button_pixel(game_position) :
-        pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+254)
-        time.sleep(10)
-        pyautogui.mouseUp()
-    else :
-        time.sleep(0.5)
-        
-        if pm.re_buy_plus_button_pixel(game_position) :
-            pyautogui.mouseDown(x=game_position[0]+264, y=game_position[1]+254)
-            time.sleep(10)
-            pyautogui.mouseUp()        
-        else :
-            raise_exception_the_problem("hold_click_on_re_buy_plus_button")
-
-def hold_click_on_re_buy_minus_button():
-    # It holds left click for 10s on re_buy_minus_button
-    global game_position 
-    load_variables()
-    if pm.re_buy_minus_button_pixel(game_position) :
-        pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+261)
-        time.sleep(10)
-        pyautogui.mouseUp()
-    else :
-        time.sleep(0.5)
-        
-        if pm.re_buy_minus_button_pixel(game_position) :
-            pyautogui.mouseDown(x=game_position[0]-46, y=game_position[1]+261)
-            time.sleep(10)
-            pyautogui.mouseUp()
-        else :
-            raise_exception_the_problem("hold_click_on_re_buy_minus_button")
-
-def click_on_i_am_back_button(): 
-    global game_position, Check_Mod
-    load_variables()
-    pyautogui.click( game_position[0]+137, game_position[1]+608 )
-    shout(paint.yellow.bold("I_am_back_Button is clicked"))
-    set_check_mode_to_true("click_on_i_am_back_button()")
-
-def click_on_reconnect_button():
+def find_and_click_on_reconnect_button():
     global game_position
     load_variables()
 
     shout('looking for reconnect button')
-    x1=pyautogui.locateCenterOnScreen('reconnect button.png')
+    x1=pyautogui.locateCenterOnScreen('screen_monitoring/game_position/reconnect button.png')
     if x1 != None :
         pyautogui.click(x1)
         shout(paint.yellow.bold('reconnect button founded and clicked'))
         time.sleep(5)
-        if pm.i_am_back_button_pixel(game_position) == True :
-            click_on_i_am_back_button()
+        if pm.button_pixel(game_position, 'i_am_back') == True :
+            click('i_am_back')
         return x1
     
-    x2=pyautogui.locateCenterOnScreen('reconnect button light.png')
+    x2=pyautogui.locateCenterOnScreen('screen_monitoring/game_position/reconnect button.png')
     if x2 != None :
         pyautogui.click(x2)
         shout(paint.yellow.bold('reconnect button founded and clicked'))
         time.sleep(5)
-        if pm.i_am_back_button_pixel(game_position) == True :
-            click_on_i_am_back_button()
+        if pm.button_pixel(game_position, 'i_am_back') == True :
+            click('i_am_back')
         return x1
 
     else :
@@ -546,122 +343,50 @@ def click_on_reconnect_button():
 
 def fold():
     global game_position, Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    return click_on_fold_button()
+    return click_on_button('fold')
 
 def check():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    return click_on_check_button()
+    return click_on_button('check')
 
 def call():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    return click_on_call_button()
-
-def raising_old( Blinds ): # tested ok, not usable, new Raise() function work for it
-    """ 
-    Blinds is the amount of money like in ocr; not the number of blinds
-    if Blinds == Raise_base + Raise_add (or less): won't click on plus button 
-    raising_old() algorithm can be use and act for betting too. but bet() function can not be use for raising.
-    """
-    global Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , Did_i_raised_at , My_last_raise , BLIND
-    load_variables()
-
-    if Pre_Flop1_Deside == True and Flop1_Deside == False :
-        stage = "Pre_Flop" 
-    elif Flop1_Deside == True and Turn1_Deside == False :
-        stage = "Flop"  
-    elif Turn1_Deside == True and River1_Deside == False :
-        stage = "Turn" 
-    elif River1_Deside == True :
-        stage = "River" 
-
-    Did_i_raised_at[stage] = True
-
-    Bets = [Last_Bet_cache[Seat] for Seat in range(1,6) if Last_Red_cache[Seat] and Last_Bet_cache[Seat] != None ]     
-
-    if Pre_Flop1_Deside and not Flop1_Deside :
-        Bets.append(BLIND)
-    else :
-        Bets.append(0) #That's why raising_old() algorithm can be use and act for betting too.
-
-    Bets.sort(reverse = True )
-
-    Raise_base = max(Bets)
-
-    Bets_difference = [ Bets[i] - Bets[i+1] for i in range(len(Bets)-1) ]
-
-    if Bets_difference == [] :
-        Raise_add = BLIND
-    elif max(Bets_difference) <= BLIND :
-        Raise_add = BLIND
-    else :
-        Raise_add = max(Bets_difference)
-
-    if Blinds > Raise_base + Raise_add :
-        My_last_raise[stage] = Blinds
-    else :
-        My_last_raise[stage] = Raise_base + Raise_add
-
-    number_of_clicks_on_plus_button( ( Blinds - (Raise_base + Raise_add) ) // BLIND )
-    return  click_on_raise_button()
-
-def bet( Blinds ): # not usable since there is raising() function act for both raising and betting for all stages
-    """ 
-    Blinds is the amount of money like in ocr; not the number of blinds
-    if Blinds == BLIND (or less): won't click on plus button
-    There can not be betting option on Pre_Flop stage.
-    make sure is_there_any_raiser_now_cache is True, otherwise My_last_raise will be miscalculated. or use raising_old function easily instead.
-    """
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Flop1_Deside , Turn1_Deside , River1_Deside , Did_i_raised_at , My_last_raise , BLIND
-    load_variables()
-
-    # There can not be betting option on Pre_Flop stage
-    if Flop1_Deside == True and Turn1_Deside == False :
-        stage = "Flop"  
-    elif Turn1_Deside == True and River1_Deside == False :
-        stage = "Turn" 
-    elif River1_Deside == True :
-        stage = "River" 
-
-    Did_i_raised_at[stage] = True
-    My_last_raise[stage] = Blinds
-
-    number_of_clicks_on_plus_button( ( Blinds // BLIND ) - 1 )
-    return click_on_bet_button()
+    return click_on_button('call')
 
 def all_in_old( Minus_Blinds = 0 ): #not completed on Did_i_raised_at and My_last_raise. i won't use this fuction anymore
     """ if 0 : all_in everything """
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
-    if pm.all_in_button_pixel(game_position) == False and pm.call_button_pixel(game_position) == True and pm.bet_button_pixel(game_position) == False and pm.raise_button_pixel(game_position) == False :
-        return click_on_call_button()
+    if pm.button_pixel(game_position, 'all_in') == False and pm.button_pixel(game_position, 'call') == True \
+    and pm.button_pixel(game_position, 'bet') == False and pm.button_pixel(game_position, 'raise') == False :
+        return click_on_button('call')
     
     if Minus_Blinds == 0 :
-        click_on_all_in_button()
-        if pm.bet_button_pixel(game_position) == True :
-            return click_on_bet_button()
+        click_on_button('all_in')
+        if pm.button_pixel(game_position, 'bet') == True :
+            return click_on_button('bet')
         else :
-            return click_on_raise_button()
+            return click_on_button('raise')
     else :
-        click_on_all_in_button()
-        number_of_click_on_minus_button( Minus_Blinds )
-        if pm.bet_button_pixel(game_position) == True :
-            return click_on_bet_button()
+        click_on_button('all_in')
+        number_of_clicks_on_button('minus', Minus_Blinds)
+        if pm.button_pixel(game_position, 'bet') == True :
+            return click_on_button('bet')
         else :
-            return click_on_raise_button()
+            return click_on_button('raise')
 
 def all_in():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
-    if pm.all_in_button_pixel(game_position) == False and pm.call_button_pixel(game_position) == True and pm.bet_button_pixel(game_position) == False and pm.raise_button_pixel(game_position) == False :
-        return click_on_call_button()
+    if pm.button_pixel(game_position, 'all_in') == False and pm.button_pixel(game_position, 'call') == True \
+    and pm.button_pixel(game_position, 'bet') == False and pm.button_pixel(game_position, 'raise') == False :
+        return click('call')
     
-    click_on_all_in_button()
-    if pm.bet_button_pixel(game_position) == True :
-        return click_on_bet_button()
+    click_on_button('all_in')
+    if pm.button_pixel(game_position, 'bet') == True :
+        return click('bet')
     else :
-        return click_on_raise_button()
+        return click_on_button('raise')
 
 def raising( Blinds ):
     """ 
@@ -709,43 +434,44 @@ def raising( Blinds ):
     else :
         My_last_raise[stage] = Raise_base + Raise_add
 
-    number_of_clicks_on_plus_button( ( Blinds - (Raise_base + Raise_add) ) // BLIND )
+    number_of_clicks_on_button('plus', ( Blinds - (Raise_base + Raise_add) ) // BLIND)
     #Till here as same as raising()
 
-    if pm.raise_button_pixel(game_position) :
-        click_on_raise_button()
-    elif pm.bet_button_pixel(game_position) :
-        click_on_bet_button()
+    if pm.button_pixel(game_position, 'raise') :
+        click('raise')
+    elif pm.button_pixel(game_position, 'bet') :
+        click('bet')
     else :
 
         fix_game_disruption("RAISE() Button, No Raise nor Bet Button founded")
-        if pm.raise_button_pixel(game_position) :
-            click_on_raise_button()
-        elif pm.bet_button_pixel(game_position) :
-            click_on_bet_button()  
+        if pm.button_pixel(game_position, 'raise') :
+            click('raise')
+        elif pm.button_pixel(game_position, 'bet') :
+            click('bet')
         else :
-            set_check_mode_to_true("No Raise nor Bet Button founded")
+            set_check_mode_to_true("No raise nor bet button founded")
 
 def check_fold():
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-    if pm.check_button_pixel(game_position) :
-        click_on_check_button()
-    elif pm.fold_button_pixel(game_position) :
-        click_on_fold_button()
+    if pm.button_pixel(game_position, 'check') :
+        click('check')
+    elif pm.button_pixel(game_position, 'fold') :
+        click('fold') 
     else :
 
-        set_check_mode_to_true("check_fold()(It's already True)") #It's already True
         fix_game_disruption("check_fold()")
-        if pm.check_button_pixel(game_position) :
-            click_on_check_button()
-        elif pm.fold_button_pixel(game_position) :
-            click_on_fold_button()        
-
-
+        if Just_Seated != False:
+            return None
+        elif pm.button_pixel(game_position, 'check') :
+            click('check')
+        elif pm.button_pixel(game_position, 'fold') :
+            click('fold') 
+        else:
+            set_check_mode_to_true("check_fold()(It's already True)") #It's already True
+            screenshot_error("check and fold buttons are not visible")      
 
 
 # def_Buttons_new Ended ----------------------------------------------------------------------------------------------------------
-
 
 
 
@@ -885,10 +611,6 @@ def Read_River_Cards():
             set_check_mode_to_true("Read_Flop_Cards():Card_5th")
 
 
-
-
-
-
 def Download_My_Cards( My_Seat , Card_xth ) : 
     global Cards_names
     load_variables()
@@ -937,9 +659,7 @@ def Download_My_Cards( My_Seat , Card_xth ) :
     return None
 
 
-
-
-def read_my_cards(game_position, my_seat): 
+def read_my_cards(my_seat): 
     global game_position, My_1th_Card , My_2th_Card  , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
     t0 = time.time()
@@ -969,9 +689,6 @@ def read_my_cards(game_position, my_seat):
 
         if My_2th_Card == None or pm.flop_pixel(game_position) :
             set_check_mode_to_true("Read_My_Cards():My_2th_Card")
-
-
-
 
 
 
@@ -1136,9 +853,9 @@ def find_game_reference_point_for_starting(): #when i am watching the game mysel
     load_variables()
 
     shout(paint.yellow.bold("Looking for game on screen..."))
-    game_position = pyautogui.locateOnScreen('mainpic celeb.png')
+    game_position = pyautogui.locateOnScreen('screen_monitoring/game_position/reference image.png')
     if game_position == None:
-        game_position_new = pyautogui.locateOnScreen('Alternative main pic celeb.png')
+        game_position_new = pyautogui.locateOnScreen('screen_monitoring/game_position/alternative reference image.png')
         if game_position_new is None:
             screenshot_error("Could not find game on screen") #Type_of_Error in string
             raise Exception('Could not find game on screen. Is the game visible?')
@@ -1155,9 +872,9 @@ def find_game_reference_point():
     game_position = None ; fo = 0
     while game_position == None and fo <= 2 :
         fo += 1
-        game_position = pyautogui.locateOnScreen('mainpic celeb.png')
+        game_position = pyautogui.locateOnScreen('screen_monitoring/game_position/reference image.png')
         if game_position == None:
-            game_position_new = pyautogui.locateOnScreen('Alternative main pic celeb.png')
+            game_position_new = pyautogui.locateOnScreen('screen_monitoring/game_position/alternative reference image.png')
             if game_position_new == None and fo == 2 :
                 shout(paint.yellow.bold("Could not find game on screen,program will use old position"))
                 screenshot_error("Could not find game on screen, Program will use former position")
@@ -1195,14 +912,14 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
     shout(paint.yellow.bold("Searching for a seat to sit in"))
     My_Seat_Number = None
     for i in range(1 ,6 ):
-        if pm.available_seat_pixel(game_position, i) == True :
-            click_on_available_seat(i)
+        if pm.available_seat_pixel(game_position,i) == True :
+            click('available_seat_%s' %i)
             My_Seat_Number = i
             Just_Seated = True
             shout(paint.yellow.bold("Sit_In() --> Just_Seated is True."))
             break
     if My_Seat_Number == None :
-        click_on_exit_button()
+        click_on_button('exit')
         
         raise Exception("Sit_In(chips):This can not happen IN FUTURE becuase main menu automation is built")
     else :
@@ -1210,22 +927,22 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
         time1 = 0
         Buy_In = None 
         while ( (time1 < 5) and Buy_In !=True ):
-            Buy_In = pm.buy_in_button_pixel(game_position)
+            Buy_In = pm.button_pixel(game_position, 'buy_in')
             x2 = time.time()
             time1 = x2-x1
         if Buy_In != True :
             fix_game_disruption("Sit_In(chips):Buy_In != True")
         if (chips == "Min buy in" and My_Seat_Number != None) :
-            hold_click_buy_in_minus_button()
+            hold_click_on_button('buy_in_minus', seconds = 10)
         if (chips == "Max buy in" and My_Seat_Number != None):
-            hold_click_on_buy_in_plus_button()
+            hold_click_on_button('buy_in_plus', seconds = 10)
         if My_Seat_Number != None :
-            click_on_buy_in_button()
+            click_on_button('buy_in')
             screenshot_error("Rebuyed")
 #
 #def pm.i_am_back_button_pixel(game_position):
 
-#def click_on_i_am_back_button(): 
+#def click_on_i_am_back_button(): # we can use click('i_am_back') directly
 
 #def click_on_reconnect_button():
 
@@ -1250,15 +967,15 @@ def check_i_am_in_or_out():
     global game_position, My_Seat_Number , My_Profile_Name , Check_Mod
     load_variables()
 
-    if pm.i_am_back_button_pixel(game_position) == True :
-        click_on_i_am_back_button()
+    if pm.button_pixel(game_position, 'i_am_back') == True :
+        click('i_am_back')
     if ocr_my_name(My_Seat_Number) == My_Profile_Name or ocr_my_name(My_Seat_Number) == True :
         shout(paint.yellow.bold("I am In"))
         return ("In")
 
     for i in range(1,6):
         if pm.i_am_seated_pixel(game_position, i) :
-            if is_internet_disconnected() == False and click_on_reconnect_button() == None :
+            if is_internet_disconnected() == False and find_and_click_on_reconnect_button() == None :
                 if My_Seat_Number == i :
                     shout("I am In not by OCR")
                     return ("In")
@@ -1272,7 +989,7 @@ def check_i_am_in_or_out():
     return ("Out")
 
 def fix_game_disruption(String = None): #if find_game_reference_point() == None or ...
-    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
+    global game_position, Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
     load_variables()
 
     shout(paint.yellow.bold( 7*"-" ))
@@ -1299,16 +1016,16 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
             continue
         shout('Internet is Connected Back!')
         time.sleep(15)
-        if click_on_reconnect_button() == None :
+        if find_and_click_on_reconnect_button() == None :
             screenshot_error('No reconnect button founded')
 
-    pyautogui.click(0, 720) # click to Exit probable Advertisement
+    click('exit_probable_advertisement') # click to Exit probable Advertisement
     shout(paint.yellow.bold("Position (0,720) is clicked"))
     pyautogui.press('esc')
     
-    game_position = pyautogui.locateOnScreen('mainpic celeb.png')
+    game_position = pyautogui.locateOnScreen('screen_monitoring/game_position/reference image.png')
     if game_position == None:
-        game_position_new =pyautogui.locateOnScreen('Alternative main pic celeb.png')    
+        game_position_new =pyautogui.locateOnScreen('screen_monitoring/game_position/alternative reference image.png')    
     if game_position != None :
         game_position = (int(game_position[0]),int(game_position[1]))
     else:
@@ -1317,7 +1034,7 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
                 shout("SystemSettings Update is on desktop")
                 shout("closing Windows Update program")
                 screenshot_error('right before closing windows update program')
-                pyautogui.click(1570, 10) 
+                click('close_update_window')
                 break        
 
     if game_position == None :
@@ -1325,14 +1042,14 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     if game_position != None :
         shout(paint.yellow.bold("Game region refounded after fix_game_disruption()"))
     
-    if pm.i_am_back_button_pixel(game_position) == True :
+    if pm.button_pixel(game_position, 'i_am_back') == True :
+        click('i_am_back')
         if pm.player_cards_pixel(game_position,  My_Seat_Number ) == True :
             Check_Mod = True
             shout(paint.yellow.bold("After fix_game_disruption() --> Check_Mod is True."))
         else :
             Just_Seated = True
             shout(paint.on_yellow.bold("After fix_game_disruption() --> Just_Seated is True."))
-        click_on_i_am_back_button()
 
     if check_i_am_in_or_out() == "Out":
         sit_in("Min buy in")
@@ -1580,7 +1297,7 @@ def load_variables():
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( "variables.p", "rb" ) )
+    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( "pickled variables.p", "rb" ) )
 
 def save_variables() :
     """
@@ -1620,7 +1337,7 @@ def save_variables() :
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat], open( "variables.p", "wb" ) )
+    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat], open( "pickled variables.p", "wb" ) )
 
 def click_decision():
 
@@ -1777,7 +1494,7 @@ while True :
     time1 = time.time()
     shout(paint.light_magenta.bold("Looking for light...")) 
     while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and Flop1_Deside == False and Just_Seated == False and time.time() - time1 < 5 * 60 :
-        if pm.i_am_back_button_pixel(game_position) :
+        if pm.button_pixel(game_position, 'i_am_back') :
             fix_game_disruption("2.5 I am back Button is True")
         Hand_End_Cheker1 = hand_is_ended()
         its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
@@ -1833,7 +1550,7 @@ while True :
                     shout("Looking for game on screen after 30s of idle...")
                     find_game_reference_point()
                     fo = 1
-                if pm.i_am_back_button_pixel(game_position) :
+                if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("4.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
@@ -1889,7 +1606,7 @@ while True :
                     shout("Looking for game on screen after 30s of idle...")
                     find_game_reference_point()
                     fo = 1
-                if pm.i_am_back_button_pixel(game_position) :
+                if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("6.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
@@ -1949,7 +1666,7 @@ while True :
                     shout("Looking for game on screen after 30s of idle...")
                     find_game_reference_point()
                     fo = 1
-                if pm.i_am_back_button_pixel(game_position) :
+                if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("8.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
@@ -2008,7 +1725,7 @@ while True :
                     shout("Looking for game on screen after 30s of idle...")
                     find_game_reference_point()
                     fo = 1
-                if pm.i_am_back_button_pixel(game_position) :
+                if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("10.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
@@ -2126,7 +1843,7 @@ while True :
             Cards1 = False
             shout(paint.light_magenta.bold("Looking for cards..."))
             while Hand_End_Cheker1 == False and Cards1 == False and Just_Seated == False and time02 < 1.5 * 60 :
-                if pm.i_am_back_button_pixel(game_position) :
+                if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("14.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
                 Cards1 = pm.player_cards_pixel(game_position,  My_Seat_Number )
