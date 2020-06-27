@@ -497,12 +497,12 @@ def read_and_global_flop_cards():
     global game_position, Card_1th , Card_2th , Card_3th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
     #table_1th_card, table_2th_card, table_3th_card = read_flop_cards(game_position)
-    Card_1th, Card_2th, Card_3th = read_flop_cards(game_position)
+    Card_1th, Card_2th, Card_3th = read_cards.read_flop_cards(game_position)
 
     if Card_1th == 'Unknown' or Card_2th == 'Unknown' or Card_3th == 'Unknown':
         fix_game_disruption("Flop cards are read 'Unknown'")
 
-        Card_1th, Card_2th, Card_3th = read_flop_cards(game_position)
+        Card_1th, Card_2th, Card_3th = read_cards.read_flop_cards(game_position)
 
         if 'Unknown' in Card_1th or 'Unknown' in Card_2th or 'Unknown' in Card_3th \
         or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
