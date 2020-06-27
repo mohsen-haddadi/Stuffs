@@ -481,216 +481,54 @@ def check_fold():
 
 # Read Cards: --------------------------------------------------------------------------------------------------------------------
 
-Cards_names=['A c','2 c','3 c','4 c','5 c','6 c','7 c','8 c','9 c','10 c','J c','Q c','K c',
-             'A d','2 d','3 d','4 d','5 d','6 d','7 d','8 d','9 d','10 d','J d','Q d','K d',
-             'A h','2 h','3 h','4 h','5 h','6 h','7 h','8 h','9 h','10 h','J h','Q h','K h',
-             'A s','2 s','3 s','4 s','5 s','6 s','7 s','8 s','9 s','10 s','J s','Q s','K s']
-
-def imPath(filename):
-    return os.path.join('ReadCards', filename)
-        
-
-def Download_Table_Cards(Card_xth) : 
-    global Cards_names
-    load_variables()
-
-    region_table_card = { 1:(game_position[0]-38, game_position[1]+215, 20, 40) , 2:(game_position[0]+25, game_position[1]+215, 20, 40) , 3:(game_position[0]+87, game_position[1]+215, 20, 40) , 4:(game_position[0]+150, game_position[1]+215, 20, 40) , 5:(game_position[0]+212, game_position[1]+215, 20, 40) }
-
-    i = 1 
-    while True :
-        try :
-            im = open("New founded cards images/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,i,Card_xth) ,"rb")
-            i += 1
-        except :
-            pyautogui.screenshot("New founded cards images/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,i,Card_xth) , region_table_card[Card_xth] )
-            break
-        
-    for n in Cards_names :
-        if open("Cards image library/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,n,Card_xth) ,"rb").read() == open("New founded cards images/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,i,Card_xth) ,"rb").read() :
-            os.remove("New founded cards images/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,i,Card_xth))
-            shout(paint.green.bold("%sth card is: %s" %(Card_xth,n) ))
-            return n
-        
-    for n in Cards_names :
-        j = 2
-        while True :
-            try :
-                if open("Cards image library/%sth Card on table/%s_%sth Card on Table (%s).png" %(Card_xth,n,Card_xth,j) ,"rb").read() == open("New founded cards images/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,i,Card_xth) ,"rb").read() :
-                    os.remove("New founded cards images/%sth Card on table/%s_%sth Card on Table.png" %(Card_xth,i,Card_xth))
-                    shout(paint.green.bold("%sth card is: %s (Founded by extra card images)" %(Card_xth,n) ))
-                    return n
-                i += 1
-            except :
-                break
-                    
-    return None
-
-def Read_Flop_Cards(): 
-    global game_position, Card_1th , Card_2th , Card_3th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-
-    t0 = time.time()
-
-    Card_1th = Download_Table_Cards(1)
-
-    if Card_1th == None :
-        fix_game_disruption("Read_Flop_Cards():Card_1th")
-
-        Card_1th = Download_Table_Cards(1)
-
-        if Card_1th == None or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
-            set_check_mode_to_true("Read_Flop_Cards():Card_1th")
-            shout("Reading Flop cards is stoped")
-            return None # to stop fix_game_disruption for 2 and 3 cards
-
-
-    Card_2th = Download_Table_Cards(2)
-
-    if Card_2th == None :
-        fix_game_disruption("Read_Flop_Cards():Card_2th")
-
-        Card_2th = Download_Table_Cards(2)
-
-        if Card_2th == None or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
-            set_check_mode_to_true("Read_Flop_Cards():Card_2th")
-            shout("Reading Flop cards is stoped")
-            return None # to stop fix_game_disruption for 3 card   
-
-
-    Card_3th = Download_Table_Cards(3)
-
-    time_str = "Reading Flop cards took:%s" %(time.time()-t0)
-    time_str = time_str[:-15]
-    shout(time_str)
-
-    if Card_3th == None :
-        fix_game_disruption("Read_Flop_Cards():Card_3th")
-
-        Card_3th = Download_Table_Cards(3)
-
-        if Card_3th == None or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position):
-            set_check_mode_to_true("Read_Flop_Cards():Card_3th")
-        
-
-def Read_Turn_Cards(): 
-    global game_position, Card_4th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-
-    t0 = time.time()
-   
-    Card_4th = Download_Table_Cards(4)
-
-    time_str = "Reading Turn card took:%s" %(time.time()-t0)
-    time_str = time_str[:-15]
-    shout(time_str)
-
-    if Card_4th == None :
-        fix_game_disruption("Read_Flop_Cards():Card_4th")
-
-        Card_4th = Download_Table_Cards(4)
-
-        if Card_4th == None or not pm.turn_pixel(game_position) or pm.river_pixel(game_position) :
-            set_check_mode_to_true("Read_Flop_Cards():Card_4th")
-
-
-def Read_River_Cards(): 
-    global game_position, Card_5th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
-
-    t0 = time.time()
-    
-    Card_5th = Download_Table_Cards(5)
-    
-    time_str = "Reading River card took:%s" %(time.time()-t0)
-    time_str = time_str[:-15]
-    shout(time_str)
-    
-    if Card_5th == None :
-        fix_game_disruption("Read_Flop_Cards():Card_5th")
-
-        Card_5th = Download_Table_Cards(5)
-
-        if Card_5th == None or not pm.river_pixel(game_position):
-            set_check_mode_to_true("Read_Flop_Cards():Card_5th")
-
-
-def Download_My_Cards( My_Seat , Card_xth ) : 
-    global Cards_names
-    load_variables()
-
-    region_1th_card = { 1:(game_position[0]+369, game_position[1]+391, 10, 30) , 2:(game_position[0]+115, game_position[1]+393, 10, 30) , 3:(game_position[0]-140, game_position[1]+390, 10, 30) , 4:(game_position[0]-171, game_position[1]+85, 10, 30) , 5:(game_position[0]+399, game_position[1]+85, 10, 30) }
-    region_2th_card = { 1:(game_position[0]+388, game_position[1]+391, 10, 30) , 2:(game_position[0]+133, game_position[1]+393, 10, 30) , 3:(game_position[0]-122, game_position[1]+390, 10, 30) , 4:(game_position[0]-152, game_position[1]+85, 10, 30) , 5:(game_position[0]+418, game_position[1]+85, 10, 30) }
-
-    i = 1
-    while True :
-        try :
-            im = open("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth) ,"rb")
-            i += 1
-        except :
-            if Card_xth == 1 :
-                pyautogui.screenshot("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth) , region_1th_card[My_Seat] )
-                break
-            if Card_xth == 2 :
-                pyautogui.screenshot("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth) , region_2th_card[My_Seat] )
-                break
-
-            
-    for n in Cards_names :
-        if open("Cards image library/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,n,My_Seat,Card_xth) ,"rb").read() == open("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth) ,"rb").read() :
-            os.remove("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth))
-            if Card_xth == 1 :
-                shout(paint.green.bold("My first Card is: %s" %n))
-            if Card_xth == 2 :
-                shout(paint.green.bold("My second Card is: %s" %n))
-            return n
-        
-    for n in Cards_names :
-        j = 2
-        while True :
-            try :
-                if open("Cards image library/Seat %s %sth Card/%s_Seat%s %sth Card (%s).png" %(My_Seat,Card_xth,n,My_Seat,Card_xth,j) ,"rb").read() == open("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth) ,"rb").read() :
-                    os.remove("New founded cards images/Seat %s %sth Card/%s_Seat%s %sth Card.png" %(My_Seat,Card_xth,i,My_Seat,Card_xth))
-                    if Card_xth == 1 :
-                        shout(paint.green.bold("My first Card is: %s (Founded by extra card images)" %n))
-                    if Card_xth == 2 :
-                        shout(paint.green.bold("My second Card is: %s (Founded by extra card images)" %n))
-                    return n
-                i += 1
-            except :
-                break
-            
-    return None
-
-
-def read_my_cards(my_seat): 
+def read_and_global_my_cards():
     global game_position, My_1th_Card , My_2th_Card  , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
-    t0 = time.time()
+
+    My_1th_Card, My_2th_Card = read_cards.read_my_cards(game_position, My_Seat)
+
+    if My_1th_Card == 'Unknown' or My_2th_Card == 'Unknown':
+        fix_game_disruption("my cards are read Unknown")
+        My_1th_Card, My_2th_Card = read_cards.read_my_cards(game_position, My_Seat)
+        if My_1th_Card == 'Unknown' or My_2th_Card == 'Unknown' or pm.flop_pixel(game_position):
+            set_check_mode_to_true("my cards are read Unknown again")
+
+def read_and_global_flop_cards(): 
+    global game_position, Card_1th , Card_2th , Card_3th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+
+    #table_1th_card, table_2th_card, table_3th_card = read_flop_cards(game_position)
+    Card_1th, Card_2th, Card_3th = read_flop_cards(game_position)
+
+    if Card_1th == 'Unknown' or Card_2th == 'Unknown' or Card_3th == 'Unknown':
+        fix_game_disruption("Flop cards are read 'Unknown'")
+
+        Card_1th, Card_2th, Card_3th = read_flop_cards(game_position)
+
+        if Card_1th == 'Unknown' or Card_2th == 'Unknown' or Card_3th == 'Unknown' \
+        or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
+            set_check_mode_to_true("Flop cards are read 'Unknown' again")
+        
+def read_and_global_turn_card(): 
+    global game_position, Card_4th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+
+    Card_4th = read_cards.read_turn_card(game_position)
     
-    My_1th_Card = Download_My_Cards(My_Seat_Number, 1)
+    if Card_4th == 'Unknown' :
+        fix_game_disruption("Turn card is read 'Unknown'")
+        Card_4th = read_cards.read_turn_card(game_position)
+        if Card_4th == 'Unknown' or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
+            set_check_mode_to_true("Turn card is read 'Unknown' again")
 
-    if My_1th_Card == None :
-        fix_game_disruption("Read_My_Cards():My_1th_Card")
-
-        My_1th_Card = Download_My_Cards(My_Seat_Number, 1)
-
-        if My_1th_Card == None or pm.flop_pixel(game_position) :
-            set_check_mode_to_true("Read_My_Cards():My_1th_Card")
-            shout("Reading my 2th card is stoped")
-            return None # to stop fix_game_disruption for my 2th card
-
-
-
-    My_2th_Card = Download_My_Cards(My_Seat_Number, 2)
-    time_str = "Reading my cards took:%s" %(time.time()-t0)
-    time_str = time_str[:-15]
-    shout(time_str)
-    if My_2th_Card == None :
-        fix_game_disruption("Read_My_Cards():My_2th_Card")
-
-        My_2th_Card = Download_My_Cards(My_Seat_Number, 2)
-
-        if My_2th_Card == None or pm.flop_pixel(game_position) :
-            set_check_mode_to_true("Read_My_Cards():My_2th_Card")
-
-
+def read_and_global_river_card(): 
+    global game_position, Card_5th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    
+    Card_5th = read_cards.read_river_card(game_position)
+    
+    if Card_5th == 'Unknown' :
+        fix_game_disruption("River card is read 'Unknown'")
+        Card_5th = read_cards.read_river_card(game_position)
+        if Card_5th == 'Unknown' or not pm.river_pixel(game_position):
+            set_check_mode_to_true("River card is read 'Unknown' again")
 
 # Read Cards Ended ---------------------------------------------------------------------------------------------------------------
 
@@ -1485,7 +1323,7 @@ while True :
         Pre_Flop1_Deside = True
 
     if Hand_End_Cheker1 == False and pm.player_cards_pixel(game_position,  My_Seat_Number ) == True and Just_Seated == False :  
-        Read_My_Cards() #
+        read_and_global_my_cards() #
         play_sound() #
 
 
@@ -1577,7 +1415,7 @@ while True :
                 if Flop1 == True :
                     Flop1_Deside = True
                     shout(paint.light_magenta.bold("Reading Flop Cards..."))
-                    Read_Flop_Cards() #
+                    read_and_global_flop_cards() #
 
         if not time02 < 5 * 60 :
             raise Exception("8.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
@@ -1636,7 +1474,7 @@ while True :
                 if Turn1 == True :            
                     Turn1_Deside = True
                     shout(paint.light_magenta.bold("Reading Turn Card"))
-                    Read_Turn_Cards() #        
+                    read_and_global_turn_card() #        
             
         if not time02 < 5 * 60 :
             raise Exception("10.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
@@ -1696,7 +1534,7 @@ while True :
                 if River1 == True :            
                     River1_Deside = True
                     shout(paint.light_magenta.bold("Reading River Card"))
-                    Read_River_Cards() #        
+                    read_and_global_river_card() #        
             
         if not time02 < 5 * 60 :
             raise Exception("12.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
