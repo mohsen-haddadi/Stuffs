@@ -499,7 +499,7 @@ def read_and_global_flop_cards():
     #table_1th_card, table_2th_card, table_3th_card = read_flop_cards(game_position)
     Card_1th, Card_2th, Card_3th = read_cards.read_flop_cards(game_position)
 
-    if Card_1th == 'Unknown' or Card_2th == 'Unknown' or Card_3th == 'Unknown':
+    if 'Unknown' in Card_1th or 'Unknown' in Card_2th or 'Unknown' in Card_3th:
         fix_game_disruption("Flop cards are read 'Unknown'")
 
         Card_1th, Card_2th, Card_3th = read_cards.read_flop_cards(game_position)
@@ -1174,26 +1174,26 @@ def click_decision():
 
     decision = decision_making.decide.decide()
     if decision[0] == "check" :
-        click_button.check()
+        check()
     elif decision[0] == "call" :
-        click_button.call()
+        call()
     elif decision[0] == "fold" :
-        click_button.fold()
+        fold()
     elif decision[0] == "raise" :
-        click_button.raising(decision[1] * BLIND)
+        raising(decision[1] * BLIND)
     elif decision[0] == "all_in" :
-        click_button.all_in()
+        all_in()
     elif decision[0] == "check_fold" :
-        click_button.check_fold()
+        check_fold()
     elif decision[0] == "not defined" :
         screenshot_error("decide function deficiency")
-        click_button.check_fold()
+        check_fold()
     elif decision == None:
         screenshot_error("A play function returned None")
-        click_button.check_fold()
+        check_fold()
     else :
         screenshot_error("returned string is not in standard format")
-        click_button.check_fold()
+        check_fold()
     time.sleep(1)
 
 def set_all_variables_to_none():
