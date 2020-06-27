@@ -476,9 +476,6 @@ def check_fold():
 
 
 
-
-
-
 # Read Cards: --------------------------------------------------------------------------------------------------------------------
 
 def read_and_global_my_cards():
@@ -487,11 +484,14 @@ def read_and_global_my_cards():
 
     My_1th_Card, My_2th_Card = read_cards.read_my_cards(game_position, My_Seat)
 
-    if My_1th_Card == 'Unknown' or My_2th_Card == 'Unknown':
+    if 'Unknown' in My_1th_Card or 'Unknown' in My_2th_Card:
         fix_game_disruption("my cards are read Unknown")
         My_1th_Card, My_2th_Card = read_cards.read_my_cards(game_position, My_Seat)
-        if My_1th_Card == 'Unknown' or My_2th_Card == 'Unknown' or pm.flop_pixel(game_position):
+        if 'Unknown' in My_1th_Card or 'Unknown' in My_2th_Card or pm.flop_pixel(game_position):
             set_check_mode_to_true("my cards are read Unknown again")
+
+    shout(paint.green.bold("My cards are: %s %s, %s %s" \
+    %(My_1th_Card[0][0], My_1th_Card[0][1],My_2th_Card[1][0], My_2th_Card[1][1])))
 
 def read_and_global_flop_cards(): 
     global game_position, Card_1th , Card_2th , Card_3th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
@@ -504,35 +504,40 @@ def read_and_global_flop_cards():
 
         Card_1th, Card_2th, Card_3th = read_flop_cards(game_position)
 
-        if Card_1th == 'Unknown' or Card_2th == 'Unknown' or Card_3th == 'Unknown' \
+        if 'Unknown' in Card_1th or 'Unknown' in Card_2th or 'Unknown' in Card_3th \
         or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
             set_check_mode_to_true("Flop cards are read 'Unknown' again")
-        
+
+    shout(paint.green.bold("Flop cards are: %s %s, %s %s, %s %s" \
+    %(Card_1th[0][0], Card_1th[0][1], Card_2th[1][0], Card_2th[1][1], Card_3th[1][0], Card_3th[1][1])))
+
 def read_and_global_turn_card(): 
     global game_position, Card_4th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
     Card_4th = read_cards.read_turn_card(game_position)
     
-    if Card_4th == 'Unknown' :
+    if 'Unknown' in Card_4th:
         fix_game_disruption("Turn card is read 'Unknown'")
         Card_4th = read_cards.read_turn_card(game_position)
-        if Card_4th == 'Unknown' or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
+        if 'Unknown' in Card_4th or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
             set_check_mode_to_true("Turn card is read 'Unknown' again")
+
+    shout(paint.green.bold("Turn card is: %s %s" %(Card_4th[0], Card_4th[1])))
 
 def read_and_global_river_card(): 
     global game_position, Card_5th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     
     Card_5th = read_cards.read_river_card(game_position)
     
-    if Card_5th == 'Unknown' :
+    if 'Unknown' in Card_5th:
         fix_game_disruption("River card is read 'Unknown'")
         Card_5th = read_cards.read_river_card(game_position)
-        if Card_5th == 'Unknown' or not pm.river_pixel(game_position):
+        if 'Unknown' in Card_5th or not pm.river_pixel(game_position):
             set_check_mode_to_true("River card is read 'Unknown' again")
 
+    shout(paint.green.bold("River card is: %s %s" %(Card_5th[0], Card_5th[1])))
+
 # Read Cards Ended ---------------------------------------------------------------------------------------------------------------
-
-
 
 
 
@@ -672,9 +677,6 @@ def ocr_my_name(game_position, seat):
     shout("string of my bank OCR on seat%s is: %s" %(seat, string) )
     return string
 
-
-
-
 # OCR Others Name Positions 2016 Ended -------------------------------------------------------------------------------------------
 
 
@@ -682,9 +684,6 @@ def ocr_my_name(game_position, seat):
 
 
 # fix_game_disruption: -------------------------------------------------------------------------------------------------------------------
-
-
-
 
 def find_game_reference_point_for_starting(): #when i am watching the game myself, raise the Exeption 
     global game_position
@@ -728,16 +727,11 @@ def find_game_reference_point():
 
 #def ocr(x,y,h,w):
 
-
 #def ocr_my_name(Seat_Num):
-
 #
 #def pm.i_am_seated_pixel(game_position, Number):
-
-
 #
 #def pm.available_seat_pixel(game_position, Number):
-
 
 #def click_on_available_seat(seat):
 
@@ -784,7 +778,6 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
 
 #def click_on_reconnect_button():
 
-
 def is_internet_disconnected():
   REMOTE_SERVER = "www.google.com"
   try:
@@ -799,7 +792,6 @@ def is_internet_disconnected():
   except:
      pass
   return True
-
 
 def check_i_am_in_or_out():
     global game_position, My_Seat_Number , My_Profile_Name , Check_Mod
@@ -912,8 +904,9 @@ def raise_exception_the_problem(string):
     screenshot_error( 'What is the Problem (%s)' %string )
     raise Exception('What is the Problem?')
 
-
 # fix_game_disruption Ended --------------------------------------------------------------------------------------------------------------
+
+
 
 ### Read_Bets & dinctionaries & Reset var funcs: ****************************************************************************************************************************
 
