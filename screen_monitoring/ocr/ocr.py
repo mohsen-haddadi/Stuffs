@@ -47,7 +47,6 @@ def replace_letters_s_o(ocr_string):
     string = string.replace("O","0")
     return string
 
-
 def download_bet_image(game_position, seat):
 
     BET_IMAGE_REGION = { 
@@ -162,8 +161,8 @@ def test(show_images = False):
     def find_game_reference_point_for_testing():
         #global game_position
 
-        print('searching for game region on screen...')
-        game_position = pyautogui.locateOnScreen('reference image for test function.png')
+        image_path = Path().absolute().parent / 'find_game_position/reference image.png'
+        game_position = pyautogui.locateOnScreen(str(image_path))
         if game_position == None:
             raise Exception("can not find game region on screen")
         else:
@@ -249,4 +248,5 @@ def test(show_images = False):
     print('average time consumption for each ocr: %s' %(t/25) )
 
 if __name__ == '__main__':
+    from pathlib import Path
     test(show_images = True)

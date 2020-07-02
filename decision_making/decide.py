@@ -1,6 +1,7 @@
 import pickle
 from pathlib import Path
-from play import * 
+from decision_making.play import *
+#from play import * 
 
 def load_variables():
     """ variables order is important while loading """

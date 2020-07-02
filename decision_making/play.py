@@ -1,14 +1,21 @@
 import pickle
 from pathlib import Path
-from rules_and_info.table_information import *
-from rules_and_info.straight import *
-from rules_and_info.flush import *
-from rules_and_info.non_straight_and_flush import *
-from rules_and_info.suit_and_value import *
-from rules_and_info.starting_hands import *
 
-#from str & flush & pair files import *
-#from FUNCTIONS_hands_category import *
+from decision_making.rules_and_info.table_information import *
+from decision_making.rules_and_info.straight import *
+from decision_making.rules_and_info.flush import *
+from decision_making.rules_and_info.non_straight_and_flush import *
+from decision_making.rules_and_info.suit_and_value import *
+from decision_making.rules_and_info.starting_hands import *
+
+#from rules_and_info.table_information import *
+#from rules_and_info.straight import *
+#from rules_and_info.flush import *
+#from rules_and_info.non_straight_and_flush import *
+#from rules_and_info.suit_and_value import *
+#from rules_and_info.starting_hands import *
+
+
 """
 some Play functions are in calendare. add them here later
 Me_str() or Me_Flush() can overlap lower than Me_full_house() (Except Me_str() and Me_2_pair() won't overlap) 
@@ -115,13 +122,13 @@ def play_hand5_no_raiser(): # Check the logic
         else :
             return False
 
-def play_hand4():
-
-def play_hand3():
-
-def play_hand2():
-
-def play_hand1():
+#def play_hand4():
+#
+#def play_hand3():
+#
+#def play_hand2():
+#
+#def play_hand1():
 
 def play_individual_cards():
 
@@ -410,7 +417,7 @@ def play_straight():
                 return ("raise", Max_raise_sofar() // BLIND)    
 
         elif Table_Flush_3_cards() or Table_1_pair() or\
-        ( Me_str_2_cards() and Me_str_2_cards_Ranking() =! 1 and not is_there_any_better_possible_1_card_straight_on_table() ) or\
+        ( Me_str_2_cards() and Me_str_2_cards_Ranking() != 1 and not is_there_any_better_possible_1_card_straight_on_table() ) or\
         ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 and \
         Table_str_2_cards() and str_2_Cards_list([Card_1th , Card_2th , Card_3th , Card_4th , Card_5th])[0][0] > \
         str_1_Cards_list([Card_1th , Card_2th , Card_3th , Card_4th ,Card_5th])[0] ) : #Avoid Me_str_1_cards 10 to Ace
@@ -656,16 +663,16 @@ def play_4_of_kind():
 
 
 
-def play_pre_flop():
-
-def play_flop(): # write it in paper and then define it here
-
-def play_turn(): # write it in paper and then define it here
-
-def play_river(): # write it in paper and then define it here
-
-
-def overall_full_house(): # define it 1.here or 2.at supporting function(need to import FUNCTIONS_Pair file) or 3.define at FUNCTIONS_Pair file. NUMBER 3 IS THE BEST ANSWER
-
-def overall_4_of_kind(): # define it 1.here or 2.at supporting function(need to import FUNCTIONS_Pair file) or 3.define at FUNCTIONS_Pair file. NUMBER 3 IS THE BEST ANSWER
+#def play_pre_flop():
+#
+#def play_flop(): # write it in paper and then define it here
+#
+#def play_turn(): # write it in paper and then define it here
+#
+#def play_river(): # write it in paper and then define it here
+#
+#
+#def overall_full_house(): # define it 1.here or 2.at supporting function(need to import FUNCTIONS_Pair file) or 3.define at FUNCTIONS_Pair file. NUMBER 3 IS THE BEST ANSWER
+#
+#def overall_4_of_kind(): # define it 1.here or 2.at supporting function(need to import FUNCTIONS_Pair file) or 3.define at FUNCTIONS_Pair file. NUMBER 3 IS THE BEST ANSWER
 #it seemes there is no need to define functions overall_full_house() and overall_4_of_kind() at all (2019)

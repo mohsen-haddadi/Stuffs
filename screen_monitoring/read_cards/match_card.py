@@ -135,9 +135,14 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
                        'Eight','Nine','Ten','Jack','Queen','King'] :
 
         if is_it_table_card == True:
-            value_source_image = cv2.imread("Source Card Images for Celeb/Table Cards/%s.png"%value_name, cv2.IMREAD_GRAYSCALE)
+            image_path = os.path.abspath(os.path.dirname(__file__)) +\
+            "/Source Card Images for Celeb/Table Cards/%s.png"%value_name
+            
         elif is_it_table_card == False:
-            value_source_image = cv2.imread("Source Card Images for Celeb/My Cards/%s.png"%value_name, cv2.IMREAD_GRAYSCALE)
+            image_path = os.path.abspath(os.path.dirname(__file__)) +\
+            "/Source Card Images for Celeb/My Cards/%s.png"%value_name
+
+        value_source_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
         if isinstance(value_source_image, type(None)):
             raise Exception("Unable to read %s.png value source image" %value_name)
@@ -153,9 +158,12 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
     for suit_name in ['Spade','Heart','Club','Diamond'] :
 
         if is_it_table_card == True:
-            suit_source_image = cv2.imread("Source Card Images for Celeb/Table Cards/%s.png"%suit_name, cv2.IMREAD_GRAYSCALE)
+            image_path = os.path.abspath(os.path.dirname(__file__)) +\
+            "/Source Card Images for Celeb/Table Cards/%s.png"%suit_name
         elif is_it_table_card == False:
-            suit_source_image = cv2.imread("Source Card Images for Celeb/My Cards/%s.png"%suit_name, cv2.IMREAD_GRAYSCALE)
+            image_path = os.path.abspath(os.path.dirname(__file__)) +\
+            "/Source Card Images for Celeb/My Cards/%s.png"%suit_name
+        suit_source_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
         if isinstance(suit_source_image, type(None)):
             raise Exception("Unable to read %s.png suit source image" %suit_name)
@@ -175,6 +183,7 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
         best_suit_match_name = best_suit_name    
 
     return best_value_match_name, best_suit_match_name, best_value_difference_amount, best_suit_difference_amount
+
 
 
 

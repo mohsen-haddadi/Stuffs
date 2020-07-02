@@ -1,6 +1,7 @@
 import pickle
 from pathlib import Path
-from suit_and_value import s, n 
+from decision_making.rules_and_info.suit_and_value import s, n
+#from suit_and_value import s, n 
 
 
 def load_variables():

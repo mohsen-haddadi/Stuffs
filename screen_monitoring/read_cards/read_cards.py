@@ -1,7 +1,10 @@
 import time, os
 import numpy as np , cv2
 import pyautogui
-import match_card
+if __name__ == '__main__':
+    import match_card
+else:
+    import screen_monitoring.read_cards.match_card as match_card
 
 """
 1. Set these constants the same between create_source_cards_images.py and read_cards.py:
@@ -119,7 +122,9 @@ def test(my_seat):
         #global game_position
 
         print('searching for game region on screen...')
-        game_position = pyautogui.locateOnScreen('reference image.png')
+
+        image_path = Path().absolute().parent / 'find_game_position/reference image.png'
+        game_position = pyautogui.locateOnScreen(str(image_path))
         if game_position == None:
             raise Exception("can not find game region on screen")
         else:
@@ -172,6 +177,7 @@ def test(my_seat):
 
 
 if __name__ == '__main__':
+    from pathlib import Path
     test(1)
 
 

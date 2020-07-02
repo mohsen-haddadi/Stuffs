@@ -3,18 +3,15 @@ from PIL import Image
 import pyautogui, cv2, numpy, pygame, win32gui, win32con, wmi
 from datetime import datetime
 from painter import paint
-import screen_monitoring.find_game_position.find_game_position as find_game_position
+import screen_monitoring.game_position.game_position as gm
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.ocr.ocr as ocr
 import screen_monitoring.read_cards.read_cards as read_cards
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 import decision_making.decide
 
-#importing sub packages test
-test = False
-if test == True:
-	game_position = find_game_position.find_game_reference_point()
-	print(read_cards.read_flop_cards(game_position))
+game_position = gm.find_game_reference_point()
+print(read_cards.read_flop_cards(game_position))
 
 def load_variables():
     """ variables order is important while loading """
@@ -109,25 +106,25 @@ def create_file_directories():
     if not os.path.exists( Reports_directory ):
         os.makedirs( Reports_directory )
         
-    #for i in range(1,6):
-    #    directory = "New founded cards images/%sth Card on table" %i
-    #    if not os.path.exists( directory ):
-    #        os.makedirs( directory )
-    #    directory = "Cards image library/%sth Card on table" %i
-    #    if not os.path.exists( directory ):
-    #        os.makedirs( directory )
-    #    directory = "New founded cards images/Seat %s 1th Card" %i
-    #    if not os.path.exists( directory ):
-    #        os.makedirs( directory )
-    #    directory = "New founded cards images/Seat %s 2th Card" %i
-    #    if not os.path.exists( directory ):
-    #        os.makedirs( directory ) 
-    #    directory = "Cards image library/Seat %s 1th Card" %i
-    #    if not os.path.exists( directory ):
-    #        os.makedirs( directory )
-    #    directory = "Cards image library/Seat %s 2th Card" %i
-    #    if not os.path.exists( directory ):
-    #        os.makedirs( directory )
+    for i in range(1,6):
+        directory = "New founded cards images/%sth Card on table" %i
+        if not os.path.exists( directory ):
+            os.makedirs( directory )
+        directory = "Cards image library/%sth Card on table" %i
+        if not os.path.exists( directory ):
+            os.makedirs( directory )
+        directory = "New founded cards images/Seat %s 1th Card" %i
+        if not os.path.exists( directory ):
+            os.makedirs( directory )
+        directory = "New founded cards images/Seat %s 2th Card" %i
+        if not os.path.exists( directory ):
+            os.makedirs( directory ) 
+        directory = "Cards image library/Seat %s 1th Card" %i
+        if not os.path.exists( directory ):
+            os.makedirs( directory )
+        directory = "Cards image library/Seat %s 2th Card" %i
+        if not os.path.exists( directory ):
+            os.makedirs( directory )
 
     save_variables()
 
@@ -193,7 +190,7 @@ if __name__ == '__main__':
     win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,1153,222,440,593,0)
 
     set_all_variables_to_none()
-    #create_file_directories()
+    create_file_directories()
     shout(paint.rainbow.bold("Hello Kitty"))
 
 # FUNCTIONS_Pixel-Maching ---------------------------------------------------------------------------------------------
