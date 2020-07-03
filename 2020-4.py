@@ -10,7 +10,7 @@ import screen_monitoring.read_cards.read_cards as read_cards
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 import decision_making.decide
 
-#importing sub packages test
+#testing sub packages imports
 test = False
 if test == True:
 	game_position = find_game_position.find_game_reference_point()
