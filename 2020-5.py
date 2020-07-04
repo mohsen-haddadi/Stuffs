@@ -60,20 +60,20 @@ def save_variables() :
     By implementing load_variables() I can delete all global lines from supporting and... funcitons. 
     But I keep them to see the varibales I've used for that functions. 
     """
-    global game_position , dated_report_folder , REPORTS_DIRECTORY ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
+    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
     Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    pickle.dump( [game_position , dated_report_folder , REPORTS_DIRECTORY ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
+    pickle.dump( [game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
+    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
     Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
@@ -81,20 +81,20 @@ def save_variables() :
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat], open( "pickled variables.p", "wb" ) )
 
 def set_all_variables_to_none():
-    global game_position , dated_report_folder , REPORTS_DIRECTORY ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
+    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
     Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    game_position , dated_report_folder , REPORTS_DIRECTORY ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
+    game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
+    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
     Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
     Cards_cache , White_cache , Red_cache , Bet_cache ,\
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
@@ -103,11 +103,11 @@ def set_all_variables_to_none():
     save_variables()
 
 def create_file_directories():
-    global dated_report_folder , REPORTS_DIRECTORY
+    global DATED_REPORT_FOLDER , REPORTS_DIRECTORY
     load_variables()
     
-    dated_report_folder = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
-    REPORTS_DIRECTORY = "Reports/%s" %dated_report_folder
+    DATED_REPORT_FOLDER = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
+    REPORTS_DIRECTORY = "Reports/%s" %DATED_REPORT_FOLDER
     if not os.path.exists( REPORTS_DIRECTORY ):
         os.makedirs( REPORTS_DIRECTORY )
         
@@ -134,10 +134,10 @@ def create_file_directories():
     save_variables()
 
 def shout(String) :
-    global dated_report_folder
+    global DATED_REPORT_FOLDER
     load_variables()
 
-    text_file_name = os.path.join( "Reports/%s" %dated_report_folder , dated_report_folder )
+    text_file_name = os.path.join( "Reports/%s" %DATED_REPORT_FOLDER , DATED_REPORT_FOLDER )
     t = datetime.now().strftime("%Y/%m/%d %H:%M:%S.%f")
     t = t[:-4]
     if 'PROMPT' in os.environ :
@@ -165,10 +165,10 @@ def sound(string_name) :
         pass
 
 def play_sound() :
-    global Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside  , My_1th_Card , My_2th_Card
+    global preflop_stage , flop_stage , turn_stage , river_stage  , my_1th_card , my_2th_card
     load_variables()
 
-    if Pre_Flop1_Deside == True and Flop1_Deside == False :
+    if preflop_stage == True and flop_stage == False :
         if hand1() :
             sound("Michel")
             shout(paint.light_cyan.bold("Playing Music: 'Michel'"))
@@ -187,8 +187,8 @@ def play_sound() :
 
 """
 Using 'if' line at below is a MUST, bescause while importing main file from the other files,
-2 diffrent dated_report_folder with diffrent times will be created for each file and therefore shoutings from each file will be save in seperated files. 
-So i should put dated_report_folder variable in load_variables() and save_variables() too.
+2 diffrent DATED_REPORT_FOLDER with diffrent times will be created for each file and therefore shoutings from each file will be save in seperated files. 
+So i should put DATED_REPORT_FOLDER variable in load_variables() and save_variables() too.
 """
 if __name__ == '__main__':
     hwnd = win32gui.GetForegroundWindow()
@@ -503,23 +503,23 @@ def raising( Blinds ):
     if Blinds == BLIND (or less): won't click on plus button
     """
     global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside , Did_i_raised_at , My_last_raise , BLIND
+    preflop_stage , flop_stage , turn_stage , river_stage , Did_i_raised_at , My_last_raise , BLIND
     load_variables()
 
-    if Pre_Flop1_Deside == True and Flop1_Deside == False :
+    if preflop_stage == True and flop_stage == False :
         stage = "Pre_Flop" 
-    elif Flop1_Deside == True and Turn1_Deside == False :
+    elif flop_stage == True and turn_stage == False :
         stage = "Flop"  
-    elif Turn1_Deside == True and River1_Deside == False :
+    elif turn_stage == True and river_stage == False :
         stage = "Turn" 
-    elif River1_Deside == True :
+    elif river_stage == True :
         stage = "River" 
 
     Did_i_raised_at[stage] = True
 
     Bets = [Last_Bet_cache[Seat] for Seat in range(1,6) if Last_Red_cache[Seat] and Last_Bet_cache[Seat] != None ]     
 
-    if Pre_Flop1_Deside and not Flop1_Deside :
+    if preflop_stage and not flop_stage :
         Bets.append(BLIND)
     else :
         Bets.append(0) #That's why raising() algorithm can be use and act for betting too.
@@ -587,63 +587,63 @@ def check_fold():
 # Read Cards: --------------------------------------------------------------------------------------------------------------------
 
 def read_and_global_my_cards():
-    global game_position, My_1th_Card , My_2th_Card  , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, my_1th_card , my_2th_card  , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     load_variables()
 
-    My_1th_Card, My_2th_Card = read_cards.read_my_cards(game_position, My_Seat)
+    my_1th_card, my_2th_card = read_cards.read_my_cards(game_position, My_Seat)
 
-    if 'Unknown' in My_1th_Card or 'Unknown' in My_2th_Card:
+    if 'Unknown' in my_1th_card or 'Unknown' in my_2th_card:
         fix_game_disruption("my cards are read Unknown")
-        My_1th_Card, My_2th_Card = read_cards.read_my_cards(game_position, My_Seat)
-        if 'Unknown' in My_1th_Card or 'Unknown' in My_2th_Card or pm.flop_pixel(game_position):
+        my_1th_card, my_2th_card = read_cards.read_my_cards(game_position, My_Seat)
+        if 'Unknown' in my_1th_card or 'Unknown' in my_2th_card or pm.flop_pixel(game_position):
             set_check_mode_to_true("my cards are read Unknown again")
 
     shout(paint.green.bold("My cards are: %s %s, %s %s" \
-    %(My_1th_Card[0][0], My_1th_Card[0][1],My_2th_Card[1][0], My_2th_Card[1][1])))
+    %(my_1th_card[0][0], my_1th_card[0][1],my_2th_card[1][0], my_2th_card[1][1])))
 
 def read_and_global_flop_cards(): 
-    global game_position, Card_1th , Card_2th , Card_3th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, board_1th_card , board_2th_card , board_3th_card , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
     #table_1th_card, table_2th_card, table_3th_card = read_flop_cards(game_position)
-    Card_1th, Card_2th, Card_3th = read_cards.read_flop_cards(game_position)
+    board_1th_card, board_2th_card, board_3th_card = read_cards.read_flop_cards(game_position)
 
-    if 'Unknown' in Card_1th or 'Unknown' in Card_2th or 'Unknown' in Card_3th:
+    if 'Unknown' in board_1th_card or 'Unknown' in board_2th_card or 'Unknown' in board_3th_card:
         fix_game_disruption("Flop cards are read 'Unknown'")
 
-        Card_1th, Card_2th, Card_3th = read_cards.read_flop_cards(game_position)
+        board_1th_card, board_2th_card, board_3th_card = read_cards.read_flop_cards(game_position)
 
-        if 'Unknown' in Card_1th or 'Unknown' in Card_2th or 'Unknown' in Card_3th \
+        if 'Unknown' in board_1th_card or 'Unknown' in board_2th_card or 'Unknown' in board_3th_card \
         or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
             set_check_mode_to_true("Flop cards are read 'Unknown' again")
 
     shout(paint.green.bold("Flop cards are: %s %s, %s %s, %s %s" \
-    %(Card_1th[0][0], Card_1th[0][1], Card_2th[1][0], Card_2th[1][1], Card_3th[1][0], Card_3th[1][1])))
+    %(board_1th_card[0][0], board_1th_card[0][1], board_2th_card[1][0], board_2th_card[1][1], board_3th_card[1][0], board_3th_card[1][1])))
 
 def read_and_global_turn_card(): 
-    global game_position, Card_4th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, board_4th_card , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
 
-    Card_4th = read_cards.read_turn_card(game_position)
+    board_4th_card = read_cards.read_turn_card(game_position)
     
-    if 'Unknown' in Card_4th:
+    if 'Unknown' in board_4th_card:
         fix_game_disruption("Turn card is read 'Unknown'")
-        Card_4th = read_cards.read_turn_card(game_position)
-        if 'Unknown' in Card_4th or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
+        board_4th_card = read_cards.read_turn_card(game_position)
+        if 'Unknown' in board_4th_card or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
             set_check_mode_to_true("Turn card is read 'Unknown' again")
 
-    shout(paint.green.bold("Turn card is: %s %s" %(Card_4th[0], Card_4th[1])))
+    shout(paint.green.bold("Turn card is: %s %s" %(board_4th_card[0], board_4th_card[1])))
 
 def read_and_global_river_card(): 
-    global game_position, Card_5th , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, board_5th_card , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
     
-    Card_5th = read_cards.read_river_card(game_position)
+    board_5th_card = read_cards.read_river_card(game_position)
     
-    if 'Unknown' in Card_5th:
+    if 'Unknown' in board_5th_card:
         fix_game_disruption("River card is read 'Unknown'")
-        Card_5th = read_cards.read_river_card(game_position)
-        if 'Unknown' in Card_5th or not pm.river_pixel(game_position):
+        board_5th_card = read_cards.read_river_card(game_position)
+        if 'Unknown' in board_5th_card or not pm.river_pixel(game_position):
             set_check_mode_to_true("River card is read 'Unknown' again")
 
-    shout(paint.green.bold("River card is: %s %s" %(Card_5th[0], Card_5th[1])))
+    shout(paint.green.bold("River card is: %s %s" %(board_5th_card[0], board_5th_card[1])))
 
 # Read Cards Ended ---------------------------------------------------------------------------------------------------------------
 
@@ -995,11 +995,11 @@ def read_and_save_players_banks_and_names() :
     shout(paint.on_light_red.bold("Players Bank dictionary is: %s" %Players_bank_dic ))
     shout(paint.on_light_red.bold("Players Name dictionary is: %s" %Players_name_dic ))
 
-def reset_table_information() : # Round_Pre_Flop ,...,Round_River & Pre_Flop1_Deside ,...,River1_Deside dar loope while True baresi va be in func baraye reset shodan enteghal dade shavand
+def reset_table_information() : # preflop_betting_round ,...,river_betting_round & preflop_stage ,...,river_stage dar loope while True baresi va be in func baraye reset shodan enteghal dade shavand
     global Players_name_dic , Players_bank_dic ,\
            Cards_cache , White_cache , Red_cache , Bet_cache ,\
            Last_Cards_cache , Last_White_cache , Last_Red_cache , Last_Bet_cache,\
-           Did_i_raised_at , My_last_raise , Round_Pre_Flop , Round_Flop , Round_Turn , Round_River
+           Did_i_raised_at , My_last_raise , preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round
     load_variables()
 
     shout("Reseting table information")
@@ -1009,7 +1009,7 @@ def reset_table_information() : # Round_Pre_Flop ,...,Round_River & Pre_Flop1_De
     Cards_cache = {} ; White_cache = {}  ; Red_cache = {}  ; Bet_cache = {}
     Last_Cards_cache = {} ; Last_White_cache = {}  ; Last_Red_cache = {}  ; Last_Bet_cache = {}
     Did_i_raised_at = {"Pre_Flop": False , "Flop": False , "Turn": False , "River": False } ; My_last_raise = {} # make sure while starting the code Did_i_raised_at is defined by reset_table_information() before first deciding; otherwise did_i_raise_sofar() at supporting funcs file will error
-    Round_Pre_Flop = 0; Round_Flop = 0 ; Round_Turn = 0 ; Round_River = 0 #(2018) Later make sure if all rounds are starting from 0 in main While True loop (Round_... = 0 should be implemented in read_and_save_bets() for all stages so for example Bet_cache dictionary surely will "have Round_... 0") #for testing i have put a shout(Bet_cache) at the end of read_and_save_bets() function 
+    preflop_betting_round = 0; flop_betting_round = 0 ; turn_betting_round = 0 ; river_betting_round = 0 #(2018) Later make sure if all rounds are starting from 0 in main While True loop (Round_... = 0 should be implemented in read_and_save_bets() for all stages so for example Bet_cache dictionary surely will "have Round_... 0") #for testing i have put a shout(Bet_cache) at the end of read_and_save_bets() function 
     
     
 def set_check_mode_to_true(string = None) :
@@ -1035,22 +1035,22 @@ def reset_check_mode_to_false() :
 def read_and_save_bets() :
     global game_position, Cards_cache , White_cache , Red_cache , Bet_cache ,\
            Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-           Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-           Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside
+           preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
+           preflop_stage , flop_stage , turn_stage , river_stage
     load_variables()
 
-    if Pre_Flop1_Deside == True and Flop1_Deside == False :
+    if preflop_stage == True and flop_stage == False :
         stage = "Pre_Flop"
-        betting_round = Round_Pre_Flop
-    elif Flop1_Deside == True and Turn1_Deside == False :
+        betting_round = preflop_betting_round
+    elif flop_stage == True and turn_stage == False :
         stage = "Flop"
-        betting_round = Round_Flop        
-    elif Turn1_Deside == True and River1_Deside == False :
+        betting_round = flop_betting_round        
+    elif turn_stage == True and river_stage == False :
         stage = "Turn"
-        betting_round = Round_Turn
-    elif River1_Deside == True :
+        betting_round = turn_betting_round
+    elif river_stage == True :
         stage = "River"
-        betting_round = Round_River
+        betting_round = river_betting_round
 
     Cards_cache["%s %s" %(stage, betting_round)] = {}
     White_cache["%s %s" %(stage, betting_round)] = {}
@@ -1137,7 +1137,7 @@ if __name__ == '__main__':
 
 while True :
 
-    Pre_Flop1_Deside = False ; Flop1_Deside = False ; Turn1_Deside = False ; River1_Deside = False 
+    preflop_stage = False ; flop_stage = False ; turn_stage = False ; river_stage = False 
 
     if Just_Seated == True :
 
@@ -1203,10 +1203,10 @@ while True :
     if Hand_End_Cheker1 == False and pm.pre_flop_pixel(game_position) == False and Just_Seated == False and Check_Mod != True :
         fix_game_disruption("2")
         set_check_mode_to_true("2")
-        screenshot_error('6.pre_flop_pixel() == False')
+        screenshot_error('6. pm.pre_flop_pixel() == False')
     elif Hand_End_Cheker1 == False and Just_Seated == False and Check_Mod != True :
-        Pre_Flop1 = True
-        Pre_Flop1_Deside = True
+        Pre_Flop1 = True #(2020: Pre_Flop1 has no usage)
+        preflop_stage = True
 
     if Hand_End_Cheker1 == False and pm.player_cards_pixel(game_position,  My_Seat_Number ) == True and Just_Seated == False :  
         read_and_global_my_cards() #
@@ -1217,13 +1217,13 @@ while True :
     Gray1 = True ; fo = 0 
     time1 = time.time()
     shout(paint.light_magenta.bold("Looking for light...")) 
-    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and Flop1_Deside == False and Just_Seated == False and time.time() - time1 < 5 * 60 :
+    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and flop_stage == False and Just_Seated == False and time.time() - time1 < 5 * 60 :
         if pm.button_pixel(game_position, 'i_am_back') :
             fix_game_disruption("2.5 I am back Button is True")
         Hand_End_Cheker1 = hand_is_ended()
         its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
         Gray1 = pm.notification_banner_pixel(game_position,  My_Seat_Number )
-        Flop1_Deside = pm.flop_pixel(game_position)
+        flop_stage = pm.flop_pixel(game_position)
         n20 = (time.time() - time1 - 60 ) // 20
         if time.time() - time1 > 1 * 60 and n20 >= fo :
             fix_game_disruption("3")
@@ -1232,21 +1232,21 @@ while True :
     if not time.time() - time1 < 5 * 60 :
         raise Exception("5.1.Game is locked, force to restart, Just_Seated == None")
 
-    if Flop1_Deside == True :
+    if flop_stage == True :
         set_check_mode_to_true("1.5")
         screenshot_error("6.5 Pre Flop is Jumped, game must lagged")
         
          
-    Round_Pre_Flop = 0 #(2018) shouldn't it be -1 ?! test it by printing for example Cards_cache dic which prints rounds too
-    if pm.active_player_pixel(game_position,  My_Seat_Number ) == True and Gray1 == False and hand_is_ended() == False and Flop1_Deside == False and Just_Seated == False :
-        Round_Pre_Flop += 1
+    preflop_betting_round = 0 #(2018) shouldn't it be -1 ?! test it by printing for example Cards_cache dic which prints rounds too
+    if pm.active_player_pixel(game_position,  My_Seat_Number ) == True and Gray1 == False and hand_is_ended() == False and flop_stage == False and Just_Seated == False :
+        preflop_betting_round += 1
         shout(paint.light_magenta.bold("light is founded"))
         read_and_save_bets() #
         click_decision() # preflop
-    elif hand_is_ended() == False and Flop1_Deside == False and Just_Seated == False :
+    elif hand_is_ended() == False and flop_stage == False and Just_Seated == False :
         fix_game_disruption("4 Entering This section is not possible")
         screenshot_error("6.6 Entering This section is not possible")
-        #(2018) shouldn't Round_Pre_Flop += 1 line be here too ?!
+        #(2018) shouldn't preflop_betting_round += 1 line be here too ?!
         read_and_save_bets() #
         click_decision() # preflop
 
@@ -1261,7 +1261,7 @@ while True :
         time01 = time.time()
         time02 = time.time() - time01
         
-        while Hand_End_Cheker1 == False and Flop1_Deside == False and time02 < 5 * 60 and Just_Seated == False :
+        while Hand_End_Cheker1 == False and flop_stage == False and time02 < 5 * 60 and Just_Seated == False :
 
             time02 = time.time() - time01
                 
@@ -1287,7 +1287,7 @@ while True :
             if Hand_End_Cheker1 == False :
 
                 if its_my_turn == True and Flop1 == False :
-                    Round_Pre_Flop += 1
+                    preflop_betting_round += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
@@ -1299,7 +1299,7 @@ while True :
                         click_decision() # preflop
                         
                 if Flop1 == True :
-                    Flop1_Deside = True
+                    flop_stage = True
                     shout(paint.light_magenta.bold("Reading Flop Cards..."))
                     read_and_global_flop_cards() #
 
@@ -1316,8 +1316,8 @@ while True :
         shout("Running Flop Section")
         time01 = time.time()
         time02 = time.time() - time01
-        Round_Flop = -1
-        while Hand_End_Cheker1 == False and Turn1_Deside == False and time02 < 5 * 60 and Just_Seated == False :
+        flop_betting_round = -1
+        while Hand_End_Cheker1 == False and turn_stage == False and time02 < 5 * 60 and Just_Seated == False :
 
             time02 = time.time() - time01
                 
@@ -1343,12 +1343,12 @@ while True :
             if Hand_End_Cheker1 == False :
 
                 if its_my_turn == True and Turn1 == False :
-                    Round_Flop += 1
+                    flop_betting_round += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
                         click_decision() # Flop
-                    elif Round_Flop > 0 :
+                    elif flop_betting_round > 0 :
                         set_check_mode_to_true("4")
                         screenshot_error("9.Red should be True here")
                         read_and_save_bets() #
@@ -1358,7 +1358,7 @@ while True :
                         click_decision() # Flop
                         
                 if Turn1 == True :            
-                    Turn1_Deside = True
+                    turn_stage = True
                     shout(paint.light_magenta.bold("Reading Turn Card"))
                     read_and_global_turn_card() #        
             
@@ -1376,8 +1376,8 @@ while True :
         shout("Running Turn Section")
         time01 = time.time()
         time02 = time.time() - time01
-        Round_Turn = -1
-        while Hand_End_Cheker1 == False and River1_Deside == False and time02 < 5 * 60 and Just_Seated == False :
+        turn_betting_round = -1
+        while Hand_End_Cheker1 == False and river_stage == False and time02 < 5 * 60 and Just_Seated == False :
 
             time02 = time.time() - time01
                 
@@ -1403,12 +1403,12 @@ while True :
             if Hand_End_Cheker1 == False :
 
                 if its_my_turn == True and River1 == False :
-                    Round_Turn += 1
+                    turn_betting_round += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
                         click_decision() # Turn
-                    elif Round_Turn > 0 :
+                    elif turn_betting_round > 0 :
                         set_check_mode_to_true("5")
                         screenshot_error("11.Red should be True here")
                         read_and_save_bets() #
@@ -1418,7 +1418,7 @@ while True :
                         click_decision() # Turn
                         
                 if River1 == True :            
-                    River1_Deside = True
+                    river_stage = True
                     shout(paint.light_magenta.bold("Reading River Card"))
                     read_and_global_river_card() #        
             
@@ -1435,7 +1435,7 @@ while True :
         shout("Running River Section")
         time01 = time.time()
         time02 = time.time() - time01
-        Round_River = -1
+        river_betting_round = -1
         while Hand_End_Cheker1 == False and time02 < 5 * 60 and Just_Seated == False :
 
             time02 = time.time() - time01
@@ -1461,12 +1461,12 @@ while True :
             if Hand_End_Cheker1 == False :
 
                 if its_my_turn == True and pm.river_pixel(game_position) == True :
-                    Round_River += 1
+                    river_betting_round += 1
                     shout(paint.light_magenta.bold("light is founded"))
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
                         click_decision() # River
-                    elif Round_River > 0 :
+                    elif river_betting_round > 0 :
                         set_check_mode_to_true("6")
                         screenshot_error("13.Red should be True here")
                         read_and_save_bets() #
