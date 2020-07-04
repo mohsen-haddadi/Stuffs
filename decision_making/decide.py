@@ -1,5 +1,5 @@
-import pickle
-from pathlib import Path
+import pickle, os
+from pathlib import PurePath
 from decision_making.play import *
 #from play import * 
 
@@ -15,7 +15,8 @@ def load_variables():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    pickle_path = Path().absolute().parent / 'pickled variables.p'
+    current_path = os.path.abspath(os.path.dirname(__file__)) 
+    pickle_path = PurePath(current_path).parent / 'pickled variables.p'
 
     game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -26,7 +27,6 @@ def load_variables():
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( str(pickle_path), "rb" ) )
-
 
 def decide():
     load_variables()

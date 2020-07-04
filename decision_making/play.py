@@ -1,5 +1,5 @@
-import pickle
-from pathlib import Path
+import pickle, os
+from pathlib import PurePath
 
 from decision_making.rules_and_info.table_information import *
 from decision_making.rules_and_info.straight import *
@@ -21,7 +21,7 @@ some Play functions are in calendare. add them here later
 Me_str() or Me_Flush() can overlap lower than Me_full_house() (Except Me_str() and Me_2_pair() won't overlap) 
 so for all functions lower than Me_full_house() like: 1. Play_hand5_no_raiser() and 2. Play_1_pair() .... , (Me_str() or Me_Flush()) are excluded.
 """
-def load_variables():
+def load_variables1():
     """ variables order is important while loading """
     global game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -33,7 +33,8 @@ def load_variables():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    pickle_path = Path().absolute().parent / 'pickled variables.p'
+    current_path = os.path.abspath(os.path.dirname(__file__)) 
+    pickle_path = PurePath(current_path).parent / 'pickled variables.p'
 
     game_position , file_name , Reports_directory ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
@@ -44,6 +45,7 @@ def load_variables():
     Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( str(pickle_path), "rb" ) )
+
 
 def bluff_table_flush_4_cards():
     load_variables()

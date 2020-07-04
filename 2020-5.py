@@ -3,15 +3,20 @@ from PIL import Image
 import pyautogui, cv2, numpy, pygame, win32gui, win32con, wmi
 from datetime import datetime
 from painter import paint
-import screen_monitoring.game_position.game_position as gm
+import screen_monitoring.find_game_position.find_game_position as find_game_position
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.ocr.ocr as ocr
 import screen_monitoring.read_cards.read_cards as read_cards
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 import decision_making.decide
 
-game_position = gm.find_game_reference_point()
-print(read_cards.read_flop_cards(game_position))
+#testing sub packages imports
+test = False
+if test == True:
+    game_position = find_game_position.find_game_reference_point()
+    #print(read_cards.read_flop_cards(game_position))
+    #decision_making.rules_and_info.flush.load_variables()
+    input("wait")
 
 def load_variables():
     """ variables order is important while loading """
@@ -55,7 +60,7 @@ def save_variables() :
     By implementing load_variables() I can delete all global lines from supporting and... funcitons. 
     But I keep them to see the varibales I've used for that functions. 
     """
-    global game_position , file_name , Reports_directory ,\
+    global game_position , dated_report_folder , REPORTS_DIRECTORY ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -65,7 +70,7 @@ def save_variables() :
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    pickle.dump( [game_position , file_name , Reports_directory ,\
+    pickle.dump( [game_position , dated_report_folder , REPORTS_DIRECTORY ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -76,7 +81,7 @@ def save_variables() :
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat], open( "pickled variables.p", "wb" ) )
 
 def set_all_variables_to_none():
-    global game_position , file_name , Reports_directory ,\
+    global game_position , dated_report_folder , REPORTS_DIRECTORY ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -86,7 +91,7 @@ def set_all_variables_to_none():
     Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
     BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
 
-    game_position , file_name , Reports_directory ,\
+    game_position , dated_report_folder , REPORTS_DIRECTORY ,\
     Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
     Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
     Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
@@ -98,41 +103,41 @@ def set_all_variables_to_none():
     save_variables()
 
 def create_file_directories():
-    global file_name , Reports_directory
+    global dated_report_folder , REPORTS_DIRECTORY
     load_variables()
     
-    file_name = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
-    Reports_directory = "Reports/%s" %file_name
-    if not os.path.exists( Reports_directory ):
-        os.makedirs( Reports_directory )
+    dated_report_folder = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
+    REPORTS_DIRECTORY = "Reports/%s" %dated_report_folder
+    if not os.path.exists( REPORTS_DIRECTORY ):
+        os.makedirs( REPORTS_DIRECTORY )
         
-    for i in range(1,6):
-        directory = "New founded cards images/%sth Card on table" %i
-        if not os.path.exists( directory ):
-            os.makedirs( directory )
-        directory = "Cards image library/%sth Card on table" %i
-        if not os.path.exists( directory ):
-            os.makedirs( directory )
-        directory = "New founded cards images/Seat %s 1th Card" %i
-        if not os.path.exists( directory ):
-            os.makedirs( directory )
-        directory = "New founded cards images/Seat %s 2th Card" %i
-        if not os.path.exists( directory ):
-            os.makedirs( directory ) 
-        directory = "Cards image library/Seat %s 1th Card" %i
-        if not os.path.exists( directory ):
-            os.makedirs( directory )
-        directory = "Cards image library/Seat %s 2th Card" %i
-        if not os.path.exists( directory ):
-            os.makedirs( directory )
+    #for i in range(1,6):
+    #    directory = "New founded cards images/%sth Card on table" %i
+    #    if not os.path.exists( directory ):
+    #        os.makedirs( directory )
+    #    directory = "Cards image library/%sth Card on table" %i
+    #    if not os.path.exists( directory ):
+    #        os.makedirs( directory )
+    #    directory = "New founded cards images/Seat %s 1th Card" %i
+    #    if not os.path.exists( directory ):
+    #        os.makedirs( directory )
+    #    directory = "New founded cards images/Seat %s 2th Card" %i
+    #    if not os.path.exists( directory ):
+    #        os.makedirs( directory ) 
+    #    directory = "Cards image library/Seat %s 1th Card" %i
+    #    if not os.path.exists( directory ):
+    #        os.makedirs( directory )
+    #    directory = "Cards image library/Seat %s 2th Card" %i
+    #    if not os.path.exists( directory ):
+    #        os.makedirs( directory )
 
     save_variables()
 
 def shout(String) :
-    global file_name
+    global dated_report_folder
     load_variables()
 
-    text_file_name = os.path.join( "Reports/%s" %file_name , file_name )
+    text_file_name = os.path.join( "Reports/%s" %dated_report_folder , dated_report_folder )
     t = datetime.now().strftime("%Y/%m/%d %H:%M:%S.%f")
     t = t[:-4]
     if 'PROMPT' in os.environ :
@@ -182,8 +187,8 @@ def play_sound() :
 
 """
 Using 'if' line at below is a MUST, bescause while importing main file from the other files,
-2 diffrent file_name with diffrent times will be created for each file and therefore shoutings from each file will be save in seperated files. 
-So i should put file_name variable in load_variables() and save_variables() too.
+2 diffrent dated_report_folder with diffrent times will be created for each file and therefore shoutings from each file will be save in seperated files. 
+So i should put dated_report_folder variable in load_variables() and save_variables() too.
 """
 if __name__ == '__main__':
     hwnd = win32gui.GetForegroundWindow()
@@ -191,7 +196,7 @@ if __name__ == '__main__':
 
     set_all_variables_to_none()
     create_file_directories()
-    shout(paint.rainbow.bold("Hello Kitty"))
+    #shout(paint.rainbow.bold("Hello Kitty"))
 
 # FUNCTIONS_Pixel-Maching ---------------------------------------------------------------------------------------------
 
@@ -788,46 +793,6 @@ def ocr_my_name(game_position, seat):
 
 # fix_game_disruption: -------------------------------------------------------------------------------------------------------------------
 
-def find_game_reference_point_for_starting(): #when i am watching the game myself, raise the Exeption 
-    global game_position
-    load_variables()
-
-    shout(paint.yellow.bold("Looking for game on screen..."))
-    game_position = pyautogui.locateOnScreen('screen_monitoring/game_position/reference image.png')
-    if game_position == None:
-        game_position_new = pyautogui.locateOnScreen('screen_monitoring/game_position/alternative reference image.png')
-        if game_position_new is None:
-            screenshot_error("Could not find game on screen") #Type_of_Error in string
-            raise Exception('Could not find game on screen. Is the game visible?')
-        game_position = ( game_position_new[0]+328 , game_position_new[1]-245 )
-    if game_position != None :
-        game_position = (int(game_position[0]),int(game_position[1]))
-    save_variables()
-
-def find_game_reference_point():
-    global game_position
-    load_variables()
-
-    game_position_old = game_position
-    game_position = None ; fo = 0
-    while game_position == None and fo <= 2 :
-        fo += 1
-        game_position = pyautogui.locateOnScreen('screen_monitoring/game_position/reference image.png')
-        if game_position == None:
-            game_position_new = pyautogui.locateOnScreen('screen_monitoring/game_position/alternative reference image.png')
-            if game_position_new == None and fo == 2 :
-                shout(paint.yellow.bold("Could not find game on screen,program will use old position"))
-                screenshot_error("Could not find game on screen, Program will use former position")
-                game_position = game_position_old # vital signs --> find_game_reference_point_for_starting() will compensate
-            elif game_position_new != None :
-                game_position_new = ( game_position_new[0]+328 , game_position_new[1]-245 )
-        if game_position == None and fo == 1 :
-            shout(paint.yellow.bold("Adjust the game screen! Researching will be started again in 10s...."))
-            time.sleep(10)
-    if game_position != None :
-        game_position = (int(game_position[0]),int(game_position[1]))
-    save_variables()
-
 #def ocr(x,y,h,w):
 
 #def ocr_my_name(Seat_Num):
@@ -956,9 +921,12 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     shout(paint.yellow.bold("Position (0,720) is clicked"))
     pyautogui.press('esc')
     
-    game_position = pyautogui.locateOnScreen('screen_monitoring/game_position/reference image.png')
+    game_position = pyautogui.locateOnScreen(
+                    'screen_monitoring/find_game_position/reference image.png')
     if game_position == None:
-        game_position_new =pyautogui.locateOnScreen('screen_monitoring/game_position/alternative reference image.png')    
+        alternative_game_position = pyautogui.locateOnScreen(
+                    'screen_monitoring/find_game_position/alternative reference image.png')   
+        game_position = ( alternative_game_position[0]+328 , alternative_game_position[1]-245 ) 
     if game_position != None :
         game_position = (int(game_position[0]),int(game_position[1]))
     else:
@@ -971,7 +939,7 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
                 break        
 
     if game_position == None :
-        find_game_reference_point_for_starting() #if None,it will raise the Exeption
+        game_position = find_game_position.find_game_reference_point()
     if game_position != None :
         shout(paint.yellow.bold("Game region refounded after fix_game_disruption()"))
     
@@ -996,12 +964,12 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
 #    raise Exception('what was the probelm on %s?' %t ) 
         
 def screenshot_error(type_of_error): #type_of_error in string
-    global Reports_directory
+    global REPORTS_DIRECTORY
     load_variables()
     t = datetime.now().strftime("%Y-%m-%d %H-%M-%S.%f")
     t = t[:-4]
     shout(paint.on_light_blue.bold("Screenshot Error: %s" %type_of_error))
-    pyautogui.screenshot( '%s/Error %s %s.png' %(Reports_directory, t, type_of_error) )
+    pyautogui.screenshot( '%s/Error %s %s.png' %(REPORTS_DIRECTORY, t, type_of_error) )
 
 def raise_exception_the_problem(string):
     screenshot_error( 'What is the Problem (%s)' %string )
@@ -1072,117 +1040,45 @@ def read_and_save_bets() :
     load_variables()
 
     if Pre_Flop1_Deside == True and Flop1_Deside == False :
-        Cards_cache["Pre_Flop %s" %Round_Pre_Flop] = {}
-        White_cache["Pre_Flop %s" %Round_Pre_Flop] = {}
-        Red_cache["Pre_Flop %s" %Round_Pre_Flop] = {}
-        Bet_cache["Pre_Flop %s" %Round_Pre_Flop] = {}
-        Last_Cards_cache = {}
-        Last_White_cache = {}
-        Last_Red_cache = {}
-        Last_Bet_cache = {}
+        stage = "Pre_Flop"
+        betting_round = Round_Pre_Flop
+    elif Flop1_Deside == True and Turn1_Deside == False :
+        stage = "Flop"
+        betting_round = Round_Flop        
+    elif Turn1_Deside == True and River1_Deside == False :
+        stage = "Turn"
+        betting_round = Round_Turn
+    elif River1_Deside == True :
+        stage = "River"
+        betting_round = Round_River
+
+    Cards_cache["%s %s" %(stage, betting_round)] = {}
+    White_cache["%s %s" %(stage, betting_round)] = {}
+    Red_cache["%s %s" %(stage, betting_round)] = {}
+    Bet_cache["%s %s" %(stage, betting_round)] = {}
+    Last_Cards_cache = {}
+    Last_White_cache = {}
+    Last_Red_cache = {}
+    Last_Bet_cache = {}
+    
+    for Seat in range(1,6) :
+        Cards_cache["%s %s" %(stage, betting_round)][Seat] = pm.player_cards_pixel(game_position, Seat)
+        White_cache["%s %s" %(stage, betting_round)][Seat] = white(Seat)
+        Red_cache["%s %s" %(stage, betting_round)][Seat] = red(Seat)
+        Last_Cards_cache[Seat] = Cards_cache["%s %s" %(stage, betting_round)][Seat]
+        Last_White_cache[Seat] = White_cache["%s %s" %(stage, betting_round)][Seat]
+        Last_Red_cache[Seat] = Red_cache["%s %s" %(stage, betting_round)][Seat]
+
+        if Last_White_cache[Seat] == True or Last_Red_cache[Seat] == True :
+            Bet_cache["%s %s" %(stage, betting_round)][Seat] = ocr_bet(Seat)
+            if Last_White_cache[Seat] == True : 
+                shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,Bet_cache["%s %s" %(stage, betting_round)][Seat])))
+            elif Last_Red_cache[Seat] == True :
+                shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,Bet_cache["%s %s" %(stage, betting_round)][Seat])))
+        else :
+            Bet_cache["%s %s" %(stage, betting_round)][Seat] = None
+        Last_Bet_cache[Seat] = Bet_cache["%s %s" %(stage, betting_round)][Seat]
         
-        for Seat in range(1,6) :
-            Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = pm.player_cards_pixel(game_position, Seat)
-            White_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = white(Seat)
-            Red_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = red(Seat)
-            Last_Cards_cache[Seat] = Cards_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
-            Last_White_cache[Seat] = White_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
-            Last_Red_cache[Seat] = Red_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
-
-            if Last_White_cache[Seat] == True or Last_Red_cache[Seat] == True :
-                Bet_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = ocr_bet(Seat)
-                if Last_White_cache[Seat] == True : 
-                    shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,Bet_cache["Pre_Flop %s" %Round_Pre_Flop][Seat])))
-                elif Last_Red_cache[Seat] == True :
-                    shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,Bet_cache["Pre_Flop %s" %Round_Pre_Flop][Seat])))
-            else :
-                Bet_cache["Pre_Flop %s" %Round_Pre_Flop][Seat] = None
-            Last_Bet_cache[Seat] = Bet_cache["Pre_Flop %s" %Round_Pre_Flop][Seat]
-            
-    if Flop1_Deside == True and Turn1_Deside == False :
-        Cards_cache["Flop %s" %Round_Flop] = {}
-        White_cache["Flop %s" %Round_Flop] = {}
-        Red_cache["Flop %s" %Round_Flop] = {}
-        Bet_cache["Flop %s" %Round_Flop] = {}
-        Last_Cards_cache = {}
-        Last_White_cache = {}
-        Last_Red_cache = {}
-        Last_Bet_cache = {}
-
-        for Seat in range(1,6) :
-            Cards_cache["Flop %s" %Round_Flop][Seat] = pm.player_cards_pixel(game_position, Seat)
-            White_cache["Flop %s" %Round_Flop][Seat] = white(Seat)
-            Red_cache["Flop %s" %Round_Flop][Seat] = red(Seat)
-            Last_Cards_cache[Seat] = Cards_cache["Flop %s" %Round_Flop][Seat]
-            Last_White_cache[Seat] = White_cache["Flop %s" %Round_Flop][Seat]
-            Last_Red_cache[Seat] = Red_cache["Flop %s" %Round_Flop][Seat]
-
-            if Last_White_cache[Seat] == True or Last_Red_cache[Seat] == True :
-                Bet_cache["Flop %s" %Round_Flop][Seat] = ocr_bet(Seat)
-                if Last_White_cache[Seat] == True : 
-                    shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,Bet_cache["Flop %s" %Round_Flop][Seat])))
-                elif Last_Red_cache[Seat] == True :
-                    shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,Bet_cache["Flop %s" %Round_Flop][Seat])))
-            else :
-                Bet_cache["Flop %s" %Round_Flop][Seat] = None
-            Last_Bet_cache[Seat] = Bet_cache["Flop %s" %Round_Flop][Seat]
-
-    if Turn1_Deside == True and River1_Deside == False :
-        Cards_cache["Turn %s" %Round_Turn] = {}
-        White_cache["Turn %s" %Round_Turn] = {}
-        Red_cache["Turn %s" %Round_Turn] = {}
-        Bet_cache["Turn %s" %Round_Turn] = {}
-        Last_Cards_cache = {}
-        Last_White_cache = {}
-        Last_Red_cache = {}
-        Last_Bet_cache = {}
-
-        for Seat in range(1,6) :
-            Cards_cache["Turn %s" %Round_Turn][Seat] = pm.player_cards_pixel(game_position, Seat)
-            White_cache["Turn %s" %Round_Turn][Seat] = white(Seat)
-            Red_cache["Turn %s" %Round_Turn][Seat] = red(Seat)
-            Last_Cards_cache[Seat] = Cards_cache["Turn %s" %Round_Turn][Seat]
-            Last_White_cache[Seat] = White_cache["Turn %s" %Round_Turn][Seat]
-            Last_Red_cache[Seat] = Red_cache["Turn %s" %Round_Turn][Seat]
-            
-            if Last_White_cache[Seat] == True or Last_Red_cache[Seat] == True :
-                Bet_cache["Turn %s" %Round_Turn][Seat] = ocr_bet(Seat)
-                if Last_White_cache[Seat] == True : 
-                    shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,Bet_cache["Turn %s" %Round_Turn][Seat])))
-                elif Last_Red_cache[Seat] == True :
-                    shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,Bet_cache["Turn %s" %Round_Turn][Seat])))
-            else :
-                Bet_cache["Turn %s" %Round_Turn][Seat] = None
-            Last_Bet_cache[Seat] = Bet_cache["Turn %s" %Round_Turn][Seat]
-
-    if River1_Deside == True :
-        Cards_cache["River %s" %Round_River] = {}
-        White_cache["River %s" %Round_River] = {}
-        Red_cache["River %s" %Round_River] = {}
-        Bet_cache["River %s" %Round_River] = {}
-        Last_Cards_cache = {}
-        Last_White_cache = {}
-        Last_Red_cache = {}
-        Last_Bet_cache = {}
-
-        for Seat in range(1,6) :
-            Cards_cache["River %s" %Round_River][Seat] = pm.player_cards_pixel(game_position, Seat)
-            White_cache["River %s" %Round_River][Seat] = white(Seat)
-            Red_cache["River %s" %Round_River][Seat] = red(Seat)
-            Last_Cards_cache[Seat] = Cards_cache["River %s" %Round_River][Seat]
-            Last_White_cache[Seat] = White_cache["River %s" %Round_River][Seat]
-            Last_Red_cache[Seat] = Red_cache["River %s" %Round_River][Seat]
-
-            if Last_White_cache[Seat] == True or Last_Red_cache[Seat] == True :
-                Bet_cache["River %s" %Round_River][Seat] = ocr_bet(Seat)
-                if Last_White_cache[Seat] == True : 
-                    shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,Bet_cache["River %s" %Round_River][Seat])))
-                elif Last_Red_cache[Seat] == True :
-                    shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,Bet_cache["River %s" %Round_River][Seat])))
-            else :
-                Bet_cache["River %s" %Round_River][Seat] = None
-            Last_Bet_cache[Seat] = Bet_cache["River %s" %Round_River][Seat]
-
     shout("shouting from read_and_save_bets(), Bet_cache is: %s"%Bet_cache) #(2018) delete this later. just for testing if rounds are started from 0, esp at preflop stage
     save_variables()
 
@@ -1236,7 +1132,7 @@ if __name__ == '__main__':
     # first line values Ended -----------------
 
 
-    find_game_reference_point_for_starting()
+    game_position = find_game_position.find_game_reference_point()
 
 
 while True :
@@ -1376,7 +1272,7 @@ while True :
             while Hand_End_Cheker1 == False and its_my_turn == False and Flop1 == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
-                    find_game_reference_point()
+                    game_position = find_game_position.find_game_reference_point()
                     fo = 1
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("4.5 I am back Button is True")
@@ -1432,7 +1328,7 @@ while True :
             while Hand_End_Cheker1 == False and its_my_turn == False and Turn1 == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
-                    find_game_reference_point()
+                    game_position = find_game_position.find_game_reference_point()
                     fo = 1
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("6.5 I am back Button is True")
@@ -1492,7 +1388,7 @@ while True :
             while Hand_End_Cheker1 == False and its_my_turn == False and River1 == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
-                    find_game_reference_point()
+                    game_position = find_game_position.find_game_reference_point()
                     fo = 1
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("8.5 I am back Button is True")
@@ -1551,7 +1447,7 @@ while True :
             while Hand_End_Cheker1 == False and its_my_turn == False and time2 < 1 * 60 :
                 if time.time() - time1 > 30 and fo == 0 :
                     shout("Looking for game on screen after 30s of idle...")
-                    find_game_reference_point()
+                    game_position = find_game_position.find_game_reference_point()
                     fo = 1
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("10.5 I am back Button is True")
@@ -1646,7 +1542,7 @@ while True :
             Coins_Appeared = sb_b_d_buttons_are_founded()
             time2 = time.time() - time1
             if not time2 < 8 and fo == 0 :
-                find_game_reference_point()
+                game_position = find_game_position.find_game_reference_point()
                 fo = 1
             if not time2 < 2 * 60 :
                 if fo == 1 :
