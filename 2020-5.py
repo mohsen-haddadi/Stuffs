@@ -20,25 +20,35 @@ if test == True:
 
 def load_variables():
     """ variables order is important while loading """
-    global game_position , file_name , Reports_directory ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat
 
-    game_position , file_name , Reports_directory ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( "pickled variables.p", "rb" ) )
+    game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat = \
+    pickle.load( open( "pickled variables.p", "rb" ) )
+
 
 def save_variables() :
     """
@@ -49,7 +59,7 @@ def save_variables() :
     Where ever i use save_variables() at the end of a function i should Implement load_variables() at the first line of that function.
     To Pickle real updated variables.
     Becuase by running main file functions from the other files, the variables will update for that file but will not update for mian file. 
-    like Check_Mod variable in fix_game_disruption() run from Buttons which is run from decide file.
+    like just_do_check_fold variable in fix_game_disruption() run from Buttons which is run from decide file.
     click_decision() should not use load_variables() because it's running at main file and it is a gate way. some varibiales may have changed in main while True.
 
     At gate way lines to the other files use save_variables() before and load_variables() after them. 
@@ -60,46 +70,65 @@ def save_variables() :
     By implementing load_variables() I can delete all global lines from supporting and... funcitons. 
     But I keep them to see the varibales I've used for that functions. 
     """
-    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
     preflop_stage , flop_stage , turn_stage , river_stage ,\
-    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
-    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat
 
-    pickle.dump( [game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    pickle.dump( [game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
     preflop_stage , flop_stage , turn_stage , river_stage ,\
-    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
-    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat], open( "pickled variables.p", "wb" ) )
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat], \
+    open( "pickled variables.p", "wb" ) )
+
+
 
 def set_all_variables_to_none():
-    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
     preflop_stage , flop_stage , turn_stage , river_stage ,\
-    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
-    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat
 
-    game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY ,\
+    game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
     preflop_stage , flop_stage , turn_stage , river_stage ,\
-    preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
-    board_1th_card , board_2th_card , board_3th_card , board_4th_card , board_5th_card , my_1th_card , my_2th_card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = (None,)*39
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat = (None,)*38
     save_variables()
 
 def create_file_directories():
@@ -231,8 +260,8 @@ def declare_the_winners():
         if pm.other_seat_won_pixel(game_position, seat) == True :
             shout("Seat %s won the game!" %seat)
 
-def white(seat):
-    # It checks if there is a white color sign in front of a seat,
+def white_chips(seat):
+    # It checks if there is a white colored chips in front of a seat,
     # by returning True or False, to find out if a player has call or not
 
     if pm.player_chips_pixel(game_position, seat):
@@ -240,8 +269,8 @@ def white(seat):
     else :
         return False
 
-def red(seat):
-    # It checks if there is a red color sign in front of a seat,
+def red_chips(seat):
+    # It checks if there is a red colored chips in front of a seat,
     # by returning True or False, to find out if a player has bet/raised or not.
     # (In accordance to Google: 'A bet is the first wager of a round.')
     if pm.player_chips_pixel(game_position, seat):
@@ -251,12 +280,12 @@ def red(seat):
 
 def is_there_any_raiser():
     """ Except me """
-    global My_Seat_Number
+    global my_seat_number
     
     for seat in range(1,6):
-        if seat == My_Seat_Number :
+        if seat == my_seat_number :
             continue
-        elif red(seat) :
+        elif red_chips(seat) :
             return True
     return False
 
@@ -275,34 +304,34 @@ def hand_is_ended():
 
 ###
 def determine_small_blind_seat():
-    global game_position, Small_Blind_Seat
+    global game_position, small_blind_seat
     load_variables()
 
     for seat in [1,2,3,4,5]:
         if pm.small_blind_pixel(game_position, seat):
-            Small_Blind_Seat = seat
+            small_blind_seat = seat
             shout("Seat %s is at Small Blind Seat" %seat)
             break
 
 ### 
 def determine_big_blind_seat():
-    global game_position, Big_Blind_Seat
+    global game_position, big_blind_seat
     load_variables()
 
     for seat in [1,2,3,4,5]:
         if pm.big_blind_pixel(game_position, seat):
-            Big_Blind_Seat = seat
+            big_blind_seat = seat
             shout("Seat %s is at Big Blind Seat" %seat)
             break
 
 ###
 def determine_dealer_seat():
-    global game_position, Dealer_Seat
+    global game_position, dealer_seat
     load_variables()
 
     for seat in [1,2,3,4,5]:
         if pm.dealer_pixel(game_position, seat):
-            Dealer_Seat = seat
+            dealer_seat = seat
             shout("Seat %s is at Dealer Seat" %seat)
             break
 
@@ -333,13 +362,13 @@ def click_on_button(button_name):
     # for call, check, fold, bet, raise,
     # exit, menu, rebuy_menu,
     # exit_yes, leave_next_hand_ok, buy_in, and re_buy buttons.
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated #waiting_for_next_hand
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand 
     load_variables()
 
     if pm.button_pixel(game_position, button_name) : 
         click(button_name) 
         if button_name == 'exit':
-            Just_Seated = None
+            waiting_for_first_hand = None
 
     else :
 
@@ -348,20 +377,20 @@ def click_on_button(button_name):
             time0 = time.time()
             fix_game_disruption("button %s is not visible" %button_name )
             time1 = time.time() - time0
-            if Just_Seated == True:
+            if waiting_for_first_hand == True:
                 return None
-            elif Check_Mod == True:
+            elif just_do_check_fold == True:
                 if pm.button_pixel(game_position, 'check') :
                     click('check')
                 elif pm.button_pixel(game_position, 'fold') :
                     click('fold') 
                 else:
                     screenshot_error("check and fold buttons are not visible")  
-            elif pm.player_cards_pixel(game_position,  My_Seat_Number ) \
+            elif pm.player_cards_pixel(game_position,  my_seat_number ) \
             and pm.button_pixel(game_position, button_name) and time1 <= 10 :
                 click(button_name) #new function
             else :
-                set_check_mode_to_true("There is problem on clicking on button %s" %button_name)
+                set_just_do_check_fold_to_true("There is problem on clicking on button %s" %button_name)
 
         elif button_name in ('exit', 'menu', 'rebuy_menu'):
 
@@ -369,7 +398,7 @@ def click_on_button(button_name):
             if pm.button_pixel(game_position, button_name):
                 click(button_name)
                 if button_name == 'exit':
-                    Just_Seated = None
+                    waiting_for_first_hand = None
             else:
                 raise_exception_the_problem("button %s is not visible" %button_name)
 
@@ -379,7 +408,7 @@ def click_on_button(button_name):
 
 def number_of_clicks_on_button(button_name, number): # Number of clicks 
     # for plus and minus buttons
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     load_variables()
 
     number = int(number)
@@ -390,21 +419,21 @@ def number_of_clicks_on_button(button_name, number): # Number of clicks
         time0 = time.time()
         fix_game_disruption("button %s is not visible" %button_name)
         time1 = time.time() - time0
-        if Just_Seated == True:
+        if waiting_for_first_hand == True:
             return None
-        elif Check_Mod == True:
+        elif just_do_check_fold == True:
             if pm.button_pixel(game_position, 'check') :
                 click('check')
             elif pm.button_pixel(game_position, 'fold') :
                 click('fold') 
             else:
                 screenshot_error("check and fold buttons are not visible") 
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) \
+        if pm.player_cards_pixel(game_position,  my_seat_number ) \
         and pm.button_pixel(game_position, button_name) and time1 <= 10 :
             for i in range (number):
                 click(button_name)
         else :
-            set_check_mode_to_true("There is problem on clicking on button %s" %button_name)
+            set_just_do_check_fold_to_true("There is problem on clicking on button %s" %button_name)
 
 def hold_click_on_button(button_name, seconds = 10): 
     # for buy_in_plus and buy_in_minus and re_buy_plus and re_buy_minus buttons
@@ -450,20 +479,20 @@ def find_and_click_on_reconnect_button():
 # 2017: -----------------------------
 
 def fold():
-    global game_position, Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     return click_on_button('fold')
 
 def check():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     return click_on_button('check')
 
 def call():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     return click_on_button('call')
 
-def all_in_old( Minus_Blinds = 0 ): #not completed on Did_i_raised_at and My_last_raise. i won't use this fuction anymore
+def all_in_old( Minus_Blinds = 0 ): #not completed on did_i_raised_at and my_last_raise_at. i won't use this fuction anymore
     """ if 0 : all_in everything """
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
 
     if pm.button_pixel(game_position, 'all_in') == False and pm.button_pixel(game_position, 'call') == True \
     and pm.button_pixel(game_position, 'bet') == False and pm.button_pixel(game_position, 'raise') == False :
@@ -484,7 +513,7 @@ def all_in_old( Minus_Blinds = 0 ): #not completed on Did_i_raised_at and My_las
             return click_on_button('raise')
 
 def all_in():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
 
     if pm.button_pixel(game_position, 'all_in') == False and pm.button_pixel(game_position, 'call') == True \
     and pm.button_pixel(game_position, 'bet') == False and pm.button_pixel(game_position, 'raise') == False :
@@ -500,10 +529,10 @@ def raising( Blinds ):
     """ 
     Act for both raising and betting 
     Blinds is the amount of money like in ocr; not the number of blinds
-    if Blinds == BLIND (or less): won't click on plus button
+    if Blinds == BLIND_VALUE (or less): won't click on plus button
     """
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated,\
-    preflop_stage , flop_stage , turn_stage , river_stage , Did_i_raised_at , My_last_raise , BLIND
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand,\
+    preflop_stage , flop_stage , turn_stage , river_stage , did_i_raised_at , my_last_raise_at , BLIND_VALUE
     load_variables()
 
     if preflop_stage == True and flop_stage == False :
@@ -515,12 +544,12 @@ def raising( Blinds ):
     elif river_stage == True :
         stage = "River" 
 
-    Did_i_raised_at[stage] = True
+    did_i_raised_at[stage] = True
 
-    Bets = [Last_Bet_cache[Seat] for Seat in range(1,6) if Last_Red_cache[Seat] and Last_Bet_cache[Seat] != None ]     
+    Bets = [last_bets_cache[Seat] for Seat in range(1,6) if last_red_chips_cache[Seat] and last_bets_cache[Seat] != None ]     
 
     if preflop_stage and not flop_stage :
-        Bets.append(BLIND)
+        Bets.append(BLIND_VALUE)
     else :
         Bets.append(0) #That's why raising() algorithm can be use and act for betting too.
 
@@ -531,18 +560,18 @@ def raising( Blinds ):
     Bets_difference = [ Bets[i] - Bets[i+1] for i in range(len(Bets)-1) ]
 
     if Bets_difference == [] :
-        Raise_add = BLIND
-    elif max(Bets_difference) <= BLIND :
-        Raise_add = BLIND
+        Raise_add = BLIND_VALUE
+    elif max(Bets_difference) <= BLIND_VALUE :
+        Raise_add = BLIND_VALUE
     else :
         Raise_add = max(Bets_difference)
 
     if Blinds > Raise_base + Raise_add :
-        My_last_raise[stage] = Blinds
+        my_last_raise_at[stage] = Blinds
     else :
-        My_last_raise[stage] = Raise_base + Raise_add
+        my_last_raise_at[stage] = Raise_base + Raise_add
 
-    number_of_clicks_on_button('plus', ( Blinds - (Raise_base + Raise_add) ) // BLIND)
+    number_of_clicks_on_button('plus', ( Blinds - (Raise_base + Raise_add) ) // BLIND_VALUE)
     #Till here as same as raising()
 
     if pm.button_pixel(game_position, 'raise') :
@@ -557,10 +586,10 @@ def raising( Blinds ):
         elif pm.button_pixel(game_position, 'bet') :
             click('bet')
         else :
-            set_check_mode_to_true("No raise nor bet button founded")
+            set_just_do_check_fold_to_true("No raise nor bet button founded")
 
 def check_fold():
-    global game_position, Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     if pm.button_pixel(game_position, 'check') :
         click('check')
     elif pm.button_pixel(game_position, 'fold') :
@@ -568,14 +597,14 @@ def check_fold():
     else :
 
         fix_game_disruption("check_fold()")
-        if Just_Seated != False:
+        if waiting_for_first_hand != False:
             return None
         elif pm.button_pixel(game_position, 'check') :
             click('check')
         elif pm.button_pixel(game_position, 'fold') :
             click('fold') 
         else:
-            set_check_mode_to_true("check_fold()(It's already True)") #It's already True
+            set_just_do_check_fold_to_true("check_fold()(It's already True)") #It's already True
             screenshot_error("check and fold buttons are not visible")      
 
 
@@ -587,7 +616,7 @@ def check_fold():
 # Read Cards: --------------------------------------------------------------------------------------------------------------------
 
 def read_and_global_my_cards():
-    global game_position, my_1th_card , my_2th_card  , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, my_1th_card , my_2th_card  , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     load_variables()
 
     my_1th_card, my_2th_card = read_cards.read_my_cards(game_position, My_Seat)
@@ -596,54 +625,54 @@ def read_and_global_my_cards():
         fix_game_disruption("my cards are read Unknown")
         my_1th_card, my_2th_card = read_cards.read_my_cards(game_position, My_Seat)
         if 'Unknown' in my_1th_card or 'Unknown' in my_2th_card or pm.flop_pixel(game_position):
-            set_check_mode_to_true("my cards are read Unknown again")
+            set_just_do_check_fold_to_true("my cards are read Unknown again")
 
     shout(paint.green.bold("My cards are: %s %s, %s %s" \
     %(my_1th_card[0][0], my_1th_card[0][1],my_2th_card[1][0], my_2th_card[1][1])))
 
 def read_and_global_flop_cards(): 
-    global game_position, board_1th_card , board_2th_card , board_3th_card , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, board_card_1th , board_card_2th , board_card_3th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
 
     #table_1th_card, table_2th_card, table_3th_card = read_flop_cards(game_position)
-    board_1th_card, board_2th_card, board_3th_card = read_cards.read_flop_cards(game_position)
+    board_card_1th, board_card_2th, board_card_3th = read_cards.read_flop_cards(game_position)
 
-    if 'Unknown' in board_1th_card or 'Unknown' in board_2th_card or 'Unknown' in board_3th_card:
+    if 'Unknown' in board_card_1th or 'Unknown' in board_card_2th or 'Unknown' in board_card_3th:
         fix_game_disruption("Flop cards are read 'Unknown'")
 
-        board_1th_card, board_2th_card, board_3th_card = read_cards.read_flop_cards(game_position)
+        board_card_1th, board_card_2th, board_card_3th = read_cards.read_flop_cards(game_position)
 
-        if 'Unknown' in board_1th_card or 'Unknown' in board_2th_card or 'Unknown' in board_3th_card \
+        if 'Unknown' in board_card_1th or 'Unknown' in board_card_2th or 'Unknown' in board_card_3th \
         or not pm.flop_pixel(game_position) or pm.turn_pixel(game_position) :
-            set_check_mode_to_true("Flop cards are read 'Unknown' again")
+            set_just_do_check_fold_to_true("Flop cards are read 'Unknown' again")
 
     shout(paint.green.bold("Flop cards are: %s %s, %s %s, %s %s" \
-    %(board_1th_card[0][0], board_1th_card[0][1], board_2th_card[1][0], board_2th_card[1][1], board_3th_card[1][0], board_3th_card[1][1])))
+    %(board_card_1th[0][0], board_card_1th[0][1], board_card_2th[1][0], board_card_2th[1][1], board_card_3th[1][0], board_card_3th[1][1])))
 
 def read_and_global_turn_card(): 
-    global game_position, board_4th_card , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, board_card_4th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
 
-    board_4th_card = read_cards.read_turn_card(game_position)
+    board_card_4th = read_cards.read_turn_card(game_position)
     
-    if 'Unknown' in board_4th_card:
+    if 'Unknown' in board_card_4th:
         fix_game_disruption("Turn card is read 'Unknown'")
-        board_4th_card = read_cards.read_turn_card(game_position)
-        if 'Unknown' in board_4th_card or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
-            set_check_mode_to_true("Turn card is read 'Unknown' again")
+        board_card_4th = read_cards.read_turn_card(game_position)
+        if 'Unknown' in board_card_4th or not pm.turn_pixel(game_position) or pm.river_pixel(game_position):
+            set_just_do_check_fold_to_true("Turn card is read 'Unknown' again")
 
-    shout(paint.green.bold("Turn card is: %s %s" %(board_4th_card[0], board_4th_card[1])))
+    shout(paint.green.bold("Turn card is: %s %s" %(board_card_4th[0], board_card_4th[1])))
 
 def read_and_global_river_card(): 
-    global game_position, board_5th_card , Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated
+    global game_position, board_card_5th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
     
-    board_5th_card = read_cards.read_river_card(game_position)
+    board_card_5th = read_cards.read_river_card(game_position)
     
-    if 'Unknown' in board_5th_card:
+    if 'Unknown' in board_card_5th:
         fix_game_disruption("River card is read 'Unknown'")
-        board_5th_card = read_cards.read_river_card(game_position)
-        if 'Unknown' in board_5th_card or not pm.river_pixel(game_position):
-            set_check_mode_to_true("River card is read 'Unknown' again")
+        board_card_5th = read_cards.read_river_card(game_position)
+        if 'Unknown' in board_card_5th or not pm.river_pixel(game_position):
+            set_just_do_check_fold_to_true("River card is read 'Unknown' again")
 
-    shout(paint.green.bold("River card is: %s %s" %(board_5th_card[0], board_5th_card[1])))
+    shout(paint.green.bold("River card is: %s %s" %(board_card_5th[0], board_card_5th[1])))
 
 # Read Cards Ended ---------------------------------------------------------------------------------------------------------------
 
@@ -660,41 +689,41 @@ def replace_letters_comma_space_m_k(ocr_string):
     return string
 
 def ocr_bet(game_position, seat):
-    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod , Last_White_cache , Last_Red_cache
+    global my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold , last_white_chips_cache , last_red_chips_cache
     load_variables()
 
-    x1 = Last_White_cache[seat]
-    y1 = Last_Red_cache[seat]
+    x1 = last_white_chips_cache[seat]
+    y1 = last_red_chips_cache[seat]
     string1 = ocr.ocr_bet_to_string(game_position,  seat)
     shout("string of bet OCR on seat%s is: %s" %(seat, string1) )
-    x2 = white(seat)
-    y2 = red(seat)
+    x2 = white_chips(seat)
+    y2 = red_chips(seat)
     string2 = replace_letters_comma_space_m_k(string1)
     string2 = string2.replace("*","")
     if not ( string2.isdigit() and (x1 or y1) and (x2 or y2) ) :
         if not ( (x1 or y1) and (x2 or y2) ) :
-            set_check_mode_to_true("OCR Bet is None")            
+            set_just_do_check_fold_to_true("OCR Bet is None")            
             screenshot_error( "Easy_OCR_Bet_Number(This case can not happen1) Seat %s" %seat  ) #Type_of_Error in string
             fix_game_disruption("Easy_OCR_Bet_Number(%s)" %seat)
             return None
         else :
             fix_game_disruption("Easy_OCR_Bet_Number(%s)" %seat)
-            x1 = white(seat)
-            y1 = red(seat)
+            x1 = white_chips(seat)
+            y1 = red_chips(seat)
             string1 = ocr.ocr_bet_to_string(game_position, seat)
             shout("string of bet OCR on seat%s is: %s" %(seat, string1) )
-            x2 = white(seat)
-            y2 = red(seat)
+            x2 = white_chips(seat)
+            y2 = red_chips(seat)
             string2 = replace_letters_comma_space_m_k( string1 )
             string2 = string2.replace("*","")
             if not ( string2.isdigit() and (x1 or y1) and (x2 or y2) ) :
                 if not ( (x1 or y1) and (x2 or y2) ) :
-                    set_check_mode_to_true("OCR Bet is None") 
+                    set_just_do_check_fold_to_true("OCR Bet is None") 
                     screenshot_error( "Easy_OCR_Bet_Number(This case can not happen2) Seat %s" %seat  ) #Type_of_Error in string
                     fix_game_disruption("Easy_OCR_Bet_Number(%s)" %seat)
                     return None
                 else :
-                    set_check_mode_to_true("OCR Bet is None") 
+                    set_just_do_check_fold_to_true("OCR Bet is None") 
                     screenshot_error( "Easy_OCR_Bet_Number Seat(Not Digit!!) %s" %seat  ) #Type_of_Error in string
                     return None
             else :
@@ -706,7 +735,7 @@ def ocr_bet(game_position, seat):
         return eval( string1 )
 
 def ocr_other_players_bank(game_position, seat):
-    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
+    global my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold
 
     string1 = ocr.ocr_other_players_bank_to_string(game_position, seat)
     shout("string of other players bank OCR on seat%s is: %s" %(seat, string1) )
@@ -723,7 +752,7 @@ def ocr_other_players_bank(game_position, seat):
         return eval( string1 )
 
 def ocr_my_bank(game_position, seat):
-    global Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
+    global my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold
     load_variables()
 
     x1 = pm.my_seat_won_pixel(game_position, seat)
@@ -739,7 +768,7 @@ def ocr_my_bank(game_position, seat):
         if ( x1==False and x2==False ) :
             
             fix_game_disruption("OCR_My_Bank_Number(seat)")
-            seat = My_Seat_Number
+            seat = my_seat_number
             x1 = pm.my_seat_won_pixel(game_position, seat)
             string1 = ocr.ocr_my_bank_to_string(game_position, seat)
             shout("string of my bank OCR on seat%s is: %s" %(seat, string1) )
@@ -806,19 +835,19 @@ def ocr_my_name(game_position, seat):
 #def click_on_exit_button(): 
 
 def sit_in(chips): # "Min buy in" or "Max buy in"
-    global game_position, My_Seat_Number , Just_Seated
+    global game_position, my_seat_number , waiting_for_first_hand
     load_variables()
 
     shout(paint.yellow.bold("Searching for a seat to sit in"))
-    My_Seat_Number = None
+    my_seat_number = None
     for i in range(1 ,6 ):
         if pm.available_seat_pixel(game_position,i) == True :
             click('available_seat_%s' %i)
-            My_Seat_Number = i
-            Just_Seated = True
-            shout(paint.yellow.bold("Sit_In() --> Just_Seated is True."))
+            my_seat_number = i
+            waiting_for_first_hand = True
+            shout(paint.yellow.bold("Sit_In() --> waiting_for_first_hand is True."))
             break
-    if My_Seat_Number == None :
+    if my_seat_number == None :
         click_on_button('exit')
         
         raise Exception("Sit_In(chips):This can not happen IN FUTURE becuase main menu automation is built")
@@ -832,11 +861,11 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
             time1 = x2-x1
         if Buy_In != True :
             fix_game_disruption("Sit_In(chips):Buy_In != True")
-        if (chips == "Min buy in" and My_Seat_Number != None) :
+        if (chips == "Min buy in" and my_seat_number != None) :
             hold_click_on_button('buy_in_minus', seconds = 10)
-        if (chips == "Max buy in" and My_Seat_Number != None):
+        if (chips == "Max buy in" and my_seat_number != None):
             hold_click_on_button('buy_in_plus', seconds = 10)
-        if My_Seat_Number != None :
+        if my_seat_number != None :
             click_on_button('buy_in')
             screenshot_error("Rebuyed")
 #
@@ -862,32 +891,32 @@ def is_internet_disconnected():
   return True
 
 def check_i_am_in_or_out():
-    global game_position, My_Seat_Number , My_Profile_Name , Check_Mod
+    global game_position, my_seat_number , MY_PROFILE_NAME , just_do_check_fold
     load_variables()
 
     if pm.button_pixel(game_position, 'i_am_back') == True :
         click('i_am_back')
-    if ocr_my_name(My_Seat_Number) == My_Profile_Name or ocr_my_name(My_Seat_Number) == True :
+    if ocr_my_name(my_seat_number) == MY_PROFILE_NAME or ocr_my_name(my_seat_number) == True :
         shout(paint.yellow.bold("I am In"))
         return ("In")
 
     for i in range(1,6):
         if pm.i_am_seated_pixel(game_position, i) :
             if is_internet_disconnected() == False and find_and_click_on_reconnect_button() == None :
-                if My_Seat_Number == i :
+                if my_seat_number == i :
                     shout("I am In not by OCR")
                     return ("In")
                 else :
-                    My_Seat_Number = i
-                    shout('I AM IN,BUT MY SEAT IS MANUALLY CHANGED TO: %s' %My_Seat_Number)
-                    set_check_mode_to_true("My seat is manually changed!")
+                    my_seat_number = i
+                    shout('I AM IN,BUT MY SEAT IS MANUALLY CHANGED TO: %s' %my_seat_number)
+                    set_just_do_check_fold_to_true("My seat is manually changed!")
                     return ("In")
                 
     shout(paint.yellow.bold("I am Out"))
     return ("Out")
 
 def fix_game_disruption(String = None): #if find_game_reference_point() == None or ...
-    global game_position, Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated , Check_Mod
+    global game_position , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold
     load_variables()
 
     shout(paint.yellow.bold( 7*"-" ))
@@ -895,18 +924,6 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
         shout(paint.yellow.bold("fix_game_disruption() is running...."))
     elif type(String) == str :
         shout(paint.yellow.bold("fix_game_disruption() <-- %s is running...." %String))
-
-    """       
-    Lost_Connection = pyautogui.locateOnScreen('Lost_Connection.png')
-    if Lost_Connection != None :
-        shout(paint.yellow.bold("Lost_Connection is Visible..."))
-        x1 = time.time()
-        while ( Lost_Connection != None  ):
-            Lost_Connection=pyautogui.locateOnScreen('Lost_Connection.png')
-        shout(paint.yellow.bold("Connection is Back again"))
-        x2 = time.time()
-        Lost_Connection_Time[x1]= x2-x1 
-    """
 
     if is_internet_disconnected() :
         shout('Internet is Disconnected, waiting to reconect...')
@@ -945,12 +962,12 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     
     if pm.button_pixel(game_position, 'i_am_back') == True :
         click('i_am_back')
-        if pm.player_cards_pixel(game_position,  My_Seat_Number ) == True :
-            Check_Mod = True
-            shout(paint.yellow.bold("After fix_game_disruption() --> Check_Mod is True."))
+        if pm.player_cards_pixel(game_position,  my_seat_number ) == True :
+            just_do_check_fold = True
+            shout(paint.yellow.bold("After fix_game_disruption() --> just_do_check_fold is True."))
         else :
-            Just_Seated = True
-            shout(paint.on_yellow.bold("After fix_game_disruption() --> Just_Seated is True."))
+            waiting_for_first_hand = True
+            shout(paint.on_yellow.bold("After fix_game_disruption() --> waiting_for_first_hand is True."))
 
     if check_i_am_in_or_out() == "Out":
         sit_in("Min buy in")
@@ -983,58 +1000,58 @@ def raise_exception_the_problem(string):
 
 
 def read_and_save_players_banks_and_names() :
-    global game_position, Players_name_dic , Players_bank_dic
+    global game_position, players_name , players_bank
     load_variables()
 
     for Seat in range(1,6):
         if pm.other_player_seated_pixel(game_position, Seat) == True :
-            Players_bank_dic[Seat] = ocr_other_players_bank(game_position, Seat)
-            Players_name_dic[Seat] = ocr_other_names(Seat)
-            if red(Seat) :
-                Players_bank_dic[Seat] = None
-    shout(paint.on_light_red.bold("Players Bank dictionary is: %s" %Players_bank_dic ))
-    shout(paint.on_light_red.bold("Players Name dictionary is: %s" %Players_name_dic ))
+            players_bank[Seat] = ocr_other_players_bank(game_position, Seat)
+            players_name[Seat] = ocr_other_names(Seat)
+            if red_chips(Seat) :
+                players_bank[Seat] = None
+    shout(paint.on_light_red.bold("Players Bank dictionary is: %s" %players_bank ))
+    shout(paint.on_light_red.bold("Players Name dictionary is: %s" %players_name ))
 
 def reset_table_information() : # preflop_betting_round ,...,river_betting_round & preflop_stage ,...,river_stage dar loope while True baresi va be in func baraye reset shodan enteghal dade shavand
-    global Players_name_dic , Players_bank_dic ,\
-           Cards_cache , White_cache , Red_cache , Bet_cache ,\
-           Last_Cards_cache , Last_White_cache , Last_Red_cache , Last_Bet_cache,\
-           Did_i_raised_at , My_last_raise , preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round
+    global players_name , players_bank ,\
+           player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+           last_player_cards_cache , last_white_chips_cache , last_red_chips_cache , last_bets_cache,\
+           did_i_raised_at , my_last_raise_at , preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round
     load_variables()
 
     shout("Reseting table information")
     for Seat in range(1,6):
-        Players_name_dic[Seat] = None
-        Players_bank_dic[Seat] = None
-    Cards_cache = {} ; White_cache = {}  ; Red_cache = {}  ; Bet_cache = {}
-    Last_Cards_cache = {} ; Last_White_cache = {}  ; Last_Red_cache = {}  ; Last_Bet_cache = {}
-    Did_i_raised_at = {"Pre_Flop": False , "Flop": False , "Turn": False , "River": False } ; My_last_raise = {} # make sure while starting the code Did_i_raised_at is defined by reset_table_information() before first deciding; otherwise did_i_raise_sofar() at supporting funcs file will error
-    preflop_betting_round = 0; flop_betting_round = 0 ; turn_betting_round = 0 ; river_betting_round = 0 #(2018) Later make sure if all rounds are starting from 0 in main While True loop (Round_... = 0 should be implemented in read_and_save_bets() for all stages so for example Bet_cache dictionary surely will "have Round_... 0") #for testing i have put a shout(Bet_cache) at the end of read_and_save_bets() function 
+        players_name[Seat] = None
+        players_bank[Seat] = None
+    player_cards_cache = {} ; white_chips_cache = {}  ; red_chips_cache = {}  ; bets_cache = {}
+    last_player_cards_cache = {} ; last_white_chips_cache = {}  ; last_red_chips_cache = {}  ; last_bets_cache = {}
+    did_i_raised_at = {"Pre_Flop": False , "Flop": False , "Turn": False , "River": False } ; my_last_raise_at = {} # make sure while starting the code did_i_raised_at is defined by reset_table_information() before first deciding; otherwise did_i_raise_sofar() at supporting funcs file will error
+    preflop_betting_round = 0; flop_betting_round = 0 ; turn_betting_round = 0 ; river_betting_round = 0 #(2018) Later make sure if all rounds are starting from 0 in main While True loop (Round_... = 0 should be implemented in read_and_save_bets() for all stages so for example bets_cache dictionary surely will "have Round_... 0") #for testing i have put a shout(bets_cache) at the end of read_and_save_bets() function 
     
     
-def set_check_mode_to_true(string = None) :
-    global Check_Mod
+def set_just_do_check_fold_to_true(string = None) :
+    global just_do_check_fold
     load_variables()
 
-    Check_Mod = True
+    just_do_check_fold = True
     if string == None :
-        shout(paint.on_yellow.bold("Check_Mod is On"))
+        shout(paint.on_yellow.bold("just_do_check_fold is On"))
     elif type(string) == str :
-        shout(paint.on_yellow.bold("Check_Mod is On: %s" %string))
+        shout(paint.on_yellow.bold("just_do_check_fold is On: %s" %string))
     save_variables()
 
-def reset_check_mode_to_false() :
-    global Check_Mod
+def reset_just_do_check_fold_to_false() :
+    global just_do_check_fold
     load_variables()
 
-    if Check_Mod == True :
-        shout("Check_Mod is reset to False")
-        Check_Mod = False
+    if just_do_check_fold == True :
+        shout("just_do_check_fold is reset to False")
+        just_do_check_fold = False
     save_variables()
 
 def read_and_save_bets() :
-    global game_position, Cards_cache , White_cache , Red_cache , Bet_cache ,\
-           Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
+    global game_position, player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+           last_white_chips_cache , last_red_chips_cache , last_player_cards_cache , last_bets_cache,\
            preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
            preflop_stage , flop_stage , turn_stage , river_stage
     load_variables()
@@ -1052,34 +1069,34 @@ def read_and_save_bets() :
         stage = "River"
         betting_round = river_betting_round
 
-    Cards_cache["%s %s" %(stage, betting_round)] = {}
-    White_cache["%s %s" %(stage, betting_round)] = {}
-    Red_cache["%s %s" %(stage, betting_round)] = {}
-    Bet_cache["%s %s" %(stage, betting_round)] = {}
-    Last_Cards_cache = {}
-    Last_White_cache = {}
-    Last_Red_cache = {}
-    Last_Bet_cache = {}
+    player_cards_cache["%s %s" %(stage, betting_round)] = {}
+    white_chips_cache["%s %s" %(stage, betting_round)] = {}
+    red_chips_cache["%s %s" %(stage, betting_round)] = {}
+    bets_cache["%s %s" %(stage, betting_round)] = {}
+    last_player_cards_cache = {}
+    last_white_chips_cache = {}
+    last_red_chips_cache = {}
+    last_bets_cache = {}
     
     for Seat in range(1,6) :
-        Cards_cache["%s %s" %(stage, betting_round)][Seat] = pm.player_cards_pixel(game_position, Seat)
-        White_cache["%s %s" %(stage, betting_round)][Seat] = white(Seat)
-        Red_cache["%s %s" %(stage, betting_round)][Seat] = red(Seat)
-        Last_Cards_cache[Seat] = Cards_cache["%s %s" %(stage, betting_round)][Seat]
-        Last_White_cache[Seat] = White_cache["%s %s" %(stage, betting_round)][Seat]
-        Last_Red_cache[Seat] = Red_cache["%s %s" %(stage, betting_round)][Seat]
+        player_cards_cache["%s %s" %(stage, betting_round)][Seat] = pm.player_cards_pixel(game_position, Seat)
+        white_chips_cache["%s %s" %(stage, betting_round)][Seat] = white_chips(Seat)
+        red_chips_cache["%s %s" %(stage, betting_round)][Seat] = red_chips(Seat)
+        last_player_cards_cache[Seat] = player_cards_cache["%s %s" %(stage, betting_round)][Seat]
+        last_white_chips_cache[Seat] = white_chips_cache["%s %s" %(stage, betting_round)][Seat]
+        last_red_chips_cache[Seat] = red_chips_cache["%s %s" %(stage, betting_round)][Seat]
 
-        if Last_White_cache[Seat] == True or Last_Red_cache[Seat] == True :
-            Bet_cache["%s %s" %(stage, betting_round)][Seat] = ocr_bet(Seat)
-            if Last_White_cache[Seat] == True : 
-                shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,Bet_cache["%s %s" %(stage, betting_round)][Seat])))
-            elif Last_Red_cache[Seat] == True :
-                shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,Bet_cache["%s %s" %(stage, betting_round)][Seat])))
+        if last_white_chips_cache[Seat] == True or last_red_chips_cache[Seat] == True :
+            bets_cache["%s %s" %(stage, betting_round)][Seat] = ocr_bet(Seat)
+            if last_white_chips_cache[Seat] == True : 
+                shout(paint.light_green.bold("Seat%s Call: $%s" %(Seat,bets_cache["%s %s" %(stage, betting_round)][Seat])))
+            elif last_red_chips_cache[Seat] == True :
+                shout(paint.light_green.bold("Seat%s Raise: $%s" %(Seat,bets_cache["%s %s" %(stage, betting_round)][Seat])))
         else :
-            Bet_cache["%s %s" %(stage, betting_round)][Seat] = None
-        Last_Bet_cache[Seat] = Bet_cache["%s %s" %(stage, betting_round)][Seat]
+            bets_cache["%s %s" %(stage, betting_round)][Seat] = None
+        last_bets_cache[Seat] = bets_cache["%s %s" %(stage, betting_round)][Seat]
         
-    shout("shouting from read_and_save_bets(), Bet_cache is: %s"%Bet_cache) #(2018) delete this later. just for testing if rounds are started from 0, esp at preflop stage
+    shout("shouting from read_and_save_bets(), bets_cache is: %s"%bets_cache) #(2018) delete this later. just for testing if rounds are started from 0, esp at preflop stage
     save_variables()
 
 
@@ -1096,7 +1113,7 @@ def click_decision():
     elif decision[0] == "fold" :
         fold()
     elif decision[0] == "raise" :
-        raising(decision[1] * BLIND)
+        raising(decision[1] * BLIND_VALUE)
     elif decision[0] == "all_in" :
         all_in()
     elif decision[0] == "check_fold" :
@@ -1116,18 +1133,17 @@ def click_decision():
 if __name__ == '__main__':
 
     # first line values: ----------------------
-    My_Profile_Name = "XXX"
-    if input("Is My Name: %s ?(Enter:yes/any keyword:no)"%My_Profile_Name) != "" :
-        My_Profile_Name = input("Enter Profile Name: ")
-    My_Seat_Number = int( input("My Seat Number? ") )
-    Just_Seated = True # will be omitted (None,True,False)
-    Check_Mod = False
+    MY_PROFILE_NAME = "XXX"
+    if input("Is My Name: %s ?(Enter:yes/any keyword:no)"%MY_PROFILE_NAME) != "" :
+        MY_PROFILE_NAME = input("Enter Profile Name: ")
+    my_seat_number = int( input("My seat number? ") )
+    waiting_for_first_hand = True # will be omitted (None,True,False)
+    just_do_check_fold = False
     paint.enabled = True # for cmd use
-    BLIND = 100000000
-    Players_name_dic = {}
-    Players_bank_dic = {}
-    White_cache = {} ; Red_cache = {} ; Cards_cache = {} ; Bet_cache = {}
-    Lost_Connection_Time = {} 
+    BLIND_VALUE = 100000000
+    players_name = {}
+    players_bank = {}
+    white_chips_cache = {} ; red_chips_cache = {} ; player_cards_cache = {} ; bets_cache = {} 
     # check later if reseting dictionaries in reset_table_info function works fine, do not repeat them here
     # first line values Ended -----------------
 
@@ -1139,17 +1155,17 @@ while True :
 
     preflop_stage = False ; flop_stage = False ; turn_stage = False ; river_stage = False 
 
-    if Just_Seated == True :
+    if waiting_for_first_hand == True :
 
-        shout(paint.on_green.bold("****** Running Just_Seated == True Section ******"))
-        reset_check_mode_to_false() #
+        shout(paint.on_green.bold("****** Running waiting_for_first_hand == True Section ******"))
+        reset_just_do_check_fold_to_false() #
 
         reset_table_information() #
 
-        if pm.my_seat_won_pixel(game_position,  My_Seat_Number ) == False :
-            My_Bank = ocr_my_bank( My_Seat_Number )
+        if pm.my_seat_won_pixel(game_position,  my_seat_number ) == False :
+            My_Bank = ocr_my_bank( my_seat_number )
             if My_Bank != None :
-                if My_Bank >= 15 * BLIND :
+                if My_Bank >= 15 * BLIND_VALUE :
                     shout(paint.light_green.bold("My Bank is:%s" %My_Bank))
                 elif My_Bank != 0 :
                     shout(paint.light_green.bold("My Bank is:%s" %My_Bank))
@@ -1163,7 +1179,7 @@ while True :
         while Hand_End_Cheker1 :
             Hand_End_Cheker1 = hand_is_ended()
 
-        if pm.active_player_pixel(game_position, My_Seat_Number) != True or ( pm.active_player_pixel(game_position, My_Seat_Number) == True and pm.notification_banner_pixel(game_position, My_Seat_Number) == True ) :
+        if pm.active_player_pixel(game_position, my_seat_number) != True or ( pm.active_player_pixel(game_position, my_seat_number) == True and pm.notification_banner_pixel(game_position, my_seat_number) == True ) :
             read_and_save_players_banks_and_names() #
         else :
             shout( paint.on_light_red.bold("Players Info is not Read") )
@@ -1171,9 +1187,9 @@ while True :
         time02 = 0 ; fo = 0 
         time1 = time.time()
         Cards1 = False
-        shout(paint.light_magenta.bold("Looking for cards in Just_Seated == True Section..."))
+        shout(paint.light_magenta.bold("Looking for cards in waiting_for_first_hand == True Section..."))
         while Cards1 == False and time02 < 5 * 60 : #being alone time
-            Cards1 = pm.player_cards_pixel(game_position,  My_Seat_Number )
+            Cards1 = pm.player_cards_pixel(game_position,  my_seat_number )
             time2 = time.time() - time1
             n60 = ( time2 - 120 ) // 60
             if not time2 < 2 * 60 and n60 >= fo :
@@ -1182,33 +1198,33 @@ while True :
                 time02 = time.time() - time1                
 
         if not time02 < 5 * 60 : #being alone time
-            raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), Just_Seated == None")
+            raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), waiting_for_first_hand == None")
 
         if Cards1 == True :
             if pm.pre_flop_pixel(game_position) == False or ( pm.pre_flop_pixel(game_position) == True and is_there_any_raiser() == True) :
-                set_check_mode_to_true("this is Ok! Becuase i may start program from middle of the game")
+                set_just_do_check_fold_to_true("this is Ok! Becuase i may start program from middle of the game")
 
-            Just_Seated = False
+            waiting_for_first_hand = False
             shout(paint.light_magenta.bold("Cards are founded"))
             shout (paint.on_green.bold("****** First hand Started ******"))
     
-    elif Just_Seated == None :
+    elif waiting_for_first_hand == None :
         raise Exception("5.This can not happen IN FUTURE becuase main menu automation is built\
                         ( fix_game_disruption --> Sit_In --> table is full --> exit -->\
-                        Just_Seated = None --> main menu --> Just_Seated = True )")
+                        waiting_for_first_hand = None --> main menu --> waiting_for_first_hand = True )")
 
 
 #-------    
 
-    if Hand_End_Cheker1 == False and pm.pre_flop_pixel(game_position) == False and Just_Seated == False and Check_Mod != True :
+    if Hand_End_Cheker1 == False and pm.pre_flop_pixel(game_position) == False and waiting_for_first_hand == False and just_do_check_fold != True :
         fix_game_disruption("2")
-        set_check_mode_to_true("2")
+        set_just_do_check_fold_to_true("2")
         screenshot_error('6. pm.pre_flop_pixel() == False')
-    elif Hand_End_Cheker1 == False and Just_Seated == False and Check_Mod != True :
+    elif Hand_End_Cheker1 == False and waiting_for_first_hand == False and just_do_check_fold != True :
         Pre_Flop1 = True #(2020: Pre_Flop1 has no usage)
         preflop_stage = True
 
-    if Hand_End_Cheker1 == False and pm.player_cards_pixel(game_position,  My_Seat_Number ) == True and Just_Seated == False :  
+    if Hand_End_Cheker1 == False and pm.player_cards_pixel(game_position,  my_seat_number ) == True and waiting_for_first_hand == False :  
         read_and_global_my_cards() #
         play_sound() #
 
@@ -1217,12 +1233,12 @@ while True :
     Gray1 = True ; fo = 0 
     time1 = time.time()
     shout(paint.light_magenta.bold("Looking for light...")) 
-    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and flop_stage == False and Just_Seated == False and time.time() - time1 < 5 * 60 :
+    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and flop_stage == False and waiting_for_first_hand == False and time.time() - time1 < 5 * 60 :
         if pm.button_pixel(game_position, 'i_am_back') :
             fix_game_disruption("2.5 I am back Button is True")
         Hand_End_Cheker1 = hand_is_ended()
-        its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
-        Gray1 = pm.notification_banner_pixel(game_position,  My_Seat_Number )
+        its_my_turn = pm.active_player_pixel(game_position,  my_seat_number )
+        Gray1 = pm.notification_banner_pixel(game_position,  my_seat_number )
         flop_stage = pm.flop_pixel(game_position)
         n20 = (time.time() - time1 - 60 ) // 20
         if time.time() - time1 > 1 * 60 and n20 >= fo :
@@ -1230,20 +1246,20 @@ while True :
             fo += 1
             
     if not time.time() - time1 < 5 * 60 :
-        raise Exception("5.1.Game is locked, force to restart, Just_Seated == None")
+        raise Exception("5.1.Game is locked, force to restart, waiting_for_first_hand == None")
 
     if flop_stage == True :
-        set_check_mode_to_true("1.5")
+        set_just_do_check_fold_to_true("1.5")
         screenshot_error("6.5 Pre Flop is Jumped, game must lagged")
         
          
-    preflop_betting_round = 0 #(2018) shouldn't it be -1 ?! test it by printing for example Cards_cache dic which prints rounds too
-    if pm.active_player_pixel(game_position,  My_Seat_Number ) == True and Gray1 == False and hand_is_ended() == False and flop_stage == False and Just_Seated == False :
+    preflop_betting_round = 0 #(2018) shouldn't it be -1 ?! test it by printing for example player_cards_cache dic which prints rounds too
+    if pm.active_player_pixel(game_position,  my_seat_number ) == True and Gray1 == False and hand_is_ended() == False and flop_stage == False and waiting_for_first_hand == False :
         preflop_betting_round += 1
         shout(paint.light_magenta.bold("light is founded"))
         read_and_save_bets() #
         click_decision() # preflop
-    elif hand_is_ended() == False and flop_stage == False and Just_Seated == False :
+    elif hand_is_ended() == False and flop_stage == False and waiting_for_first_hand == False :
         fix_game_disruption("4 Entering This section is not possible")
         screenshot_error("6.6 Entering This section is not possible")
         #(2018) shouldn't preflop_betting_round += 1 line be here too ?!
@@ -1255,13 +1271,13 @@ while True :
 # PreFlop: -------
 
         
-    if Just_Seated == False :
+    if waiting_for_first_hand == False :
 
         shout("Running PreFlop Section")
         time01 = time.time()
         time02 = time.time() - time01
         
-        while Hand_End_Cheker1 == False and flop_stage == False and time02 < 5 * 60 and Just_Seated == False :
+        while Hand_End_Cheker1 == False and flop_stage == False and time02 < 5 * 60 and waiting_for_first_hand == False :
 
             time02 = time.time() - time01
                 
@@ -1277,7 +1293,7 @@ while True :
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("4.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
-                its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
+                its_my_turn = pm.active_player_pixel(game_position,  my_seat_number )
                 Flop1 = pm.flop_pixel(game_position)
                 time2 = time.time() - time1
                     
@@ -1292,8 +1308,8 @@ while True :
                     if is_there_any_raiser() == True :
                         read_and_save_bets() #
                         click_decision() # preflop
-                    elif Check_Mod != True :
-                        set_check_mode_to_true("3")
+                    elif just_do_check_fold != True :
+                        set_just_do_check_fold_to_true("3")
                         screenshot_error("7.Red should be True here, check later why this happens")
                         read_and_save_bets() #
                         click_decision() # preflop
@@ -1304,20 +1320,20 @@ while True :
                     read_and_global_flop_cards() #
 
         if not time02 < 5 * 60 :
-            raise Exception("8.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
+            raise Exception("8.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
             fix_game_disruption("6")
 
 
 # Flop: -------
 
 
-    if Just_Seated == False :
+    if waiting_for_first_hand == False :
 
         shout("Running Flop Section")
         time01 = time.time()
         time02 = time.time() - time01
         flop_betting_round = -1
-        while Hand_End_Cheker1 == False and turn_stage == False and time02 < 5 * 60 and Just_Seated == False :
+        while Hand_End_Cheker1 == False and turn_stage == False and time02 < 5 * 60 and waiting_for_first_hand == False :
 
             time02 = time.time() - time01
                 
@@ -1333,7 +1349,7 @@ while True :
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("6.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
-                its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
+                its_my_turn = pm.active_player_pixel(game_position,  my_seat_number )
                 Turn1 = pm.turn_pixel(game_position)
                 time2 = time.time() - time1
 
@@ -1349,7 +1365,7 @@ while True :
                         read_and_save_bets() #
                         click_decision() # Flop
                     elif flop_betting_round > 0 :
-                        set_check_mode_to_true("4")
+                        set_just_do_check_fold_to_true("4")
                         screenshot_error("9.Red should be True here")
                         read_and_save_bets() #
                         click_decision() # Flop
@@ -1363,7 +1379,7 @@ while True :
                     read_and_global_turn_card() #        
             
         if not time02 < 5 * 60 :
-            raise Exception("10.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
+            raise Exception("10.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
             fix_game_disruption("8")    
 
 
@@ -1371,13 +1387,13 @@ while True :
 # Turn: -------
 
     
-    if Just_Seated == False :
+    if waiting_for_first_hand == False :
 
         shout("Running Turn Section")
         time01 = time.time()
         time02 = time.time() - time01
         turn_betting_round = -1
-        while Hand_End_Cheker1 == False and river_stage == False and time02 < 5 * 60 and Just_Seated == False :
+        while Hand_End_Cheker1 == False and river_stage == False and time02 < 5 * 60 and waiting_for_first_hand == False :
 
             time02 = time.time() - time01
                 
@@ -1393,7 +1409,7 @@ while True :
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("8.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
-                its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
+                its_my_turn = pm.active_player_pixel(game_position,  my_seat_number )
                 River1 = pm.river_pixel(game_position)
                 time2 = time.time() - time1
 
@@ -1409,7 +1425,7 @@ while True :
                         read_and_save_bets() #
                         click_decision() # Turn
                     elif turn_betting_round > 0 :
-                        set_check_mode_to_true("5")
+                        set_just_do_check_fold_to_true("5")
                         screenshot_error("11.Red should be True here")
                         read_and_save_bets() #
                         click_decision() # Turn
@@ -1423,20 +1439,20 @@ while True :
                     read_and_global_river_card() #        
             
         if not time02 < 5 * 60 :
-            raise Exception("12.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
+            raise Exception("12.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
             fix_game_disruption("10")            
             
 
 # River: -------
 
 
-    if Just_Seated == False :
+    if waiting_for_first_hand == False :
 
         shout("Running River Section")
         time01 = time.time()
         time02 = time.time() - time01
         river_betting_round = -1
-        while Hand_End_Cheker1 == False and time02 < 5 * 60 and Just_Seated == False :
+        while Hand_End_Cheker1 == False and time02 < 5 * 60 and waiting_for_first_hand == False :
 
             time02 = time.time() - time01
                 
@@ -1452,7 +1468,7 @@ while True :
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("10.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
-                its_my_turn = pm.active_player_pixel(game_position,  My_Seat_Number )
+                its_my_turn = pm.active_player_pixel(game_position,  my_seat_number )
                 time2 = time.time() - time1
 
             if not time2 < 1 * 60 :
@@ -1467,7 +1483,7 @@ while True :
                         read_and_save_bets() #
                         click_decision() # River
                     elif river_betting_round > 0 :
-                        set_check_mode_to_true("6")
+                        set_just_do_check_fold_to_true("6")
                         screenshot_error("13.Red should be True here")
                         read_and_save_bets() #
                         click_decision() # River
@@ -1479,31 +1495,31 @@ while True :
                                
             
         if not time02 < 5 * 60 :
-            raise Exception("14.I should work on main menu automation later!(game is locked maybe, force to exit or restart),Just_Seated == None mishavad")
+            raise Exception("14.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
             fix_game_disruption("12")            
             
 
 
 #-------
             
-    if Hand_End_Cheker1 == True and Just_Seated == True :
+    if Hand_End_Cheker1 == True and waiting_for_first_hand == True :
 
         declare_the_winners()
         shout (paint.on_green.bold("-------- Hand Ended --------"))
 
-    if Hand_End_Cheker1 == True and Just_Seated == False :
+    if Hand_End_Cheker1 == True and waiting_for_first_hand == False :
 
         declare_the_winners()
         shout (paint.on_green.bold("-------- Hand Ended --------"))
         
-        reset_check_mode_to_false() #
+        reset_just_do_check_fold_to_false() #
 
         reset_table_information() #
 
-        if pm.my_seat_won_pixel(game_position,  My_Seat_Number ) == False : 
-            My_Bank = ocr_my_bank( My_Seat_Number )
+        if pm.my_seat_won_pixel(game_position,  my_seat_number ) == False : 
+            My_Bank = ocr_my_bank( my_seat_number )
             if My_Bank != None :
-                if My_Bank >= 15 * BLIND : 
+                if My_Bank >= 15 * BLIND_VALUE : 
                     shout(paint.light_green.bold("My Bank is:%s" %My_Bank))
                 elif My_Bank != 0 :
                     shout(paint.light_green.bold("My Bank is:%s" %My_Bank))
@@ -1524,13 +1540,13 @@ while True :
                 time02 = time.time() - time1                
 
         if not time02 < 1.5 * 60 :
-            raise Exception("15.Game is locked, force to restart, Just_Seated == None")
+            raise Exception("15.Game is locked, force to restart, waiting_for_first_hand == None")
             
 
 
-    if Hand_End_Cheker1 == False and Just_Seated == False :
+    if Hand_End_Cheker1 == False and waiting_for_first_hand == False :
 
-        if pm.active_player_pixel(game_position, My_Seat_Number) != True or ( pm.active_player_pixel(game_position, My_Seat_Number) == True and pm.notification_banner_pixel(game_position, My_Seat_Number) == True ) :
+        if pm.active_player_pixel(game_position, my_seat_number) != True or ( pm.active_player_pixel(game_position, my_seat_number) == True and pm.notification_banner_pixel(game_position, my_seat_number) == True ) :
             read_and_save_players_banks_and_names() #
         else :
             shout( paint.on_light_red.bold("Players Info is not Read") )
@@ -1551,9 +1567,9 @@ while True :
                 time02 = time.time() - time1                
 
         if not time02 < 5 * 60 : #being alone time
-            raise Exception("16.No one join, time to exit. Or Game is locked, force to restart, Just_Seated == None")
+            raise Exception("16.No one join, time to exit. Or Game is locked, force to restart, waiting_for_first_hand == None")
 
-        elif Just_Seated == False :
+        elif waiting_for_first_hand == False :
             shout (paint.on_green.bold("-------- New Hand Started --------"))
             shout ("Coins are Founded")
             determine_small_blind_seat()
@@ -1566,11 +1582,11 @@ while True :
             time1 = time.time()
             Cards1 = False
             shout(paint.light_magenta.bold("Looking for cards..."))
-            while Hand_End_Cheker1 == False and Cards1 == False and Just_Seated == False and time02 < 1.5 * 60 :
+            while Hand_End_Cheker1 == False and Cards1 == False and waiting_for_first_hand == False and time02 < 1.5 * 60 :
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("14.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
-                Cards1 = pm.player_cards_pixel(game_position,  My_Seat_Number )
+                Cards1 = pm.player_cards_pixel(game_position,  my_seat_number )
                 time2 = time.time() - time1
                 if not time2 < 2 * 60 :
                     if fo == 0 :
@@ -1579,7 +1595,7 @@ while True :
                     time02 = time.time() - time1                
 
             if not time02 < 1.5 * 60 :
-                raise Exception("17.Game is locked, force to restart, Just_Seated == None")
+                raise Exception("17.Game is locked, force to restart, waiting_for_first_hand == None")
 
             if Cards1 == True :
                 shout(paint.light_magenta.bold("Cards are founded"))

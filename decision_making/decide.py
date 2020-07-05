@@ -5,44 +5,53 @@ from decision_making.play import *
 
 def load_variables():
     """ variables order is important while loading """
-    global game_position , file_name , Reports_directory ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat
 
     current_path = os.path.abspath(os.path.dirname(__file__)) 
     pickle_path = PurePath(current_path).parent / 'pickled variables.p'
 
-    game_position , file_name , Reports_directory ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( str(pickle_path), "rb" ) )
+    game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat = \
+    pickle.load( open( str(pickle_path), "rb" ) )
 
 def decide():
     load_variables()
 
-    if Pre_Flop1_Deside == True and Flop1_Deside == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
-        shout(paint.light_cyan.bold("*Deciding on Preflop*"))
-    elif Flop1_Deside == True and Turn1_Deside == False :
-        shout(paint.light_cyan.bold("*Deciding on Flop*"))
-    elif Turn1_Deside == True and River1_Deside == False :
-        shout(paint.light_cyan.bold("*Deciding on Turn*"))
-    elif River1_Deside == True :
-        shout(paint.light_cyan.bold("*Deciding on River*"))
+    if preflop_stage == True and flop_stage == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
+        shout(paint.light_cyan.bold("*Deciding on preflop*"))
+    elif flop_stage == True and turn_stage == False :
+        shout(paint.light_cyan.bold("*Deciding on flop*"))
+    elif turn_stage == True and river_stage == False :
+        shout(paint.light_cyan.bold("*Deciding on turn*"))
+    elif river_stage == True :
+        shout(paint.light_cyan.bold("*Deciding on river*"))
     else :
-        shout(paint.light_cyan.bold("*Deciding on Unknown*"))
+        shout(paint.light_cyan.bold("*Deciding on unknown*"))
     
-    if Check_Mod == True :
+    if just_do_check_fold == True :
         return ("check_fold")
 
     else :

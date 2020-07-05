@@ -12,51 +12,59 @@ Ranking Functions return 1.a Number or 2.None value if their True or False Funct
 Table functions has no rankings in Flush and Pair files. in Str file there are Table_.._Number functions. 
 """
 
-
 def load_variables():
     """ variables order is important while loading """
-    global game_position , file_name , Reports_directory ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat
+    global game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat
 
     current_path = os.path.abspath(os.path.dirname(__file__)) 
     pickle_path = PurePath(current_path).parent.parent / 'pickled variables.p'
 
-    game_position , file_name , Reports_directory ,\
-    Pre_Flop1_Deside , Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Round_Pre_Flop , Round_Flop , Round_Turn , Round_River ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card ,\
-    Check_Mod , Lost_Connection_Time , My_Seat_Number , My_Profile_Name , Just_Seated ,\
-    Cards_cache , White_cache , Red_cache , Bet_cache ,\
-    Last_White_cache , Last_Red_cache , Last_Cards_cache , Last_Bet_cache,\
-    Did_i_raised_at  , My_last_raise ,Players_name_dic , Players_bank_dic ,\
-    BLIND , Small_Blind_Seat , Big_Blind_Seat , Dealer_Seat = pickle.load( open( str(pickle_path), "rb" ) )
+    game_position , DATED_REPORT_FOLDER , REPORTS_DIRECTORY,\
+    preflop_stage , flop_stage , turn_stage , river_stage ,\
+    preflop_betting_round , flop_betting_round ,\
+    turn_betting_round , river_betting_round ,\
+    board_card_1th , board_card_2th , board_card_3th ,\
+    board_card_4th, board_card_5th , my_1th_card , my_2th_card ,\
+    my_seat_number , MY_PROFILE_NAME ,\
+    just_do_check_fold , waiting_for_first_hand ,\
+    player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
+    last_white_chips_cache , last_red_chips_cache ,\
+    last_player_cards_cache , last_bets_cache,\
+    did_i_raised_at  , my_last_raise_at , players_name , players_bank ,\
+    BLIND_VALUE , small_blind_seat , big_blind_seat , dealer_seat = \
+    pickle.load( open( str(pickle_path), "rb" ) )
 
 
 def Me_Flush_by_3_table_cards( List = None ) :
     """ ( ['6 c','8 c','10 c','K c','A d'] , '2 c' , '3 c' ) return False """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
-    if s(My_1th_Card) == s(My_2th_Card) :
+    if s(my_1th_card) == s(my_2th_card) :
         sign = 0
         for i in List :
-            if s(My_1th_Card) == s(i) :
+            if s(my_1th_card) == s(i) :
                 sign += 1
         if sign == 3 :
             return True
@@ -64,24 +72,24 @@ def Me_Flush_by_3_table_cards( List = None ) :
 
 def Me_Flush_by_4_table_cards( List = None ) :
     """ ( ['6 c','8 c','10 c','K c','A c'] , 'Q c' , '3 c' ) return False """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     sign1 = 0
     sign2 = 0
     for i in List :
-        if s(My_1th_Card) == s(i) :
+        if s(my_1th_card) == s(i) :
             sign1 += 1
-        if s(My_2th_Card) == s(i) :
+        if s(my_2th_card) == s(i) :
             sign2 += 1
     if sign1 == 4 or sign2 == 4 :
         return True
@@ -92,32 +100,32 @@ def Me_Flush_by_5_table_cards( List = None ) :
     ( ['6 c','8 c','10 c','K c','A c'] , '2 c' , '3 c' ) return False
     ( ['6 c','8 c','10 c','K c','A c'] , 'Q c' , '7 c' ) return True
     """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     sign1 = 0
     sign2 = 0
     for i in List :
-        if s(My_1th_Card) == s(i) :
+        if s(my_1th_card) == s(i) :
             sign1 += 1
-        if s(My_2th_Card) == s(i) :
+        if s(my_2th_card) == s(i) :
             sign2 += 1
 
     if sign1 == 5 and sign2 == 5:
-        My_highest = max(n(My_1th_Card),n(My_2th_Card))
+        My_highest = max(n(my_1th_card),n(my_2th_card))
     elif sign1 == 5 :
-        My_highest = n(My_1th_Card)
+        My_highest = n(my_1th_card)
     elif sign2 == 5 :
-        My_highest = n(My_2th_Card)
+        My_highest = n(my_2th_card)
     sign_List = []
     for i in List :
         sign_List.append(n(i))
@@ -127,17 +135,17 @@ def Me_Flush_by_5_table_cards( List = None ) :
 
 def Me_Flush( List = None ) :
     """ if Me_Flush_by_3_table_cards or Me_Flush_by_4_table_cards or Me_Flush_by_5_table_cards """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     
     if Me_Flush_by_3_table_cards( List ) or Me_Flush_by_4_table_cards( List ) or Me_Flush_by_5_table_cards( List ) :
@@ -151,17 +159,17 @@ def Me_Flush_Ranking( List = None ) :
     Example: Rank 3: ( ['6 c','K c','5 c'] , 'J c' , '3 c' )
     return None if Me_Flush_ == False
     """    
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     if Me_Flush( List ) == False :
         return None
@@ -174,42 +182,42 @@ def Me_Flush_Ranking( List = None ) :
     sign_List = []
     
     if c >= 3 :
-        if s(My_1th_Card) == s(My_2th_Card) :
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "c" :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "c" :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) :
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "c" :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "c" :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "c" : sign_List.append(n(i))
 
     elif d >= 3 :
-        if s(My_1th_Card) == s(My_2th_Card) :
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "d" :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "d" :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) :
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "d" :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "d" :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "d" : sign_List.append(n(i))
             
     elif h >= 3 :
-        if s(My_1th_Card) == s(My_2th_Card) :
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "h" :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "h" :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) :
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "h" :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "h" :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "h" : sign_List.append(n(i))
 
     elif sp >= 3 :
-        if s(My_1th_Card) == s(My_2th_Card) :
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "s" :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "s" :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) :
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "s" :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "s" :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "s" : sign_List.append(n(i))
 
@@ -227,47 +235,47 @@ def Me_Flush_Ranking( List = None ) :
 
 
 def Me_Flush_draw_by_2_table_cards( List = None ) :
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
-    if s(My_1th_Card) == s(My_2th_Card) and len(List) <= 4 :
+    if s(my_1th_card) == s(my_2th_card) and len(List) <= 4 :
         sign = 0
         for i in List :
-            if s(My_1th_Card) == s(i) :
+            if s(my_1th_card) == s(i) :
                 sign += 1
         if sign == 2 :
             return True
     return False
 
 def Me_Flush_draw_by_3_table_cards( List = None ) :
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     sign1 = 0
     sign2 = 0
-    if s(My_1th_Card) != s(My_2th_Card) and len(List) <= 4 : 
+    if s(my_1th_card) != s(my_2th_card) and len(List) <= 4 : 
         for i in List :
-            if s(My_1th_Card) == s(i) :
+            if s(my_1th_card) == s(i) :
                 sign1 += 1
-            if s(My_2th_Card) == s(i) :
+            if s(my_2th_card) == s(i) :
                 sign2 += 1
         if sign1 == 3 or sign2 == 3 :
             return True
@@ -279,17 +287,17 @@ def Me_Flush_draw_Ranking( List = None ) :
     Example: Rank 2: ( ['6 c','K c','5 h'] , 'Q c' , '3 c' )
     return None if Me_Flush == True or on River or not Me_Flush_draw
     """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th , My_1th_Card , My_2th_Card
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th , my_1th_card , my_2th_card
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     if Me_Flush( List ) == True or len(List) == 5 \
        or( Me_Flush_draw_by_2_table_cards( List ) == False and Me_Flush_draw_by_3_table_cards( List ) == False ) :
@@ -303,43 +311,43 @@ def Me_Flush_draw_Ranking( List = None ) :
     sign_List = []
     
     if c >= 2 :
-        if s(My_1th_Card) == s(My_2th_Card) and s(My_1th_Card) == "c" and c == 2:
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "c" and c == 3 :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "c" and c == 3 :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) and s(my_1th_card) == "c" and c == 2:
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "c" and c == 3 :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "c" and c == 3 :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "c" : sign_List.append(n(i))
 
     elif d >= 2 :
-        if s(My_1th_Card) == s(My_2th_Card) and s(My_1th_Card) == "d" and d == 2:
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "d" and d == 3 :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "d" and d == 3 :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) and s(my_1th_card) == "d" and d == 2:
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "d" and d == 3 :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "d" and d == 3 :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "d" : sign_List.append(n(i))
 
             
     elif h >= 2 :
-        if s(My_1th_Card) == s(My_2th_Card) and s(My_1th_Card) == "h" and h == 2:
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "h" and h == 3 :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "h" and h == 3 :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) and s(my_1th_card) == "h" and h == 2:
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "h" and h == 3 :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "h" and h == 3 :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "h" : sign_List.append(n(i))
 
     elif sp >= 2 :
-        if s(My_1th_Card) == s(My_2th_Card) and s(My_1th_Card) == "s" and sp == 2:
-            My_highest = max(n(My_1th_Card),n(My_2th_Card))
-        elif s(My_1th_Card) == "s" and sp == 3 :
-            My_highest = n(My_1th_Card)
-        elif s(My_2th_Card) == "s" and sp == 3 :
-            My_highest = n(My_2th_Card)
+        if s(my_1th_card) == s(my_2th_card) and s(my_1th_card) == "s" and sp == 2:
+            My_highest = max(n(my_1th_card),n(my_2th_card))
+        elif s(my_1th_card) == "s" and sp == 3 :
+            My_highest = n(my_1th_card)
+        elif s(my_2th_card) == "s" and sp == 3 :
+            My_highest = n(my_2th_card)
         for i in List :
             if s(i) == "s" : sign_List.append(n(i))
 
@@ -357,17 +365,17 @@ def Me_Flush_draw_Ranking( List = None ) :
 
 
 def Table_Flush_3_cards( List = None ) :
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th 
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     c = 0; d = 0; h = 0; sp = 0
     for i in List :
@@ -381,17 +389,17 @@ def Table_Flush_3_cards( List = None ) :
     return False
 
 def Table_Flush_4_cards( List = None ) :
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th 
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
     
     c = 0; d = 0; h = 0; sp = 0
     for i in List :
@@ -405,17 +413,17 @@ def Table_Flush_4_cards( List = None ) :
     return False
 
 def Table_Flush_5_cards( List = None ) :
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th 
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
     
     c = 0; d = 0; h = 0; sp = 0
     for i in List :
@@ -433,17 +441,17 @@ def Table_Flush_draw( List = None ) :
     True if 2 same sign card availabe on the table(not more or less than 2)
     returns False on River
     """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th 
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     if len(List) > 4 :
         return False
@@ -461,17 +469,17 @@ def Table_Flush_draw( List = None ) :
 
 def Table_Flush( List = None ) :
     """ if Table_Flush_3_cards( List ) or Table_Flush_4_cards( List ) or Table_Flush_5_cards( List ) """
-    global Flop1_Deside , Turn1_Deside , River1_Deside ,\
-    Card_1th , Card_2th , Card_3th , Card_4th , Card_5th 
+    global flop_stage , turn_stage , river_stage ,\
+    board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th 
     load_variables()
     
     if List == None :
-        if Flop1_Deside == True and Turn1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th ]
-        elif Turn1_Deside == True and River1_Deside == False :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th ]
-        elif River1_Deside == True :
-            List = [ Card_1th , Card_2th , Card_3th , Card_4th , Card_5th ]
+        if flop_stage == True and turn_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th ]
+        elif turn_stage == True and river_stage == False :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th ]
+        elif river_stage == True :
+            List = [ board_card_1th , board_card_2th , board_card_3th , board_card_4th , board_card_5th ]
 
     if Table_Flush_3_cards( List ) or Table_Flush_4_cards( List ) or Table_Flush_5_cards( List ) :
         return True
