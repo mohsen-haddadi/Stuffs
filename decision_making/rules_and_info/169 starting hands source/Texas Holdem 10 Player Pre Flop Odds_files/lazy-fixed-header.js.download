@@ -1,0 +1,37 @@
+
+// breaks a little on iphone 4 when zooming, but barely worse than static header
+
+$(document).ready( function()
+{
+    function $$(a) { return document.getElementById(a) }
+
+    var $header
+    var headerF
+    var header = $$( 'lazy_fixed_header' )
+
+    function handleScroll()
+    {
+        var elTop = $header.offset().top
+        var elLeft = $header.offset().left // caching these break zoom
+        var sticky = $(window).scrollTop() > elTop
+        headerF.className     = sticky ? 'fixed_table_header' : ''
+        headerF.style.display = sticky ? ''                   : 'none'
+        headerF.style.width = ( 2 + $header.width() ) + 'px' // 2 for table border, xxx more when zoomed
+        headerF.style.left = ( elLeft - $(window).scrollLeft() ) + 'px'
+    }
+
+    if( $$( 'lazy_fixed_header' ) )
+    {
+        $header = $( '#lazy_fixed_header' )
+        var table = $$('lazy_fixed_header').parentNode
+        var div = document.createElement( 'tr' )
+        div.id = 'fixed_table_header'
+        div.style.display = 'none'
+        div.innerHTML = $header.html()
+        table.insertBefore( div, $$('lazy_fixed_header') )
+        headerF = $$( 'fixed_table_header' )
+        window.onscroll = handleScroll
+        window.onkeypress = handleScroll
+        handleScroll() // in case start scrolled
+    }
+} )

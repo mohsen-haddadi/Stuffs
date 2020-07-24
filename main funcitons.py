@@ -41,7 +41,7 @@ def wait_for_first_hand(waiting_minutes = 5):
             set_just_do_check_fold_to_true("program is started again\
                                             from middle of the game")
         else :
-            waiting_for_first_hand = True
+            waiting_for_first_hand = False
 
 
 
@@ -68,7 +68,7 @@ table is full --> exit --> waiting_for_first_hand = None --> main menu \
     #
     # At the end run while hand_is_ended(): pass 
     # to make sure Hand_End_Cheker1 is False
-    while waiting_for_first_hand != False :
+    while not waiting_for_first_hand != False :
         # reset new hand at reset_table_information() to False
         if new_hand: 
             declare_the_winners()
