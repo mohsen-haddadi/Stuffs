@@ -43,7 +43,7 @@ def holdem_starting_hand_ranking(my_1th_card, my_2th_card):
     """ 
     returns 1 to 169
     1 represent the most powerful hand and 169 represent the weakest hand.
-    source:
+    Hands order source:
     https://caniwin.com/poker/texas-holdem/pre-flop/10-player-odds/# 
     """
     global  my_1th_card , my_2th_card 

@@ -33,7 +33,9 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\t
 def pre_process_ocr_image(pil_image):
 
     RATIO = 5
-    pil_image = pil_image.resize((pil_image.size[0] * RATIO, pil_image.size[1] * RATIO) ,Image.ANTIALIAS)    
+    pil_image = pil_image.resize( (pil_image.size[0] * \
+                                   RATIO, pil_image.size[1] * RATIO) 
+                                  ,Image.ANTIALIAS)    
     return pil_image
 
 def ocr(image):
@@ -182,7 +184,8 @@ def test(show_images = False):
         pil_image = download_other_players_bank_image(game_position, seat)
         image = pre_process_ocr_image(pil_image)
         cv2_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-        cv2.imshow('other_players_bank on seat %s:%s'%(seat, other_players_bank), cv2_image)
+        cv2.imshow('other_players_bank on seat %s:%s'
+                   %(seat, other_players_bank), cv2_image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         #cv2.imwrite('other_players_bank on seat %s.png' %seat, image)
@@ -223,7 +226,8 @@ def test(show_images = False):
         if show_images == True :
             show_bets_images(game_position, seat)
     for seat in [1,2,3,4,5]:
-        other_players_bank = ocr_other_players_bank_to_string(game_position, seat) 
+        other_players_bank = ocr_other_players_bank_to_string(game_position,
+                                                              seat) 
         print('other_players_bank on seat %s:%s'%(seat, other_players_bank) )
         if show_images == True :
             show_other_players_bank_images(game_position, seat)

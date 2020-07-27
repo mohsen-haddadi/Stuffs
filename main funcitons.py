@@ -29,8 +29,8 @@ def wait_for_first_hand(waiting_minutes = 5):
     if time.time() - start_time >= 60 * waiting_minutes :
 
         waiting_for_first_hand = None
-        raise Exception("No one join the table, force to restart \
-                        (will be build in future)")
+        raise Exception("No one join the table, force to restart "\
+                        "(will be build in future)")
     # My cards pixel is founded:
     else:
         # I may have had run again program from middle of the game
@@ -38,8 +38,8 @@ def wait_for_first_hand(waiting_minutes = 5):
             or (pm.pre_flop_pixel(game_position) 
                 and is_there_any_raiser() )) :
 
-            set_just_do_check_fold_to_true("program is started again\
-                                            from middle of the game")
+            set_just_do_check_fold_to_true("program is started again "\
+                                           "from middle of the game")
         else :
             waiting_for_first_hand = False
 
@@ -59,10 +59,12 @@ while True:
         wait_for_first_hand(waiting_minutes = 5)
 
     elif waiting_for_first_hand == None :
-        raise Exception("5.This can not happen IN FUTURE becuase main \
-menu automation is built( fix_game_disruption --> Sit_In --> \
-table is full --> exit --> waiting_for_first_hand = None --> main menu \
---> waiting_for_first_hand = True )")
+        raise Exception("5.This can not happen IN FUTURE becuase main "\
+                        "menu automation is built " \
+                        "( fix_game_disruption --> Sit_In --> "\
+                        "table is full --> exit --> "\
+                        "waiting_for_first_hand = None --> main menu "\
+                        "--> waiting_for_first_hand = True )")
 
     # Now i'm in the game, waiting_for_first_hand == False
     #
