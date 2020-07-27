@@ -42,7 +42,7 @@ def load_variables():
 def holdem_starting_hand_ranking(my_1th_card, my_2th_card):
     """ 
     returns 1 to 169
-    1 represent most powerful hand and 169 represent the weakest hand.
+    1 represent the most powerful hand and 169 represent the weakest hand.
     source:
     https://caniwin.com/poker/texas-holdem/pre-flop/10-player-odds/# 
     """
@@ -70,8 +70,12 @@ def holdem_starting_hand_ranking(my_1th_card, my_2th_card):
     ]
 
     def change_hand_format(my_1th_card, my_2th_card):
-        # This function change the given hand format 
-        # to the format used in the HOLDEM_169_HOLE_CARDS_RANKING_LIST
+        """
+        This function change the given hand format 
+        to the format used in the HOLDEM_169_HOLE_CARDS_RANKING_LIST
+        Example: my_1th_card = ('Seven', 'Spade') ; my_2th_card = ('Ace', 'Heart')
+        returns 'A7o'
+        """
         if n(my_1th_card) == 14:
             my_1th_card_value = 'A'
         elif n(my_1th_card) == 13:
