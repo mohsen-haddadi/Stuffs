@@ -33,10 +33,12 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\t
 def pre_process_ocr_image(pil_image):
 
     RATIO = 5
-    pil_image = pil_image.resize( (pil_image.size[0] * \
+    zoomed_pil_image = pil_image.resize( (pil_image.size[0] * \
                                    RATIO, pil_image.size[1] * RATIO) 
-                                  ,Image.ANTIALIAS)    
-    return pil_image
+                                  ,Image.ANTIALIAS)
+    zoomed_gray_image = cv2.cvtColor(np.array(zoomed_pil_image)
+                                     ,cv2.COLOR_BGR2GRAY)
+    return zoomed_gray_image
 
 def ocr(image):
 
@@ -72,7 +74,8 @@ def download_other_players_bank_image(game_position, seat):
       5:(game_position[0]+364+6, game_position[1]+166, 75-6, 15) 
       }
 
-    pil_image = pyautogui.screenshot( region = OTHER_PLAYERS_BANK_IMAGE_REGION [seat] )
+    pil_image = pyautogui.screenshot(region = 
+                                     OTHER_PLAYERS_BANK_IMAGE_REGION [seat])
     return pil_image
 
 def download_my_bank_image(game_position, seat):
@@ -155,6 +158,7 @@ def ocr_my_name_to_string(game_position, seat):
 #Excesses functions to run testing:
 
 def test(show_images = False):
+    global my_bank, game_position
     # 1. Run this function to test if screen shot images are on correct 
     #    position and if ocr works fine or not.
     # 2. To rebuild this module for new websites, you can manipulate 
@@ -216,7 +220,7 @@ def test(show_images = False):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         #cv2.imwrite('my_name on seat %s.png' %seat, image)
-
+########
     game_position = find_game_reference_point_for_testing()
     t0 = time.time()
 

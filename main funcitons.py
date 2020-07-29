@@ -1,6 +1,6 @@
 def rebuy_if_bank_is_low(min_blinds = 15):
 
-    my_bank = ocr_my_bank(game_position, my_seat_number)
+    my_bank = ocr_my_bank()
     if my_bank == None :
         shout("My bank can't be read")
     elif my_bank != None :
