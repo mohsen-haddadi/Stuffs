@@ -72,57 +72,6 @@ def pre_process_query_image(query_image, is_it_table_card ):
 
     return threshold_zoomed_croped_value, threshold_zoomed_croped_suit
 
-def match_floating_card(value_image, suit_image, is_it_table_card, BORDER_WIDTH = 4):
-    """ 
-    To optimize time_consumption change the BORDER_WIDTH value 
-    Set BORDER_WIDTH to a Coefficient of ZOOM.
-    Query image float within (BORDER_WIDTH ÷ ZOOM) pixels
-    """
-
-    #All calculated diffrences amounts are lower than this large number.
-    best_value_difference_amount = 1000000 
-    best_suit_difference_amount = 1000000
-    best_value_match_name = "Unknown"
-    best_suit_match_name = "Unknown"
-
-    t0 = time.time()
-
-
-    value_image_h, value_image_w = value_image.shape[:2]
-    extended_value_image = cv2.copyMakeBorder(value_image, BORDER_WIDTH, BORDER_WIDTH,
-                                                 BORDER_WIDTH, BORDER_WIDTH, cv2.BORDER_CONSTANT, value=255)
-    suit_image_h, suit_image_w = suit_image.shape[:2]
-    extended_suit_image = cv2.copyMakeBorder(suit_image, BORDER_WIDTH, BORDER_WIDTH,
-                                                 BORDER_WIDTH, BORDER_WIDTH, cv2.BORDER_CONSTANT, value=255)
-    #float the image, and find best possible position:
-    for i in range(2*BORDER_WIDTH):
-        for j in range(2*BORDER_WIDTH):
-            floating_value_image = extended_value_image[j:value_image_h+j, i:value_image_w+i]
-            floating_suit_image = extended_suit_image[j:suit_image_h+j, i:suit_image_w+i]
-            value_name, suit_name, value_difference_amount, suit_difference_amount = \
-            match_card(floating_value_image, floating_suit_image, is_it_table_card)
-            if value_difference_amount < best_value_difference_amount:
-                #print line below to find probable mistakes and set VALUE_DIFFERENCE_LIMIT
-                #print(value_name ,value_difference_amount) 
-                best_value_difference_amount = value_difference_amount
-                best_value_match_name = value_name
-                best_floating_value_image = floating_value_image
-                deviation_from_center_x = i - BORDER_WIDTH
-                deviation_from_center_y = j - BORDER_WIDTH
-
-            if suit_difference_amount < best_suit_difference_amount:
-                #print line below to find probable mistakes and set suit_DIFFERENCE_LIMIT
-                #print(suit_name ,suit_difference_amount) 
-                best_suit_difference_amount = suit_difference_amount
-                best_suit_match_name = suit_name
-
-    #cv2.imshow('best_floating_query_image',best_floating_query_image); cv2.waitKey(0); cv2.destroyAllWindows()
-    time_consumption = time.time()-t0
-
-    return(best_value_match_name, best_suit_match_name, best_value_difference_amount, best_suit_difference_amount, 
-           "time consumption:%s"%round(time_consumption, 4),
-           "deviation from center:%s,%s"%(deviation_from_center_x,deviation_from_center_y))#, best_suit_match_diff)
-
 def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT = 830 , SUIT_DIFFERENCE_LIMIT = 330):
 
     #All calculated diffrences amounts are lower than this large number.
@@ -185,6 +134,57 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
     return best_value_match_name, best_suit_match_name, best_value_difference_amount, best_suit_difference_amount
 
 
+def match_floating_card(value_image, suit_image, is_it_table_card, BORDER_WIDTH = 4):
+    """ 
+    To optimize time_consumption change the BORDER_WIDTH value 
+    Set BORDER_WIDTH to a Coefficient of ZOOM.
+    Query image float within (BORDER_WIDTH ÷ ZOOM) pixels
+    """
+
+    #All calculated diffrences amounts are lower than this large number.
+    best_value_difference_amount = 1000000 
+    best_suit_difference_amount = 1000000
+    best_value_match_name = "Unknown"
+    best_suit_match_name = "Unknown"
+
+    t0 = time.time()
+
+
+    value_image_h, value_image_w = value_image.shape[:2]
+    extended_value_image = cv2.copyMakeBorder(value_image, BORDER_WIDTH, BORDER_WIDTH,
+                                                 BORDER_WIDTH, BORDER_WIDTH, cv2.BORDER_CONSTANT, value=255)
+    suit_image_h, suit_image_w = suit_image.shape[:2]
+    extended_suit_image = cv2.copyMakeBorder(suit_image, BORDER_WIDTH, BORDER_WIDTH,
+                                                 BORDER_WIDTH, BORDER_WIDTH, cv2.BORDER_CONSTANT, value=255)
+    #float the image, and find best possible position:
+    for i in range(2*BORDER_WIDTH):
+        for j in range(2*BORDER_WIDTH):
+            floating_value_image = extended_value_image[j:value_image_h+j, i:value_image_w+i]
+            floating_suit_image = extended_suit_image[j:suit_image_h+j, i:suit_image_w+i]
+            value_name, suit_name, value_difference_amount, suit_difference_amount = \
+            match_card(floating_value_image, floating_suit_image, is_it_table_card)
+            if value_difference_amount < best_value_difference_amount:
+                #print line below to find probable mistakes and set VALUE_DIFFERENCE_LIMIT
+                #print(value_name ,value_difference_amount) 
+                best_value_difference_amount = value_difference_amount
+                best_value_match_name = value_name
+                best_floating_value_image = floating_value_image
+                deviation_from_center_x = i - BORDER_WIDTH
+                deviation_from_center_y = j - BORDER_WIDTH
+
+            if suit_difference_amount < best_suit_difference_amount:
+                #print line below to find probable mistakes and set suit_DIFFERENCE_LIMIT
+                #print(suit_name ,suit_difference_amount) 
+                best_suit_difference_amount = suit_difference_amount
+                best_suit_match_name = suit_name
+
+    #cv2.imshow('best_floating_query_image',best_floating_query_image); cv2.waitKey(0); cv2.destroyAllWindows()
+    time_consumption = time.time()-t0
+
+    return(best_value_match_name, best_suit_match_name, best_value_difference_amount, best_suit_difference_amount, 
+           "time consumption:%s"%round(time_consumption, 4),
+           "deviation from center:%s,%s"%(deviation_from_center_x,deviation_from_center_y))#, best_suit_match_diff)
+
 
 
 #Excesses functions to run testing:
@@ -192,8 +192,12 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
 def test():
     """
     Run test function to adjust deviation of screenshoted query image
-    from source image by modifying screenshot coordinate or
-    croping coordinates of suit and value of the query card.
+    from source image by:
+    1. Modifying screenshot coordinate 
+    (table_card_region dictionary at crop_raw_card_image()
+     at create_source_cards_images.py module) or
+    2. Cropping coordinates of suit and value of the query card.
+    (TABLE_CARD_VALUE_COORDINATE,... at first lines of this module)
     """
 
     def download_cropped_card_for_testing():
