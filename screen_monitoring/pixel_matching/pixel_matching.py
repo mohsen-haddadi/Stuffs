@@ -1,4 +1,4 @@
-import cv2, pyautogui
+import cv2, numpy, pyautogui
 from pyautogui import pixelMatchesColor
 
 def pre_flop_pixel(game_position): 

@@ -34,10 +34,3 @@ def find_game_reference_point():
     game_position = (int(game_position[0]),int(game_position[1]))
     print('game reference point is set to:(%s, %s)'%(game_position[0],game_position[1]))
     return game_position
-
-def test():
-    find_game_reference_point()
-
-
-if __name__ == '__main__':
-    test()

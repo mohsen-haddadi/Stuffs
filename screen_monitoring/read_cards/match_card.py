@@ -194,8 +194,9 @@ def test():
     Run test function to adjust deviation of screenshoted query image
     from source image by:
     1. Modifying screenshot coordinate 
-    (table_card_region dictionary at crop_raw_card_image()
-     at create_source_cards_images.py module) or
+    (table_card_region dictionary... at crop_raw_card_image() function
+    from create_source_cards_images.py module) 
+    Or by:
     2. Cropping coordinates of suit and value of the query card.
     (TABLE_CARD_VALUE_COORDINATE,... at first lines of this module)
     """
