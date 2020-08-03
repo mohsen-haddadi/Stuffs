@@ -39,7 +39,7 @@ def load_variables():
 
 #----
 
-def holdem_starting_hand_ranking(my_1th_card, my_2th_card):
+def holdem_starting_hand_ranking():
     """ 
     returns 1 to 169
     1 represent the most powerful hand and 169 represent the weakest hand.
