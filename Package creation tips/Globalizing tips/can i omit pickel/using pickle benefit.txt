@@ -1,0 +1,2 @@
+There is no need for circular imports 
+to use screen_monitoring variables in main.py at decide.py module.
