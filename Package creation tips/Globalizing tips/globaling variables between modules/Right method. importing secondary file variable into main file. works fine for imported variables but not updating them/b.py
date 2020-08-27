@@ -5,4 +5,4 @@ def f():
 	pi = pi + 1
 	return pi
 
-#f()
+f()

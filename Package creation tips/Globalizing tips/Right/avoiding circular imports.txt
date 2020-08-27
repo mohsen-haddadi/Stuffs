@@ -1,0 +1,2 @@
+Avoiding circular imports by using a new module named screen_vars.py.
+so we can avoid using pickle this way.
