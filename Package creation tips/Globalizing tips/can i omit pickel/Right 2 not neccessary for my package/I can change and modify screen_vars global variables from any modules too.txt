@@ -1,0 +1,2 @@
+I can change and modify screen_vars global variables from any modules too
+and there is no need to use global line to modify them too.

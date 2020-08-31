@@ -1,0 +1,1 @@
+I should use seperated module config.py to store varibales instead of using main file
