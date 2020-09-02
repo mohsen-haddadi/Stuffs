@@ -1,0 +1,21 @@
+1. Cross file global varibales should be origanated at config.py 
+   and can be declared at both in:
+    1. at config.py file
+       (this is my choise for creating this package)
+    2. at other files: but still the variable origin should refer to config.py 
+       by using config.var.
+       (Example: at main.py or other files: config.var = 1)
+       Otherwise:
+          If they are origanated and declared at main.py (like var = 0) and 
+          updated at other files and then printed at main.py, they will not updated.
+       (this route will bring circular imports problems too)
+
+2. Cross file global variables can be modified and updated both in:
+    1. at config.py file: by using global line at functions
+       (this is my choise for creating this package)
+    2. at other files: without even using global line
+       ;even if you assign them in a function; by using config.var
+       (use config.var instead of var to avoid assigning errors
+        (use import config instead of from config import var))
+
+**I use routes 1.1 and 2.1**
