@@ -1,0 +1,91 @@
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+.body_wrap
+{
+    width:820px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.fixed_table_header
+{
+    position: fixed;
+    top: 0;
+    background-color: #555;
+    color: white
+}
+
+#lazy_fixed_header
+{
+    background-color: #555;
+    color: white
+}
+
+.logo
+{
+    padding-top:10px;
+    padding-bottom:5px;
+    font-size:18pt;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+p, .p
+{
+	margin:20px 10px;
+	color: #1D0D00;
+	line-height:3ex;
+	font-size:12pt;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+h1, .header
+{
+    color: #003399;
+    margin: 20px 10px;
+}
+
+.pocketTable
+{
+    margin: 0px auto;
+    border-collapse: collapse;
+    border-top:1px solid #cccccc;
+    font-family: "Lucida Console", Monaco, monospace;  /* "Courier New", Courier, monospace */
+}
+
+.pocketTable td
+{
+    padding: 7px 14px;
+    font-size:10pt;
+    border-bottom:1px solid #DDDDDD;
+    border-right:1px solid #DDDDDD;
+    border-left:1px solid #DDDDDD;
+}
+
+.pocketTable tr:nth-child(even)
+{
+    background-color: #EEEEEE;
+}
+
+.side-links
+{
+    margin-bottom: 20px;
+    clear: both;
+}
+.side-links a
+{
+    color: #444;
+    text-decoration: none;
+}
+.side-links a:hover
+{
+    text-decoration: underline;
+}
+.side-links a:last-child
+{
+    float:right;
+}
