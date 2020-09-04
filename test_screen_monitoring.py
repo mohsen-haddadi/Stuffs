@@ -268,7 +268,7 @@ def test_pixel_matching():
               %(seat, pm.are_chips_white_or_red_pixel(game_position, seat) ) )
 
 if __name__ == '__main__':
-    # Globaling game_position
+    # Globaling the game_position
     game_position = find_game_reference_point_for_this_module()
 
     test_find_game_position()

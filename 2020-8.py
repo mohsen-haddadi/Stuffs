@@ -21,15 +21,14 @@ from fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
 
 def create_file_directories():
-    
     config.DATED_REPORT_FOLDER = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
     config.REPORTS_DIRECTORY = "Reports/%s" %config.DATED_REPORT_FOLDER
     if not os.path.exists( config.REPORTS_DIRECTORY ):
         os.makedirs( config.REPORTS_DIRECTORY )
 
-pygame.mixer.init() #Check later if i can move this line to first line of sound() function or not.
 def sound(string_name) :
     try :
+        pygame.mixer.init()
         pygame.mixer.music.load( os.path.join('Sounds' ,
                                               "%s.wav" %string_name ) )
         return pygame.mixer.music.play()
@@ -174,80 +173,80 @@ if __name__ == '__main__':
 while True :
 
     preflop_stage = False ; flop_stage = False ; turn_stage = False ; river_stage = False 
+""
+    if waiting_for_first_hand == True :
 
-#    if waiting_for_first_hand == True :
-#
-#        shout("****** Running waiting_for_first_hand == True Section ******"
-#              , color = 'on_green')
-#        reset_just_do_check_fold_to_false() #
-#
-#        reset_table_information() #
-#
-#        if pm.my_seat_won_pixel(game_position,  my_seat_number ) == False :
-#            My_Bank = ocr_my_bank(game_position, my_seat_number )
-#            if My_Bank != None :
-#                if My_Bank >= 15 * BLIND_VALUE :
-#                    shout("My Bank is:%s" %My_Bank, color = 'light_green')
-#                elif My_Bank != 0 :
-#                    shout("My Bank is:%s" %My_Bank, color = 'light_green')
-#                    shout("Rebuying...")
-#                    pass # Later i'll build
-#        else :
-#            shout("My Bank can't be read")
-#            My_Bank = None
-#        
-#        Hand_End_Cheker1 = hand_is_ended()
-#        while Hand_End_Cheker1 :
-#            Hand_End_Cheker1 = hand_is_ended()
-#
-#        if pm.active_player_pixel(game_position, my_seat_number) != True \
-#        or ( pm.active_player_pixel(game_position, my_seat_number) == True \
-#            and pm.notification_banner_pixel(game_position, my_seat_number) == True ):
-#            read_and_global_banks_and_names() 
-#        else :
-#            shout("Players Info is not Read", color = 'on_light_red')
-#
-#
-#
-#
-#
-#        time02 = 0 ; fo = 0 
-#        time1 = time.time()
-#        Cards1 = False
-#        shout("Looking for cards in waiting_for_first_hand == True Section..."
-#              , color = 'light_magenta')
-#        while Cards1 == False and time02 < 5 * 60 : #being alone time
-#            Cards1 = pm.player_cards_pixel(game_position,  my_seat_number )
-#            time2 = time.time() - time1
-#            n60 = ( time2 - 120 ) // 60
-#            if not time2 < 2 * 60 and n60 >= fo :
-#                fix_game_disruption("1")
-#                fo += 1
-#                time02 = time.time() - time1                
-#
-#        if not time02 < 5 * 60 : #being alone time
-#            raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), waiting_for_first_hand == None")
-#
-#
-#
-#
-#
-#
-#        if Cards1 == True :
-#            if pm.pre_flop_pixel(game_position) == False or ( pm.pre_flop_pixel(game_position) == True and is_there_any_raiser() == True) :
-#                set_just_do_check_fold_to_true("this is Ok! Becuase i may start program from middle of the game")
-#
-#            waiting_for_first_hand = False
-#            shout("Cards are founded", color = 'light_magenta')
-#            shout ("****** First hand Started ******", color = 'on_green')
-#
-#
-#    elif waiting_for_first_hand == None :
-#        raise Exception("5.This can not happen IN FUTURE becuase main menu automation is built\
-#                        ( fix_game_disruption --> Sit_In --> table is full --> exit -->\
-#                        waiting_for_first_hand = None --> main menu --> waiting_for_first_hand = True )")
-#
+        shout("****** Running waiting_for_first_hand == True Section ******"
+              , color = 'on_green')
+        reset_just_do_check_fold_to_false() #
 
+        reset_table_information() #
+
+        if pm.my_seat_won_pixel(game_position,  my_seat_number ) == False :
+            My_Bank = ocr_my_bank(game_position, my_seat_number )
+            if My_Bank != None :
+                if My_Bank >= 15 * BLIND_VALUE :
+                    shout("My Bank is:%s" %My_Bank, color = 'light_green')
+                elif My_Bank != 0 :
+                    shout("My Bank is:%s" %My_Bank, color = 'light_green')
+                    shout("Rebuying...")
+                    pass # Later i'll build
+        else :
+            shout("My Bank can't be read")
+            My_Bank = None
+        
+        Hand_End_Cheker1 = hand_is_ended()
+        while Hand_End_Cheker1 :
+            Hand_End_Cheker1 = hand_is_ended()
+
+        if pm.active_player_pixel(game_position, my_seat_number) != True \
+        or ( pm.active_player_pixel(game_position, my_seat_number) == True \
+            and pm.notification_banner_pixel(game_position, my_seat_number) == True ):
+            read_and_global_banks_and_names() 
+        else :
+            shout("Players Info is not Read", color = 'on_light_red')
+
+
+
+
+
+        time02 = 0 ; fo = 0 
+        time1 = time.time()
+        Cards1 = False
+        shout("Looking for cards in waiting_for_first_hand == True Section..."
+              , color = 'light_magenta')
+        while Cards1 == False and time02 < 5 * 60 : #being alone time
+            Cards1 = pm.player_cards_pixel(game_position,  my_seat_number )
+            time2 = time.time() - time1
+            n60 = ( time2 - 120 ) // 60
+            if not time2 < 2 * 60 and n60 >= fo :
+                fix_game_disruption("1")
+                fo += 1
+                time02 = time.time() - time1                
+
+        if not time02 < 5 * 60 : #being alone time
+            raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), waiting_for_first_hand == None")
+
+
+
+
+
+
+        if Cards1 == True :
+            if pm.pre_flop_pixel(game_position) == False or ( pm.pre_flop_pixel(game_position) == True and is_there_any_raiser() == True) :
+                set_just_do_check_fold_to_true("this is Ok! Becuase i may start program from middle of the game")
+
+            waiting_for_first_hand = False
+            shout("Cards are founded", color = 'light_magenta')
+            shout ("****** First hand Started ******", color = 'on_green')
+
+
+    elif waiting_for_first_hand == None :
+        raise Exception("5.This can not happen IN FUTURE becuase main menu automation is built\
+                        ( fix_game_disruption --> Sit_In --> table is full --> exit -->\
+                        waiting_for_first_hand = None --> main menu --> waiting_for_first_hand = True )")
+
+""
 
 #-------    
 

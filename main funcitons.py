@@ -1,5 +1,5 @@
 def rebuy_if_bank_is_low(min_blinds = 15):
-
+    global BLIND_VALUE
     my_bank = ocr_my_bank()
     if my_bank == None :
         shout("My bank can't be read")
@@ -17,7 +17,7 @@ def wait_for_first_hand(waiting_minutes = 5):
 
     start_time = time.time()
     fixing_retry = 1
-    while (pm.player_cards_pixel(game_position,  my_seat_number) 
+    while (not pm.player_cards_pixel(game_position,  my_seat_number) 
            and time.time()-start_time < 60*waiting_minutes) :
 
         if ( (time.time()-start_time) > (60*waiting_minutes)/3 
@@ -37,7 +37,7 @@ def wait_for_first_hand(waiting_minutes = 5):
         if (not pm.pre_flop_pixel(game_position)  
             or (pm.pre_flop_pixel(game_position) 
                 and is_there_any_raiser() )) :
-
+        # BOOKMARK: why does not this if contain: waiting_for_first_hand = False ?
             set_just_do_check_fold_to_true("program is started again "\
                                            "from middle of the game")
         else :
