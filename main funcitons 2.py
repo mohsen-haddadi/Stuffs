@@ -22,26 +22,23 @@ def wait_for_first_hand(waiting_minutes = 5):
 
         if ( (time.time()-start_time) > (60*waiting_minutes)/3 
             and fixing_retry <= 1) :
-
             fixing_retry += 1
             fix_game_disruption()
 
     if time.time() - start_time >= 60 * waiting_minutes :
-
         waiting_for_first_hand = None
-        raise Exception("No one join the table, force to restart "\
-                        "(will be build in future)")
+        shout("No one join the table, call operator ")
     # My cards pixel is founded:
     else:
+        waiting_for_first_hand = False
         # I may have had run again program from middle of the game
         if (not pm.pre_flop_pixel(game_position)  
             or (pm.pre_flop_pixel(game_position) 
                 and is_there_any_raiser() )) :
-        # BOOKMARK: why does not this if contain: waiting_for_first_hand = False ?
             set_just_do_check_fold_to_true("program is started again "\
                                            "from middle of the game")
-        else :
-            waiting_for_first_hand = False
+            
+
 
 
 
@@ -51,12 +48,10 @@ while True:
         reset_just_do_check_fold_to_false() 
         reset_table_information() 
         rebuy_if_bank_is_low(min_blinds = 15)
-        # Wait till this loop to end to read_and_global_banks_and_names()
-        while hand_is_ended():
-            pass
         read_and_global_banks_and_names()
         # Looks for my cards pixel to start first hand
         wait_for_first_hand(waiting_minutes = 5)
+        
 
     elif waiting_for_first_hand == None :
         raise Exception("5.This can not happen IN FUTURE becuase main "\
