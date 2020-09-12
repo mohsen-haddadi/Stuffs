@@ -35,7 +35,7 @@ def sound(string_name) :
     except :
         pass
 
-def play_sound() :
+def play_sound_for_good_starting_hands() :
     global preflop_stage , flop_stage , turn_stage , river_stage  , my_1th_card , my_2th_card
     load_variables()
 
@@ -72,24 +72,6 @@ if __name__ == '__main__':
 
 # FUNCTIONS_Pixel-Maching ---------------------------------------------------------------------------------------------
 
-def sb_b_d_buttons_are_founded():
-    global game_position
-    load_variables()
-
-    small_blind_button_founded, big_blind_button_founded, dealer_button_founded = (False, False, False)
-    for seat in [1,2,3,4,5]:
-        if pm.small_blind_pixel(game_position, seat) == True:
-            small_blind_button_founded = True
-            break
-    for seat in [1,2,3,4,5]:
-        if pm.big_blind_pixel(game_position, seat) == True:
-            big_blind_button_founded = True
-            break
-    for seat in [1,2,3,4,5]:
-        if pm.dealer_pixel(game_position, seat) == True:
-            dealer_button_founded = True
-            break
-    return small_blind_button_founded and big_blind_button_founded and dealer_button_founded
 
 def declare_the_winners():
     global game_position
@@ -112,16 +94,7 @@ def is_there_any_raiser():
             return True
     return False
 
-def hand_is_ended():
-    global game_position
-    load_variables()
 
-    for seat in [1,2,3,4,5]:
-        if pm.my_seat_won_pixel(game_position, seat):
-            return True
-        if pm.other_seat_won_pixel(game_position, seat):
-            return True
-    return False
             
 def click_decision():
 

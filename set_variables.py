@@ -72,25 +72,27 @@ def read_and_global_banks_and_names() :
     # fix_game_disruption() function inside ocr_my_bank() and ocr_my_name()
     # because ocr_other_players_bank() and ocr_other_names() don't have 
     # fix_game_disruption()
-    config.players_bank[config.my_seat_number] = ocr_my_bank()
-    config.players_name[config.my_seat_number] = ocr_my_name()
     for seat in range(1,6):
         if config.my_seat_number == seat:
             continue
-        elif pm.other_player_seated_pixel(config.game_position, seat) == True :
+        elif pm.other_player_seated_pixel(config.game_position, seat) == True:
             config.players_bank[seat] = ocr_other_players_bank(seat)
             config.players_name[seat] = ocr_other_names(seat)
             if red_chips(seat) :
                 config.players_bank[seat] = None
+    config.players_bank[config.my_seat_number] = ocr_my_bank()
+    config.players_name[config.my_seat_number] = ocr_my_name()
     shout("Players Bank dictionary is: %s" %config.players_bank 
           , color = 'on_light_red')
     shout("Players Name dictionary is: %s" %config.players_name 
           , color = 'on_light_red')
 
 def reset_table_information() : 
-    """ preflop_betting_round ,...,river_betting_round & preflop_stage 
-        ,...,river_stage dar loope while True baresi va be in func
-        baraye reset shodan enteghal dade shavand """
+    """
+    IT'S DONE: preflop_betting_round ,...,river_betting_round & preflop_stage 
+    ,...,river_stage dar loope while True baresi va be in func
+    baraye reset shodan enteghal dade shavand 
+    """
     #global players_name , players_bank ,\
     #       player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
     #       last_player_cards_cache , last_white_chips_cache , last_red_chips_cache , last_bets_cache,\
@@ -121,11 +123,15 @@ def reset_table_information() :
     # bets_cache dictionary surely will "have Round_... 0"). 
     # For testing i have put a shout(bets_cache) at the end of 
     # read_and_save_bets() function 
-    config.preflop_betting_round = 0 
-    config.flop_betting_round = 0  
-    config.turn_betting_round = 0  
-    config.river_betting_round = 0
-    
+    config.preflop_betting_round = -1
+    config.flop_betting_round = -1
+    config.turn_betting_round = -1
+    config.river_betting_round = -1
+    # if a stage is True, previous stages are also True
+    preflop_stage = False 
+    flop_stage = False 
+    turn_stage = False 
+    river_stage = False 
 def white_chips(seat):
     # It checks if there is a white colored chips in front of a seat,
     # by returning True or False, to find out if a player has call or not

@@ -66,3 +66,6 @@ def shout(string, color = None, save = True) :
 #shout('on_yellow', 'on_yellow', save = False) 
 #shout('on_light_magenta', 'on_light_magenta', save = False)
 #shout('on_light_red', 'on_light_red', save = False)
+
+shout('TESTING. preflop_betting_round is: %s' 
+      %2 , color = 'on_light_red' , save = False)

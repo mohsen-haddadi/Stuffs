@@ -141,7 +141,8 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     if config.game_position == None:
         config.alternative_game_position = pyautogui.locateOnScreen(
                     'screen_monitoring/find_game_position/alternative reference image.png')   
-        config.game_position = ( alternative_game_position[0]+328 , alternative_game_position[1]-245 ) 
+        if config.alternative_game_position != None:
+            config.game_position = ( alternative_game_position[0]+328 , alternative_game_position[1]-245 ) 
     if config.game_position != None :
         config.game_position = (int(config.game_position[0]),int(config.game_position[1]))
     else:
