@@ -132,7 +132,7 @@ if __name__ == '__main__':
     if input("Is My Name: %s ?(Enter:yes/any keyword:no)"%MY_PROFILE_NAME) != "" :
         MY_PROFILE_NAME = input("Enter Profile Name: ")
     my_seat_number = int( input("My seat number? ") )
-    waiting_for_first_hand = True # will be omitted (None,True,False)
+    bot_status = True # will be omitted (None,True,False)
     just_do_check_fold = False
     BLIND_VALUE = 100000000
     players_name = {}
@@ -149,9 +149,9 @@ while True :
 
     preflop_stage = False ; flop_stage = False ; turn_stage = False ; river_stage = False 
 ""
-    if waiting_for_first_hand == True :
+    if bot_status == True :
 
-        shout("****** Running waiting_for_first_hand == True Section ******"
+        shout("****** Running bot_status == True Section ******"
               , color = 'on_green')
         reset_just_do_check_fold_to_false() #
 
@@ -188,7 +188,7 @@ while True :
         time02 = 0 ; fo = 0 
         time1 = time.time()
         Cards1 = False
-        shout("Looking for cards in waiting_for_first_hand == True Section..."
+        shout("Looking for cards in bot_status == True Section..."
               , color = 'light_magenta')
         while Cards1 == False and time02 < 5 * 60 : #being alone time
             Cards1 = pm.player_cards_pixel(game_position,  my_seat_number )
@@ -200,7 +200,7 @@ while True :
                 time02 = time.time() - time1                
 
         if not time02 < 5 * 60 : #being alone time
-            raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), waiting_for_first_hand == None")
+            raise Exception("0.1.No one join, time to exit. Or Game is locked, force to restart(will be build in future), bot_status == None")
 
 
 
@@ -211,30 +211,30 @@ while True :
             if pm.pre_flop_pixel(game_position) == False or ( pm.pre_flop_pixel(game_position) == True and is_there_any_raiser() == True) :
                 set_just_do_check_fold_to_true("this is Ok! Becuase i may start program from middle of the game")
 
-            waiting_for_first_hand = False
+            bot_status = False
             shout("Cards are founded", color = 'light_magenta')
             shout ("****** First hand Started ******", color = 'on_green')
 
 
-    elif waiting_for_first_hand == None :
+    elif bot_status == None :
         raise Exception("5.This can not happen IN FUTURE becuase main menu automation is built\
                         ( fix_game_disruption --> Sit_In --> table is full --> exit -->\
-                        waiting_for_first_hand = None --> main menu --> waiting_for_first_hand = True )")
+                        bot_status = None --> main menu --> bot_status = True )")
 
 ""
 
 #-------    
 
     if Hand_End_Cheker1 == False and pm.pre_flop_pixel(game_position) == False \
-    and waiting_for_first_hand == False and just_do_check_fold != True :
+    and bot_status == False and just_do_check_fold != True :
         fix_game_disruption("2")
         set_just_do_check_fold_to_true("2")
         screenshot_error('6. pm.pre_flop_pixel() == False')
-    elif Hand_End_Cheker1 == False and waiting_for_first_hand == False and just_do_check_fold != True :
+    elif Hand_End_Cheker1 == False and bot_status == False and just_do_check_fold != True :
         Pre_Flop1 = True #(2020: Pre_Flop1 has no usage)
         preflop_stage = True
 
-    if Hand_End_Cheker1 == False and pm.player_cards_pixel(game_position,  my_seat_number ) == True and waiting_for_first_hand == False :  
+    if Hand_End_Cheker1 == False and pm.player_cards_pixel(game_position,  my_seat_number ) == True and bot_status == False :  
         read_and_global_my_cards() #
         play_sound() #
 
@@ -243,7 +243,7 @@ while True :
     Gray1 = True ; fo = 0 
     time1 = time.time()
     shout("Looking for light...", color = 'light_magenta') 
-    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and flop_stage == False and waiting_for_first_hand == False and time.time() - time1 < 5 * 60 :
+    while Hand_End_Cheker1 == False and (its_my_turn == False or Gray1 == True) and flop_stage == False and bot_status == False and time.time() - time1 < 5 * 60 :
         if pm.button_pixel(game_position, 'i_am_back') :
             fix_game_disruption("2.5 I am back Button is True")
         Hand_End_Cheker1 = hand_is_ended()
@@ -256,7 +256,7 @@ while True :
             fo += 1
             
     if not time.time() - time1 < 5 * 60 :
-        raise Exception("5.1.Game is locked, force to restart, waiting_for_first_hand == None")
+        raise Exception("5.1.Game is locked, force to restart, bot_status == None")
 
     if flop_stage == True :
         set_just_do_check_fold_to_true("1.5")
@@ -264,12 +264,12 @@ while True :
         
          
     preflop_betting_round = 0 #(2018) shouldn't it be -1 ?! test it by printing for example player_cards_cache dic which prints rounds too
-    if pm.active_player_pixel(game_position,  my_seat_number ) == True and Gray1 == False and hand_is_ended() == False and flop_stage == False and waiting_for_first_hand == False :
+    if pm.active_player_pixel(game_position,  my_seat_number ) == True and Gray1 == False and hand_is_ended() == False and flop_stage == False and bot_status == False :
         preflop_betting_round += 1
         shout("light is founded", color = 'light_magenta')
         read_and_save_bets() #
         click_decision() # preflop
-    elif hand_is_ended() == False and flop_stage == False and waiting_for_first_hand == False :
+    elif hand_is_ended() == False and flop_stage == False and bot_status == False :
         fix_game_disruption("4 Entering This section is not possible")
         screenshot_error("6.6 Entering This section is not possible")
         #(2018) shouldn't preflop_betting_round += 1 line be here too ?!
@@ -281,13 +281,13 @@ while True :
 # PreFlop: -------
 
 
-    if waiting_for_first_hand == False :
+    if bot_status == False :
 
         shout("Running PreFlop Section")
         time01 = time.time()
         time02 = time.time() - time01
         
-        while Hand_End_Cheker1 == False and flop_stage == False and time02 < 5 * 60 and waiting_for_first_hand == False :
+        while Hand_End_Cheker1 == False and flop_stage == False and time02 < 5 * 60 and bot_status == False :
 
             time02 = time.time() - time01
                 
@@ -330,20 +330,20 @@ while True :
                     read_and_global_flop_cards() #
 
         if not time02 < 5 * 60 :
-            raise Exception("8.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
+            raise Exception("8.I should work on main menu automation later!(game is locked maybe, force to exit or restart),bot_status == None mishavad")
             fix_game_disruption("6")
 
 
 # Flop: -------
 
 
-    if waiting_for_first_hand == False :
+    if bot_status == False :
 
         shout("Running Flop Section")
         time01 = time.time()
         time02 = time.time() - time01
         flop_betting_round = -1
-        while Hand_End_Cheker1 == False and turn_stage == False and time02 < 5 * 60 and waiting_for_first_hand == False :
+        while Hand_End_Cheker1 == False and turn_stage == False and time02 < 5 * 60 and bot_status == False :
 
             time02 = time.time() - time01
                 
@@ -389,7 +389,7 @@ while True :
                     read_and_global_turn_card() #        
             
         if not time02 < 5 * 60 :
-            raise Exception("10.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
+            raise Exception("10.I should work on main menu automation later!(game is locked maybe, force to exit or restart),bot_status == None mishavad")
             fix_game_disruption("8")    
 
 
@@ -397,13 +397,13 @@ while True :
 # Turn: -------
 
     
-    if waiting_for_first_hand == False :
+    if bot_status == False :
 
         shout("Running Turn Section")
         time01 = time.time()
         time02 = time.time() - time01
         turn_betting_round = -1
-        while Hand_End_Cheker1 == False and river_stage == False and time02 < 5 * 60 and waiting_for_first_hand == False :
+        while Hand_End_Cheker1 == False and river_stage == False and time02 < 5 * 60 and bot_status == False :
 
             time02 = time.time() - time01
                 
@@ -449,20 +449,20 @@ while True :
                     read_and_global_river_card() #        
             
         if not time02 < 5 * 60 :
-            raise Exception("12.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
+            raise Exception("12.I should work on main menu automation later!(game is locked maybe, force to exit or restart),bot_status == None mishavad")
             fix_game_disruption("10")            
             
 
 # River: -------
 
 
-    if waiting_for_first_hand == False :
+    if bot_status == False :
 
         shout("Running River Section")
         time01 = time.time()
         time02 = time.time() - time01
         river_betting_round = -1
-        while Hand_End_Cheker1 == False and time02 < 5 * 60 and waiting_for_first_hand == False :
+        while Hand_End_Cheker1 == False and time02 < 5 * 60 and bot_status == False :
 
             time02 = time.time() - time01
                 
@@ -505,19 +505,19 @@ while True :
                                
             
         if not time02 < 5 * 60 :
-            raise Exception("14.I should work on main menu automation later!(game is locked maybe, force to exit or restart),waiting_for_first_hand == None mishavad")
+            raise Exception("14.I should work on main menu automation later!(game is locked maybe, force to exit or restart),bot_status == None mishavad")
             fix_game_disruption("12")            
             
 
 
 #-------
             
-    if Hand_End_Cheker1 == True and waiting_for_first_hand == True :
+    if Hand_End_Cheker1 == True and bot_status == True :
 
         declare_the_winners()
         shout ("-------- Hand Ended --------", color = 'on_green')
 
-    if Hand_End_Cheker1 == True and waiting_for_first_hand == False :
+    if Hand_End_Cheker1 == True and bot_status == False :
 
         declare_the_winners()
         shout ("-------- Hand Ended --------", color = 'on_green')
@@ -550,11 +550,11 @@ while True :
                 time02 = time.time() - time1                
 
         if not time02 < 1.5 * 60 :
-            raise Exception("15.Game is locked, force to restart, waiting_for_first_hand == None")
+            raise Exception("15.Game is locked, force to restart, bot_status == None")
             
 
 
-    if Hand_End_Cheker1 == False and waiting_for_first_hand == False :
+    if Hand_End_Cheker1 == False and bot_status == False :
 
         if pm.active_player_pixel(game_position, my_seat_number) != True or ( pm.active_player_pixel(game_position, my_seat_number) == True and pm.notification_banner_pixel(game_position, my_seat_number) == True ) :
             read_and_global_banks_and_names() #
@@ -577,9 +577,9 @@ while True :
                 time02 = time.time() - time1                
 
         if not time02 < 5 * 60 : #being alone time
-            raise Exception("16.No one join, time to exit. Or Game is locked, force to restart, waiting_for_first_hand == None")
+            raise Exception("16.No one join, time to exit. Or Game is locked, force to restart, bot_status == None")
 
-        elif waiting_for_first_hand == False :
+        elif bot_status == False :
             shout ("-------- New Hand Started --------", color = 'on_green')
             shout ("Coins are Founded")
             config.determine_small_blind_seat()
@@ -592,7 +592,7 @@ while True :
             time1 = time.time()
             Cards1 = False
             shout("Looking for cards...", color = 'light_magenta')
-            while Hand_End_Cheker1 == False and Cards1 == False and waiting_for_first_hand == False and time02 < 1.5 * 60 :
+            while Hand_End_Cheker1 == False and Cards1 == False and bot_status == False and time02 < 1.5 * 60 :
                 if pm.button_pixel(game_position, 'i_am_back') :
                     fix_game_disruption("14.5 I am back Button is True")
                 Hand_End_Cheker1 = hand_is_ended()
@@ -605,7 +605,7 @@ while True :
                     time02 = time.time() - time1                
 
             if not time02 < 1.5 * 60 :
-                raise Exception("17.Game is locked, force to restart, waiting_for_first_hand == None")
+                raise Exception("17.Game is locked, force to restart, bot_status == None")
 
             if Cards1 == True :
                 shout("Cards are founded", color = 'light_magenta')

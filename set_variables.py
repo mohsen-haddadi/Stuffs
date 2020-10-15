@@ -26,7 +26,7 @@ def set_all_variables_to_none():
     config.board_card_1th , config.board_card_2th , config.board_card_3th ,\
     config.board_card_4th, config.board_card_5th , config.my_1th_card , config.my_2th_card ,\
     config.my_seat_number , config.MY_PROFILE_NAME ,\
-    config.just_do_check_fold , config.waiting_for_first_hand ,\
+    config.just_do_check_fold , config.bot_status ,\
     config.player_cards_cache , config.white_chips_cache , config.red_chips_cache , config.bets_cache ,\
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache,\

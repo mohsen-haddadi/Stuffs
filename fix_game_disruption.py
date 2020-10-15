@@ -2,7 +2,7 @@
 """The variables which may change in this module are:
     1. config.game_position
     2. config.my_seat_number
-    3. config.waiting_for_first_hand
+    3. config.bot_status
     4. config.just_do_check_fold
 """
 import socket, wmi, time
@@ -17,7 +17,7 @@ from readability_then_ocr import ocr_my_name
 
 
 def sit_in(chips): # "Min buy in" or "Max buy in"
-    #global game_position, my_seat_number , waiting_for_first_hand
+    #global game_position, my_seat_number , bot_status
 
     shout("Searching for a seat to sit in", color = 'yellow')
     config.my_seat_number = None
@@ -25,8 +25,8 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
         if pm.available_seat_pixel(config.game_position,i) == True :
             click('available_seat_%s' %i)
             config.my_seat_number = i
-            config.waiting_for_first_hand = True
-            shout("Sit_In() --> waiting_for_first_hand is True."
+            config.bot_status = 'WAITING_FOR_FIRST_HAND'
+            shout("Sit_In() --> bot_status is 'WAITING_FOR_FIRST_HAND'."
                   , color = 'yellow')
             break
     if config.my_seat_number == None :
@@ -122,7 +122,7 @@ def find_and_click_on_reconnect_button():
         return None
 
 def fix_game_disruption(String = None): #if find_game_reference_point() == None or ...
-    #global game_position , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold
+    #global game_position , my_seat_number , MY_PROFILE_NAME , bot_status , just_do_check_fold
 
     shout( 7*"-" , color = 'yellow')
     if String == None :
@@ -175,8 +175,8 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
             shout("After fix_game_disruption() --> just_do_check_fold is True."
                   , color = 'yellow')
         else :
-            config.waiting_for_first_hand = True
-            shout("After fix_game_disruption() --> waiting_for_first_hand is True."
+            config.bot_status = 'WAITING_FOR_FIRST_HAND'
+            shout("After fix_game_disruption() --> bot_status is 'WAITING_FOR_FIRST_HAND'."
                   , color = 'on_yellow')
 
     if check_i_am_in_or_out() == "Out":

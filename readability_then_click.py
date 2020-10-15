@@ -30,12 +30,12 @@ def click_on_button(button_name):
     # for call, check, fold, bet, raise,
     # exit, menu, rebuy_menu,
     # exit_yes, leave_next_hand_ok, buy_in, and re_buy buttons.
-    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand 
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status 
 
     if pm.button_pixel(config.game_position, button_name) : 
         click(button_name) 
         if button_name == 'exit':
-            config.waiting_for_first_hand = None
+            config.bot_status = 'ON_MAIN_MENU'
 
     else :
 
@@ -44,7 +44,7 @@ def click_on_button(button_name):
             time0 = time.time()
             fix_game_disruption("button %s is not visible" %button_name )
             time1 = time.time() - time0
-            if config.waiting_for_first_hand == True:
+            if config.bot_status == 'WAITING_FOR_FIRST_HAND':
                 return None
             elif config.just_do_check_fold == True:
                 if pm.button_pixel(config.game_position, 'check') :
@@ -65,7 +65,7 @@ def click_on_button(button_name):
             if pm.button_pixel(config.game_position, button_name):
                 click(button_name)
                 if button_name == 'exit':
-                    config.waiting_for_first_hand = None
+                    config.bot_status = 'ON_MAIN_MENU'
             else:
                 raise_exception_the_problem("button %s is not visible" %button_name)
 
@@ -75,7 +75,7 @@ def click_on_button(button_name):
 
 def number_of_clicks_on_button(button_name, number): # Number of clicks 
     # for plus and minus buttons
-    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     number = int(number)
     if pm.button_pixel(config.game_position, button_name) :
@@ -85,7 +85,7 @@ def number_of_clicks_on_button(button_name, number): # Number of clicks
         time0 = time.time()
         fix_game_disruption("button %s is not visible" %button_name)
         time1 = time.time() - time0
-        if config.waiting_for_first_hand == True:
+        if config.bot_status == 'WAITING_FOR_FIRST_HAND':
             return None
         elif config.just_do_check_fold == True:
             if pm.button_pixel(config.game_position, 'check') :
@@ -130,7 +130,7 @@ def call():
 
 def all_in_old(Minus_Blinds = 0): #not completed on did_i_raised_at and my_last_raise_at. i won't use this fuction anymore
     """ if 0 : all_in everything """
-    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     if pm.button_pixel(config.game_position, 'all_in') == False and pm.button_pixel(config.game_position, 'call') == True \
     and pm.button_pixel(config.game_position, 'bet') == False and pm.button_pixel(config.game_position, 'raise') == False :
@@ -151,7 +151,7 @@ def all_in_old(Minus_Blinds = 0): #not completed on did_i_raised_at and my_last_
             return click_on_button('raise')
 
 def all_in():
-    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     if pm.button_pixel(config.game_position, 'all_in') == False and pm.button_pixel(config.game_position, 'call') == True \
     and pm.button_pixel(config.game_position, 'bet') == False and pm.button_pixel(config.game_position, 'raise') == False :
@@ -169,7 +169,7 @@ def raising(Blinds):
     Blinds is the amount of money like in ocr; not the number of blinds
     if Blinds == BLIND_VALUE (or less): won't click on plus button
     """
-    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand,\
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status,\
     #preflop_stage , flop_stage , turn_stage , river_stage , did_i_raised_at , my_last_raise_at , BLIND_VALUE
 
     if config.preflop_stage == True and config.flop_stage == False :
@@ -226,7 +226,7 @@ def raising(Blinds):
             set_just_do_check_fold_to_true("No raise nor bet button founded")
 
 def check_fold():
-    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
     if pm.button_pixel(config.game_position, 'check') :
         click('check')
     elif pm.button_pixel(config.game_position, 'fold') :
@@ -234,7 +234,7 @@ def check_fold():
     else :
 
         fix_game_disruption("check_fold()")
-        if config.waiting_for_first_hand != False:
+        if config.bot_status != 'I_AM_PLAYING':
             return None
         elif pm.button_pixel(config.game_position, 'check') :
             click('check')

@@ -6,7 +6,7 @@ from iprint import shout
 from fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true
 
 def read_and_global_my_cards():
-    #global game_position, my_1th_card , my_2th_card  , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, my_1th_card , my_2th_card  , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     config.my_1th_card, config.my_2th_card =\
     read_cards.read_my_cards(config.game_position, config.my_seat_number)
@@ -30,7 +30,7 @@ def read_and_global_my_cards():
           , color = 'green')
 
 def read_and_global_flop_cards(): 
-    #global game_position, board_card_1th , board_card_2th , board_card_3th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, board_card_1th , board_card_2th , board_card_3th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     config.board_card_1th, config.board_card_2th, config.board_card_3th =\
     read_cards.read_flop_cards(config.game_position)
@@ -58,7 +58,7 @@ def read_and_global_flop_cards():
           , color = 'green')
 
 def read_and_global_turn_card(): 
-    #global game_position, board_card_4th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, board_card_4th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     config.board_card_4th = read_cards.read_turn_card(config.game_position)
     
@@ -77,7 +77,7 @@ def read_and_global_turn_card():
           , color = 'green')
 
 def read_and_global_river_card(): 
-    #global game_position, board_card_5th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, board_card_5th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
     
     config.board_card_5th = read_cards.read_river_card(config.game_position)
     

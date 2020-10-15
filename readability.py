@@ -1,6 +1,6 @@
 # creating readable functions is non sense.
 def is_read_my_cards_readable():
-	if 'Unkown' in read_my_cards():
+	if 'Unknown' in read_my_cards():
 		return False
 	else:
 		return True

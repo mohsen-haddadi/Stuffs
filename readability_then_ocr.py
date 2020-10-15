@@ -52,7 +52,7 @@ def ocr_other_players_bank(seat):
     1. fix_game_disruption()
     2. set_just_do_check_fold_to_true()
     """
-    #global my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold
+    #global my_seat_number , MY_PROFILE_NAME , bot_status , just_do_check_fold
 
     ocr_string = ocr.ocr_other_players_bank_to_string(config.game_position, seat)
     shout("other players bank ocr string at seat %s is: %s" 
@@ -74,7 +74,7 @@ def ocr_my_bank():
     Will not uses:
     1. set_just_do_check_fold_to_true()
     """
-    #global my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand , just_do_check_fold
+    #global my_seat_number , MY_PROFILE_NAME , bot_status , just_do_check_fold
 
     ocr_string = ocr.ocr_my_bank_to_string(config.game_position, config.my_seat_number)
     shout("my bank ocr string at seat %s is: %s"%(config.my_seat_number, ocr_string))
