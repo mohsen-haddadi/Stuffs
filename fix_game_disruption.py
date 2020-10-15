@@ -1,4 +1,10 @@
 #OK
+"""The variables which may change in this module are:
+    1. config.game_position
+    2. config.my_seat_number
+    3. config.waiting_for_first_hand
+    4. config.just_do_check_fold
+"""
 import socket, wmi, time
 
 import pyautogui

@@ -132,6 +132,7 @@ def reset_table_information() :
     flop_stage = False 
     turn_stage = False 
     river_stage = False 
+
 def white_chips(seat):
     # It checks if there is a white colored chips in front of a seat,
     # by returning True or False, to find out if a player has call or not

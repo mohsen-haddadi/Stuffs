@@ -151,7 +151,7 @@ def all_in_old(Minus_Blinds = 0): #not completed on did_i_raised_at and my_last_
             return click_on_button('raise')
 
 def all_in():
-    global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
+    #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , waiting_for_first_hand
 
     if pm.button_pixel(config.game_position, 'all_in') == False and pm.button_pixel(config.game_position, 'call') == True \
     and pm.button_pixel(config.game_position, 'bet') == False and pm.button_pixel(config.game_position, 'raise') == False :
