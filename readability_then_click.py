@@ -1,6 +1,8 @@
 #OK
 import time
+
 import pyautogui
+
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 import config
