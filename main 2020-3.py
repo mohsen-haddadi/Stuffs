@@ -25,8 +25,6 @@ def rebuy_if_bank_is_low(min_blinds = 15):
             pass # Later i'll build
 
 def wait_for_first_hand(waiting_minutes = 5):
-    global waiting_for_first_hand
-
     shout("Looking for cards in 'WAITING_FOR_FIRST_HAND' Section..."
           , color = 'light_magenta')
     start_time = time.time()
@@ -40,14 +38,14 @@ def wait_for_first_hand(waiting_minutes = 5):
             fix_game_disruption()
 
     if time.time() - start_time >= 60 * waiting_minutes :
-        waiting_for_first_hand = None
+        config.bot_status = 'ON_MAIN_MENU'
         shout("No one join the table, call operator ")
     # My cards pixel is founded:
     else:
         shout("My cards are founded", color = 'light_magenta')
-        waiting_for_first_hand = False
+        config.bot_status = 'I_AM_PLAYING'
         # I may have had run again program from middle of the game
-        # If I've resume the game, set waiting_for_first_hand = True
+        # If I've resume the game, set config.bot_status = 'WAITING_FOR_FIRST_HAND'
         if (not pm.pre_flop_pixel(game_position)  
             or (pm.pre_flop_pixel(game_position) 
                 and is_there_any_raiser() )) :
@@ -77,17 +75,17 @@ def read_board_cards_and_update_stage():
     if config.preflop_stage and not config.flop_stage and pm.flop_pixel():
         config.flop_stage = True
         read_and_global_flop_cards()
-        if waiting_for_first_hand == False:
+        if config.bot_status == 'I_AM_PLAYING':
             shout("Waiting for my turn at flop_stage...", 'light_magenta') 
     if config.flop_stage and not config.turn_stage and pm.turn_pixel():
         config.turn_stage = True
         read_and_global_turn_card()
-        if waiting_for_first_hand == False:
+        if config.bot_status == 'I_AM_PLAYING':
             shout("Waiting for my turn at turn_stage...", 'light_magenta') 
     if config.turn_stage and not config.river_stage and pm.river_pixel():
         config.river_stage = True
         read_and_global_river_card()
-        if waiting_for_first_hand == False:
+        if config.bot_status == 'I_AM_PLAYING':
             shout("Waiting for my turn at river_stage...", 'light_magenta') 
 
 def its_my_turn():
@@ -115,13 +113,13 @@ def update_betting_rounds():
               %config.river_betting_round, color = 'on_light_red')
 
 
-waiting_for_first_hand = True
+config.bot_status = 'WAITING_FOR_FIRST_HAND'
 while True:
 
     reset_just_do_check_fold_to_false() 
     reset_table_information() 
 
-    if waiting_for_first_hand == True:
+    if config.bot_status == 'WAITING_FOR_FIRST_HAND':
         shout("* bot_status == 'WAITING_FOR_FIRST_HAND' *",color = 'on_green')
         rebuy_if_bank_is_low(min_blinds = 15)
         read_and_global_banks_and_names()
@@ -129,23 +127,23 @@ while True:
         # Inside it shout looking for my cards TO START FIRST HAND 
         # and shout my cards founded with light_magenta
         # They will be shouted again at wait_for_my_hand_to_be_dealt() unfortunately
-        # It changes waiting_for_first_hand to: 1.False if my cards founded.
-        # 2.None if time is passed.
+        # It changes config.bot_status to: 1.'I_AM_PLAYING' if my cards founded.
+        # 2.'ON_MAIN_MENU' if time is passed.
         wait_for_first_hand(waiting_minutes = 5)
         # It set global new_hand to False, to pass the 'if new_hand:' inside
-        # waiting_for_first_hand == False section.
+        # config.bot_status == 'I_AM_PLAYING' section.
         # I may have resume from middle of the game, so it better to use
         # this function instead of using 'new_hand = False' line
         wait_celebration_ends(waiting_seconds = 10) #not defined yet
         
-    elif waiting_for_first_hand == None:
+    elif config.bot_status == 'ON_MAIN_MENU':
         shout("* bot_status == 'ON_MAIN_MENU' *", color = 'on_green')
         raise Exception("5.This can not happen IN FUTURE because main "\
                         "menu automation is built " \
                         "( fix_game_disruption --> Sit_In --> "\
                         "table is full --> exit --> "\
-                        "waiting_for_first_hand = None --> main menu "\
-                        "--> waiting_for_first_hand = True )")
+                        "config.bot_status = 'ON_MAIN_MENU' --> main menu "\
+                        "--> config.bot_status = 'WAITING_FOR_FIRST_HAND' )")
 
 
 
@@ -208,7 +206,7 @@ def wait_for_my_new_hand_to_be_dealt(waiting_minutes = 10): #not completed
 
 
     # Now I'm in the game
-    elif waiting_for_first_hand == False:
+    elif config.bot_status == 'I_AM_PLAYING':
         if new_hand: 
             declare_the_winners()
             # Inside it: if time is past, do sth else 
@@ -222,22 +220,22 @@ def wait_for_my_new_hand_to_be_dealt(waiting_minutes = 10): #not completed
         # or time is past, do sth else
         shout("Looking for cards in 'I_AM_PLAYING' Section...", 'light_magenta')
         wait_for_my_new_hand_to_be_dealt(waiting_minutes = 10) #not defined yet
-        if waiting_for_first_hand != False or new_hand: continue
+        if config.bot_status != 'I_AM_PLAYING' or new_hand: continue
         shout("My cards are founded", color = 'light_magenta')
         shout ("-------- New Hand Started --------", color = 'on_green')
         # If time is past, do sth else
         wait_for_sb_b_d_buttons(waiting_seconds = 5) 
-        # use this statment after functions which use fix_game_disruption()
-        if waiting_for_first_hand != False: continue
+        # use this statement after functions which use fix_game_disruption()
+        if config.bot_status != 'I_AM_PLAYING': continue
         # global new_hand = hand_is_ended() inside waiting functions
         if new_hand: continue 
         determine_dealer_seat()
         determine_big_blind_seat()
-        determine_small_blind_seat() # Reduce 3 functions to 1 and then change function name
-        read_and_global_my_cards() # Change function name to a better one
+        determine_small_blind_seat()
+        read_and_global_my_cards() 
         rebuy_if_bank_is_low(min_blinds = 15)
         read_and_global_banks_and_names()
-        if waiting_for_first_hand != False: continue
+        if config.bot_status != 'I_AM_PLAYING': continue
         play_sound_for_good_starting_hands()
 
         shout("Waiting for my turn at preflop_stage...", 'light_magenta') 
@@ -247,7 +245,7 @@ def wait_for_my_new_hand_to_be_dealt(waiting_minutes = 10): #not completed
             if its_my_turn():
                 update_betting_rounds()
                 read_and_save_bets()
-                if waiting_for_first_hand == False:
+                if config.bot_status == 'I_AM_PLAYING':
                     click_decision() # Transfer the function to this module
             if shifted_to_next_stage(): 
                 read_board_cards_and_update_stage()
@@ -260,10 +258,13 @@ def wait_for_my_new_hand_to_be_dealt(waiting_minutes = 10): #not completed
             if new_hand:
                 shout ("-------- Hand ended --------", color = 'on_green')
                 break
-            if waiting_for_first_hand != False:
+            if config.bot_status != 'I_AM_PLAYING':
                 break
 
     else:
-        # change None, True, False to 'ON_MAIN_MENU', 'I_AM_PLAYING', WAITING_FOR_FIRST_HAND
-        raise Exception('waiting_for_first_hand is only None or False or True')
+        # Develop 'OBSERVING' status for bot_status later.
+        # 'OBSERVING' status can be used to test screen monitoring or to
+        # get opponents playing styles or to gather statistical data.
+        raise Exception("bot_status is only 'ON_MAIN_MENU' or "\
+                        "'WAITING_FOR_FIRST_HAND' or 'I_AM_PLAYING'")
 
