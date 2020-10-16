@@ -1,3 +1,28 @@
+import time, os
+from datetime import datetime
+
+import pyautogui, pygame, win32gui, win32con
+
+import screen_monitoring.find_game_position.find_game_position as find_game_position
+import screen_monitoring.pixel_matching.pixel_matching as pm
+import decision_making.decide
+import decision_making.rules_and_info.starting_hands as hand_ranking
+from readability.read_cards import read_and_global_my_cards,\
+read_and_global_flop_cards, read_and_global_turn_card,\
+read_and_global_river_card
+from readability.ocr import ocr_my_bank
+from readability.click import fold, check, call, all_in,\
+raising, check_fold
+from readability.fix_game_disruption import fix_game_disruption,\
+set_just_do_check_fold_to_true, screenshot_error
+#importing same level directory modules
+import config
+from iprint import shout
+from set_variables import set_all_variables_to_none,\
+determine_small_blind_seat, determine_big_blind_seat, determine_dealer_seat,\
+reset_just_do_check_fold_to_false, read_and_global_banks_and_names,\
+reset_table_information, red_chips, read_and_save_bets
+
 
 def wait_for_first_hand(waiting_minutes = 5):
     shout("Looking for cards in 'WAITING_FOR_FIRST_HAND' Section..."
@@ -201,11 +226,18 @@ if __name__ == '__main__':
     set_all_variables_to_none()
     create_file_directories()
 
+    # Initial values:
+    MY_PROFILE_NAME = "XXX"
+    if input("Is my name: %s ?(Enter:yes/any keyword:no)"%MY_PROFILE_NAME) != "" :
+        MY_PROFILE_NAME = input("Enter profile name: ")
+    my_seat_number = int( input("My seat number? ") )
+    config.bot_status = 'WAITING_FOR_FIRST_HAND'
+    BLIND_VALUE = 100000000
+    game_position = find_game_position.find_game_reference_point()
 
 
 
 
-config.bot_status = 'WAITING_FOR_FIRST_HAND'
 while True:
 
     reset_just_do_check_fold_to_false() 

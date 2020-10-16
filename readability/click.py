@@ -7,7 +7,7 @@ import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 import config
 from iprint import shout
-from fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error, raise_exception_the_problem
+from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error, raise_exception_the_problem
 
 def click(name):
     x, y = click_coordinates.click_coordinates(config.game_position, name)

@@ -3,7 +3,7 @@ import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.ocr.ocr as ocr
 import config
 from iprint import shout
-from fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error
+from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error
 
 def replace_letters_comma_space_m_k(ocr_string):
     string = ocr_string

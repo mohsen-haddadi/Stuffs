@@ -1,0 +1,44 @@
+(OK)1. dircetory file e variables.p ro dar hame module haye sub package e
+ decision_making, ba komake mohtaviate file e pathh.py eslah konam.
+(OK)2. dar hame module haye sub package read_cards, GAME_POSITION ro 
+ be game_position taghir bedam.
+(OK)3. argument e game_postion ro be tavabe dakhele module haye read_cards va ocr , 
+ mesle module pixel_matching, ezafe konam. 
+(OK)4. dar file 2020-3.py ba komake module ocr, tavabe estefade shode dar 2020-3.py ro
+ peyda karde va ebtedayeshan ocr. va argumente '(game_position,' ro ezafe konam.
+(OK)4.5 shout ra az module e pure e ocr hazf konam. dar file 2020-3 shout ra baraye
+ ocr va read_cards ezafe konam. 
+(OK)5. dar file 2020-3.py read_card ghadimi ro ba read_card jadid ba raayate 
+ fix_game_diruption() jaygozin konam, va read_card. ra dar ebtaye tavabeshan va argumente 
+ '(game_position,' ro dar entehayeshan ezafe konam.
+(OK)(eslahie Nokte6): 3 module gofte shode dar Nokte 6,bedone estefade az save_variables() dar file main  
+ gharar khahand gereft. save_variables() faghat ghabl az "line e dargahe main file be sub package e
+ decision_making" estefade khahad shod. bad az line dargah digar niazi be estefade az load_variables()
+ nabayad bashad, zira sub package decision_making faghat estefade konande az vairbales hast va taghiri
+ dar anha nemidahad.
+(N/A)6. (Nokte): tanha 3 module e click_buttons.py, read_variables.py, va fix_game_disruption.py 
+ az save_variables() estefade khahand kard. 
+6.5 (Nokte):module haye sub package e decision_making faghat 
+ az load_variables() estefade khahand kard. module haye sub package e screen_monitoring
+ pure hastand va az pickel be hich onvan estefade nakhahand kard.
+(N/A)7. tavabe mortabet ra dar 3 module click_buttons.py, read_variables.py, va fix_game_disruption.py,
+ enteghal daham,va tak take tavabeshan ra barresi karde va harja moteghayeri 
+ mesle Check_Mod taghiri karde bod, tabe save_variables() ra be entehaye an tabe ezafe konam.
+8. yek baznegari dar moteghayer ha va tavabei mesle :read_and_save_bets() va 
+ read_and_save_players_banks_and_names() va..., ke read variables mikonand,
+ anjam shavad, ta etminan hasel shavad ke aya mihsavad anha ra edgham ya
+ kholase tar kard ya na.
+9. tamam moteghayer hayi mesle My_Bank, Just_seated va... ke dar loope asli While True,
+ assign shodan, peyda shavad va ya anha ra be tabe digari baraye assign shodan jabe ja karde,
+ va ya tabei mesle reset_just_seated_to_true() barayeshan tarif karde, ta betavanim anha ra dar
+ an tavabe save_variables() konim. banabar in dar khode While True hich moteghayeri nabayad 
+ assign shavad.
+10. agar vaght yari mikard esme tamame moteghayer ha ro be ye chize behtar dar halate standard taghir daham.
+ Nokte:in moteghayer ha dar hame module ha hastan be gheir az module haye sub package e screen_monitoring,
+ ke module haye pure hastand.
+
+11. file screen_monitoring.game_poistion.game_position takmil shavad
+12. dar file main line e import screen_monitoring.game_poistion.game_position ezafe shavad
+    va hame ja game_position = game_position.find_game_reference_point() emal shavad.
+    agar in jaygozari dar yek function bod, hatman global game_position dar an function neveshte shavad.
+13. change Just_Seated to waiting_for_new_hand at all files.

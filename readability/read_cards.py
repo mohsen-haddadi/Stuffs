@@ -3,7 +3,7 @@ import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.read_cards.read_cards as read_cards
 import config
 from iprint import shout
-from fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true
+from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true
 
 def read_and_global_my_cards():
     #global game_position, my_1th_card , my_2th_card  , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status

@@ -1,0 +1,8 @@
+These functions are copy and pasted in fix_game_disruption.py module 
+from click.py and ocr.py modules:
+
+1.click()  2.hold_click  3.click_on_button()  4.hold_click_on_button()
+5.ocr_my_name()
+
+When modifying these functions at click.py and ocr.py modules, 
+do not forget to modify them at fix_game_disruption.py module too.

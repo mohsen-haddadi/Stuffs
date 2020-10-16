@@ -1,0 +1,6 @@
+# ���� ��� ��� ����� ������ �� ����� ������ ���� ocr � read cards �  white red �� �� ���� �� �ǎ�� ��� ���� ����� �ǎ�� monitoring ����� ���. ��� ���  variable �� �� Constents �ǡ ����� Check_mode_on � My_seat_number ���� �� ������ ����� vital_sighs �� �ǎ�� ���� main file ����� � ����� ���ϡ ��� ����� �� ��� ���� �� ����� �� ���� ���� ��� ����. 
+
+# ���� screnshot_Error ���� ����� ��� �� ���� �� �� ���� ���� pickel ���.
+
+# 3.tanha 3 module e click_buttons.py, read_variables.py, va fix_game_disruption.py 
+ az save_variables() estefade khahad kard.

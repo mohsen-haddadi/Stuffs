@@ -3,7 +3,7 @@ import config
 from iprint import shout
 import screen_monitoring.find_game_position.find_game_position as find_game_position
 import screen_monitoring.pixel_matching.pixel_matching as pm
-from readability.ocr import ocr_bet, ocr_other_players_bank, ocr_my_bank, ocr_other_names, ocr_my_name
+from readability_then_ocr import ocr_bet, ocr_other_players_bank, ocr_my_bank, ocr_other_names, ocr_my_name
 
 #testing sub packages imports
 test = False
@@ -15,8 +15,10 @@ if test == True:
 
 
 def set_all_variables_to_none():
-    """By running the program every time, we'll make sure config 
-    variables are cleaned off the last run"""
+    """
+    used to clean pickel file, but no usage now. 
+    maybe i clean it if i can't find any usage for it.
+    """
     config.game_position , config.DATED_REPORT_FOLDER , config.REPORTS_DIRECTORY,\
     config.preflop_stage , config.flop_stage , config.turn_stage , config.river_stage ,\
     config.preflop_betting_round , config.flop_betting_round ,\
@@ -24,7 +26,7 @@ def set_all_variables_to_none():
     config.board_card_1th , config.board_card_2th , config.board_card_3th ,\
     config.board_card_4th, config.board_card_5th , config.my_1th_card , config.my_2th_card ,\
     config.my_seat_number , config.MY_PROFILE_NAME ,\
-    config.just_do_check_fold , config.bot_status ,\
+    config.just_do_check_fold , config.waiting_for_first_hand ,\
     config.player_cards_cache , config.white_chips_cache , config.red_chips_cache , config.bets_cache ,\
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache,\
@@ -97,8 +99,6 @@ def reset_table_information() :
     #       did_i_raised_at , my_last_raise_at , preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round
 
     shout("Reseting table information")
-    players_name = {}
-    players_bank = {}
     for Seat in range(1,6):
         config.players_name[Seat] = None
         config.players_bank[Seat] = None
@@ -144,10 +144,9 @@ def white_chips(seat):
         return False
 
 def red_chips(seat):
-    """It checks if there is a red colored chips in front of a seat,
-    by returning True or False, to find out if a player has bet/raised or not.
-    (In accordance to Google: 'A bet is the first wager of a round.')
-    """
+    # It checks if there is a red colored chips in front of a seat,
+    # by returning True or False, to find out if a player has bet/raised or not.
+    # (In accordance to Google: 'A bet is the first wager of a round.')
     #global game_position
 
     if pm.player_chips_pixel(config.game_position, seat):
