@@ -290,16 +290,22 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
 #    t = time.time()
 #    pyautogui.screenshot( 'Error %s.png' %t )
 #    raise Exception('what was the probelm on %s?' %t ) 
-        
+
+
 def set_just_do_check_fold_to_true(string = None) :
     #global just_do_check_fold
-
     config.just_do_check_fold = True
     if string == None :
-        shout("just_do_check_fold is On", color = 'on_yellow')
+        shout("just_do_check_fold is set to True", color = 'on_yellow')
     elif type(string) == str :
-        shout("just_do_check_fold is On: %s" %string, color = 'on_yellow')
+        shout("just_do_check_fold is set to True: %s" %string, color = 'on_yellow')
 
+def reset_just_do_check_fold_to_false() :
+    #global just_do_check_fold
+    if config.just_do_check_fold == True :
+        shout("just_do_check_fold is reset to False")
+        config.just_do_check_fold = False
+ 
 def screenshot_error(type_of_error): #type_of_error in string
     #global REPORTS_DIRECTORY
 

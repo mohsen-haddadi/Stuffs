@@ -40,7 +40,7 @@ def is_there_any_raiser():
 
 def stages_are_sequenced():
     if (pm.river_pixel() and
-        False in (config.preflop_stage, config.flop_stage, config.river_stage)):
+        False in (config.preflop_stage, config.flop_stage, config.turn_stage)):
         return False
     if pm.turn_pixel() and False in (config.preflop_stage, config.flop_stage):
         return False
@@ -117,13 +117,12 @@ def declare_the_winners():
             shout("Seat %s won the game!" %seat)
 
 def rebuy_if_bank_is_low(min_blinds = 15):
-    global BLIND_VALUE
     my_bank = ocr_my_bank()
     if my_bank == None :
         shout("My bank can't be read")
     elif my_bank != None :
         shout(paint.light_green.bold("My bank is:%s" %my_bank))
-        if 0 < my_bank <= min_blinds * BLIND_VALUE:
+        if 0 < my_bank <= min_blinds * config.BLIND_VALUE:
             shout("Rebuying...")
             pass # Later i'll build
 

@@ -4,6 +4,7 @@ from iprint import shout
 import screen_monitoring.find_game_position.find_game_position as find_game_position
 import screen_monitoring.pixel_matching.pixel_matching as pm
 from readability.ocr import ocr_bet, ocr_other_players_bank, ocr_my_bank, ocr_other_names, ocr_my_name
+from readability.fix_game_disruption import set_just_do_check_fold_to_true, reset_just_do_check_fold_to_false
 
 #testing sub packages imports
 test = False
@@ -31,37 +32,27 @@ def set_all_variables_to_none():
     config.did_i_raised_at  , config.my_last_raise_at , config.players_name , config.players_bank ,\
     config.BLIND_VALUE , config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*38
 
-def determine_small_blind_seat():
-    #global game_position, small_blind_seat
+
+def determine_small_big_dealer_seats():
     for seat in [1,2,3,4,5]:
         if pm.small_blind_pixel(config.game_position, seat):
-            shout("Seat %s is at Small Blind Seat" %seat)
+            shout("Small blind is on seat %s" %seat)
             config.small_blind_seat = seat
             break
 
-def determine_big_blind_seat():
-    #global game_position, big_blind_seat
     for seat in [1,2,3,4,5]:
         if pm.big_blind_pixel(config.game_position, seat):
-            shout("Seat %s is at Big Blind Seat" %seat)
+            shout("Big blind is on seat %s" %seat)
             config.big_blind_seat = seat
             break
 
-def determine_dealer_seat():
-    #global game_position, dealer_seat
     for seat in [1,2,3,4,5]:
         if pm.dealer_pixel(config.game_position, seat):
-            shout("Seat %s is at Dealer Seat" %seat)
+            shout("Dealer is on seat %s" %seat)
             config.dealer_seat = seat
             break
 
 ### Read_Bets & dinctionaries & Reset var funcs: ****************************************************************************************************************************
-
-def reset_just_do_check_fold_to_false() :
-    #global just_do_check_fold
-    if config.just_do_check_fold == True :
-        shout("just_do_check_fold is reset to False")
-        config.just_do_check_fold = False
 
 def read_and_global_banks_and_names() :
     #global game_position, players_name , players_bank , my_seat_number
@@ -97,6 +88,7 @@ def reset_table_information() :
     #       did_i_raised_at , my_last_raise_at , preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round
 
     shout("Reseting table information")
+    reset_just_do_check_fold_to_false()
     players_name = {}
     players_bank = {}
     for Seat in range(1,6):
