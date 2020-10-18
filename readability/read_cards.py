@@ -5,7 +5,8 @@ import config
 from iprint import shout
 from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true
 
-def read_and_global_my_cards():
+
+def read_and_save_my_cards():
     #global game_position, my_1th_card , my_2th_card  , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     config.my_1th_card, config.my_2th_card =\
@@ -29,7 +30,7 @@ def read_and_global_my_cards():
             my_2th_card[1][0], my_2th_card[1][1])
           , color = 'green')
 
-def read_and_global_flop_cards(): 
+def read_and_save_flop_cards(): 
     #global game_position, board_card_1th , board_card_2th , board_card_3th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     config.board_card_1th, config.board_card_2th, config.board_card_3th =\
@@ -57,7 +58,7 @@ def read_and_global_flop_cards():
             config.board_card_3th[1][0], config.board_card_3th[1][1])
           , color = 'green')
 
-def read_and_global_turn_card(): 
+def read_and_save_turn_card(): 
     #global game_position, board_card_4th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
 
     config.board_card_4th = read_cards.read_turn_card(config.game_position)
@@ -76,7 +77,7 @@ def read_and_global_turn_card():
     shout("Turn card is: %s %s" %(config.board_card_4th[0], config.board_card_4th[1])
           , color = 'green')
 
-def read_and_global_river_card(): 
+def read_and_save_river_card(): 
     #global game_position, board_card_5th , just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status
     
     config.board_card_5th = read_cards.read_river_card(config.game_position)

@@ -1,0 +1,2 @@
+2020/10/18 11:47:58.19: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/18 11:47:58.21: Reseting table information

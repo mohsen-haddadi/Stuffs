@@ -1,0 +1,43 @@
+2020/10/18 12:03:17.19: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/18 12:03:17.19: Reseting table information
+2020/10/18 12:03:17.47: my bank ocr string at seat 2 is: 20,000K
+2020/10/18 12:03:17.47: My bank is:20000000
+2020/10/18 12:03:17.47: Rebuying...
+2020/10/18 12:03:17.79: other players bank ocr string at seat 5 is: ”f5,628K
+2020/10/18 12:03:17.79: ocr_other_players_bank is not digit and set to None at seat 5
+2020/10/18 12:03:18.15: other name ocr string at seat 5 is: THE BUD
+2020/10/18 12:03:18.45: my bank ocr string at seat 2 is: 20,000K
+2020/10/18 12:03:18.81: my name ocr string at seat 2 is: X0wl
+2020/10/18 12:03:18.81: Players Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}
+2020/10/18 12:03:18.81: Players Name dictionary is: {1: None, 2: 'X0wl', 3: None, 4: None, 5: 'THE BUD'}
+2020/10/18 12:03:18.81: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/18 12:03:22.97: -------
+2020/10/18 12:03:22.97: fix_game_disruption() <-- game is unpaused is running....
+2020/10/18 12:03:23.03: internet is connected
+2020/10/18 12:03:23.17: exit_probable_advertisement is clicked
+2020/10/18 12:03:23.17: Position (0,720) is clicked
+2020/10/18 12:03:23.66: Game region refounded after fix_game_disruption()
+2020/10/18 12:03:24.09: my name ocr string at seat 2 is: X0wl
+2020/10/18 12:03:24.45: my name ocr string at seat 2 is: X0wl
+2020/10/18 12:03:24.50: internet is connected
+2020/10/18 12:03:24.50: looking for reconnect button
+2020/10/18 12:03:25.21: I am In not by OCR
+2020/10/18 12:03:25.21: -------
+2020/10/18 12:03:25.21: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/18 12:03:25.21: Reseting table information
+2020/10/18 12:03:25.50: my bank ocr string at seat 2 is: 20,000K
+2020/10/18 12:03:25.50: My bank is:20000000
+2020/10/18 12:03:25.50: Rebuying...
+2020/10/18 12:03:25.82: other players bank ocr string at seat 5 is: ”f5,628K
+2020/10/18 12:03:25.82: ocr_other_players_bank is not digit and set to None at seat 5
+2020/10/18 12:03:26.18: other name ocr string at seat 5 is: THE BUD
+2020/10/18 12:03:26.47: my bank ocr string at seat 2 is: 20,000K
+2020/10/18 12:03:26.83: my name ocr string at seat 2 is: X0wl
+2020/10/18 12:03:26.84: Players Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}
+2020/10/18 12:03:26.84: Players Name dictionary is: {1: None, 2: 'X0wl', 3: None, 4: None, 5: 'THE BUD'}
+2020/10/18 12:03:26.84: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/18 12:05:06.85: -------
+2020/10/18 12:05:06.86: fix_game_disruption() is running....
+2020/10/18 12:05:06.90: internet is connected
+2020/10/18 12:05:07.02: exit_probable_advertisement is clicked
+2020/10/18 12:05:07.02: Position (0,720) is clicked

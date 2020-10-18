@@ -4,7 +4,8 @@ from iprint import shout
 import screen_monitoring.find_game_position.find_game_position as find_game_position
 import screen_monitoring.pixel_matching.pixel_matching as pm
 from readability.ocr import ocr_bet, ocr_other_players_bank, ocr_my_bank, ocr_other_names, ocr_my_name
-from readability.fix_game_disruption import set_just_do_check_fold_to_true, reset_just_do_check_fold_to_false
+from readability.fix_game_disruption import set_just_do_check_fold_to_true,\
+reset_just_do_check_fold_to_false
 
 #testing sub packages imports
 test = False
@@ -25,12 +26,12 @@ def set_all_variables_to_none():
     config.board_card_1th , config.board_card_2th , config.board_card_3th ,\
     config.board_card_4th, config.board_card_5th , config.my_1th_card , config.my_2th_card ,\
     config.my_seat_number , config.MY_PROFILE_NAME ,\
-    config.just_do_check_fold , config.bot_status ,\
+    config.just_do_check_fold , config.bot_status , config.new_hand,\
     config.player_cards_cache , config.white_chips_cache , config.red_chips_cache , config.bets_cache ,\
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache,\
     config.did_i_raised_at  , config.my_last_raise_at , config.players_name , config.players_bank ,\
-    config.BLIND_VALUE , config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*38
+    config.BLIND_VALUE , config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*39
 
 
 def determine_small_big_dealer_seats():
@@ -54,7 +55,29 @@ def determine_small_big_dealer_seats():
 
 ### Read_Bets & dinctionaries & Reset var funcs: ****************************************************************************************************************************
 
-def read_and_global_banks_and_names() :
+def white_chips(seat):
+    # It checks if there is a white colored chips in front of a seat,
+    # by returning True or False, to find out if a player has call or not
+    #global game_position
+
+    if pm.player_chips_pixel(config.game_position, seat):
+        return not pm.are_chips_white_or_red_pixel(config.game_position, seat)
+    else :
+        return False
+
+def red_chips(seat):
+    """It checks if there is a red colored chips in front of a seat,
+    by returning True or False, to find out if a player has bet/raised or not.
+    (In accordance to Google: 'A bet is the first wager of a round.')
+    """
+    #global game_position
+
+    if pm.player_chips_pixel(config.game_position, seat):
+        return pm.are_chips_white_or_red_pixel(config.game_position, seat)
+    else :
+        return False
+
+def read_and_save_banks_and_names() :
     #global game_position, players_name , players_bank , my_seat_number
 
     # First ocr my bank and name, so if we get a problem it will use
@@ -89,8 +112,8 @@ def reset_table_information() :
 
     shout("Reseting table information")
     reset_just_do_check_fold_to_false()
-    players_name = {}
-    players_bank = {}
+    config.players_name = {}
+    config.players_bank = {}
     for Seat in range(1,6):
         config.players_name[Seat] = None
         config.players_bank[Seat] = None
@@ -120,32 +143,10 @@ def reset_table_information() :
     config.turn_betting_round = -1
     config.river_betting_round = -1
     # if a stage is True, previous stages are also True
-    preflop_stage = False 
-    flop_stage = False 
-    turn_stage = False 
-    river_stage = False 
-
-def white_chips(seat):
-    # It checks if there is a white colored chips in front of a seat,
-    # by returning True or False, to find out if a player has call or not
-    #global game_position
-
-    if pm.player_chips_pixel(config.game_position, seat):
-        return not pm.are_chips_white_or_red_pixel(config.game_position, seat)
-    else :
-        return False
-
-def red_chips(seat):
-    """It checks if there is a red colored chips in front of a seat,
-    by returning True or False, to find out if a player has bet/raised or not.
-    (In accordance to Google: 'A bet is the first wager of a round.')
-    """
-    #global game_position
-
-    if pm.player_chips_pixel(config.game_position, seat):
-        return pm.are_chips_white_or_red_pixel(config.game_position, seat)
-    else :
-        return False
+    config.preflop_stage = False 
+    config.flop_stage = False 
+    config.turn_stage = False 
+    config.river_stage = False 
 
 def read_and_save_bets() :
     #global game_position, player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\

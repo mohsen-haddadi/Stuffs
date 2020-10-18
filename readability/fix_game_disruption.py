@@ -202,7 +202,7 @@ def find_and_click_on_reconnect_button():
     #global game_position
 
     shout('looking for reconnect button')
-    x1 = pyautogui.locateCenterOnScreen('screen_monitoring/game_position/reconnect button.png')
+    x1 = pyautogui.locateCenterOnScreen('screen_monitoring/find_game_position/reconnect button.png')
     if x1 != None :
         pyautogui.click(x1)
         shout('reconnect button founded and clicked', color = 'yellow')
@@ -211,7 +211,7 @@ def find_and_click_on_reconnect_button():
             click('i_am_back')
         return x1
     
-    x2 = pyautogui.locateCenterOnScreen('screen_monitoring/game_position/reconnect button.png')
+    x2 = pyautogui.locateCenterOnScreen('screen_monitoring/find_game_position/reconnect button.png')
     if x2 != None :
         pyautogui.click(x2)
         shout('reconnect button founded and clicked', color = 'yellow')
@@ -270,9 +270,9 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
         shout("Game region refounded after fix_game_disruption()"
               , color = 'yellow')
     
-    if pm.button_pixel(config.game_position, 'i_am_back') == True :
+    if pm.button_pixel(config.game_position, 'i_am_back'):
         click('i_am_back')
-        if pm.player_cards_pixel(config.game_position,  config.my_seat_number ) == True :
+        if pm.player_cards_pixel(config.game_position, config.my_seat_number) == True :
             config.just_do_check_fold = True
             shout("After fix_game_disruption() --> just_do_check_fold is True."
                   , color = 'yellow')
