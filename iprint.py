@@ -44,14 +44,17 @@ def shout(string, color = None, save = True) :
     date_and_time = date_and_time[:-4]
 
     if 'PROMPT' in os.environ :
-        # To refuse print error on cmd, this line will convert '”f5,628K'
-        # to 'f5,628K'. But on .txt file in report folder the string is 
-        # saved '”f5,628K' unchanged.
-        ascii_string = string.encode('utf-8').decode('ascii', 'ignore')
-        #ascii_string = str(ascii_string)
-        print("%s: %s" %(date_and_time, ascii_string))
+        try:
+            print("%s: %s" %(date_and_time, string))
+        except:
+            # To refuse print error on cmd, this line will convert '”f5,628K'
+            # to 'f5,628K'. But on .txt file in report folder the string is 
+            # saved '”f5,628K' unchanged.
+            ascii_string = string.encode('utf-8').decode('ascii', 'ignore')
+            #ascii_string = str(ascii_string)
+            print("%s: %s" %(date_and_time, ascii_string))
         # Clear the paint effects on string to make string raw and readable
-        string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string) 
+        string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string)
     else :
         # Clear the paint effects on string to make string raw and readable
         string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string)
@@ -63,9 +66,9 @@ def shout(string, color = None, save = True) :
         text_file = open("%s.txt" %text_file_name , "a")
         try:
             text_file.write("%s: %s" %(date_and_time, string))
-        except Exception as e:
+        except:
             ascii_string = string.encode('utf-8').decode('ascii', 'ignore')
-            text_file.write("%s: %s" %(date_and_time, string))
+            text_file.write("%s: %s" %(date_and_time, ascii_string))
         text_file.write( "\n" )
         text_file.close()
 # Test colors in Command Prompt:

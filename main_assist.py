@@ -124,9 +124,9 @@ def wait_for_sb_b_d_buttons(waiting_seconds = 5):
         if sb_b_d_buttons_are_founded():
             break
         if time.time() - t1 > waiting_seconds:
-            fix_game_disruption('buttons are not founded')
+            fix_game_disruption('sb b d buttons are not founded')
             if not sb_b_d_buttons_are_founded():
-                set_just_do_check_fold_to_true('buttons are not founded')
+                set_just_do_check_fold_to_true('sb b d buttons are not founded')
             break
         if game_is_paused():
             input("press Enter to start again...") 

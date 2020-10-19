@@ -135,8 +135,9 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
             break
     if config.my_seat_number == None :
         click_on_button('exit')
-        
-        raise Exception("Sit_In(chips):This can not happen IN FUTURE becuase main menu automation is built")
+        time.sleep(5)
+        config.bot_status = 'ON_MAIN_MENU'
+        #raise Exception("Sit_In(chips):This can not happen IN FUTURE becuase main menu automation is built")
     else :
         x1 = time.time()
         time1 = 0

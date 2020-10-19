@@ -25,9 +25,8 @@ def read_and_save_my_cards():
 
             set_just_do_check_fold_to_true("my cards are read Unknown again")
 
-    shout("My cards are: %s %s, %s %s"
-          %(config.my_1th_card[0][0], config.my_1th_card[0][1],
-            config.my_2th_card[1][0], config.my_2th_card[1][1])
+    shout("My cards are: %s, %s"
+          %(config.my_1th_card, config.my_2th_card)
           , color = 'green')
 
 def read_and_save_flop_cards(): 
@@ -52,10 +51,8 @@ def read_and_save_flop_cards():
 
             set_just_do_check_fold_to_true("Flop cards are read 'Unknown' again")
 
-    shout("Flop cards are: %s %s, %s %s, %s %s" 
-          %(config.board_card_1th[0][0], config.board_card_1th[0][1], 
-            config.board_card_2th[1][0], config.board_card_2th[1][1],
-            config.board_card_3th[1][0], config.board_card_3th[1][1])
+    shout("Flop cards are: %s, %s, %s" 
+          %(config.board_card_1th, config.board_card_2th, config.board_card_3th)
           , color = 'green')
 
 def read_and_save_turn_card(): 
@@ -74,7 +71,7 @@ def read_and_save_turn_card():
 
             set_just_do_check_fold_to_true("Turn card is read 'Unknown' again")
 
-    shout("Turn card is: %s %s" %(config.board_card_4th[0], config.board_card_4th[1])
+    shout("Turn card is: %s" %(config.board_card_4th[0])
           , color = 'green')
 
 def read_and_save_river_card(): 
@@ -92,6 +89,6 @@ def read_and_save_river_card():
 
             set_just_do_check_fold_to_true("River card is read 'Unknown' again")
 
-    shout("River card is: %s %s" %(config.board_card_5th[0], config.board_card_5th[1])
+    shout("River card is: %s" %(config.board_card_5th[0])
           , color = 'green')
 
