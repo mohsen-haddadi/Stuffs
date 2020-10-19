@@ -1,0 +1,30 @@
+2020/10/19 10:34:41.86: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 10:34:41.97: my bank ocr string at seat 2 is: 99,000
+2020/10/19 10:34:41.97: My bank is:99000
+2020/10/19 10:34:41.97: Rebuying...
+2020/10/19 10:34:41.97: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 10:34:42.00: My cards are founded
+2020/10/19 10:34:42.85: Reseting table information
+2020/10/19 10:34:42.86: * bot_status == 'I_AM_PLAYING' *
+2020/10/19 10:34:42.86: Looking for my cards in 'I_AM_PLAYING' Section...
+2020/10/19 10:34:42.90: My cards are founded
+2020/10/19 10:34:42.90: -------- New Hand Started --------
+2020/10/19 10:34:44.24: Small blind is on seat 4
+2020/10/19 10:34:44.66: Big blind is on seat 5
+2020/10/19 10:34:44.91: Dealer is on seat 3
+2020/10/19 10:34:44.93: just_do_check_fold is set to True: program must've started again from middle of the game
+2020/10/19 10:34:45.39: My cards are: N i, D i
+2020/10/19 10:34:45.49: my bank ocr string at seat 2 is: 99,000
+2020/10/19 10:34:45.49: My bank is:99000
+2020/10/19 10:34:45.49: Rebuying...
+2020/10/19 10:34:45.60: other players bank ocr string at seat 1 is: 105,750
+2020/10/19 10:34:45.83: other name ocr string at seat 1 is: Night Gansta
+2020/10/19 10:34:45.99: other players bank ocr string at seat 3 is: 402,089
+2020/10/19 10:34:46.22: other name ocr string at seat 3 is: Eugene
+2020/10/19 10:34:46.35: other players bank ocr string at seat 4 is: 100,552
+2020/10/19 10:34:46.71: other players bank ocr string at seat 5 is: 117,868
+2020/10/19 10:34:46.93: other name ocr string at seat 5 is: Epic Titan
+2020/10/19 10:34:47.07: my bank ocr string at seat 2 is: 99,000
+2020/10/19 10:34:47.30: my name ocr string at seat 2 is: XOwl
+2020/10/19 10:34:47.30: Players Bank dictionary is: {1: 105750, 2: 99000, 3: 402089, 4: 100552, 5: None}
+2020/10/19 10:34:47.30: Waiting for my turn at preflop_stage...

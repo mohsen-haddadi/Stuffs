@@ -1,4 +1,4 @@
-import time, os
+import time, os, re
 from PIL import Image
 import numpy as np , cv2
 import pyautogui ,pytesseract
@@ -49,6 +49,11 @@ def replace_letters_s_o(ocr_string):
     string = ocr_string
     string = string.replace("S","5")
     string = string.replace("O","0")
+    return string
+
+def remove_blank_lines(ocr_string):
+    """On python > 3.5 unwanted blank lines are generated when doing ocr"""
+    string = re.sub('\n+', '\n', ocr_string.strip())
     return string
 
 def download_bet_image(game_position, seat):
@@ -123,6 +128,7 @@ def ocr_bet_to_string(game_position, seat):
     pil_image = download_bet_image(game_position, seat)
     image = pre_process_ocr_image(pil_image)
     string = replace_letters_s_o( ocr(image) )
+    string = remove_blank_lines(string)
     return string
 
 def ocr_other_players_bank_to_string(game_position, seat): #corrected for celeb poker
@@ -130,6 +136,7 @@ def ocr_other_players_bank_to_string(game_position, seat): #corrected for celeb 
     pil_image = download_other_players_bank_image(game_position, seat)
     image = pre_process_ocr_image(pil_image)
     string = replace_letters_s_o( ocr(image) )
+    string = remove_blank_lines(string)
     return string
 
 def ocr_my_bank_to_string(game_position, seat):
@@ -137,19 +144,20 @@ def ocr_my_bank_to_string(game_position, seat):
     pil_image = download_my_bank_image(game_position, seat)
     image = pre_process_ocr_image(pil_image)
     string = replace_letters_s_o( ocr(image) )
+    string = remove_blank_lines(string)
     return string
 
 def ocr_other_names_to_string(game_position, seat):
 
     pil_image = download_other_names_image(game_position, seat)
     image = pre_process_ocr_image(pil_image)
-    string = replace_letters_s_o( ocr(image) )
+    string = remove_blank_lines( ocr(image) )
     return string
 
 def ocr_my_name_to_string(game_position, seat):
 
     pil_image = download_my_name_image(game_position, seat)
     image = pre_process_ocr_image(pil_image)
-    string = replace_letters_s_o( ocr(image) )
+    string = remove_blank_lines( ocr(image) )
     return string
 

@@ -7,15 +7,15 @@ import config
 def decide():
 
     if config.preflop_stage == True and config.flop_stage == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
-        shout(paint.light_cyan.bold("*Deciding on preflop*"))
+        shout("*Deciding on preflop*", color = 'light_cyan')
     elif config.flop_stage == True and config.turn_stage == False :
-        shout(paint.light_cyan.bold("*Deciding on flop*"))
+        shout("*Deciding on flop*", color = 'light_cyan')
     elif config.turn_stage == True and config.river_stage == False :
-        shout(paint.light_cyan.bold("*Deciding on turn*"))
+        shout("*Deciding on turn*", color = 'light_cyan')
     elif config.river_stage == True :
-        shout(paint.light_cyan.bold("*Deciding on river*"))
+        shout("*Deciding on river*", color = 'light_cyan')
     else :
-        shout(paint.light_cyan.bold("*Deciding on unknown*"))
+        shout("*Deciding on unknown*", color = 'light_cyan')
     
     if config.just_do_check_fold == True :
         return ("check_fold")

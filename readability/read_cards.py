@@ -26,8 +26,8 @@ def read_and_save_my_cards():
             set_just_do_check_fold_to_true("my cards are read Unknown again")
 
     shout("My cards are: %s %s, %s %s"
-          %(my_1th_card[0][0], my_1th_card[0][1],
-            my_2th_card[1][0], my_2th_card[1][1])
+          %(config.my_1th_card[0][0], config.my_1th_card[0][1],
+            config.my_2th_card[1][0], config.my_2th_card[1][1])
           , color = 'green')
 
 def read_and_save_flop_cards(): 

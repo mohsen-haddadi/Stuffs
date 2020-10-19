@@ -61,10 +61,13 @@ def shout(string, color = None, save = True) :
         text_file_name = os.path.join("Reports/%s" %config.DATED_REPORT_FOLDER,
                                       config.DATED_REPORT_FOLDER)
         text_file = open("%s.txt" %text_file_name , "a")
-        text_file.write("%s: %s" %(date_and_time, string))
+        try:
+            text_file.write("%s: %s" %(date_and_time, string))
+        except Exception as e:
+            ascii_string = string.encode('utf-8').decode('ascii', 'ignore')
+            text_file.write("%s: %s" %(date_and_time, string))
         text_file.write( "\n" )
         text_file.close()
-
 # Test colors in Command Prompt:
 #shout('light_cyan', 'light_cyan', save = False) ; shout('green', 'green', save = False)
 #shout('light_green', 'light_green', save = False); shout('yellow', 'yellow', save = False) 

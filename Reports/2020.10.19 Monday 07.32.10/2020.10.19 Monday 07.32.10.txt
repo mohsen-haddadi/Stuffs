@@ -1,0 +1,24 @@
+2020/10/19 07:32:20.62: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 07:32:20.62: Reseting table information
+2020/10/19 07:32:20.91: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 07:32:20.91: My bank is:20000000
+2020/10/19 07:32:20.91: Rebuying...
+2020/10/19 07:32:21.26: other players bank ocr string at seat 5 is: ”f5,628K
+2020/10/19 07:32:21.26: ocr_other_players_bank is not digit and set to None at seat 5
+2020/10/19 07:32:21.65: other name ocr string at seat 5 is: THE BUD
+2020/10/19 07:32:22.01: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 07:32:22.42: my name ocr string at seat 2 is: XOwl
+2020/10/19 07:32:22.42: Players Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}
+2020/10/19 07:32:22.43: Players Name dictionary is: {1: None, 2: 'XOwl', 3: None, 4: None, 5: 'THE BUD'}
+2020/10/19 07:32:22.43: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 07:32:25.44: My cards are founded
+2020/10/19 07:32:25.46: just_do_check_fold is set to True: program is started again from middle of the game
+2020/10/19 07:32:26.29: Reseting table information
+2020/10/19 07:32:26.30: just_do_check_fold is reset to False
+2020/10/19 07:32:26.31: * bot_status == 'I_AM_PLAYING' *
+2020/10/19 07:32:26.31: Looking for my cards in 'I_AM_PLAYING' Section...
+2020/10/19 07:32:26.34: My cards are founded
+2020/10/19 07:32:26.35: -------- New Hand Started --------
+2020/10/19 07:32:27.67: Small blind is on seat 4
+2020/10/19 07:32:28.09: Big blind is on seat 5
+2020/10/19 07:32:28.34: Dealer is on seat 3

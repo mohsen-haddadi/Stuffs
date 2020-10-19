@@ -54,7 +54,7 @@ def wait_for_my_new_hand(waiting_minutes = 10):
         if not config.new_hand:
             break
         if time.time() - t1 > 60*waiting_minutes:
-            fix_game_disruption('buttons are not founded')
+            fix_game_disruption('My cards are not founded')
             break
         if game_is_paused():
             input("press Enter to start again...") 
@@ -65,15 +65,6 @@ def wait_for_my_first_hand(waiting_minutes = 5):
     """Don't break this waiting function if config.new_hand is True, because 
     I'm waiting for first hand and maybe several hands are played without me.
     """
-    def is_there_any_raiser():
-        """ Except me """
-        for seat in range(1,6):
-            if seat == config.my_seat_number :
-                continue
-            elif red_chips(seat) :
-                return True
-        return False
-
     shout("Looking for cards in 'WAITING_FOR_FIRST_HAND' Section..."
           , color = 'light_magenta')
     t1 = time.time()
@@ -83,15 +74,6 @@ def wait_for_my_first_hand(waiting_minutes = 5):
         if pm.player_cards_pixel(config.game_position, config.my_seat_number):
             shout("My cards are founded", color = 'light_magenta')
             config.bot_status = 'I_AM_PLAYING'
-            # If I've resume the game, set 
-            # config.bot_status = 'WAITING_FOR_FIRST_HAND' inside resume function.
-            # Even at preflop (betting_round = 0) I can resume the game without 
-            # doing set_just_do_check_fold_to_true().
-            if (not pm.pre_flop_pixel(config.game_position)  
-                or (pm.pre_flop_pixel(config.game_position) 
-                    and is_there_any_raiser() )) :
-                set_just_do_check_fold_to_true("program is started again "\
-                                               "from middle of the game")
             break
         if (time.time()-t1) > ((60*waiting_minutes)/3) and fixing_retry <= 1:
             fixing_retry += 1
@@ -104,6 +86,36 @@ def wait_for_my_first_hand(waiting_minutes = 5):
             input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
+
+def first_round_at_preflop():
+    """ 
+    This function is created to help handling the bot after the game is
+    unpaused in 'I_AM_PLAYING' bot status.
+    If I've resume the game, set config.bot_status = 'WAITING_FOR_FIRST_HAND'
+    inside resume function.
+    Even at preflop (betting_round = 0) (first_round_at_preflop() is True) 
+    I can resume the game without doing set_just_do_check_fold_to_true().
+    """
+    def is_there_any_raiser():
+        """ Except me """
+        for seat in range(1,6):
+            if seat == config.my_seat_number:
+                continue
+            elif red_chips(seat):
+                return True
+        return False
+
+    if not pm.pre_flop_pixel(config.game_position):
+        return False 
+    if is_there_any_raiser():
+        shout('doing some ocr to check if it is first_round_at_preflop or not')
+        if config.my_seat_number in (config.big_blind_seat, config.big_blind_seat):
+            if ocr_bet(config.my_seat_number) > config.BLIND_VALUE:
+                return False
+        else:
+            if pm.player_chips_pixel(config.game_position, config.my_seat_number):
+                return False
+    return True
 
 def wait_for_sb_b_d_buttons(waiting_seconds = 5):
     """5 seconds waiting does not need config.new_hand to break it"""
@@ -162,16 +174,18 @@ def sb_b_d_buttons_are_founded():
 
 
 def shifted_to_next_stage():
-    if (not config.flop_stage and pm.flop_pixel() 
-        and not pm.turn_pixel() and not pm.river_pixel()):
+    if (not config.flop_stage and pm.flop_pixel(config.game_position) 
+        and not pm.turn_pixel(config.game_position) 
+        and not pm.river_pixel(config.game_position)):
         config.flop_stage = True
         shout("Waiting for my turn at flop_stage...", 'light_magenta') 
         return True
-    if not config.turn_stage and pm.turn_pixel() and not pm.river_pixel():
+    if (not config.turn_stage and pm.turn_pixel(config.game_position) 
+        and not pm.river_pixel(config.game_position) ):
         config.turn_stage = True
         shout("Waiting for my turn at turn_stage...", 'light_magenta') 
         return True
-    if not config.river_stage and pm.river_pixel():
+    if not config.river_stage and pm.river_pixel(config.game_position):
         config.river_stage = True
         shout("Waiting for my turn at river_stage...", 'light_magenta')
         return True
@@ -186,11 +200,11 @@ def read_board_cards():
         read_and_save_river_card()
  
 def stages_are_sequenced(): 
-    if pm.flop_pixel() and config.preflop_stage == False:
+    if pm.flop_pixel(config.game_position) and config.preflop_stage == False:
         return False
-    if pm.turn_pixel() and False in (config.preflop_stage, config.flop_stage):
+    if pm.turn_pixel(config.game_position) and False in (config.preflop_stage, config.flop_stage):
         return False
-    if (pm.river_pixel() and
+    if (pm.river_pixel(config.game_position) and
         False in (config.preflop_stage, config.flop_stage, config.turn_stage)):
         return False
     return True

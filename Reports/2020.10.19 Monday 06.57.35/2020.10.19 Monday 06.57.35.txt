@@ -1,0 +1,5 @@
+2020/10/19 06:57:37.46: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 06:57:37.47: Reseting table information
+2020/10/19 06:57:37.69: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 06:57:37.69: My bank is:20000000
+2020/10/19 06:57:37.69: Rebuying...

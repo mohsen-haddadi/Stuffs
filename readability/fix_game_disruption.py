@@ -11,6 +11,7 @@ from datetime import datetime
 import pyautogui
 
 import screen_monitoring.pixel_matching.pixel_matching as pm
+import screen_monitoring.find_game_position.find_game_position as find_game_position
 # Nested imports lead to import errors. So avoid nested imports at any cost.
 #from readability.click import click, click_on_button, hold_click_on_button
 #from readability.ocr import ocr_my_name

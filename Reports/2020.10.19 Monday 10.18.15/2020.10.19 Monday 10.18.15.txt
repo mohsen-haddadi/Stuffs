@@ -1,0 +1,24 @@
+2020/10/19 10:18:26.66: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 10:18:26.77: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 10:18:26.77: My bank is:20000000
+2020/10/19 10:18:26.77: Rebuying...
+2020/10/19 10:18:26.77: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 10:18:37.07: My cards are founded
+2020/10/19 10:18:37.89: Reseting table information
+2020/10/19 10:18:37.89: * bot_status == 'I_AM_PLAYING' *
+2020/10/19 10:18:37.91: Looking for my cards in 'I_AM_PLAYING' Section...
+2020/10/19 10:18:37.94: My cards are founded
+2020/10/19 10:18:37.96: -------- New Hand Started --------
+2020/10/19 10:18:39.30: Small blind is on seat 4
+2020/10/19 10:18:39.71: Big blind is on seat 5
+2020/10/19 10:18:39.96: Dealer is on seat 3
+2020/10/19 10:18:39.97: just_do_check_fold is set to True: program must've started again from middle of the game
+2020/10/19 10:18:40.43: My cards are: N i, D i
+2020/10/19 10:18:40.52: my bank ocr string at seat 2 is: 99,000
+2020/10/19 10:18:40.52: My bank is:99000
+2020/10/19 10:18:40.52: Rebuying...
+2020/10/19 10:18:40.64: other players bank ocr string at seat 1 is: 105,750
+2020/10/19 10:18:40.86: other name ocr string at seat 1 is: Night Gansta
+2020/10/19 10:18:41.02: other players bank ocr string at seat 3 is: 402,089
+2020/10/19 10:18:41.24: other name ocr string at seat 3 is: Eugene
+2020/10/19 10:18:41.38: other players bank ocr string at seat 4 is: 100,552

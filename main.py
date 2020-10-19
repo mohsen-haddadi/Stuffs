@@ -30,9 +30,7 @@ def bot_is_waiting_for_first_hand():
     our first hand and wait_for_my_first_hand() will not break by new hands.
     """ 
     shout("* bot_status == 'WAITING_FOR_FIRST_HAND' *",color = 'on_green')
-    reset_table_information()
     rebuy_if_bank_is_low(min_blinds = 15)
-    read_and_save_banks_and_names()
     wait_for_my_first_hand(waiting_minutes = 5)
 
 def bot_is_playing():
@@ -42,7 +40,7 @@ def bot_is_playing():
             declare_the_winners()
             wait_celebration_ends(waiting_seconds = 10)
         reset_table_information()
-        shout("* bot_status == 'I_AM_PLAYING' *")
+        shout("* bot_status == 'I_AM_PLAYING' *",color = 'on_green')
         wait_for_my_new_hand(waiting_minutes = 10)
         # use this statement after functions which use fix_game_disruption()
         if config.bot_status != 'I_AM_PLAYING': 
@@ -53,18 +51,20 @@ def bot_is_playing():
             continue
         shout ("-------- New Hand Started --------", color = 'on_green')
         wait_for_sb_b_d_buttons(waiting_seconds = 5) 
-        if config.bot_status != 'I_AM_PLAYING': 
+        if config.bot_status != 'I_AM_PLAYING':
             break
         determine_small_big_dealer_seats()
+        # In case bot is resumed:
+        if not first_round_at_preflop():
+            set_just_do_check_fold_to_true("program must've started "\
+                                           "again from middle of the game")
         read_and_save_my_cards()
         rebuy_if_bank_is_low(min_blinds = 15)
         read_and_save_banks_and_names()
         if config.bot_status != 'I_AM_PLAYING': 
             break
         play_sound_for_good_starting_hands()
-
         shout("Waiting for my turn at preflop_stage...", 'light_magenta') 
-        t1 = time.time()
         # Playing a whole hand in this loop
         play_a_hand()
         if config.bot_status != 'I_AM_PLAYING':
@@ -77,6 +77,7 @@ def bot_is_playing():
             break 
 
 def play_a_hand():
+    t1 = time.time()
     while True:
         if shifted_to_next_stage(): 
             read_board_cards()

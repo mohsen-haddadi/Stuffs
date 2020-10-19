@@ -1,3 +1,5 @@
+import re
+
 from PIL import Image
 import pytesseract
 
@@ -24,4 +26,5 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\t
 
 im = Image.open("phototest.TIF")
 text = pytesseract.image_to_string(im, lang = 'eng')
+text = re.sub('\n+', '\n', text.strip())
 print(text)

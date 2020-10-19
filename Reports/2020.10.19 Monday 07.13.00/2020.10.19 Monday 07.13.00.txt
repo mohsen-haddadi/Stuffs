@@ -1,0 +1,44 @@
+2020/10/19 07:13:10.57: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 07:13:10.58: Reseting table information
+2020/10/19 07:13:10.89: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 07:13:10.89: My bank is:20000000
+2020/10/19 07:13:10.89: Rebuying...
+2020/10/19 07:13:11.24: other players bank ocr string at seat 5 is: ”f5,628K
+2020/10/19 07:13:11.24: ocr_other_players_bank is not digit and set to None at seat 5
+2020/10/19 07:13:11.64: other name ocr string at seat 5 is: THE BUD
+2020/10/19 07:13:11.99: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 07:13:12.39: my name ocr string at seat 2 is: XOwl
+2020/10/19 07:13:12.39: Players Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}
+2020/10/19 07:13:12.39: Players Name dictionary is: {1: None, 2: 'XOwl', 3: None, 4: None, 5: 'THE BUD'}
+2020/10/19 07:13:12.39: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 07:13:28.62: -------
+2020/10/19 07:13:28.62: fix_game_disruption() <-- game is unpaused is running....
+2020/10/19 07:13:29.04: internet is connected
+2020/10/19 07:13:29.17: exit_probable_advertisement is clicked
+2020/10/19 07:13:29.18: Position (0,720) is clicked
+2020/10/19 07:13:29.98: Game region refounded after fix_game_disruption()
+2020/10/19 07:13:30.49: my name ocr string at seat 2 is: XOwl
+2020/10/19 07:13:30.49: I am In
+2020/10/19 07:13:30.49: -------
+2020/10/19 07:13:30.49: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 07:13:30.50: Reseting table information
+2020/10/19 07:13:30.85: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 07:13:30.85: My bank is:20000000
+2020/10/19 07:13:30.86: Rebuying...
+2020/10/19 07:13:31.25: other players bank ocr string at seat 5 is: ”f5,628K
+2020/10/19 07:13:31.25: ocr_other_players_bank is not digit and set to None at seat 5
+2020/10/19 07:13:31.67: other name ocr string at seat 5 is: THE BUD
+2020/10/19 07:13:32.06: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 07:13:32.56: my name ocr string at seat 2 is: XOwl
+2020/10/19 07:13:32.56: Players Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}
+2020/10/19 07:13:32.56: Players Name dictionary is: {1: None, 2: 'XOwl', 3: None, 4: None, 5: 'THE BUD'}
+2020/10/19 07:13:32.57: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 07:15:12.59: -------
+2020/10/19 07:15:12.60: fix_game_disruption() is running....
+2020/10/19 07:15:12.68: internet is connected
+2020/10/19 07:15:12.81: exit_probable_advertisement is clicked
+2020/10/19 07:16:07.69: Position (0,720) is clicked
+2020/10/19 07:16:18.51: SystemSettings Update is on desktop
+2020/10/19 07:16:18.51: closing Windows Update program
+2020/10/19 07:16:18.52: Screenshot Error: right before closing windows update program
+2020/10/19 07:16:18.90: close_update_window is clicked

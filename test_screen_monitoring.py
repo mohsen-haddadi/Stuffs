@@ -274,7 +274,7 @@ if __name__ == '__main__':
     game_position = find_game_reference_point_for_this_module()
 
     test_find_game_position()
-    #test_read_cards(my_seat = 1, show_image = False)
+    test_read_cards(my_seat = 1, show_image = False)
     test_ocr(show_images = False)
     #test_pixel_matching()
     #test_click_coordinates()
