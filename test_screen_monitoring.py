@@ -1,6 +1,8 @@
 import time
+
 import cv2, pyautogui, win32gui, win32con
 import numpy as np
+
 import screen_monitoring.find_game_position.find_game_position as find_game_position
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.ocr.ocr as ocr
@@ -276,4 +278,3 @@ if __name__ == '__main__':
     test_ocr(show_images = False)
     #test_pixel_matching()
     #test_click_coordinates()
-

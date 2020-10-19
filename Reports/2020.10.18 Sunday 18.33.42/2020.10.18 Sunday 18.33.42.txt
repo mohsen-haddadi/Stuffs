@@ -1,0 +1,13 @@
+2020/10/18 18:33:44.04: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/18 18:33:44.07: Reseting table information
+2020/10/18 18:33:44.41: my bank ocr string at seat 2 is: 20,000K
+2020/10/18 18:33:44.41: My bank is:20000000
+2020/10/18 18:33:44.41: Rebuying...
+2020/10/18 18:33:44.73: other players bank ocr string at seat 5 is: ”f5,628K
+2020/10/18 18:33:44.73: ocr_other_players_bank is not digit and set to None at seat 5
+2020/10/18 18:33:45.10: other name ocr string at seat 5 is: THE BUD
+2020/10/18 18:33:45.39: my bank ocr string at seat 2 is: 20,000K
+2020/10/18 18:33:45.78: my name ocr string at seat 2 is: X0wl
+2020/10/18 18:33:45.78: Players Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}
+2020/10/18 18:33:45.78: Players Name dictionary is: {1: None, 2: 'X0wl', 3: None, 4: None, 5: 'THE BUD'}
+2020/10/18 18:33:45.79: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...

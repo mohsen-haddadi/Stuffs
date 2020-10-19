@@ -1,0 +1,17 @@
+2020/10/18 15:05:34.01: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/18 15:05:34.05: Reseting table information
+2020/10/18 15:05:34.26: my bank ocr string at seat 2 is: 20,000K
+
+
+2020/10/18 15:05:34.26: -------
+2020/10/18 15:05:34.26: fix_game_disruption() <-- ocr_my_bank is not digit at seat 2 is running....
+2020/10/18 15:05:34.33: internet is connected
+2020/10/18 15:05:34.46: exit_probable_advertisement is clicked
+2020/10/18 15:05:34.46: Position (0,720) is clicked
+2020/10/18 15:05:35.05: Game region refounded after fix_game_disruption()
+2020/10/18 15:05:35.51: my name ocr string at seat 2 is: X0wl
+
+
+2020/10/18 15:05:35.95: my name ocr string at seat 2 is: X0wl
+
+

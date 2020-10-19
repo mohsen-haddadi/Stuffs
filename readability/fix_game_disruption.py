@@ -6,6 +6,7 @@
     4. config.just_do_check_fold
 """
 import socket, wmi, time
+from datetime import datetime
 
 import pyautogui
 

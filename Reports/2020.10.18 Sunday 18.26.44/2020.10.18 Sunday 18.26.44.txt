@@ -1,0 +1,13 @@
+2020/10/18 18:26:51.53: b"\x1b[1m\x1b[42m* bot_status == 'WAITING_FOR_FIRST_HAND' *\x1b[49m\x1b[22m"
+2020/10/18 18:26:51.53: b'Reseting table information'
+2020/10/18 18:26:51.79: b'my bank ocr string at seat 2 is: 20,000K'
+2020/10/18 18:26:51.79: b'\x1b[1m\x1b[92mMy bank is:20000000\x1b[39m\x1b[22m'
+2020/10/18 18:26:51.79: b'Rebuying...'
+2020/10/18 18:26:52.15: b'other players bank ocr string at seat 5 is: \xe2\x80\x9df5,628K'
+2020/10/18 18:26:52.15: b'ocr_other_players_bank is not digit and set to None at seat 5'
+2020/10/18 18:26:52.52: b'other name ocr string at seat 5 is: THE BUD'
+2020/10/18 18:26:52.85: b'my bank ocr string at seat 2 is: 20,000K'
+2020/10/18 18:26:53.27: b'my name ocr string at seat 2 is: X0wl'
+2020/10/18 18:26:53.27: b'\x1b[1m\x1b[101mPlayers Bank dictionary is: {1: None, 2: 20000000, 3: None, 4: None, 5: None}\x1b[49m\x1b[22m'
+2020/10/18 18:26:53.27: b"\x1b[1m\x1b[101mPlayers Name dictionary is: {1: None, 2: 'X0wl', 3: None, 4: None, 5: 'THE BUD'}\x1b[49m\x1b[22m"
+2020/10/18 18:26:53.27: b"\x1b[1m\x1b[95mLooking for cards in 'WAITING_FOR_FIRST_HAND' Section...\x1b[39m\x1b[22m"
