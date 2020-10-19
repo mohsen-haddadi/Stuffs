@@ -1,3 +1,7 @@
+"""
+Test all modules from screen_monitoring sub package
+First open the game or the image of the game on the screen to start testing.
+"""
 import time
 
 import cv2, pyautogui, win32gui, win32con
@@ -10,10 +14,7 @@ import screen_monitoring.read_cards.read_cards as read_cards
 import screen_monitoring.read_cards.match_card as match_card
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 
-"""
-Test all modules from screen_monitoring sub package
-First open the game or the image of the game on the screen to start testing.
-"""
+TOTAL_SEATS = 5
 
 def find_game_reference_point_for_this_module():
     #global game_position
@@ -150,28 +151,28 @@ def test_ocr(show_images = False):
 
     t0 = time.time()
 
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         bet = ocr.ocr_bet_to_string(game_position, seat) 
         print('bet on seat %s:%s'%(seat, bet) )
         if show_images == True :
             show_bets_images(game_position, seat)
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         other_players_bank = ocr.ocr_other_players_bank_to_string(game_position,
                                                               seat) 
         print('other_players_bank on seat %s:%s'%(seat, other_players_bank) )
         if show_images == True :
             show_other_players_bank_images(game_position, seat)
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         my_bank = ocr.ocr_my_bank_to_string(game_position, seat) 
         print('my_bank on seat %s:%s'%(seat, my_bank) )
         if show_images == True :
             show_my_bank_images(game_position, seat)
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         other_names = ocr.ocr_other_names_to_string(game_position, seat) 
         print('other_names on seat %s:%s'%(seat, other_names) )
         if show_images == True :
             show_other_names_images(game_position, seat)
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         my_name = ocr.ocr_my_name_to_string(game_position, seat) 
         print('my_name on seat %s:%s'%(seat, my_name) )
         if show_images == True :
@@ -222,7 +223,7 @@ def test_pixel_matching():
     for button_name in ALL_CLICK_NAMES:
         print('%s button pixel is: %s'
               %(button_name, pm.button_pixel(game_position, button_name) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('available_seat_%s button pixel is: %s'
               %(seat, pm.available_seat_pixel(game_position, seat) ) )
 
@@ -232,40 +233,40 @@ def test_pixel_matching():
     print('flop_pixel is: %s' %pm.flop_pixel(game_position) )  
     print('turn_pixel is: %s' %pm.turn_pixel(game_position) )  
     print('river_pixel is: %s' %pm.river_pixel(game_position) )    
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('small_blind_pixel at seat %s is: %s'
               %(seat, pm.small_blind_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('big_blind_pixel at seat %s is: %s'
               %(seat, pm.big_blind_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('dealer_pixel at seat %s is: %s'
               %(seat, pm.dealer_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('player_chips_pixel at seat %s is: %s'
               %(seat, pm.player_chips_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('player_cards_pixel at seat %s is: %s'
               %(seat, pm.player_cards_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('other_player_seated_pixel at seat %s is: %s'
               %(seat, pm.other_player_seated_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('i_am_seated_pixel at seat %s is: %s'
               %(seat, pm.i_am_seated_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('active_player_pixel at seat %s is: %s'
               %(seat, pm.active_player_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('my_seat_won_pixel at seat %s is: %s'
               %(seat, pm.my_seat_won_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('other_seat_won_pixel at seat %s is: %s'
               %(seat, pm.other_seat_won_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('notification_banner_pixel at seat %s is: %s'
               %(seat, pm.notification_banner_pixel(game_position, seat) ) )
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, TOTAL_SEATS+1):
         print('are_chips_white_or_red_pixel at seat %s is: %s'
               %(seat, pm.are_chips_white_or_red_pixel(game_position, seat) ) )
 
