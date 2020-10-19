@@ -1,0 +1,60 @@
+2020/10/19 15:42:50.24: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 15:42:50.50: my bank ocr string at seat 2 is: 99,000
+2020/10/19 15:42:50.50: My bank is:99000
+2020/10/19 15:42:50.51: Rebuying...
+2020/10/19 15:42:50.51: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 15:42:50.54: My cards are founded
+2020/10/19 15:42:51.37: Reseting table information
+2020/10/19 15:42:51.38: * bot_status == 'I_AM_PLAYING' *
+2020/10/19 15:42:51.38: Looking for my cards in 'I_AM_PLAYING' Section...
+2020/10/19 15:42:51.42: My cards are founded
+2020/10/19 15:42:51.43: -------- New Hand Started --------
+2020/10/19 15:42:52.77: Small blind is on seat 4
+2020/10/19 15:42:53.19: Big blind is on seat 5
+2020/10/19 15:42:53.44: Dealer is on seat 3
+2020/10/19 15:42:53.45: just_do_check_fold is set to True: program must've started again from middle of the game
+2020/10/19 15:42:54.35: My cards are: ('Nine', 'Spade'), ('Four', 'Diamond')
+2020/10/19 15:42:54.58: my bank ocr string at seat 2 is: 99,000
+2020/10/19 15:42:54.59: My bank is:99000
+2020/10/19 15:42:54.59: Rebuying...
+2020/10/19 15:42:54.83: other players bank ocr string at seat 1 is: 105,750
+2020/10/19 15:42:55.25: other name ocr string at seat 1 is: Night Gansta
+2020/10/19 15:42:55.64: other players bank ocr string at seat 3 is: 402,089
+2020/10/19 15:42:56.04: other name ocr string at seat 3 is: Eugene
+2020/10/19 15:42:56.31: other players bank ocr string at seat 4 is: 100,552
+2020/10/19 15:42:56.72: other name ocr string at seat 4 is: Poakov
+2020/10/19 15:42:57.04: other players bank ocr string at seat 5 is: 117,868
+2020/10/19 15:42:57.45: other name ocr string at seat 5 is: Epic Titan
+2020/10/19 15:42:57.84: my bank ocr string at seat 2 is: 99,000
+2020/10/19 15:42:58.24: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:42:58.24: Players Bank dictionary is: {1: 105750, 2: 99000, 3: 402089, 4: 100552, 5: None}
+2020/10/19 15:42:58.24: Players Name dictionary is: {1: 'Night Gansta', 2: 'XOwl', 3: 'Eugene', 4: 'Poakov', 5: 'Epic Titan'}
+2020/10/19 15:42:58.25: Waiting for my turn at preflop_stage...
+2020/10/19 15:42:58.30: Waiting for my turn at flop_stage...
+2020/10/19 15:42:59.49: Flop cards are: ('Two', 'Spade'), ('Three', 'Club'), ('Queen', 'Club')
+2020/10/19 15:42:59.55: It is my turn now
+2020/10/19 15:42:59.55: TESTING. flop_betting_round is:0
+2020/10/19 15:43:00.05: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:43:00.05: Seat1 Call: $1000
+2020/10/19 15:43:00.74: bet ocr string at seat 5 is: 
+2020/10/19 15:43:00.74: -------
+2020/10/19 15:43:00.74: fix_game_disruption() <-- ocr_bet is not digit at seat 5 is running....
+2020/10/19 15:43:01.07: internet is connected
+2020/10/19 15:43:01.20: exit_probable_advertisement is clicked
+2020/10/19 15:43:01.20: Position (0,720) is clicked
+2020/10/19 15:43:01.85: Game region refounded after fix_game_disruption()
+2020/10/19 15:43:02.29: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:43:02.29: I am In
+2020/10/19 15:43:02.29: -------
+2020/10/19 15:43:02.53: bet ocr string at seat 5 is: 
+2020/10/19 15:43:02.53: just_do_check_fold is set to True: ocr_bet is not digit
+2020/10/19 15:43:02.53: Screenshot Error: ocr_bet is not digit at seat 5
+2020/10/19 15:43:03.18: Seat5 Raise: $None
+2020/10/19 15:43:03.19: shouting from read_and_save_bets(), bets_cache is: {'Flop 0': {1: 1000, 2: None, 3: None, 4: None, 5: None}}
+2020/10/19 15:43:03.19: *Deciding on flop*
+2020/10/19 15:43:03.19: Screenshot Error: returned string is not in standard format
+2020/10/19 15:43:04.10: fold button is clicked
+2020/10/19 15:43:06.47: It is my turn now
+2020/10/19 15:43:06.48: TESTING. flop_betting_round is:1
+2020/10/19 15:43:06.98: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:43:06.98: Seat1 Call: $1000

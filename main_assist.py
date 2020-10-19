@@ -98,7 +98,7 @@ def first_round_at_preflop():
     """
     def is_there_any_raiser():
         """ Except me """
-        for seat in range(1,6):
+        for seat in range(1, config.TOTAL_SEATS+1):
             if seat == config.my_seat_number:
                 continue
             elif red_chips(seat):
@@ -158,15 +158,15 @@ def sb_b_d_buttons_are_founded():
     small_blind_button_founded = False
     big_blind_button_founded = False 
     dealer_button_founded = False
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.small_blind_pixel(config.game_position, seat) == True:
             small_blind_button_founded = True
             break
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.big_blind_pixel(config.game_position, seat) == True:
             big_blind_button_founded = True
             break
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.dealer_pixel(config.game_position, seat) == True:
             dealer_button_founded = True
             break
@@ -235,7 +235,7 @@ def hand_is_ended():
     1.Yellow around winning cards 
     2.If everyone fold the somebodies raise, only one player have cards.
     """
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.my_seat_won_pixel(config.game_position, seat):
             return True
         if pm.other_seat_won_pixel(config.game_position, seat):
@@ -244,7 +244,7 @@ def hand_is_ended():
 
 def declare_the_winners():
     """May differs for Cheet"""
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.my_seat_won_pixel(config.game_position, seat) == True:
             shout("I won the game!", color = 'on_light_magenta')
         if pm.other_seat_won_pixel(config.game_position, seat) == True :

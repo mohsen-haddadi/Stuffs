@@ -43,22 +43,24 @@ def shout(string, color = None, save = True) :
     date_and_time = datetime.now().strftime("%Y/%m/%d %H:%M:%S.%f")
     date_and_time = date_and_time[:-4]
 
-    if 'PROMPT' in os.environ :
-        try:
+    #if color != None: # Use this line to reduce non imported messages.
+    if True: 
+        if 'PROMPT' in os.environ :
+            try:
+                print("%s: %s" %(date_and_time, string))
+            except:
+                # To refuse print error on cmd, this line will convert '”f5,628K'
+                # to 'f5,628K'. But on .txt file in report folder the string is 
+                # saved '”f5,628K' unchanged.
+                ascii_string = string.encode('utf-8').decode('ascii', 'ignore')
+                #ascii_string = str(ascii_string)
+                print("%s: %s" %(date_and_time, ascii_string))
+            # Clear the paint effects on string to make string raw and readable
+            string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string)
+        else :
+            # Clear the paint effects on string to make string raw and readable
+            string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string)
             print("%s: %s" %(date_and_time, string))
-        except:
-            # To refuse print error on cmd, this line will convert '”f5,628K'
-            # to 'f5,628K'. But on .txt file in report folder the string is 
-            # saved '”f5,628K' unchanged.
-            ascii_string = string.encode('utf-8').decode('ascii', 'ignore')
-            #ascii_string = str(ascii_string)
-            print("%s: %s" %(date_and_time, ascii_string))
-        # Clear the paint effects on string to make string raw and readable
-        string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string)
-    else :
-        # Clear the paint effects on string to make string raw and readable
-        string = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', string)
-        print("%s: %s" %(date_and_time, string))
 
     if save:
         text_file_name = os.path.join("Reports/%s" %config.DATED_REPORT_FOLDER,

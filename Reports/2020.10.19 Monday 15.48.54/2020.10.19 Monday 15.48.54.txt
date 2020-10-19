@@ -1,0 +1,188 @@
+2020/10/19 15:49:01.96: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/19 15:49:02.31: my bank ocr string at seat 2 is: 20,000K
+2020/10/19 15:49:02.31: My bank is:20000000
+2020/10/19 15:49:02.32: Rebuying...
+2020/10/19 15:49:02.32: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/19 15:49:06.62: My cards are founded
+2020/10/19 15:49:07.46: Reseting table information
+2020/10/19 15:49:07.46: * bot_status == 'I_AM_PLAYING' *
+2020/10/19 15:49:07.47: Looking for my cards in 'I_AM_PLAYING' Section...
+2020/10/19 15:49:07.49: My cards are founded
+2020/10/19 15:49:07.50: -------- New Hand Started --------
+2020/10/19 15:49:08.83: Small blind is on seat 4
+2020/10/19 15:49:09.24: Big blind is on seat 5
+2020/10/19 15:49:09.49: Dealer is on seat 3
+2020/10/19 15:49:09.51: just_do_check_fold is set to True: program must've started again from middle of the game
+2020/10/19 15:49:11.09: My cards are: ('Nine', 'Spade'), ('Four', 'Diamond')
+2020/10/19 15:49:11.35: my bank ocr string at seat 2 is: 99,000
+2020/10/19 15:49:11.35: My bank is:99000
+2020/10/19 15:49:11.35: Rebuying...
+2020/10/19 15:49:11.61: other players bank ocr string at seat 1 is: 105,750
+2020/10/19 15:49:12.05: other name ocr string at seat 1 is: Night Gansta
+2020/10/19 15:49:12.44: other players bank ocr string at seat 3 is: 402,089
+2020/10/19 15:49:12.84: other name ocr string at seat 3 is: Eugene
+2020/10/19 15:49:13.18: other players bank ocr string at seat 4 is: 100,552
+2020/10/19 15:49:13.64: other name ocr string at seat 4 is: Poakov
+2020/10/19 15:49:13.98: other players bank ocr string at seat 5 is: 117,868
+2020/10/19 15:49:14.37: other name ocr string at seat 5 is: Epic Titan
+2020/10/19 15:49:14.79: my bank ocr string at seat 2 is: 99,000
+2020/10/19 15:49:15.31: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:15.31: Players Bank dictionary is: {1: 105750, 2: 99000, 3: 402089, 4: 100552, 5: None}
+2020/10/19 15:49:15.32: Players Name dictionary is: {1: 'Night Gansta', 2: 'XOwl', 3: 'Eugene', 4: 'Poakov', 5: 'Epic Titan'}
+2020/10/19 15:49:15.33: Waiting for my turn at preflop_stage...
+2020/10/19 15:49:15.37: Waiting for my turn at flop_stage...
+2020/10/19 15:49:17.39: Flop cards are: ('Two', 'Spade'), ('Three', 'Club'), ('Queen', 'Club')
+2020/10/19 15:49:17.45: It is my turn now
+2020/10/19 15:49:17.46: TESTING. flop_betting_round is:0
+2020/10/19 15:49:17.93: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:49:17.94: Seat1 Call: $1000
+2020/10/19 15:49:18.64: bet ocr string at seat 5 is: 
+2020/10/19 15:49:18.64: -------
+2020/10/19 15:49:18.64: fix_game_disruption() <-- ocr_bet is not digit at seat 5 is running....
+2020/10/19 15:49:18.80: internet is connected
+2020/10/19 15:49:18.92: exit_probable_advertisement is clicked
+2020/10/19 15:49:18.93: Position (0,720) is clicked
+2020/10/19 15:49:19.70: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:20.18: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:20.18: I am In
+2020/10/19 15:49:20.18: -------
+2020/10/19 15:49:20.50: bet ocr string at seat 5 is: 
+2020/10/19 15:49:20.50: just_do_check_fold is set to True: ocr_bet is not digit
+2020/10/19 15:49:20.50: Screenshot Error: ocr_bet is not digit at seat 5
+2020/10/19 15:49:21.32: Seat5 Raise: $None
+2020/10/19 15:49:21.32: shouting from read_and_save_bets(), bets_cache is: {'Flop 0': {1: 1000, 2: None, 3: None, 4: None, 5: None}}
+2020/10/19 15:49:21.32: *Deciding on flop*
+2020/10/19 15:49:21.33: Screenshot Error: returned string is not in standard format
+2020/10/19 15:49:22.08: -------
+2020/10/19 15:49:22.08: fix_game_disruption() <-- check_fold() is running....
+2020/10/19 15:49:22.24: internet is connected
+2020/10/19 15:49:22.35: exit_probable_advertisement is clicked
+2020/10/19 15:49:22.36: Position (0,720) is clicked
+2020/10/19 15:49:23.00: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:23.50: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:23.50: I am In
+2020/10/19 15:49:23.50: -------
+2020/10/19 15:49:23.60: just_do_check_fold is set to True: check_fold()(It's already True)
+2020/10/19 15:49:23.60: Screenshot Error: check and fold buttons are not visible
+2020/10/19 15:49:26.40: It is my turn now
+2020/10/19 15:49:26.40: TESTING. flop_betting_round is:1
+2020/10/19 15:49:26.91: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:49:26.91: Seat1 Call: $1000
+2020/10/19 15:49:27.63: bet ocr string at seat 5 is: 
+2020/10/19 15:49:27.64: -------
+2020/10/19 15:49:27.64: fix_game_disruption() <-- ocr_bet is not digit at seat 5 is running....
+2020/10/19 15:49:28.00: internet is connected
+2020/10/19 15:49:28.13: exit_probable_advertisement is clicked
+2020/10/19 15:49:28.14: Position (0,720) is clicked
+2020/10/19 15:49:28.83: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:29.35: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:29.35: I am In
+2020/10/19 15:49:29.35: -------
+2020/10/19 15:49:29.67: bet ocr string at seat 5 is: 
+2020/10/19 15:49:29.67: just_do_check_fold is set to True: ocr_bet is not digit
+2020/10/19 15:49:29.68: Screenshot Error: ocr_bet is not digit at seat 5
+2020/10/19 15:49:30.40: Seat5 Raise: $None
+2020/10/19 15:49:30.41: shouting from read_and_save_bets(), bets_cache is: {'Flop 0': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 1': {1: 1000, 2: None, 3: None, 4: None, 5: None}}
+2020/10/19 15:49:30.41: *Deciding on flop*
+2020/10/19 15:49:30.41: Screenshot Error: returned string is not in standard format
+2020/10/19 15:49:31.19: -------
+2020/10/19 15:49:31.19: fix_game_disruption() <-- check_fold() is running....
+2020/10/19 15:49:31.35: internet is connected
+2020/10/19 15:49:31.46: exit_probable_advertisement is clicked
+2020/10/19 15:49:31.46: Position (0,720) is clicked
+2020/10/19 15:49:32.10: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:32.57: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:32.57: I am In
+2020/10/19 15:49:32.57: -------
+2020/10/19 15:49:32.67: just_do_check_fold is set to True: check_fold()(It's already True)
+2020/10/19 15:49:32.68: Screenshot Error: check and fold buttons are not visible
+2020/10/19 15:49:35.27: It is my turn now
+2020/10/19 15:49:35.28: TESTING. flop_betting_round is:2
+2020/10/19 15:49:35.82: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:49:35.83: Seat1 Call: $1000
+2020/10/19 15:49:36.64: bet ocr string at seat 5 is: 
+2020/10/19 15:49:36.64: -------
+2020/10/19 15:49:36.64: fix_game_disruption() <-- ocr_bet is not digit at seat 5 is running....
+2020/10/19 15:49:36.82: internet is connected
+2020/10/19 15:49:36.94: exit_probable_advertisement is clicked
+2020/10/19 15:49:36.94: Position (0,720) is clicked
+2020/10/19 15:49:37.64: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:38.10: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:38.10: I am In
+2020/10/19 15:49:38.10: -------
+2020/10/19 15:49:38.41: bet ocr string at seat 5 is: 
+2020/10/19 15:49:38.41: just_do_check_fold is set to True: ocr_bet is not digit
+2020/10/19 15:49:38.42: Screenshot Error: ocr_bet is not digit at seat 5
+2020/10/19 15:49:39.14: Seat5 Raise: $None
+2020/10/19 15:49:39.15: shouting from read_and_save_bets(), bets_cache is: {'Flop 2': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 0': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 1': {1: 1000, 2: None, 3: None, 4: None, 5: None}}
+2020/10/19 15:49:39.15: *Deciding on flop*
+2020/10/19 15:49:39.15: Screenshot Error: returned string is not in standard format
+2020/10/19 15:49:39.92: -------
+2020/10/19 15:49:39.92: fix_game_disruption() <-- check_fold() is running....
+2020/10/19 15:49:40.07: internet is connected
+2020/10/19 15:49:40.19: exit_probable_advertisement is clicked
+2020/10/19 15:49:40.19: Position (0,720) is clicked
+2020/10/19 15:49:40.86: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:41.33: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:41.33: I am In
+2020/10/19 15:49:41.34: -------
+2020/10/19 15:49:41.43: just_do_check_fold is set to True: check_fold()(It's already True)
+2020/10/19 15:49:41.44: Screenshot Error: check and fold buttons are not visible
+2020/10/19 15:49:44.11: It is my turn now
+2020/10/19 15:49:44.12: TESTING. flop_betting_round is:3
+2020/10/19 15:49:44.66: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:49:44.66: Seat1 Call: $1000
+2020/10/19 15:49:45.39: bet ocr string at seat 5 is: 
+2020/10/19 15:49:45.39: -------
+2020/10/19 15:49:45.39: fix_game_disruption() <-- ocr_bet is not digit at seat 5 is running....
+2020/10/19 15:49:45.72: internet is connected
+2020/10/19 15:49:45.83: exit_probable_advertisement is clicked
+2020/10/19 15:49:45.84: Position (0,720) is clicked
+2020/10/19 15:49:46.51: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:47.03: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:47.03: I am In
+2020/10/19 15:49:47.03: -------
+2020/10/19 15:49:47.29: bet ocr string at seat 5 is: 
+2020/10/19 15:49:47.29: just_do_check_fold is set to True: ocr_bet is not digit
+2020/10/19 15:49:47.30: Screenshot Error: ocr_bet is not digit at seat 5
+2020/10/19 15:49:48.18: Seat5 Raise: $None
+2020/10/19 15:49:48.18: shouting from read_and_save_bets(), bets_cache is: {'Flop 2': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 0': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 1': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 3': {1: 1000, 2: None, 3: None, 4: None, 5: None}}
+2020/10/19 15:49:48.18: *Deciding on flop*
+2020/10/19 15:49:48.18: Screenshot Error: returned string is not in standard format
+2020/10/19 15:49:49.01: -------
+2020/10/19 15:49:49.01: fix_game_disruption() <-- check_fold() is running....
+2020/10/19 15:49:49.18: internet is connected
+2020/10/19 15:49:49.29: exit_probable_advertisement is clicked
+2020/10/19 15:49:49.30: Position (0,720) is clicked
+2020/10/19 15:49:49.99: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:50.50: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:50.50: I am In
+2020/10/19 15:49:50.50: -------
+2020/10/19 15:49:50.59: just_do_check_fold is set to True: check_fold()(It's already True)
+2020/10/19 15:49:50.60: Screenshot Error: check and fold buttons are not visible
+2020/10/19 15:49:53.32: It is my turn now
+2020/10/19 15:49:53.33: TESTING. flop_betting_round is:4
+2020/10/19 15:49:53.94: bet ocr string at seat 1 is: 1,000
+2020/10/19 15:49:53.94: Seat1 Call: $1000
+2020/10/19 15:49:54.68: bet ocr string at seat 5 is: 
+2020/10/19 15:49:54.68: -------
+2020/10/19 15:49:54.68: fix_game_disruption() <-- ocr_bet is not digit at seat 5 is running....
+2020/10/19 15:49:54.88: internet is connected
+2020/10/19 15:49:54.99: exit_probable_advertisement is clicked
+2020/10/19 15:49:55.00: Position (0,720) is clicked
+2020/10/19 15:49:55.50: Game region refounded after fix_game_disruption()
+2020/10/19 15:49:55.90: my name ocr string at seat 2 is: XOwl
+2020/10/19 15:49:55.90: I am In
+2020/10/19 15:49:55.90: -------
+2020/10/19 15:49:56.16: bet ocr string at seat 5 is: 
+2020/10/19 15:49:56.16: just_do_check_fold is set to True: ocr_bet is not digit
+2020/10/19 15:49:56.16: Screenshot Error: ocr_bet is not digit at seat 5
+2020/10/19 15:49:56.64: Seat5 Raise: $None
+2020/10/19 15:49:56.64: shouting from read_and_save_bets(), bets_cache is: {'Flop 2': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 0': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 1': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 3': {1: 1000, 2: None, 3: None, 4: None, 5: None}, 'Flop 4': {1: 1000, 2: None, 3: None, 4: None, 5: None}}
+2020/10/19 15:49:56.64: *Deciding on flop*
+2020/10/19 15:49:56.64: Screenshot Error: returned string is not in standard format
+2020/10/19 15:49:57.19: -------
+2020/10/19 15:49:57.19: fix_game_disruption() <-- check_fold() is running....
+2020/10/19 15:49:57.37: internet is connected
+2020/10/19 15:49:57.49: exit_probable_advertisement is clicked
+2020/10/19 15:49:57.49: Position (0,720) is clicked

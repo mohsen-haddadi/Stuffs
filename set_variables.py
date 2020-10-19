@@ -31,23 +31,24 @@ def set_all_variables_to_none():
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache,\
     config.did_i_raised_at  , config.my_last_raise_at , config.players_name , config.players_bank ,\
-    config.BLIND_VALUE , config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*39
+    config.BLIND_VALUE , config.TOTAL_SEATS ,\
+    config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*40
 
 
 def determine_small_big_dealer_seats():
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.small_blind_pixel(config.game_position, seat):
             shout("Small blind is on seat %s" %seat)
             config.small_blind_seat = seat
             break
 
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.big_blind_pixel(config.game_position, seat):
             shout("Big blind is on seat %s" %seat)
             config.big_blind_seat = seat
             break
 
-    for seat in [1,2,3,4,5]:
+    for seat in range(1, config.TOTAL_SEATS+1):
         if pm.dealer_pixel(config.game_position, seat):
             shout("Dealer is on seat %s" %seat)
             config.dealer_seat = seat
@@ -84,7 +85,7 @@ def read_and_save_banks_and_names() :
     # fix_game_disruption() function inside ocr_my_bank() and ocr_my_name()
     # because ocr_other_players_bank() and ocr_other_names() don't have 
     # fix_game_disruption()
-    for seat in range(1,6):
+    for seat in range(1, config.TOTAL_SEATS+1):
         if config.my_seat_number == seat:
             continue
         elif pm.other_player_seated_pixel(config.game_position, seat) == True:
@@ -114,7 +115,7 @@ def reset_table_information() :
     reset_just_do_check_fold_to_false()
     config.players_name = {}
     config.players_bank = {}
-    for Seat in range(1,6):
+    for Seat in range(1, config.TOTAL_SEATS+1):
         config.players_name[Seat] = None
         config.players_bank[Seat] = None
     config.player_cards_cache = {}
@@ -177,7 +178,7 @@ def read_and_save_bets() :
     config.last_red_chips_cache = {}
     config.last_bets_cache = {}
     
-    for Seat in range(1,6) :
+    for Seat in range(1, config.TOTAL_SEATS+1):
 
         config.player_cards_cache["%s %s" %(stage, betting_round)][Seat] \
         = pm.player_cards_pixel(config.game_position, Seat)

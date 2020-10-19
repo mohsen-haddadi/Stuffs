@@ -64,7 +64,7 @@ def last_raise_now() :
     """
     
     a = []
-    for Seat in range(1,6) :
+    for Seat in range(1, config.TOTAL_SEATS+1):
         if type(c.last_bets_cache[Seat]) == int :
             a.append( c.last_bets_cache[Seat] )
     if len(a) != 0 and Any_raiser_now() ==  True :
@@ -86,7 +86,7 @@ def last_raise_at(stage) : #screen shot again and add to cheat sheet with these 
     elif stage == "Turn" : Round = c.turn_betting_round
     elif stage == "River" : Round = c.river_betting_round
     try :
-        Bets = [ c.bets_cache["%s %s" %(stage,Round)][Seat] for Seat in range(1,6) if c.red_chips_cache["%s %s" %(stage,Round)][Seat] and c.bets_cache["%s %s" %(stage,Round)][Seat] != None ] 
+        Bets = [ c.bets_cache["%s %s" %(stage,Round)][Seat] for Seat in range(1, config.TOTAL_SEATS+1) if c.red_chips_cache["%s %s" %(stage,Round)][Seat] and c.bets_cache["%s %s" %(stage,Round)][Seat] != None ] 
     except :
         Bets = [0] # means it is a not reached stage or stage format is wrong.
     if Bets == [] :
@@ -116,7 +116,7 @@ def Any_raiser_now():
     Except me ,for current stage
     """
     
-    for Seat in range(1,6):
+    for Seat in range(1, config.TOTAL_SEATS+1):
         if Seat == c.my_seat_number :
             continue
         elif c.last_red_chips_cache[Seat] :
@@ -131,7 +131,7 @@ def number_of_players_in() :
     """
     
     count = 0
-    for Seat in range(1,6) :
+    for Seat in range(1, config.TOTAL_SEATS+1):
         if c.last_player_cards_cache[Seat] == True :
             count += 1
     return count
@@ -595,7 +595,7 @@ def number_of_raisers_sofar() : #tested ok #check if Rounds are started from 0 a
     for i in range( start , len(List) ) : #loop for stages
 
         stage = List[i]
-        for Seat in range(1,6): #loop for seats
+        for Seat in range(1, config.TOTAL_SEATS+1): #loop for seats
 
             if Seat in Raisers : #Except me and avoid repetitive player
                 continue 
@@ -638,7 +638,7 @@ def number_of_raisers_at( stage ) :
     """
     
     Players_count = 0
-    for Seat in range(1,6): 
+    for Seat in range(1, config.TOTAL_SEATS+1): 
         if Seat == c.my_seat_number : #Except me
             continue 
         Round = 0
@@ -660,7 +660,7 @@ def number_of_players_more_than_once_raised_at( stage ) :
     """
     
     Players_count = 0
-    for Seat in range(1,6):
+    for Seat in range(1, config.TOTAL_SEATS+1):
         if Seat == c.my_seat_number : #Except me
             continue 
         Round = 0 ; count = 0
@@ -694,7 +694,7 @@ def any_double_raiser_now() :
     elif c.river_stage == True :
         stage = "River" 
 
-    for Seat in range(1,6): 
+    for Seat in range(1, config.TOTAL_SEATS+1): 
         count = 0
         if Seat == c.my_seat_number : #Except me
             continue 
@@ -728,7 +728,7 @@ def any_triple_raiser_now() :
     elif c.river_stage == True :
         stage = "River" 
 
-    for Seat in range(1,6): 
+    for Seat in range(1, config.TOTAL_SEATS+1): 
         count = 0
         if Seat == c.my_seat_number : #Except me
             continue 
@@ -769,7 +769,7 @@ def any_double_raiser_sofar() :
 
         stage = List[i]
         
-        for Seat in range(1,6): #loop for seats
+        for Seat in range(1, config.TOTAL_SEATS+1): #loop for seats
             count = 0
             if Seat == c.my_seat_number : #Except me
                 continue 
@@ -810,7 +810,7 @@ def any_triple_raiser_sofar() :
 
         stage = List[i]
         
-        for Seat in range(1,6): #loop for seats
+        for Seat in range(1, config.TOTAL_SEATS+1): #loop for seats
             count = 0
             if Seat == c.my_seat_number : #Except me
                 continue 

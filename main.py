@@ -128,9 +128,10 @@ def main():
     config.MY_PROFILE_NAME = "XOwl"
     if input("Is my name: %s ?(Enter:yes/any keyword:no)"%config.MY_PROFILE_NAME) != "" :
         config.MY_PROFILE_NAME = input("Enter profile name: ")
-    config.my_seat_number = 3 #int( input("My seat number? ") )
-    config.bot_status = 'WAITING_FOR_FIRST_HAND'
+    config.my_seat_number = 2 #int( input("My seat number? ") )
+    config.TOTAL_SEATS = 5
     config.BLIND_VALUE = 100000000
+    config.bot_status = 'WAITING_FOR_FIRST_HAND'
     config.game_position = find_game_position.find_game_reference_point()
 
     start_the_bot()
