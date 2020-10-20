@@ -36,6 +36,12 @@ def play_hand5_no_raiser(): # Check the logic
     lower than or 1 pair, but overall full house or overall 4 of kind are possible 
     so if hand5() is True, Play_individual_cards() and Play_1_pair() should not run anyway.
     """
+    def bluff_hand5_flop_table_2_cards(): # define it inside the function
+        if Flop_Deside() and not Any_raiser_sofar() and hand5() and ( Table_1_pair() or Table_3_of_kinds() ) and Me_Individual() :
+            shout("Bluffing hand5 flop table 2 cards")
+            return True
+        else :
+            return False
 
     if not hand5() or Any_raiser_sofar() or ( not Pre_Flop_Deside() and not Me_Individual() and not Me_1_pair() ) or \
     ( not Pre_Flop_Deside() and (Me_str() or Me_Flush()) ) :
@@ -87,13 +93,6 @@ def play_hand5_no_raiser(): # Check the logic
 
             return ("raise", 3)
 
-    def bluff_hand5_flop_table_2_cards(): # define it inside the function
-
-        if Flop_Deside() and not Any_raiser_sofar() and hand5() and ( Table_1_pair() or Table_3_of_kinds() ) and Me_Individual() :
-            shout("Bluffing hand5 flop table 2 cards")
-            return True
-        else :
-            return False
 
 #def play_hand4():
 #
@@ -104,6 +103,13 @@ def play_hand5_no_raiser(): # Check the logic
 #def play_hand1():
 
 def play_individual_cards():
+
+    def bluff_table_1_pair() :
+        if not Pre_Flop_Deside() and Me_Individual() and Table_1_pair() and not Any_raiser_sofar() :
+            shout("Bluffing table 1 pair")
+            return True
+        else :
+            return False
 
     if Any_raiser_sofar() or Pre_Flop_Deside() or hand5() or not Me_Individual() or\
     ( Me_str() or Me_Flush() ) :
@@ -128,14 +134,6 @@ def play_individual_cards():
             return ("check")
 
 
-
-    def bluff_table_1_pair() :
-
-        if not Pre_Flop_Deside() and Me_Individual() and Table_1_pair() and not Any_raiser_sofar() :
-            shout("Bluffing table 1 pair")
-            return True
-        else :
-            return False
 
 def play_1_pair():
     """
