@@ -41,6 +41,23 @@ def wait_celebration_ends(waiting_seconds = 10):
     # sleep time so buttons and cards are dealt properly
     time.sleep(1)
 
+def wait_hand_ends(waiting_minutes = 5):
+    t1 = time.time()
+    while True:
+        config.new_hand = hand_is_ended()
+        if config.new_hand:
+            declare_the_winners()
+            wait_celebration_ends(waiting_seconds = 10)
+            break
+        if time.time() - t1 > 60 * waiting_minutes :
+            shout('This hand is played manually more than %s minutes' 
+                  %waiting_minutes)
+            break
+        if game_is_paused():
+            input("press Enter to start again...") 
+            fix_game_disruption('game is unpaused')
+            break 
+
 def wait_for_my_new_hand(waiting_minutes = 10):
     shout("Looking for my cards in 'I_AM_PLAYING' Section..."
           , color = 'light_magenta')
@@ -54,7 +71,11 @@ def wait_for_my_new_hand(waiting_minutes = 10):
         if not config.new_hand:
             break
         if time.time() - t1 > 60*waiting_minutes:
-            fix_game_disruption('My cards are not founded')
+            fix_game_disruption('My cards are not founded for new hand '\
+                                'after %s minutes wating'%waiting_minutes)
+            if not pm.player_cards_pixel(config.game_position, 
+                                         config.my_seat_number):
+                config.bot_status = 'WAITING_FOR_FIRST_HAND'
             break
         if game_is_paused():
             input("press Enter to start again...") 
@@ -172,7 +193,6 @@ def sb_b_d_buttons_are_founded():
             break
     return small_blind_button_founded and big_blind_button_founded and dealer_button_founded
 
-
 def shifted_to_next_stage():
     if (not config.flop_stage and pm.flop_pixel(config.game_position) 
         and not pm.turn_pixel(config.game_position) 
@@ -266,17 +286,17 @@ def its_my_turn():
         return True
     return False
 
-def play_sound_for_good_starting_hands() :
+def sound(string_name) :
+    try :
+        pygame.mixer.init()
+        pygame.mixer.music.load( os.path.join('Sounds' ,
+                                              "%s.wav" %string_name ) )
+        return pygame.mixer.music.play()
+    except :
+        pass
 
-    def sound(string_name) :
-        try :
-            pygame.mixer.init()
-            pygame.mixer.music.load( os.path.join('Sounds' ,
-                                                  "%s.wav" %string_name ) )
-            return pygame.mixer.music.play()
-        except :
-            pass
-            
+def play_sound_for_good_starting_hands() :
+     
     if config.preflop_stage == True and config.flop_stage == False :
         if hand_ranking.hand1() :
             sound("Michel")
@@ -310,8 +330,10 @@ def click_decision():
     elif decision[0] == "check_fold" :
         check_fold()
     elif decision[0] == "not defined" :
-        screenshot_error("decide function deficiency")
-        check_fold()
+        pass
+        # uncomment these 2 line, when play.py module is completed.
+        #screenshot_error("decide function deficiency")
+        #check_fold()
     elif decision == None:
         screenshot_error("A play function returned None")
         check_fold()
@@ -325,5 +347,4 @@ def create_report_folder():
     config.REPORTS_DIRECTORY = "Reports/%s" %config.DATED_REPORT_FOLDER
     if not os.path.exists( config.REPORTS_DIRECTORY ):
         os.makedirs( config.REPORTS_DIRECTORY )
-
 

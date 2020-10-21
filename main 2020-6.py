@@ -1,10 +1,3 @@
-"""
-#Important#
-When play.py module is completed, 
-change these 2 functions by uncommenting some lines inside them:
-1. click_decision() at main_assit.py
-2. decide() at decide.py
-"""
 import time
 
 import win32gui, win32con 
@@ -29,29 +22,6 @@ def bot_is_on_main_menu():
                     "table is full --> exit --> "\
                     "config.bot_status = 'ON_MAIN_MENU' --> main menu "\
                     "--> config.bot_status = 'WAITING_FOR_FIRST_HAND' )")
-
-def bot_is_waiting_till_next_hand():
-    """
-    Bot is suspended automatically from decide.py module for a hand 
-    so operator can play that hand manually.
-    This situation should happen when decision_making package is 
-    *under construction* and can not play some scenarios. 
-    The bot_status is change to 'OPERATOR_IS_PLAYING_THE_HAND' in 
-    decide.py module so that the operator plays the hand.
-    In this bot_status, the bot will not look for buttons and will not run 
-    fix_game_disruption() anymore. The bot just waits for the next hand.
-
-    #IMPORTANT# 
-    If this bot_status is added to decide function at decide.py, bot will 
-    acts like a copilot and operator must always beware and plays some hands 
-    beside the bot.
-    """
-    shout("* bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND' *",color ='on_green')
-    sound('Play yourself')
-    shout('OPERATOR MUST PLAY THIS HAND!', color = 'rainbow', save = False)
-    wait_hand_ends(waiting_minutes = 5)  
-    config.bot_status = 'WAITING_FOR_FIRST_HAND'
-    fix_game_disruption("Game was played manually for a hand")
 
 def bot_is_waiting_for_first_hand():
     """
@@ -120,7 +90,6 @@ def play_a_hand():
             if config.bot_status == 'I_AM_PLAYING':
                 click_decision() #🌏🌱♣♠♦♥🌱🌏
         if t1 - time.time() > 5 * 60:
-            config.bot_status = 'WAITING_FOR_FIRST_HAND'
             fix_game_disruption('This hand last more than 5 minutes')
         config.new_hand = hand_is_ended()
         if config.new_hand:
@@ -138,8 +107,6 @@ def start_the_bot():
 
         if config.bot_status == 'ON_MAIN_MENU':
             bot_is_on_main_menu()
-        elif config.bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND':
-            bot_is_waiting_till_next_hand()        
         elif config.bot_status == 'WAITING_FOR_FIRST_HAND':
             bot_is_waiting_for_first_hand()
         elif config.bot_status == 'I_AM_PLAYING':

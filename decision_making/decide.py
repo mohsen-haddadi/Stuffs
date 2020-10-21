@@ -63,17 +63,20 @@ def decide():
             return play_4_of_kind()
 
         elif play_pre_flop() != False :
-            return play_preflop()
-
-        elif play_flop() != False :
-            return play_flop()
-
-        elif play_turn() != False :
-            return play_turn()
-
-        elif play_river() != False :
-            return play_river()
+            return play_pre_flop()
 
         else :
             return ("not defined")
+        #uncomment these lines, when play.py module is completed.
+#        elif play_flop() != False :
+#            return play_flop()
+#
+#        elif play_turn() != False :
+#            return play_turn()
+#
+#        elif play_river() != False :
+#            return play_river()
+#
+#        else :
+#            return ("not defined")
 
