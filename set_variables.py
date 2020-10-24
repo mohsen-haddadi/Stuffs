@@ -87,14 +87,13 @@ def read_and_save_banks_and_names() :
     # fix_game_disruption()
     for seat in range(1, config.TOTAL_SEATS+1):
         if config.my_seat_number == seat:
-            continue
+            config.players_bank[config.my_seat_number] = ocr_my_bank()
+            config.players_name[config.my_seat_number] = ocr_my_name()
         elif pm.other_player_seated_pixel(config.game_position, seat) == True:
             config.players_bank[seat] = ocr_other_players_bank(seat)
             config.players_name[seat] = ocr_other_names(seat)
             if red_chips(seat) :
                 config.players_bank[seat] = None
-    config.players_bank[config.my_seat_number] = ocr_my_bank()
-    config.players_name[config.my_seat_number] = ocr_my_name()
     shout("Players Bank dictionary is: %s" %config.players_bank 
           , color = 'on_light_red')
     shout("Players Name dictionary is: %s" %config.players_name 

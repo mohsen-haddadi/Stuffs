@@ -1,9 +1,14 @@
 #OK
-"""The variables which may change in this module are:
+"""
+The variables which may change in this module are:
     1. config.game_position
     2. config.my_seat_number
     3. config.bot_status
     4. config.just_do_check_fold
+
+These functions are repetitive in this module to avoid nested imports:
+    1. click()  2. hold_click  3. click_on_button()  
+    4. hold_click_on_button()  5. ocr_my_name()
 """
 import socket, wmi, time
 from datetime import datetime
@@ -20,9 +25,7 @@ import screen_monitoring.ocr.ocr as ocr
 import config
 from iprint import shout
 
-# These functions are repetitive in this module to avoid nested imports:
-# 1.click()  2.hold_click  3.click_on_button()  4.hold_click_on_button()
-# 5.ocr_my_name()
+
 
 def click(name):
     x, y = click_coordinates.click_coordinates(config.game_position, name)
@@ -273,19 +276,21 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
         shout("Game region refounded after fix_game_disruption()"
               , color = 'yellow')
     
-    if pm.button_pixel(config.game_position, 'i_am_back'):
-        click('i_am_back')
-        if pm.player_cards_pixel(config.game_position, config.my_seat_number) == True :
-            config.just_do_check_fold = True
-            shout("After fix_game_disruption() --> just_do_check_fold is True."
-                  , color = 'yellow')
-        else :
-            config.bot_status = 'WAITING_FOR_FIRST_HAND'
-            shout("After fix_game_disruption() --> bot_status is 'WAITING_FOR_FIRST_HAND'."
-                  , color = 'on_yellow')
+    if config.bot_status != 'OBSERVING':
+        
+        if pm.button_pixel(config.game_position, 'i_am_back'):
+            click('i_am_back')
+            if pm.player_cards_pixel(config.game_position, config.my_seat_number) == True :
+                config.just_do_check_fold = True
+                shout("After fix_game_disruption() --> just_do_check_fold is True."
+                      , color = 'yellow')
+            else :
+                config.bot_status = 'WAITING_FOR_FIRST_HAND'
+                shout("After fix_game_disruption() --> bot_status is 'WAITING_FOR_FIRST_HAND'."
+                      , color = 'on_yellow')
 
-    if check_i_am_in_or_out() == "Out":
-        sit_in("Min buy in")
+        if check_i_am_in_or_out() == "Out":
+            sit_in("Min buy in")
 
     shout( 7*"-" , color = 'yellow')
 

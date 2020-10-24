@@ -5,6 +5,12 @@ def game_is_puased():
 
     if keyboard.is_pressed("end"): 
         print("game is paused")
+        answer = input("press 'Enter' to start the bot playing. "\
+                       "\npress '1' then 'Enter' to start the bot observing.")
+        if answer == '1':
+            print('OBSERVING')
+        else:
+            print('WAITING_FOR_FIRST_HAND')
         #config.bot_status = 'WAITING_FOR_FIRST_HAND'
         # DON'T use set_just_do_check_fold_to_true() here.
         # we use it at wait_for_my_first_hand() function, this function will 
@@ -19,7 +25,7 @@ while True: #main loop
     print("main loop")
     while True: #loops such as pixel matching for my turn or starting new hand
         if game_is_puased():
-            input("press Enter to start again...") 
+            #input("press Enter to start again...") # repetitive
             #fix_game_disruption('game is unpaused')
             break 
         time.sleep(2) #program excecution(pixel matching)

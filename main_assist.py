@@ -35,7 +35,6 @@ def wait_celebration_ends(waiting_seconds = 10):
             fix_game_disruption('game is stuck at celebration')
             break
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
     # sleep time so buttons and cards are dealt properly
@@ -54,7 +53,6 @@ def wait_hand_ends(waiting_minutes = 5):
                   %waiting_minutes)
             break
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
 
@@ -78,7 +76,6 @@ def wait_for_my_new_hand(waiting_minutes = 10):
                 config.bot_status = 'WAITING_FOR_FIRST_HAND'
             break
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
             
@@ -104,7 +101,6 @@ def wait_for_my_first_hand(waiting_minutes = 5):
             shout("No one join the table, call operator to go to main menu")
             break
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
 
@@ -150,7 +146,6 @@ def wait_for_sb_b_d_buttons(waiting_seconds = 5):
                 set_just_do_check_fold_to_true('sb b d buttons are not founded')
             break
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
 
@@ -163,8 +158,13 @@ def game_is_paused():
     status immediately.
     """
     if keyboard.is_pressed("end"): 
-        print("game is paused")
-        config.bot_status = 'WAITING_FOR_FIRST_HAND'
+        shout("game is paused")
+        answer = input("Press 'Enter' to start the bot playing. "\
+                       "\nPress '1' then 'Enter' to start the bot observing.")
+        if answer == '1':
+            config.bot_status = 'OBSERVING'
+        else:
+            config.bot_status = 'WAITING_FOR_FIRST_HAND'
         # DON'T use set_just_do_check_fold_to_true() here.
         # we use it at wait_for_my_first_hand() function, this function will 
         # checks if the hand is just started or not and won't waste 
@@ -330,8 +330,9 @@ def click_decision():
     elif decision[0] == "check_fold" :
         check_fold()
     elif decision[0] == "not defined" :
-        pass
-        # uncomment these 2 line, when play.py module is completed.
+        config.bot_status = 'OPERATOR_SHOULD_PLAY_THE_HAND'
+        # uncomment these 2 next lines and remove line above, 
+        # when play.py module is completed.
         #screenshot_error("decide function deficiency")
         #check_fold()
     elif decision == None:

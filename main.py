@@ -102,7 +102,6 @@ def bot_is_playing():
         if config.new_hand: 
             continue
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
 
@@ -126,12 +125,11 @@ def play_a_hand():
         if config.new_hand:
             shout ("-------- Hand ended --------", color = 'on_green')
             break
-        if config.bot_status != 'I_AM_PLAYING':
-            break
         if game_is_paused():
-            input("press Enter to start again...") 
             fix_game_disruption('game is unpaused')
             break 
+        if config.bot_status != 'I_AM_PLAYING':
+            break
 
 def start_the_bot():
     while True:
