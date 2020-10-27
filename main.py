@@ -19,6 +19,7 @@ from iprint import shout
 from set_variables import set_all_variables_to_none, read_and_save_bets,\
 determine_small_big_dealer_seats, reset_table_information,\
 read_and_save_banks_and_names
+from observing import bot_is_observing
 from main_assist import *
 
 def bot_is_on_main_menu():
@@ -136,6 +137,8 @@ def start_the_bot():
 
         if config.bot_status == 'ON_MAIN_MENU':
             bot_is_on_main_menu()
+        elif config.bot_status == 'OBSERVING':
+            bot_is_observing()
         elif config.bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND':
             bot_is_waiting_till_next_hand()        
         elif config.bot_status == 'WAITING_FOR_FIRST_HAND':
@@ -143,11 +146,9 @@ def start_the_bot():
         elif config.bot_status == 'I_AM_PLAYING':
             bot_is_playing()
         else:
-            # Develop 'OBSERVING' status for bot_status later.
-            # 'OBSERVING' status can be used to test screen monitoring or to
-            # get opponents playing styles or to gather statistical data.
             raise Exception("bot_status can be only 'ON_MAIN_MENU' or "\
-                            "'WAITING_FOR_FIRST_HAND' or 'I_AM_PLAYING'")
+                            "'OBSERVING' or 'OPERATOR_SHOULD_PLAY_THE_HAND' "\
+                            "or 'WAITING_FOR_FIRST_HAND' or 'I_AM_PLAYING'")
 
 def main():
     hwnd = win32gui.GetForegroundWindow()

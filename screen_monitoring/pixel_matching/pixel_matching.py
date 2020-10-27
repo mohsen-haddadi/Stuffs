@@ -199,9 +199,11 @@ def notification_banner_pixel(game_position, seat): # celeb
         return (x1 or x2)
  
 def are_chips_white_or_red_pixel(game_position, seat): #celeb
-    # If the color of the sign behind chips is
-    # red it returns True (bet/raise), if the color is white it returns False (call)
-
+    """
+    If the color of the sign behind chips is 
+    red it returns True (bet(not bet on preflop)/raise), 
+    if the color is white it returns False (call)
+    """
     def avg_color(x,y,h,w) :
         image = pyautogui.screenshot(region=(x, y , h, w) )
         image.convert('RGB')

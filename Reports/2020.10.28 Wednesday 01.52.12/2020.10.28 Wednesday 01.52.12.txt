@@ -1,0 +1,17 @@
+2020/10/28 01:52:22.27: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2020/10/28 01:52:22.46: my bank ocr string at seat 2 is: 20,000K
+2020/10/28 01:52:22.46: My bank is:20000000
+2020/10/28 01:52:22.46: Rebuying...
+2020/10/28 01:52:22.46: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2020/10/28 01:52:44.62: My cards are founded
+2020/10/28 01:52:45.47: Reseting table information
+2020/10/28 01:52:45.47: * bot_status == 'I_AM_PLAYING' *
+2020/10/28 01:52:45.47: Looking for my cards in 'I_AM_PLAYING' Section...
+2020/10/28 01:52:45.50: My cards are founded
+2020/10/28 01:52:45.51: -------- New Hand Started --------
+2020/10/28 01:52:50.52: -------
+2020/10/28 01:52:50.52: fix_game_disruption() <-- sb b d buttons are not founded is running....
+2020/10/28 01:52:50.89: internet is connected
+2020/10/28 01:52:51.00: exit_probable_advertisement is clicked
+2020/10/28 01:52:51.01: Position (0,720) is clicked
+2020/10/28 01:52:51.35: Game region refounded after fix_game_disruption()

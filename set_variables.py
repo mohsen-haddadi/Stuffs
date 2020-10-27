@@ -29,10 +29,10 @@ def set_all_variables_to_none():
     config.just_do_check_fold , config.bot_status , config.new_hand,\
     config.player_cards_cache , config.white_chips_cache , config.red_chips_cache , config.bets_cache ,\
     config.last_white_chips_cache , config.last_red_chips_cache ,\
-    config.last_player_cards_cache , config.last_bets_cache,\
+    config.last_player_cards_cache , config.last_bets_cache, seats_not_folded,\
     config.did_i_raised_at  , config.my_last_raise_at , config.players_name , config.players_bank ,\
     config.BLIND_VALUE , config.TOTAL_SEATS ,\
-    config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*40
+    config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*41
 
 
 def determine_small_big_dealer_seats():

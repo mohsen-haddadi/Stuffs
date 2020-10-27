@@ -158,7 +158,7 @@ def game_is_paused():
     status immediately.
     """
     if keyboard.is_pressed("end"): 
-        shout("game is paused")
+        shout("game is paused", color = 'on_yellow')
         answer = input("Press 'Enter' to start the bot playing. "\
                        "\nPress '1' then 'Enter' to start the bot observing.")
         if answer == '1':
@@ -198,16 +198,19 @@ def shifted_to_next_stage():
         and not pm.turn_pixel(config.game_position) 
         and not pm.river_pixel(config.game_position)):
         config.flop_stage = True
-        shout("Waiting for my turn at flop_stage...", 'light_magenta') 
+        if config.bot_status != 'OBSERVING':
+            shout("Waiting for my turn at flop_stage...", 'light_magenta') 
         return True
     if (not config.turn_stage and pm.turn_pixel(config.game_position) 
         and not pm.river_pixel(config.game_position) ):
         config.turn_stage = True
-        shout("Waiting for my turn at turn_stage...", 'light_magenta') 
+        if config.bot_status != 'OBSERVING':
+            shout("Waiting for my turn at turn_stage...", 'light_magenta') 
         return True
     if not config.river_stage and pm.river_pixel(config.game_position):
         config.river_stage = True
-        shout("Waiting for my turn at river_stage...", 'light_magenta')
+        if config.bot_status != 'OBSERVING':
+            shout("Waiting for my turn at river_stage...", 'light_magenta')
         return True
     return False
 
