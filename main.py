@@ -134,17 +134,27 @@ def play_a_hand():
 
 def start_the_bot():
     while True:
-
+        # Changes when time runs out or when doing some game fixing issues.
         if config.bot_status == 'ON_MAIN_MENU':
             bot_is_on_main_menu()
+        # Changes when game is paused, and changes back 
+        # to 'WAITING_FOR_FIRST_HAND' status only when game is unpaused.
         elif config.bot_status == 'OBSERVING':
             bot_is_observing()
-        elif config.bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND':
-            bot_is_waiting_till_next_hand()        
+        # Initial value. Changes when game is unpaused.
+        # Also changes when time runs out or when doing some game fixing 
+        # issues (In other cases than 'ON_MAIN_MENU' status) 
         elif config.bot_status == 'WAITING_FOR_FIRST_HAND':
             bot_is_waiting_for_first_hand()
+        # Changes when my first hand by my cards pixels is appeared
+        # after 'WAITING_FOR_FIRST_HAND' status.
         elif config.bot_status == 'I_AM_PLAYING':
             bot_is_playing()
+        # Changes when decide function encountered deficiency. And then changes
+        # back to 'WAITING_FOR_FIRST_HAND' status when hand is finished.
+        # When ever i complete the play module, I won't use this status anymore.
+        elif config.bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND':
+            bot_is_waiting_till_next_hand()
         else:
             raise Exception("bot_status can be only 'ON_MAIN_MENU' or "\
                             "'OBSERVING' or 'OPERATOR_SHOULD_PLAY_THE_HAND' "\
