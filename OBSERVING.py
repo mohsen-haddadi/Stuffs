@@ -60,7 +60,7 @@ def wait_new_hand_starts_when_observing(waiting_minutes = 30):
 
 def am_i_in_or_not():
 
-    for i in range(1,6):
+    for i in range(1, config.TOTAL_SEATS+1):
         if pm.i_am_seated_pixel(c.game_position, i) :
             c.my_seat_number = i
             return True

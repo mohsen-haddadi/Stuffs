@@ -64,7 +64,7 @@ def last_raise_now() :
     """
     
     a = []
-    for Seat in range(1, config.TOTAL_SEATS+1):
+    for Seat in range(1, c.TOTAL_SEATS+1):
         if type(c.last_bets_cache[Seat]) == int :
             a.append( c.last_bets_cache[Seat] )
     if len(a) != 0 and Any_raiser_now() ==  True :
@@ -86,7 +86,7 @@ def last_raise_at(stage) : #screen shot again and add to cheat sheet with these 
     elif stage == "Turn" : Round = c.turn_betting_round
     elif stage == "River" : Round = c.river_betting_round
     try :
-        Bets = [ c.bets_cache["%s %s" %(stage,Round)][Seat] for Seat in range(1, config.TOTAL_SEATS+1) if c.red_chips_cache["%s %s" %(stage,Round)][Seat] and c.bets_cache["%s %s" %(stage,Round)][Seat] != None ] 
+        Bets = [ c.bets_cache["%s %s" %(stage,Round)][Seat] for Seat in range(1, c.TOTAL_SEATS+1) if c.red_chips_cache["%s %s" %(stage,Round)][Seat] and c.bets_cache["%s %s" %(stage,Round)][Seat] != None ] 
     except :
         Bets = [0] # means it is a not reached stage or stage format is wrong.
     if Bets == [] :
@@ -116,7 +116,7 @@ def Any_raiser_now():
     Except me ,for current stage
     """
     
-    for Seat in range(1, config.TOTAL_SEATS+1):
+    for Seat in range(1, c.TOTAL_SEATS+1):
         if Seat == c.my_seat_number :
             continue
         elif c.last_red_chips_cache[Seat] :
@@ -131,7 +131,7 @@ def number_of_players_in() :
     """
     
     count = 0
-    for Seat in range(1, config.TOTAL_SEATS+1):
+    for Seat in range(1, c.TOTAL_SEATS+1):
         if c.last_player_cards_cache[Seat] == True :
             count += 1
     return count
@@ -161,7 +161,7 @@ def am_i_last_player_by_seat_order_at_non_preflop_stage() :
     #Pre_Flop1 = Pre_Flop()
 
     Total = 0
-    for i in range(1,6) :
+    for i in range(1, c.TOTAL_SEATS+1) :
         
 
         if c.small_blind_seat != c.dealer_seat : 
@@ -220,7 +220,7 @@ def my_turn_by_seat_order() :
         Pre_Flop1 = False
 
     Total = 0
-    for i in range(1,6) :
+    for i in range(1, c.TOTAL_SEATS+1) :
         
         if Pre_Flop1 == True :
             Seat = Turn_Finder( c.big_blind_seat + 1 , i )
@@ -262,7 +262,7 @@ def my_turn_by_seat_order_at_non_preflop_stage() :
     #Pre_Flop1 = Pre_Flop()
 
     Total = 0
-    for i in range(1,6) :
+    for i in range(1, c.TOTAL_SEATS+1) :
         
 
         if c.small_blind_seat != c.dealer_seat : 
@@ -342,7 +342,7 @@ def am_i_after_last_raiser_by_seat_order() :
     elif c.small_blind_seat == c.dealer_seat : #big bllind is the first player #2 players # The rules may differs on the other websites. (for 2 players)
         first_player = c.big_blind_seat 
 
-    for i in range(1,6):
+    for i in range(1, c.TOTAL_SEATS+1):
         Seat = Turn_Finder( first_player , i )
         if Seat == c.my_seat_number :
             return False
@@ -364,7 +364,7 @@ def my_turn_from_last_raiser_sofar():
     Last_Red_Seat = last_raiser_seat_sofar()
 
     Total = 0
-    for i in range(1,6):
+    for i in range(1, c.TOTAL_SEATS+1):
         
         Seat = Turn_Finder( Last_Red_Seat , i )
 
@@ -595,7 +595,7 @@ def number_of_raisers_sofar() : #tested ok #check if Rounds are started from 0 a
     for i in range( start , len(List) ) : #loop for stages
 
         stage = List[i]
-        for Seat in range(1, config.TOTAL_SEATS+1): #loop for seats
+        for Seat in range(1, c.TOTAL_SEATS+1): #loop for seats
 
             if Seat in Raisers : #Except me and avoid repetitive player
                 continue 
@@ -638,7 +638,7 @@ def number_of_raisers_at( stage ) :
     """
     
     Players_count = 0
-    for Seat in range(1, config.TOTAL_SEATS+1): 
+    for Seat in range(1, c.TOTAL_SEATS+1): 
         if Seat == c.my_seat_number : #Except me
             continue 
         Round = 0
@@ -660,7 +660,7 @@ def number_of_players_more_than_once_raised_at( stage ) :
     """
     
     Players_count = 0
-    for Seat in range(1, config.TOTAL_SEATS+1):
+    for Seat in range(1, c.TOTAL_SEATS+1):
         if Seat == c.my_seat_number : #Except me
             continue 
         Round = 0 ; count = 0
@@ -694,7 +694,7 @@ def any_double_raiser_now() :
     elif c.river_stage == True :
         stage = "River" 
 
-    for Seat in range(1, config.TOTAL_SEATS+1): 
+    for Seat in range(1, c.TOTAL_SEATS+1): 
         count = 0
         if Seat == c.my_seat_number : #Except me
             continue 
@@ -728,7 +728,7 @@ def any_triple_raiser_now() :
     elif c.river_stage == True :
         stage = "River" 
 
-    for Seat in range(1, config.TOTAL_SEATS+1): 
+    for Seat in range(1, c.TOTAL_SEATS+1): 
         count = 0
         if Seat == c.my_seat_number : #Except me
             continue 
@@ -769,7 +769,7 @@ def any_double_raiser_sofar() :
 
         stage = List[i]
         
-        for Seat in range(1, config.TOTAL_SEATS+1): #loop for seats
+        for Seat in range(1, c.TOTAL_SEATS+1): #loop for seats
             count = 0
             if Seat == c.my_seat_number : #Except me
                 continue 
@@ -810,7 +810,7 @@ def any_triple_raiser_sofar() :
 
         stage = List[i]
         
-        for Seat in range(1, config.TOTAL_SEATS+1): #loop for seats
+        for Seat in range(1, c.TOTAL_SEATS+1): #loop for seats
             count = 0
             if Seat == c.my_seat_number : #Except me
                 continue 
@@ -871,7 +871,7 @@ def last_raisers_list_seat_now() :
     """
     
     last_raisers_list = []
-    for i in range(1,5) :
+    for i in range(1, c.TOTAL_SEATS) :
         Seat = Turn_Finder( c.my_seat_number + 1 , i )
         if c.last_red_chips_cache[Seat] :
             last_raisers_list.append(Seat)
@@ -894,7 +894,7 @@ def next_playing_player_seat( forward_backward_number ) :
         return None
     
     p = 0
-    for i in range(1,5) :
+    for i in range(1, c.TOTAL_SEATS+1) :
         Seat = Turn_Finder( c.my_seat_number + 1 , sign * i )
         if c.last_player_cards_cache[Seat] == True :
             p += (sign * 1)
@@ -919,7 +919,7 @@ def Players_turn_by_seat_order( Player_Seat ) : # just for below function usage
         Pre_Flop1 = False
 
     Total = 0
-    for i in range(1,6) :
+    for i in range(1, c.TOTAL_SEATS+1) :
         
         if Pre_Flop1 == True :
             Seat = Turn_Finder( c.big_blind_seat + 1 , i )
