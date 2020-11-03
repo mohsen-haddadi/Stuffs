@@ -15,11 +15,11 @@ def DEVEOLOPING_find_game_reference_point(game_region = 1):
     else:
         print('game reference point is set') 
 
-def find_game_reference_point():
+def find_game_reference_point_for_cheet():
     #global game_position
 
     print('searching for game region on screen...')
-    image_path = os.path.abspath(os.path.dirname(__file__)) + '/final.png'
+    image_path = os.path.abspath(os.path.dirname(__file__)) + '/cheet reference image.png'
     game_position = pyautogui.locateOnScreen(image_path)
     if game_position == None:
         print('can not find game region, using alternative reference image after 10 sec...')
@@ -36,4 +36,4 @@ def find_game_reference_point():
     return game_position
 
 #input('press Enter to start finding game position')
-find_game_reference_point()
+#find_game_reference_point()
