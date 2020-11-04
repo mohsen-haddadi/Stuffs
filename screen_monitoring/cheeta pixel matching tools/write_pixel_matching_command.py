@@ -1,5 +1,9 @@
 import time, os, tkinter
-
+"""
+if 'pip install win32api' lead to error,
+'pip install pywinutils' instead,
+and then simply 'import win32api'
+"""
 import pyautogui, win32api
 
 try:
