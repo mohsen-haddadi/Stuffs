@@ -161,7 +161,7 @@ import pyautogui, win32api
 def find_game_reference_point_for_cheet():
 
     print('searching for game region on screen...')
-    image_path = os.path.abspath(os.path.dirname(__file__)) + '/cheet reference image 1.png'
+    image_path = os.path.abspath(os.path.dirname(__file__)) + '/cheet reference image new.png'
     game_position = pyautogui.locateOnScreen(image_path)
     if game_position == None:
         raise Exception("can not find game region on screen")
@@ -175,7 +175,7 @@ def download_bet_image(game_position, seat):
 
     BET_IMAGE_REGION = { 
      1:(game_position[0]+313, game_position[1]+310, 90, 15) ,
-     2:(game_position[0]+403, game_position[1]-148, 30, 15) ,
+     2:(game_position[0]+402, game_position[1]-148, 30, 15) ,
      3:(game_position[0]-123, game_position[1]+310, 90, 15) ,
      4:(game_position[0]-128, game_position[1]+223, 80, 15) ,
      5:(game_position[0]+318, game_position[1]+223, 90, 15) 
@@ -190,7 +190,7 @@ def download_other_players_bank_image(game_position, seat):
       1:(game_position[0]+334+6, game_position[1]+471, 75-6, 15) ,
       2:(game_position[0]+79+6, game_position[1]+473, 75-6, 15) ,
       3:(game_position[0]+326, game_position[1]-271, 58, 16) ,
-      4:(game_position[0]+656, game_position[1]-357, 68, 15) ,
+      4:(game_position[0]+655, game_position[1]-357, 68, 15) ,
       5:(game_position[0]+364+6, game_position[1]+166, 75-6, 15) 
       }
 

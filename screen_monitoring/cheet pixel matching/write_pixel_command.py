@@ -7,7 +7,7 @@ import pyautogui, win32api
 def find_game_reference_point_for_cheet():
 
     print('searching for game region on screen...')
-    image_path = os.path.abspath(os.path.dirname(__file__)) + '/cheet reference image 1.png'
+    image_path = os.path.abspath(os.path.dirname(__file__)) + '/cheet reference image new.png'
     game_position = pyautogui.locateOnScreen(image_path)
     if game_position == None:
         raise Exception("can not find game region on screen")
@@ -17,6 +17,7 @@ def find_game_reference_point_for_cheet():
 
 #game_position = (500,500) # TEST
 game_position = find_game_reference_point_for_cheet()
+pyautogui.click(game_position)
 pyautogui.click(game_position)
 
 print("Press 'Enter' to do pixel matching")
