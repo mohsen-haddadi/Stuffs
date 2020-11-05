@@ -1,6 +1,10 @@
 import time, os
 from datetime import datetime
-
+"""
+if 'pip install win32api' lead to error,
+'pip install pywinutils' instead,
+and then simply 'import win32api'
+"""
 import pyautogui, win32api
 
 
