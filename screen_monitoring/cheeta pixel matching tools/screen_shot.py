@@ -3,13 +3,15 @@ from datetime import datetime
 
 import pyautogui, win32api
 
+
 def create_screen_shots_folder():
     global SCREEN_SHOT_DIRECTORY
     DATED_SCREEN_SHOT_FOLDER = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
-    SCREEN_SHOT_DIRECTORY = "Screen shots/%s" %DATED_SCREEN_SHOT_FOLDER
+    SCREEN_SHOT_DIRECTORY = "Screen shots/%s_%s" %(DATED_SCREEN_SHOT_FOLDER, folder_name)
     if not os.path.exists( SCREEN_SHOT_DIRECTORY ):
         os.makedirs( SCREEN_SHOT_DIRECTORY )
 
+folder_name = input('What are screen shots names?')
 create_screen_shots_folder()
 
 #https://www.quora.com/How-do-I-detect-mouse-events-left-click-with-Python
@@ -31,6 +33,7 @@ while True:
         if a < 0:
             count += 1
             print('screenshot: %s'%count)
-            pyautogui.screenshot('%s/%s.png' %(SCREEN_SHOT_DIRECTORY,count) )
+            pyautogui.screenshot('%s/%s %s.png' 
+                                 %(SCREEN_SHOT_DIRECTORY, folder_name, count) )
 
     time.sleep(0.001)
