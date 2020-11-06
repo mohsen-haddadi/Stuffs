@@ -1,0 +1,11 @@
+pyautogui>=0
+numpy>=0
+opencv-python>=0
+pytesseract>=0
+pygame>=0
+painter>=0
+keyboard>=0
+pygetwindow>=0
+wmi>=0
+pywin32>=0
+pywinutils>=0
