@@ -151,11 +151,15 @@ def am_i_last_player_by_seat_order():
         return False
 
 def am_i_last_player_by_seat_order_at_non_preflop_stage() :
+    # (2020) THIS FUNCTION IS USELESS, WHILE WE CAN USE THE FUNCTION
+    # am_i_last_player_by_seat_order() EASILY.
+    # THE CONTENT OF THIS FUNCTION IS LIKE my_turn_by_seat_order() FUNCTION.
+
     """
     Return True or False
     The rules may differs on the other websites. (for 2 players) 
     Last possible player is always dealer for this function.
-    This function is usefull when deciding at pre_flop 
+    This function is useful when deciding at pre_flop 
     """
     
     #Pre_Flop1 = Pre_Flop()
@@ -251,12 +255,16 @@ def my_turn_by_seat_order() :
     return ( my_position , Total ) #this line is copy & pasted here new
 
 def my_turn_by_seat_order_at_non_preflop_stage() : 
+    # (2020) THIS FUNCTION IS USELESS, WHILE WE CAN USE THE FUNCTION
+    # my_turn_by_seat_order() EASILY.
+    # THE CONTENT OF THIS FUNCTION IS LIKE my_turn_by_seat_order() FUNCTION.
+
     """
     Return ( my_position , Total ) 
     my_position: (Min is 1. Max is 5)
     The rules may differs on the other websites. (for 2 players) 
     Last possible player is always dealer for this function.
-    This function is usefull when deciding at pre_flop 
+    This function is useful when deciding at pre_flop 
     """
     
     #Pre_Flop1 = Pre_Flop()
