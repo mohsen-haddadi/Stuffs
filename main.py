@@ -168,7 +168,8 @@ def main():
     create_report_folder()
     # Initial values:
     config.MY_PROFILE_NAME = "XOwl"
-    if input("Is my name: %s ?(Enter:yes/any keyword:no)"%config.MY_PROFILE_NAME) != "" :
+    if input("Is my name: %s ?(Enter:yes/any keyword:no)" 
+             % config.MY_PROFILE_NAME) != "" :
         config.MY_PROFILE_NAME = input("Enter profile name: ")
     config.my_seat_number = 2 #int( input("My seat number? ") )
     config.TOTAL_SEATS = 5

@@ -12,7 +12,7 @@ from decision_making.rules_and_info.starting_hands import *
 #from rules_and_info.suit_and_value import *
 #from rules_and_info.starting_hands import *
 from iprint import shout
-import config
+import config as c
 
 """
 some Play functions are in calendare. add them here later
@@ -23,9 +23,15 @@ so for all functions lower than Me_full_house() like: 1. Play_hand5_no_raiser() 
 
 def bluff_table_flush_4_cards():
 
-    if River_Deside() and Table_Flush_4_cards() and not Me_str() and not Me_Flush() and Me_Individual() \
-    and ( Table_Individual() or Table_1_pair() ) and Table_str_1_cards_Number()\
-    and last_raise_at("River") == 0 and last_raise_at("Turn") == 0 and last_raise_at("Flop") <= 4 * config.BLIND_VALUE and last_raise_at("Pre_Flop") <= 4 * config.BLIND_VALUE :
+    if River_Deside() and Table_Flush_4_cards() \
+    and not Me_str() and not Me_Flush() \
+    and Me_Individual() and ( Table_Individual() or Table_1_pair() ) \
+    and Table_str_1_cards_Number() \
+    and last_raise_at("River") == 0 \
+    and last_raise_at("Turn") == 0 \
+    and last_raise_at("Flop") <= 4 * c.BLIND_VALUE \
+    and last_raise_at("Pre_Flop") <= 4 * c.BLIND_VALUE :
+
         shout("Bluffing table flush 4 cards")
         return True
     else :
@@ -37,14 +43,19 @@ def play_hand5_no_raiser(): # Check the logic
     so if hand5() is True, Play_individual_cards() and Play_1_pair() should not run anyway.
     """
     def bluff_hand5_flop_table_2_cards(): # define it inside the function
-        if Flop_Deside() and not Any_raiser_sofar() and hand5() and ( Table_1_pair() or Table_3_of_kinds() ) and Me_Individual() :
+
+        if Flop_Deside() and not Any_raiser_sofar() and hand5() \
+        and ( Table_1_pair() or Table_3_of_kinds() ) and Me_Individual() :
+
             shout("Bluffing hand5 flop table 2 cards")
             return True
         else :
             return False
 
-    if not hand5() or Any_raiser_sofar() or ( not Pre_Flop_Deside() and not Me_Individual() and not Me_1_pair() ) or \
-    ( not Pre_Flop_Deside() and (Me_str() or Me_Flush()) ) :
+    if not hand5() or Any_raiser_sofar() \
+    or ( not Pre_Flop_Deside() and not Me_Individual() and not Me_1_pair() ) \
+    or ( not Pre_Flop_Deside() and (Me_str() or Me_Flush()) ) :
+
         return False
 
     elif Pre_Flop_Deside() :
@@ -57,7 +68,8 @@ def play_hand5_no_raiser(): # Check the logic
 
             return ("raise", 4)
 
-        elif Me_Individual() or Table_1_pair() or ( Me_1_pair() and Me_1_pair_Ranking()[0] > 1 ) :
+        elif Me_Individual() or Table_1_pair() \
+        or ( Me_1_pair() and Me_1_pair_Ranking()[0] > 1 ) :
 
             return ("check")
 
@@ -67,9 +79,15 @@ def play_hand5_no_raiser(): # Check the logic
 
     elif Turn_Deside() :
 
-        if Me_Individual() or ( Table_1_pair() and not did_i_raise_at("Flop") ) or \
-        ( Me_1_pair() and   ( Me_1_pair_Ranking()[0] > 2 or ( Me_1_pair_Ranking()[0] == 2 and Table_1_pair() ) )   )  or\
-        Table_str_1_cards_Number() == 2 or Table_Flush_4_cards() :
+        if Me_Individual()\
+        or ( Table_1_pair() and not did_i_raise_at("Flop") )\
+        or ( Me_1_pair() and
+             ( 
+               Me_1_pair_Ranking()[0] > 2 
+               or ( Me_1_pair_Ranking()[0] == 2 and Table_1_pair() ) 
+             ) 
+           )\
+        or Table_str_1_cards_Number() == 2 or Table_Flush_4_cards() :
 
             return ("check")
 
@@ -83,9 +101,12 @@ def play_hand5_no_raiser(): # Check the logic
 
             return ("raise", 2)
 
-        elif am_i_last_player_by_seat_order() or Me_Individual() or ( Table_1_pair() and not did_i_raise_at("Turn") ) or\
-        ( Me_1_pair() and Me_1_pair_Ranking()[0] != 1 and not did_i_raise_at("Turn") ) or\
-        Table_str_1_cards_Number() == 2 or Table_Flush_4_cards() or Table_Flush_5_cards() :
+        elif am_i_last_player_by_seat_order() or Me_Individual() \
+        or ( Table_1_pair() and not did_i_raise_at("Turn") )\
+        or ( Me_1_pair() and Me_1_pair_Ranking()[0] != 1 
+             and not did_i_raise_at("Turn") )\
+        or Table_str_1_cards_Number() == 2 \
+        or Table_Flush_4_cards() or Table_Flush_5_cards() :
 
             return ("check")
 
@@ -105,14 +126,18 @@ def play_hand5_no_raiser(): # Check the logic
 def play_individual_cards():
 
     def bluff_table_1_pair() :
-        if not Pre_Flop_Deside() and Me_Individual() and Table_1_pair() and not Any_raiser_sofar() :
+
+        if not Pre_Flop_Deside() and Me_Individual() and Table_1_pair()\
+        and not Any_raiser_sofar():
+
             shout("Bluffing table 1 pair")
             return True
         else :
             return False
 
-    if Any_raiser_sofar() or Pre_Flop_Deside() or hand5() or not Me_Individual() or\
-    ( Me_str() or Me_Flush() ) :
+    if not Me_Individual() or Any_raiser_sofar() or Pre_Flop_Deside()\
+    or hand5() or ( Me_str() or Me_Flush() ) :
+
         return False
 
     elif Flop_Deside() or Turn_Deside() :
@@ -128,7 +153,8 @@ def play_individual_cards():
             return ("raise", 2)
         if bluff_table_1_pair() and not did_i_raise_sofar() :
             return ("raise", 2)
-        elif ( Table_4_of_kinds() and max( n(config.my_1th_card) , n(config.my_2th_card) ) in (14,13) ) :
+        elif Table_4_of_kinds()\
+             and max( n(c.my_1th_card) , n(c.my_2th_card) ) in (14,13):
             return ("raise", 1)
         else :
             return ("check")
@@ -137,13 +163,13 @@ def play_individual_cards():
 
 def play_1_pair():
     """
-    Only with Rank == 1 will be bet. if Kicker card was good bet 2*config.BLIND_VALUE if not bet 1*config.BLIND_VALUE
+    Only with Rank == 1 will be bet. if Kicker card was good bet 2*c.BLIND_VALUE if not bet 1*c.BLIND_VALUE
     Easily in case of danger like Table flush 4 or 5 cards ,or str 1 cards == 2  ;it will be checked 
     """
 
-    if Pre_Flop_Deside() or Any_raiser_sofar() or hand5() or ( Me_str() or Me_Flush() ) :
-        return False
-    elif not Me_1_pair() : 
+    if not Me_1_pair() or Pre_Flop_Deside() or Any_raiser_sofar() or hand5()\
+    or ( Me_str() or Me_Flush() ):
+
         return False
 
     elif Flop_Deside() :
@@ -166,7 +192,8 @@ def play_1_pair():
 
     elif Turn_Deside() :
 
-        if Table_1_pair() or Table_Flush_4_cards() or Table_str_1_cards_Number() == 2 :
+        if Table_1_pair() or Table_Flush_4_cards() \
+        or Table_str_1_cards_Number() == 2 :
 
             return ("check")
 
@@ -184,9 +211,10 @@ def play_1_pair():
 
     elif River_Deside() :
 
-        if Table_1_pair() or Table_2_pair() or Me_1_pair_Ranking()[0] != 1 or\
-        Table_Flush_4_cards() or Table_Flush_5_cards() or Table_str_1_cards_Number() == 2 or\
-        ( am_i_last_player_by_seat_order() and did_i_raise_sofar() ) :
+        if Table_1_pair() or Table_2_pair() or Me_1_pair_Ranking()[0] != 1\
+        or Table_Flush_4_cards() or Table_Flush_5_cards()\
+        or Table_str_1_cards_Number() == 2\
+        or ( am_i_last_player_by_seat_order() and did_i_raise_sofar() ) :
 
             return ("check")
 
@@ -200,7 +228,7 @@ def play_1_pair():
 
 def play_2_pair():
 
-    if Pre_Flop_Deside() or Any_raiser_sofar() or ( Me_str() or Me_Flush() ) :
+    if Pre_Flop_Deside() or Any_raiser_sofar() or ( Me_str() or Me_Flush() ):
         return False
     elif not Me_2_pair() : 
         return False
@@ -211,8 +239,10 @@ def play_2_pair():
 
     elif Turn_Deside() :
 
-        if Table_Flush_4_cards() or Table_str_1_cards_Number() == 2 or\
-        ( Table_1_pair() and ( not did_i_raise_sofar() or Me_2_pair_Ranking()[0] > 1 ) ) :
+        if Table_Flush_4_cards() or Table_str_1_cards_Number() == 2 \
+        or ( Table_1_pair() 
+             and ( not did_i_raise_sofar() or Me_2_pair_Ranking()[0] > 1 ) 
+           ):
 
             return ("check")
 
@@ -222,13 +252,20 @@ def play_2_pair():
 
     elif River_Deside() :
 
-        if Table_Flush_4_cards() or Table_Flush_5_cards() or Table_str_1_cards_Number() == 2 or\
-        ( Table_1_pair() and ( not did_i_raise_sofar() or Me_2_pair_Ranking()[0] > 1 or am_i_last_player_by_seat_order() ) ) :
+        if Table_Flush_4_cards() or Table_Flush_5_cards()\
+        or Table_str_1_cards_Number() == 2\
+        or ( Table_1_pair() 
+             and ( not did_i_raise_sofar() or Me_2_pair_Ranking()[0] > 1 
+                   or am_i_last_player_by_seat_order() 
+                 ) 
+           ):
 
             return ("check")
 
-        elif not Table_str_1_cards() and not Table_str_2_cards() and not Table_Flush() and not Table_1_pair() and\
-        not Table_3_of_kinds() and Me_2_pair_Ranking() in [(1,2),(1,3),(1,4)] :
+        elif not Table_str_1_cards() and not Table_str_2_cards()\
+        and not Table_Flush()\
+        and not Table_1_pair() and not Table_3_of_kinds()\
+        and Me_2_pair_Ranking() in [(1,2),(1,3),(1,4)] :
 
             return ("raise", 9)
 
@@ -238,9 +275,9 @@ def play_2_pair():
 
 def play_3_of_kind():
 
-    if Pre_Flop_Deside() or Any_raiser_sofar() or ( Me_str() or Me_Flush() ) :
-        return False
-    elif not Me_3_of_kinds() : 
+    if not Me_3_of_kinds() or Pre_Flop_Deside() or Any_raiser_sofar()\
+    or ( Me_str() or Me_Flush() ):
+
         return False
 
     elif Flop_Deside() :
@@ -264,7 +301,11 @@ def play_3_of_kind():
             shout("Anti Bluff bet")
             return ("raise", 3)
 
-        elif Me_3_of_kinds_Ranking()[0] == 1 and not Me_3_of_kinds([config.board_card_1th , config.board_card_2th , config.board_card_3th]) and not did_i_raise_sofar() :
+        elif Me_3_of_kinds_Ranking()[0] == 1\
+        and not Me_3_of_kinds([c.board_card_1th ,
+                               c.board_card_2th , 
+                               c.board_card_3th])\
+        and not did_i_raise_sofar():
 
             shout("Check and Raise Strategy")
             return ("check")
@@ -276,20 +317,31 @@ def play_3_of_kind():
 
     elif River_Deside() :
 
-        if ( Me_3_of_kinds_Ranking()[0] == 2 or Table_Flush_4_cards() or Table_str_1_cards_Number() == 2 ) and\
-        ( am_i_last_player_by_seat_order() or ( not am_i_last_player_by_seat_order() and not did_i_raise_at("Flop") ) ) :
+        if ( Me_3_of_kinds_Ranking()[0] == 2 or Table_Flush_4_cards()
+             or Table_str_1_cards_Number() == 2 
+           )\
+        and ( am_i_last_player_by_seat_order() 
+              or ( not am_i_last_player_by_seat_order() 
+                   and not did_i_raise_at("Flop") 
+                 ) 
+            ) :
 
             shout("Check Weak Me_3_of_kinds")
             return ("check")
 
-        elif Me_3_of_kinds_Ranking()[0] == 2 or Table_Flush_4_cards() or Table_str_1_cards_Number() == 2 :
+        elif Me_3_of_kinds_Ranking()[0] == 2 or Table_Flush_4_cards()\
+        or Table_str_1_cards_Number() == 2 :
 
             shout("Anti Bluff bet")
             return ("raise", 3)
 
         #Rank == 2 finished.
-        elif Table_2_pair() and Me_3_of_kinds_Ranking()[0] == 1 and\
-        ( Table_Individual_Cards_List()[0] < min( Table_2_same_Cards_List()[0] and Table_2_same_Cards_List()[1] ) ) :
+        elif Table_2_pair() and Me_3_of_kinds_Ranking()[0] == 1\
+        and ( Table_Individual_Cards_List()[0] 
+              < min( Table_2_same_Cards_List()[0] ,
+                     Table_2_same_Cards_List()[1] 
+                   ) 
+            ) :
 
             shout("Best hand of full house")
             return ("raise", 6)
@@ -304,7 +356,8 @@ def play_straight():
     If Me_str() is True, functions lower than Me_full_house() like : 1. Play_hand5_no_raiser() and 2. Play_1_pair()... should return False
     """
 
-    if Pre_Flop_Deside() or Any_raiser_sofar() or Me_Flush() or not Me_str() :
+    if not Me_str() or Pre_Flop_Deside() or Any_raiser_sofar() or Me_Flush():
+
         return False
 
     elif Flop_Deside() :
@@ -314,26 +367,39 @@ def play_straight():
 
     elif Turn_Deside() :
 
-        if Table_Flush_4_cards() or ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 2 ) or\
-        ( Me_str_2_cards() and is_there_any_better_possible_1_card_straight_on_table() ) :
+        if Table_Flush_4_cards()\
+        or ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 2 )\
+        or ( Me_str_2_cards() 
+             and is_there_any_better_possible_1_card_straight_on_table() 
+           ):
 
             shout("Check Weak Me_str hand")
             return ("check")
 
         elif not Table_Individual() or Table_Flush_3_cards() or\
-        ( Me_str_2_cards() and Me_str_2_cards_Ranking() != 1 and not is_there_any_better_possible_1_card_straight_on_table() ) or\
-        ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 and \
-        Table_str_2_cards() and str_2_Cards_list([config.board_card_1th , config.board_card_2th , config.board_card_3th , config.board_card_4th])[0][0] > \
-        str_1_Cards_list([config.board_card_1th , config.board_card_2th , config.board_card_3th , config.board_card_4th])[0] ) : #Avoid Me_str_1_cards 10 to Ace
+        ( Me_str_2_cards() and Me_str_2_cards_Ranking() != 1 
+          and not is_there_any_better_possible_1_card_straight_on_table() 
+        )\
+        or ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 
+             and Table_str_2_cards() 
+             and str_2_Cards_list([c.board_card_1th ,
+                                   c.board_card_2th ,
+                                   c.board_card_3th ,
+                                   c.board_card_4th])[0][0]\
+               > str_1_Cards_list([c.board_card_1th ,
+                                   c.board_card_2th , 
+                                   c.board_card_3th , 
+                                   c.board_card_4th])[0] 
+           ) : #Avoid Me_str_1_cards 10 to Ace
 
             shout("Bet Normal Me_str hand")
-            if Max_raise_sofar() <= 3 * config.BLIND_VALUE :
+            if Max_raise_sofar() <= 3 * c.BLIND_VALUE :
 
                 return ("raise", 3)
 
             else :
 
-                return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
         elif Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 :
 
@@ -345,7 +411,7 @@ def play_straight():
             else :
 
                 shout("I can Bet more and better at the other sites")
-                return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
         elif Me_str_2_cards() and Me_str_2_cards_Ranking() == 1 :
 
@@ -354,52 +420,71 @@ def play_straight():
 
                 return ("raise", 4) 
 
-            elif Max_raise_sofar() <=  3 * config.BLIND_VALUE :
+            elif Max_raise_sofar() <=  3 * c.BLIND_VALUE :
 
                 return ("raise", 6) 
 
             else :
 
-                return ("raise", (2 * Max_raise_sofar()) // config.BLIND_VALUE)        
+                return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)        
 
     elif River_Deside() :
 
-        if Table_Flush_4_cards() or Table_Flush_5_cards() or Table_2_pair() or Table_3_of_kinds() or\
-        ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 2 ) or\
-        ( Me_str_2_cards() and is_there_any_better_possible_1_card_straight_on_table() ) :
+        if Table_Flush_4_cards() or Table_Flush_5_cards() or Table_2_pair()\
+        or Table_3_of_kinds()\
+        or ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 2 )\
+        or ( Me_str_2_cards() 
+             and is_there_any_better_possible_1_card_straight_on_table() 
+           ):
 
             shout("Check or Anti Bluff Bet Weak Me_str hand")
-            if Max_raise_sofar() >=  6 * config.BLIND_VALUE or am_i_last_player_by_seat_order() :
+
+            if Max_raise_sofar() >=  6 * c.BLIND_VALUE\
+            or am_i_last_player_by_seat_order() :
 
                 return ("check")
 
             else :
 
                 shout("Anti Bluff Bet")
-                return ("raise", Max_raise_sofar() // config.BLIND_VALUE)    
+                return ("raise", Max_raise_sofar() // c.BLIND_VALUE)    
 
-        elif Table_Flush_3_cards() or Table_1_pair() or\
-        ( Me_str_2_cards() and Me_str_2_cards_Ranking() != 1 and not is_there_any_better_possible_1_card_straight_on_table() ) or\
-        ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 and \
-        Table_str_2_cards() and str_2_Cards_list([config.board_card_1th , config.board_card_2th , config.board_card_3th , config.board_card_4th , config.board_card_5th])[0][0] > \
-        str_1_Cards_list([config.board_card_1th , config.board_card_2th , config.board_card_3th , config.board_card_4th ,config.board_card_5th])[0] ) : #Avoid Me_str_1_cards 10 to Ace
+        elif Table_Flush_3_cards() or Table_1_pair()\
+        or ( Me_str_2_cards() and Me_str_2_cards_Ranking() != 1 
+             and not is_there_any_better_possible_1_card_straight_on_table() 
+           )\
+        or ( Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 
+             and Table_str_2_cards() 
+             and str_2_Cards_list([c.board_card_1th ,
+                                   c.board_card_2th , 
+                                   c.board_card_3th , 
+                                   c.board_card_4th , 
+                                   c.board_card_5th])[0][0] \
+               > str_1_Cards_list([c.board_card_1th , 
+                                   c.board_card_2th , 
+                                   c.board_card_3th , 
+                                   c.board_card_4th ,
+                                   c.board_card_5th])[0] 
+           ): #Avoid Me_str_1_cards 10 to Ace
 
             shout("Normal Me_str hand")
+
             if not did_i_raise_at("Turn") :
 
                 return ("raise", 3) 
 
-            elif did_i_raise_at("Turn") and am_i_last_player_by_seat_order() :
+            elif did_i_raise_at("Turn") and am_i_last_player_by_seat_order():
 
                 shout("I can Bet it at the other sites")
                 return ("check")
 
-            elif did_i_raise_at("Turn") and not am_i_last_player_by_seat_order() :
+            elif did_i_raise_at("Turn")\
+            and not am_i_last_player_by_seat_order():
 
-                if Max_raise_sofar() <=  3 * config.BLIND_VALUE :
+                if Max_raise_sofar() <=  3 * c.BLIND_VALUE :
                     return ("raise", 3) 
                 else :
-                    return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                    return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
         elif Me_str_1_cards() and Me_str_1_cards_Ranking() == 1 :
 
@@ -411,7 +496,7 @@ def play_straight():
             else :
 
                 shout("I can Bet more and better at the other sites")
-                return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
         elif Me_str_2_cards() and Me_str_2_cards_Ranking() == 1 :
 
@@ -419,15 +504,15 @@ def play_straight():
             if not did_i_raise_sofar() :
                 return ("raise", 4) 
             elif am_i_last_player_by_seat_order() :
-                if Max_raise_sofar() <= 3 * config.BLIND_VALUE :
+                if Max_raise_sofar() <= 3 * c.BLIND_VALUE :
                     return ("raise", 6) 
                 else :
-                    return ("raise", (2 * Max_raise_sofar()) // config.BLIND_VALUE)    
+                    return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)    
             else :
-                if Max_raise_sofar() <= 3 * config.BLIND_VALUE :
+                if Max_raise_sofar() <= 3 * c.BLIND_VALUE :
                     return ("raise", 9) 
                 else : 
-                    return ("raise", (4 * Max_raise_sofar()) // config.BLIND_VALUE)    
+                    return ("raise", (4 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
 def play_flush():
     """
@@ -462,7 +547,7 @@ def play_flush():
 
                 else :
 
-                    return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                    return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
             elif Me_Flush_Ranking() == 1 :
 
@@ -475,19 +560,19 @@ def play_flush():
                 elif did_i_raise_sofar() :
 
                     shout("Low bet and Raise Strategy")
-                    return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                    return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
         elif Me_Flush_by_3_table_cards() :
 
             shout("A Good or Awesome Me_Flush hand")
 
-            if Max_raise_sofar() <= 2 * config.BLIND_VALUE :
+            if Max_raise_sofar() <= 2 * c.BLIND_VALUE :
 
                 return ("raise", 3) 
 
-            elif Max_raise_sofar() >= 3 * config.BLIND_VALUE :
+            elif Max_raise_sofar() >= 3 * c.BLIND_VALUE :
 
-                return ("raise", (2 * Max_raise_sofar()) // config.BLIND_VALUE)    
+                return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
     elif River_Deside() :
 
@@ -502,12 +587,14 @@ def play_flush():
 
                 shout("Weak Me_Flush hand") 
 
-                if did_i_raise_at("Turn") and not am_i_last_player_by_seat_order() :
+                if did_i_raise_at("Turn")\
+                and not am_i_last_player_by_seat_order():
 
                     shout("Anti Bluff bet")
-                    return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                    return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
-                elif not did_i_raise_at("Turn") or am_i_last_player_by_seat_order() :
+                elif not did_i_raise_at("Turn")\
+                or am_i_last_player_by_seat_order() :
 
                     shout("I can Bet with 2 <= Rank <= 3 at the other sites")
                     return ("check")
@@ -522,7 +609,7 @@ def play_flush():
                         return ("raise", 2) 
 
                     elif did_i_raise_sofar() :
-                        return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                        return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
                 elif not Table_1_pair() :
 
@@ -532,7 +619,8 @@ def play_flush():
                         return ("raise", 2) 
 
                     elif did_i_raise_sofar() :
-                        return ("raise", (2 * Max_raise_sofar()) // config.BLIND_VALUE)    
+                        return ("raise"
+                                ,(2 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
         elif Me_Flush_by_3_table_cards() :
 
@@ -544,17 +632,17 @@ def play_flush():
                     return ("raise", 2) 
 
                 elif did_i_raise_sofar() :
-                    return ("raise", Max_raise_sofar() // config.BLIND_VALUE)
+                    return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
 
             elif not Table_1_pair() :
 
                 shout("A Good or Awesome Me_Flush hand")
 
                 if Me_Flush_Ranking() != 1 :
-                    return ("raise", (2 * Max_raise_sofar()) // config.BLIND_VALUE)    
+                    return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
                 elif Me_Flush_Ranking() == 1 :
-                    return ("raise", (3 * Max_raise_sofar()) // config.BLIND_VALUE)    
+                    return ("raise", (3 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
 def play_full_house():
 
@@ -569,22 +657,28 @@ def play_full_house():
     elif Turn_Deside() :
 
         if not did_i_raise_sofar() or Max_raise_sofar() <= 1 :
+
             return ("raise", 4)
         else :
-            return ("raise", (3 * Max_raise_sofar()) // config.BLIND_VALUE)
+            return ("raise", (3 * Max_raise_sofar()) // c.BLIND_VALUE)
 
     elif River_Deside() :
 
         if Me_full_house_Ranking() == 4 :
-            if am_i_last_player_by_seat_order() or not did_i_raise_at("Turn") or Max_raise_sofar() >= 5 * config.BLIND_VALUE :
+            if am_i_last_player_by_seat_order() or not did_i_raise_at("Turn")\
+            or Max_raise_sofar() >= 5 * c.BLIND_VALUE :
+
                 return ("check")
             else :
                 shout("Anti bluff raise")
-                return ("raise", (Max_raise_sofar()) // config.BLIND_VALUE)
-        elif not did_i_raise_sofar() or Max_raise_sofar() <= 3 * config.BLIND_VALUE :
+                return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)
+
+        elif not did_i_raise_sofar()\
+        or Max_raise_sofar() <= 3 * c.BLIND_VALUE:
+
             return ("raise", 9)
         else :
-            return ("raise", (2 * Max_raise_sofar()) // config.BLIND_VALUE)
+            return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
 
 def play_4_of_kind():
 
@@ -593,9 +687,9 @@ def play_4_of_kind():
 
     elif Flop_Deside() :
 
-        if did_i_raise_sofar() :
+        if did_i_raise_sofar():
             shout("Low bet and raise strategy")
-            return ("raise", (Max_raise_sofar()) // config.BLIND_VALUE)   
+            return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)   
         else :
             shout("check and raise strategy")
             return ("check")
@@ -604,7 +698,7 @@ def play_4_of_kind():
 
         if did_i_raise_sofar() :
             shout("Low bet and raise strategy")
-            return ("raise", (Max_raise_sofar()) // config.BLIND_VALUE)
+            return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)
         else :
             shout("Low bet and raise strategy")
             return ("raise", 2)
@@ -612,7 +706,7 @@ def play_4_of_kind():
     elif River_Deside() :
 
         if did_i_raise_sofar() :
-            return ("raise", (3 * Max_raise_sofar()) // config.BLIND_VALUE)
+            return ("raise", (3 * Max_raise_sofar()) // c.BLIND_VALUE)
         else :
             return ("raise", 2)
 
