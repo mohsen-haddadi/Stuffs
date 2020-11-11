@@ -710,12 +710,75 @@ def play_4_of_kind():
         else :
             return ("raise", 2)
 
+def play_pre_flop(): # handbook and script are same
+
+    if not Pre_Flop_Deside() or hand1() or hand2() or hand3() or hand4()\
+    or ( hand5() and not Any_raiser_sofar() ):
+
+        return False
+
+    elif not Any_raiser_sofar():
+
+        if c.small_blind_seat == c.my_seat_number :
+
+            if hand7():
+
+                return ("fold")
+            else:
+                return ("call")
+
+        elif c.big_blind_seat == c.my_seat_number :
+
+            return ("check")
+
+        else :
+
+            if hand6():
+
+                return ("call")
+            else:
+                return ("fold")
+
+    elif Any_raiser_sofar():
+        # 'AKs', 'AQs', 'AJs', 'AKo'
+        if holdem_starting_hand_ranking() in (4, 6, 8, 12)\
+        and Max_raise_sofar <= 4 * c.BLIND_VALUE:
+
+            return ("call")
+
+        elif hand5():
+
+            if ( not did_i_raise_at("Pre_Flop") 
+                 and Max_raise_sofar() > 3.5 * c.BLIND_VALUE 
+               )\
+            or ( did_i_raise_at("Pre_Flop")
+                 and Max_raise_sofar >= 5 * c.BLIND_VALUE
+               ):
+
+                return ("fold")
+            else:
+                return ("call")
+
+        elif c.small_blind_seat == c.my_seat_number and hand9()\
+        and Max_raise_sofar() < 2.5 * c.BLIND_VALUE:
+
+            shout("Anti Bluff call. Defending pre flop blind")
+            return ("call")
+
+        elif c.big_blind_seat == c.my_seat_number and hand8()\
+        and Max_raise_sofar() < 2.5 * c.BLIND_VALUE:
+
+            shout("Anti Bluff call. Defending pre flop blind")
+            return("call")
+        else:
+            return("fold")
 
 
 
 
-#def play_pre_flop():
-#
+
+
+
 #def play_flop(): # write it in paper and then define it here
 #
 #def play_turn(): # write it in paper and then define it here
