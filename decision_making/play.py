@@ -720,21 +720,16 @@ def play_pre_flop(): # handbook and script are same
     elif not Any_raiser_sofar():
 
         if c.small_blind_seat == c.my_seat_number :
-
             if hand7():
-
                 return ("fold")
             else:
                 return ("call")
 
         elif c.big_blind_seat == c.my_seat_number :
-
             return ("check")
 
         else :
-
             if hand6():
-
                 return ("call")
             else:
                 return ("fold")
@@ -773,10 +768,81 @@ def play_pre_flop(): # handbook and script are same
         else:
             return("fold")
 
+def play_hand4():
 
+    if not hand4() or ( Me_str() or Me_Flush() ) or (not Pre_Flop_Deside() 
+                                                     and Any_raiser_sofar() ):
+        return False
 
+    elif Pre_Flop_Deside():
 
+        if not Any_raiser_sofar():
+            return ("raise", 2)
 
+        elif not did_i_raise_at("Pre_Flop") \
+        and last_raise_at("Pre_Flop") <= 5 * c.BLIND_VALUE :
+
+            return ("call")
+
+        elif did_i_raise_at("Pre_Flop") \
+        and last_raise_at("Pre_Flop") <= 6 * c.BLIND_VALUE :
+
+            return ("call")
+
+        else:
+            return ("fold")
+
+    elif Flop_Deside():
+
+        if Me_pocket_3_of_kinds() or ( Me_pocket_full_house ()
+                                       and Me_pocket_full_house_Ranking() == 2):
+            return ("raise", 4)
+
+        elif Me_pocket_full_house() and Me_pocket_full_house_Ranking() == 1 :
+
+            shout("Check and raise strategy")
+            return ("check")
+
+        elif Me_pocket_pair():
+
+            if Table_3_of_kinds():
+                return ("raise", 3)
+
+            elif cards_ranking(c.my_1th_card) == 1:
+                return ("raise", 2)
+
+            elif cards_ranking(c.my_1th_card) > 1:
+                return ("check")
+
+    elif Turn_Deside():
+
+        if Me_pocket_3_of_kinds() and ( Table_Flush_4_cards() 
+                                        or Table_str_1_cards_Number() == 2 ):
+
+            if not did_i_raise_at("Flop") or am_i_last_player_by_seat_order():
+
+                return("check")
+
+            elif did_i_raise_at("Flop"):
+
+                shout("Anti bluff raise")
+                return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE) 
+
+        elif Me_pocket_3_of_kinds() or Me_pocket_full_house() \
+        or Me_pocket_4_of_kinds():
+
+            return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+
+        elif Me_pocket_pair():
+
+            if Table_3_of_kinds() and Me_pocket_pair_Ranking() == 1:
+
+                return ("raise", 3)
+
+            elif Table_3_of_kinds() or Table_4_of_kinds() \
+            or cards_ranking(c.my_1th_card) > 1:
+
+                return ("raise", 2)
 
 
 #def play_flop(): # write it in paper and then define it here

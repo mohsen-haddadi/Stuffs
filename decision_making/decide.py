@@ -22,8 +22,8 @@ def decide():
 
     else :
 
-
-        if play_hand5_no_raiser() != False :
+        # this function must be first the first if.
+        if play_hand5_no_raiser() != False : 
             return play_hand5_no_raiser()
 
 #       elif play_hand4() != False :
