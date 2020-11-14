@@ -844,6 +844,111 @@ def play_hand4():
 
                 return ("raise", 2)
 
+    elif River_Deside():
+
+        if Me_pocket_pair():
+            # Later check if a case is missed or not.
+            if Table_3_of_kinds() and (Me_pocket_pair_Ranking() == 1
+                                       or am_i_last_player_by_seat_order() ):
+                return ("check")
+            elif not Table_3_of_kinds() and (cards_ranking() > 1
+                                         or am_i_last_player_by_seat_order()):
+                return ("check")
+            elif Table_4_of_kinds():
+                return ("check")
+
+            elif Me_pocket_pair_Ranking() == 1\
+            and not am_i_last_player_by_seat_order() and Table_3_of_kinds():
+
+                return ("raise", 3)
+
+            elif Me_pocket_pair_Ranking() == 1\
+            and not am_i_last_player_by_seat_order():
+
+                if ( Table_Flush_4_cards() or Table_Flush_5_cards()
+                     or Table_str_1_cards_Number() == 2):
+
+                    shout("Anti bluff raise")
+                    return ("raise", 2)
+
+                else:
+                    return ("raise", 2)
+
+        elif Me_pocket_3_of_kinds():
+
+            if Table_4_of_kinds():
+                return ("check")
+
+            elif ( Table_Flush_4_cards() or Table_Flush_5_cards()
+                   or Table_str_1_cards_Number() == 2):
+
+                if not did_i_raise_at("Turn") or (did_i_raise_at("Turn")
+                                        and am_i_last_player_by_seat_order()):
+                    return ("check")
+
+                elif (did_i_raise_at("Turn")
+                      and not am_i_last_player_by_seat_order() ):
+
+                    if Max_raise_sofar() >= 8 * c.BLIND_VALUE :
+
+                        return("check")
+
+                    else:
+
+                        shout("Anti bluff raise")
+                        return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)
+
+            elif not ( Table_Flush_4_cards() or Table_Flush_5_cards()
+                       or Table_str_1_cards_Number() == 2):
+
+                if ( Table_str_1_cards() or Table_str_2_cards_Number() >= 2
+                     or Table_Flush() ):
+
+                    if Max_raise_sofar() >= 8 * c.BLIND_VALUE :
+
+                        return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)
+
+                    else:
+
+                        return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+
+                else:
+
+                    return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+
+        elif Me_pocket_full_house():
+
+            if Me_pocket_full_house_Ranking() == 3:
+
+                if am_i_last_player_by_seat_order()\
+                or Max_raise_sofar() >= 4 * c.BLIND_VALUE :
+
+                    return("check")
+
+                else:
+
+                    shout("Anti bluff raise")
+                    return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)
+
+            elif Me_pocket_full_house_Ranking() == 2:
+
+                if Max_raise_sofar() >= 8 * c.BLIND_VALUE :
+
+                    return ("raise", (Max_raise_sofar()) // c.BLIND_VALUE)
+
+                else:
+
+                    return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+
+            elif Me_pocket_full_house_Ranking() == 1:
+
+                return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+
+
+#def play_hand3():
+
+
+
 
 #def play_flop(): # write it in paper and then define it here
 #
