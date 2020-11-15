@@ -22,22 +22,11 @@ def decide():
 
     else :
 
-        # this function must be first the first if.
-        if play_hand5_no_raiser() != False : 
-            return play_hand5_no_raiser()
+        if play_pre_flop() != False :
+            return play_pre_flop()
 
-#       elif play_hand4() != False :
-#           return play_hand4()
-
-#       elif play_hand3() != False :
-#           return play_hand3()
-#           
-#       elif play_hand2() != False :
-#           return play_hand2()
-
-#       elif play_hand1() != False :
-#           return play_hand1()
-
+        elif play_hand5_individual_or_1_pair() != False : 
+            return play_hand5_individual_or_1_pair()
 
         elif play_individual_cards() != False :
             return play_individual_cards()
@@ -63,18 +52,31 @@ def decide():
         elif play_4_of_kind() != False :
             return play_4_of_kind()
 
-        elif play_pre_flop() != False :
-            return play_pre_flop()
+        elif play_pocket_pair() != False :
+            return play_pocket_pair()
 
+        elif play_pocket_3_of_kinds() != False :
+            return play_pocket_3_of_kinds()
+
+        elif play_pocket_full_house() != False :
+            return play_pocket_full_house()
+
+        elif play_pocket_4_of_kinds() != False :
+            return play_pocket_4_of_kinds()
+
+
+
+        elif play_pre_flop_raised() != False :
+            return play_pre_flop_raised()
         
-#        elif play_flop() != False :
-#            return play_flop()
+#        elif play_flop_raised() != False :
+#            return play_flop_raised()
 #
-#        elif play_turn() != False :
-#            return play_turn()
+#        elif play_turn_raised() != False :
+#            return play_turn_raised()
 #
-#        elif play_river() != False :
-#            return play_river()
+#        elif play_river_raised() != False :
+#            return play_river_raised()
 #
         #uncomment lines, when play.py module is completed.
         else :
