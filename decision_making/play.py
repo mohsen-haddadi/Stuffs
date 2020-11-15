@@ -37,6 +37,17 @@ def bluff_table_flush_4_cards():
     else :
         return False
 
+
+def to_play_hand5_individual_or_1_pair():
+	
+    if not hand5() or Any_raiser_sofar() or Pre_Flop_Deside() \
+    or ( not Me_Individual() and not Me_1_pair() ) \
+    or ( Me_str() or Me_Flush() ) :
+
+        return False
+    else:
+    	return True
+
 def play_hand5_individual_or_1_pair(): # Check the logic
     """ 
     lower than or 1 pair, but overall full house or overall 4 of kind are possible 
@@ -52,19 +63,13 @@ def play_hand5_individual_or_1_pair(): # Check the logic
         else :
             return False
 
-    if not hand5() or Any_raiser_sofar() or Pre_Flop_Deside() \
-    or ( not Me_Individual() and not Me_1_pair() ) \
-    or ( Me_str() or Me_Flush() ) :
-
-        return False
-
     # Preflop is transfered to play_pre_flop() function 
 
     #elif Pre_Flop_Deside() :
     #
     #    return ("raise", 3)
 
-    elif Flop_Deside() :
+    if Flop_Deside() :
 
         if bluff_hand5_flop_table_2_cards() :
 
@@ -117,13 +122,14 @@ def play_hand5_individual_or_1_pair(): # Check the logic
             return ("raise", 3)
 
 
-#def play_hand4():
-#
-#def play_hand3():
-#
-#def play_hand2():
-#
-#def play_hand1():
+def to_play_individual_cards():
+
+    if not Me_Individual() or Any_raiser_sofar() or Pre_Flop_Deside()\
+    or hand5() or ( Me_str() or Me_Flush() ) :
+
+        return False
+    else:
+    	return True
 
 def play_individual_cards():
 
@@ -137,12 +143,7 @@ def play_individual_cards():
         else :
             return False
 
-    if not Me_Individual() or Any_raiser_sofar() or Pre_Flop_Deside()\
-    or hand5() or ( Me_str() or Me_Flush() ) :
-
-        return False
-
-    elif Flop_Deside() or Turn_Deside() :
+    if Flop_Deside() or Turn_Deside() :
 
         if bluff_table_1_pair() and not did_i_raise_sofar() :
             return ("raise", 2)
@@ -162,19 +163,21 @@ def play_individual_cards():
             return ("check")
 
 
+def to_play_1_pair():
+
+    if not Me_1_pair() or Pre_Flop_Deside() or Any_raiser_sofar() or hand5()\
+    or ( Me_str() or Me_Flush() ):
+
+        return False
+    else:
+    	return True
 
 def play_1_pair():
     """
     Only with Rank == 1 will be bet. if Kicker card was good bet 2*c.BLIND_VALUE if not bet 1*c.BLIND_VALUE
     Easily in case of danger like Table flush 4 or 5 cards ,or str 1 cards == 2  ;it will be checked 
     """
-
-    if not Me_1_pair() or Pre_Flop_Deside() or Any_raiser_sofar() or hand5()\
-    or ( Me_str() or Me_Flush() ):
-
-        return False
-
-    elif Flop_Deside() :
+    if Flop_Deside() :
 
         if Table_1_pair() :
 
@@ -228,14 +231,19 @@ def play_1_pair():
 
             return ("raise", 1)
 
+
+def to_play_2_pair():
+
+    if not Me_2_pair() or Pre_Flop_Deside() or Any_raiser_sofar()\
+    or ( Me_str() or Me_Flush() ):
+
+        return False
+    else:
+    	return True
+
 def play_2_pair():
 
-    if Pre_Flop_Deside() or Any_raiser_sofar() or ( Me_str() or Me_Flush() ):
-        return False
-    elif not Me_2_pair() : 
-        return False
-
-    elif Flop_Deside() :
+    if Flop_Deside() :
 
         return ("raise", 3)
 
@@ -275,14 +283,19 @@ def play_2_pair():
 
             return ("raise", 3)
 
-def play_3_of_kind():
+
+def to_play_3_of_kind():
 
     if not Me_3_of_kinds() or Pre_Flop_Deside() or Any_raiser_sofar()\
     or ( Me_str() or Me_Flush() ):
 
         return False
+    else:
+    	return True
 
-    elif Flop_Deside() :
+def play_3_of_kind():
+
+    if Flop_Deside() :
 
         if did_i_raise_at("Pre_Flop") :
             return ("raise", 3)
@@ -353,16 +366,20 @@ def play_3_of_kind():
             shout("Bet Normal Me_3_of_kinds hand")
             return ("raise", 3) #Table_full_house is possible too
 
-def play_straight():
-    """
-    If Me_str() is True, functions lower than Me_full_house() like : 1. play_hand5_individual_or_1_pair() and 2. Play_1_pair()... should return False
-    """
+
+def to_play_straight():
 
     if not Me_str() or Pre_Flop_Deside() or Any_raiser_sofar() or Me_Flush():
 
         return False
+    else:
+    	return True
 
-    elif Flop_Deside() :
+def play_straight():
+    """
+    If Me_str() is True, functions lower than Me_full_house() like : 1. play_hand5_individual_or_1_pair() and 2. Play_1_pair()... should return False
+    """
+    if Flop_Deside() :
 
         shout("Low bet and Raise Strategy")
         return ("raise", 3)
@@ -516,15 +533,19 @@ def play_straight():
                 else : 
                     return ("raise", (4 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
+
+def to_play_flush():
+
+    if not Me_Flush() or Pre_Flop_Deside() or Any_raiser_sofar():
+        return False
+    else:
+    	return True
+
 def play_flush():
     """
     If Me_Flush() is True, functions lower than Me_full_house() like : 1. play_hand5_individual_or_1_pair() and 2. Play_1_pair()... should return False
     """
-
-    if Pre_Flop_Deside() or Any_raiser_sofar() or not Me_Flush() :
-        return False
-
-    elif Flop_Deside() :
+    if Flop_Deside() :
 
         shout("Low bet and Raise Strategy")
         return ("raise", 3) 
@@ -646,12 +667,17 @@ def play_flush():
                 elif Me_Flush_Ranking() == 1 :
                     return ("raise", (3 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
-def play_full_house(): 
-    # Study and complete River_Deside for this function
-    if Pre_Flop_Deside() or Any_raiser_sofar() or not Me_full_house() :
-        return False
 
-    elif Flop_Deside() :
+def to_play_full_house():
+
+    if not Me_full_house() or Pre_Flop_Deside() or Any_raiser_sofar():
+        return False
+    else:
+    	return True
+
+def play_full_house():
+
+    if Flop_Deside() :
 
         shout("check and raise strategy") # whether i've had raised at pre flop or not i check and raise
         return ("check")
@@ -682,12 +708,17 @@ def play_full_house():
         else :
             return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
 
+
+def to_play_4_of_kind():
+
+    if not Me_4_of_kinds() or Pre_Flop_Deside() or Any_raiser_sofar():
+        return False
+    else:
+    	return True
+
 def play_4_of_kind():
 
-    if Pre_Flop_Deside() or Any_raiser_sofar() or not Me_4_of_kinds() :
-        return False
-
-    elif Flop_Deside() :
+    if Flop_Deside() :
 
         if did_i_raise_sofar():
             shout("Low bet and raise strategy")
@@ -713,15 +744,17 @@ def play_4_of_kind():
             return ("raise", 2)
 
 
-
-
-def play_pocket_pair(): # Later check if a case is missed or not at River.
+def to_play_pocket_pair(): # Later check if a case is missed or not at River.
     # hand4() or hand3() or hand2() or hand1()
     if not Me_pocket_pair() or Pre_Flop_Deside() or Any_raiser_sofar()\
     or Me_str() or Me_Flush():
         return False
+    else :
+    	return True
 
-    elif Flop_Deside():
+def play_pocket_pair(): # Later check if a case is missed or not at River.
+    # hand4() or hand3() or hand2() or hand1()
+    if Flop_Deside():
 
         if Table_3_of_kinds():
             if hand4():
@@ -844,13 +877,18 @@ def play_pocket_pair(): # Later check if a case is missed or not at River.
                 elif hand1():
                     return ("raise", 5) # hand 1:14 DONE
 
-def play_pocket_3_of_kinds():
+
+def to_play_pocket_3_of_kinds():
     # hand4() or hand3() or hand2() or hand1()
     if not Me_pocket_3_of_kinds() or Pre_Flop_Deside() or Any_raiser_sofar()\
     or Me_str() or Me_Flush():
         return False
+    else:
+    	return True
 
-    elif Flop_Deside():
+def play_pocket_3_of_kinds():
+    # hand4() or hand3() or hand2() or hand1()
+    if Flop_Deside():
 
         return ("raise", 4) # hand 3:6 , hand 2:6 , hand 1:6
 
@@ -913,12 +951,17 @@ def play_pocket_3_of_kinds():
 
                 return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
 
-def play_pocket_full_house():
+
+def to_play_pocket_full_house():
     # hand4() or hand3() or hand2() or hand1()
     if not Me_pocket_full_house() or Pre_Flop_Deside() or Any_raiser_sofar():
         return False
+    else:
+    	return True
 
-    elif Flop_Deside():
+def play_pocket_full_house():
+    # hand4() or hand3() or hand2() or hand1()
+    if Flop_Deside():
 
         if Me_pocket_full_house_Ranking() == 2:
             return ("raise", 4) # hand 3:6 , hand 2:6 , hand 1:6
@@ -959,12 +1002,17 @@ def play_pocket_full_house():
 
             return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
 
-def play_pocket_4_of_kinds():
+
+def to_play_pocket_4_of_kinds():
     # hand4() or hand3() or hand2() or hand1()
     if not Me_pocket_4_of_kinds() or Pre_Flop_Deside() or Any_raiser_sofar():
         return False
+    else:
+    	return True
 
-    elif Flop_Deside():
+def play_pocket_4_of_kinds():
+    # hand4() or hand3() or hand2() or hand1()
+    if Flop_Deside():
 
         shout("Check and raise strategy")
         return ("check")
@@ -978,11 +1026,14 @@ def play_pocket_4_of_kinds():
         return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
 
 
-def play_pre_flop(): # handbook and script are same
+def to_play_pre_flop():
 
     if not Pre_Flop_Deside() or Any_raiser_sofar():
-
         return False
+    else:
+    	return True
+
+def play_pre_flop(): # handbook and script are same
 
     if hand4():
         return ("raise", 2)
@@ -1014,13 +1065,17 @@ def play_pre_flop(): # handbook and script are same
         else:
             return ("fold")
 
-def play_pre_flop_raised(): # handbook and script are same
+
+def to_play_pre_flop_raised(): # handbook and script are same
 
     if not Pre_Flop_Deside() or not Any_raiser_sofar():
-
         return False
+    else:
+    	return True
 
-    elif hand4():
+def play_pre_flop_raised(): # handbook and script are same
+
+    if hand4():
 
         if not did_i_raise_at("Pre_Flop") \
         and last_raise_at("Pre_Flop") <= 5 * c.BLIND_VALUE :

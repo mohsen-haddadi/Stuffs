@@ -22,60 +22,60 @@ def decide():
 
     else :
 
-        if play_pre_flop() != False :
+        if to_play_pre_flop():
             return play_pre_flop()
 
-        elif play_hand5_individual_or_1_pair() != False : 
+        elif to_play_hand5_individual_or_1_pair(): 
             return play_hand5_individual_or_1_pair()
 
-        elif play_individual_cards() != False :
+        elif to_play_individual_cards():
             return play_individual_cards()
 
-        elif play_1_pair() != False :
+        elif to_play_1_pair():
             return play_1_pair()
 
-        elif play_2_pair() != False :
+        elif to_play_2_pair():
             return play_2_pair()
 
-        elif play_3_of_kind() != False :
+        elif to_play_3_of_kind():
             return play_3_of_kind()
 
-        elif play_straight() != False :
+        elif to_play_straight():
             return play_straight()
 
-        elif play_flush() != False :
+        elif to_play_flush():
             return play_flush()
 
-        elif play_full_house() != False :
+        elif to_play_full_house():
             return play_full_house()
 
-        elif play_4_of_kind() != False :
+        elif to_play_4_of_kind():
             return play_4_of_kind()
 
-        elif play_pocket_pair() != False :
+        elif to_play_pocket_pair():
             return play_pocket_pair()
 
-        elif play_pocket_3_of_kinds() != False :
+        elif to_play_pocket_3_of_kinds():
             return play_pocket_3_of_kinds()
 
-        elif play_pocket_full_house() != False :
+        elif to_play_pocket_full_house():
             return play_pocket_full_house()
 
-        elif play_pocket_4_of_kinds() != False :
+        elif to_play_pocket_4_of_kinds():
             return play_pocket_4_of_kinds()
 
 
 
-        elif play_pre_flop_raised() != False :
+        elif to_play_pre_flop_raised():
             return play_pre_flop_raised()
         
-#        elif play_flop_raised() != False :
+#        elif to_play_flop_raised():
 #            return play_flop_raised()
 #
-#        elif play_turn_raised() != False :
+#        elif to_play_turn_raised():
 #            return play_turn_raised()
 #
-#        elif play_river_raised() != False :
+#        elif to_play_river_raised():
 #            return play_river_raised()
 #
         #uncomment lines, when play.py module is completed.
