@@ -972,7 +972,12 @@ def play_pocket_full_house():
 
     elif Turn_Deside():
 
-        return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+        if Me_pocket_full_house_Ranking() in (3, 4):
+        	shout("Check weak pocket full house")
+        	return ("check")
+
+        else:
+        	return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
 
     elif River_Deside():
 

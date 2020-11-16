@@ -692,7 +692,7 @@ def Me_pocket_full_house_Ranking( List = None ) :
     """
     Ranks: 1,2,3
     Table_1_pair: 1 ([2,5,5,7,9], 7,7).  2 ([2,5,5,7,9], 2,2).
-    Table_2_pair: 1 ([2,2,5,5,7], 7,7).  2 ([2,2,5,7,7], 5,5).  3 ([2,5,5,7,7], 2,2).
+    Table_2_pair: 1 ([2,2,5,5,7], 7,7).  3 ([2,2,5,7,7], 5,5).  4 ([2,5,5,7,7], 2,2).
     Table_3_of_kinds: 3 ([5,5,5,7,8], 8,8).
     """
     
@@ -728,9 +728,9 @@ def Me_pocket_full_house_Ranking( List = None ) :
             if max(Card) < c.my_1th_card :
                 return 1
             elif min(Card) < c.my_1th_card < max(Card) :
-                return 2
-            elif min(Card) > c.my_1th_card :
                 return 3
+            elif min(Card) > c.my_1th_card :
+                return 4
 
         elif Table_3_of_kinds( List ) == True :
             return 3
