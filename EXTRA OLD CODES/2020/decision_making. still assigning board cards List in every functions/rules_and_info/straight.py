@@ -1,7 +1,7 @@
 #OK
-from decision_making.rules_and_info.suit_and_value import s, n, board_cards_list
+#from decision_making.rules_and_info.suit_and_value import s, n
 #from suit_and_value import s, n
-import config as c
+#import config as c
 
 """
 Functions with True or False return,are in 2 kind of categoreis: 1.Me_str_ Me_Open_str_draw 2.Table_str 
@@ -9,26 +9,14 @@ If one of them is True the rest will be False. All functions can be False at the
 At Str file there is a Exeption for this: Only Table_str_1_cards and Table_str_2_cards Functions can be True at the same time
 
 Ranking Functions are :1.Me_str_(1 or 2 cards) 2.Me_Open_str(1 or 2 cards)_draw .
-Ranking Functions return 1.a Number or 
-2.None value if their True or False Functions have not been True already or we are pre flop stage.
+Ranking Functions return 1.a Number or 2.None value if their True or False Functions have not been True already.
 Table functions has no rankings in Flush and Pair files. in Str file there are Table_.._Number functions. 
-"""
-"""
-In Python, List variables can be modified inside function's 
-scopes which have came from other scopes even if they are 
-assigned to the other variable names. 
-To avoid this misbehavior, at the beginning of functions 
-always copy lists by using List = List[:]  or by doing List = [...]. 
-This way new List variables will have new separated IDs.
 """
 
 # Supporting Functions:-------------------------
 
-def str_length(board_list):
-
-    if board_list == []:
-        return None
-    List = board_list[:]
+def str_length( List ):
+    
     #if 14 in List :
         #List.append(1)
     List = list(set(List))
@@ -44,11 +32,12 @@ def str_length(board_list):
             n = 1
     return max(length_list)
             
-def str_1_Cards_list(board_list) :
-
-    if board_list == []:
-        return []
-    List = board_list[:]
+def str_1_Cards_list( List ) :
+    """
+    Lists var act like global in python functions. so List should be written like this
+    to avoid manipulation in Lists var to furthermore usage in the other functions:
+    str_2_Cards_list( [ c.board_card_1th, c.board_card_2th, c.board_card_3th, c.board_card_4th ] )
+    """
 
     for i in range( len(List) ) :
         List[i] = n( List[i] )
@@ -81,11 +70,12 @@ def str_1_Cards_list(board_list) :
     str_1_Cards_list.sort(reverse=True)
     return str_1_Cards_list
                                     
-def str_2_Cards_list(board_list) :
-
-    if board_list == []:
-        return []
-    List = board_list[:]
+def str_2_Cards_list( List ) :
+    """
+    Lists var act like global in python functions. so List should be written like this
+    to avoid manipulation in Lists var to furthermore usage in the other functions:
+    str_2_Cards_list( [ c.board_card_1th, c.board_card_2th, c.board_card_3th, c.board_card_4th ] )
+    """
 
     for i in range( len(List) ) :
         List[i] = n( List[i] )
@@ -161,11 +151,12 @@ def str_2_Cards_list(board_list) :
     str_2_Cards_list.sort(reverse=True)
     return str_2_Cards_list
 
-def open_str_draw_1_Cards_list(board_list) :
-
-    if board_list == []:
-        return []
-    List = board_list[:]
+def open_str_draw_1_Cards_list( List ) :
+    """
+    Lists var act like global in python functions. so List should be written like this
+    to avoid manipulation in Lists var to furthermore usage in the other functions:
+    str_2_Cards_list( [ c.board_card_1th, c.board_card_2th, c.board_card_3th, c.board_card_4th ] )
+    """
 
     for i in range( len(List) ) :
         List[i] = n( List[i] )
@@ -199,11 +190,12 @@ def open_str_draw_1_Cards_list(board_list) :
     
     return open_str_draw_1_Cards_list
             
-def open_str_draw_2_Cards_list(board_list) :
-
-    if board_list == []:
-        return []
-    List = board_list[:]
+def open_str_draw_2_Cards_list( List ) :
+    """
+    Lists var act like global in python functions. so List should be written like this
+    to avoid manipulation in Lists var to furthermore usage in the other functions:
+    str_2_Cards_list( [ c.board_card_1th, c.board_card_2th, c.board_card_3th, c.board_card_4th ] )
+    """
 
     for i in range( len(List) ) :
         List[i] = n( List[i] )
@@ -286,82 +278,104 @@ def open_str_draw_2_Cards_list(board_list) :
 # Supporting Functions Ended--------------------
 
 
-def Table_str_1_cards(board_list=None) :
+def Table_str_1_cards( table_cards_list = None ) :
     """
     Only Table_str_1_cards and Table_str_2_cards Functions can be True at the same time
     At River just 30% it happens to be False for both Table_str_1_ and Table_str_2 at the same time.
     """
 
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    if len(str_1_Cards_list( board_list )) == 0 :
+    if len(str_1_Cards_list( table_cards_list )) == 0 :
         return False
     else :
         return True
 
-def Table_str_2_cards(board_list=None) :
+def Table_str_2_cards( table_cards_list = None ) :
     """ Only Table_str_1_cards and Table_str_2_cards Functions can be True at the same time """    
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    if len(str_2_Cards_list( board_list )) == 0 :
+    if len(str_2_Cards_list( table_cards_list )) == 0 :
         return False
     else :
         return True
 
-def Table_str_1_cards_Number(board_list=None) :
+def Table_str_1_cards_Number( table_cards_list = None ) :
     """ Min Number is 0 if Table_str_1_cards == Flase, Max Number is 2 """
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return 0
+    
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    return len(str_1_Cards_list( board_list )) 
+    return len(str_1_Cards_list( table_cards_list )) 
 
-def Table_str_2_cards_Number(board_list=None) : 
+def Table_str_2_cards_Number( table_cards_list = None ) : 
     """
     Min Number is 0 if Table_str_2_cards== False, Max Number is 3 .
     At River just 30% it happens to be 0 for both Table_str_1_ and Table_str_2 at the same time.
     """
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return 0
+    
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    return len(str_2_Cards_list( board_list )) 
+    return len(str_2_Cards_list( table_cards_list )) 
 
-def Table_str_5_cards(board_list=None):
+def Table_str_5_cards( table_cards_list = None ):
     """ At River happens. returns True or False """
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
+    
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    if 14 in board_list :
-        board_list.append(1)
-    if str_length( board_list ) == 5:
+    if 14 in table_cards_list :
+        table_cards_list.append(1)
+    if str_length( table_cards_list ) == 5:
         return True
     else :
         return False
 
 
-def Me_str_1_cards(board_list=None) :
+def Me_str_1_cards( table_cards_list = None ) :
     """ if Me_str_2_cards == True : return False """
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
+    
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    if Me_str_2_cards( board_list ) == True :
+    if Me_str_2_cards( table_cards_list ) == True :
         return False
     
-    for i in str_1_Cards_list( board_list ) :
+    for i in str_1_Cards_list( table_cards_list ) :
         if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
             return True
         if n(c.my_1th_card) == 14 :
@@ -373,17 +387,20 @@ def Me_str_1_cards(board_list=None) :
      
     return False
 
-def Me_str_2_cards(board_list=None) :
+def Me_str_2_cards( table_cards_list = None ) :
     """ if Me_str_1_cards == True : return False """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
     if n(c.my_1th_card) == n(c.my_2th_card):
         return False
-    for i in str_2_Cards_list( board_list ) :
+    for i in str_2_Cards_list( table_cards_list ) :
         if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
             return True
         if n(c.my_1th_card) == 14 :
@@ -394,23 +411,26 @@ def Me_str_2_cards(board_list=None) :
                 return True   
     return False
 
-def Me_str_1_cards_Ranking(board_list=None) :
+def Me_str_1_cards_Ranking( table_cards_list = None ) :
     """
     Rank 1,2 & None
     None if Me_str_2_cards == True or Me_str == False
     1 ( [7,8,9,11] , 10, 2 ) or ([7, 8, 9, 11], 10, 6).  2 ( [7,8,9,10] , 6, 2 )
     """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return None
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
-    if Me_str_2_cards( board_list ) == True :
+    if Me_str_2_cards( table_cards_list ) == True :
         return None
     
     rank = 0
-    for i in str_1_Cards_list( board_list ) :
+    for i in str_1_Cards_list( table_cards_list ) :
         rank += 1
         if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
             return rank
@@ -421,21 +441,24 @@ def Me_str_1_cards_Ranking(board_list=None) :
             if n(c.my_1th_card) == i or 1 == i :
                 return rank    
 
-def Me_str_2_cards_Ranking(board_list=None) :
+def Me_str_2_cards_Ranking( table_cards_list = None ) :
     """
     Rank 1,2,3 & None
     1 ([7, 8, 9, 11], 10, 12).  2 ([7, 8, 9], 10, 6).  3 ([7, 8, 9], 5, 6)
     """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return None
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
 
     if n(c.my_1th_card) == n(c.my_2th_card):
         return None
     rank = 0
-    for i in str_2_Cards_list( board_list ) :
+    for i in str_2_Cards_list( table_cards_list ) :
         rank += 1
         if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
             return rank
@@ -446,21 +469,24 @@ def Me_str_2_cards_Ranking(board_list=None) :
             if n(c.my_1th_card) in i and 1 in i :
                 return rank
 
-def Me_str(board_list=None) : 
+def Me_str( table_cards_list = None ) : 
     """ if Me_str_2_cards or Me_str_1_cards """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
-        
-    if Me_str_2_cards( board_list ) == True or Me_str_1_cards( board_list ) == True :
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
+
+    if Me_str_2_cards( table_cards_list ) == True or Me_str_1_cards( table_cards_list ) == True :
         return True
     else:
         return False
 
 
-def is_there_any_better_possible_1_card_straight_on_table(board_list=None) : # screen shot again with these new Edition and discriptoins
+def is_there_any_better_possible_1_card_straight_on_table( table_cards_list = None ) : # screen shot again with these new Edition and discriptoins
     """
     returns True or False only.
     Table_str_1_cards must be True to return True.
@@ -480,54 +506,63 @@ def is_there_any_better_possible_1_card_straight_on_table(board_list=None) : # s
     This function common usage is: (Me_str_2_cards() and is_there_any_better_possible_1_card_straight_on_table()) means my 2 cards straight is not good.
     """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
+
+    if Table_str_1_cards( table_cards_list ) == False :
         return False
-        
-    if Table_str_1_cards( board_list ) == False :
-        return False
-    elif Me_str_1_cards_Ranking( board_list , c.my_1th_card , c.my_2th_card ) == 1 : 
+    elif Me_str_1_cards_Ranking( table_cards_list , c.my_1th_card , c.my_2th_card ) == 1 : 
         return False 
-    elif Me_str_2_cards( board_list , c.my_1th_card , c.my_2th_card ) == False :
+    elif Me_str_2_cards( table_cards_list , c.my_1th_card , c.my_2th_card ) == False :
         return True
-    elif max(c.my_1th_card,c.my_2th_card) < str_1_Cards_list( board_list )[0] : #equal is not possible
+    elif max(c.my_1th_card,c.my_2th_card) < str_1_Cards_list( table_cards_list )[0] : #equal is not possible
         return True
     else :
         return False
 
 
-def Me_Open_str_draw_1_cards(board_list=None) :
+def Me_Open_str_draw_1_cards( table_cards_list = None ) :
     """
     if Me_str == True: retun False
     ( [7,8,9] ,2 ,10 ): True.  ( [6,7,8,9] ,2 ,10 ): False
     """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
-        
-    if Me_Open_str_draw_2_cards( board_list ) == True \
-       or Me_str_2_cards( board_list ) == True :
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
+
+    if Me_Open_str_draw_2_cards( table_cards_list ) == True \
+       or Me_str_2_cards( table_cards_list ) == True :
         return False
     
-    for i in open_str_draw_1_Cards_list( board_list ) :
+    for i in open_str_draw_1_Cards_list( table_cards_list ) :
         if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
             return True
     return False    
 
-def Me_Open_str_draw_2_cards(board_list=None) :
+def Me_Open_str_draw_2_cards( table_cards_list = None ) :
     """ if Me_str == True: retun False """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return False
-        
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
+
     if n(c.my_1th_card) == n(c.my_2th_card):
         return False
-    for i in open_str_draw_2_Cards_list( board_list ) :
+    for i in open_str_draw_2_Cards_list( table_cards_list ) :
         if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
             return True
         if n(c.my_1th_card) == 14 :
@@ -538,37 +573,43 @@ def Me_Open_str_draw_2_cards(board_list=None) :
                 return True   
     return False
 
-def Me_Open_str_draw_1_cards_Ranking(board_list=None) :
+def Me_Open_str_draw_1_cards_Ranking( table_cards_list = None ) :
     """ Rank 1,2 & None """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return None
-        
-    if Me_Open_str_draw_2_cards( board_list ) == True \
-       or Me_str_2_cards( board_list ) == True :
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
+
+    if Me_Open_str_draw_2_cards( table_cards_list ) == True \
+       or Me_str_2_cards( table_cards_list ) == True :
         return None
     
     rank = 0
-    for i in open_str_draw_1_Cards_list( board_list ) :
+    for i in open_str_draw_1_Cards_list( table_cards_list ) :
         rank += 1
         if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
             return rank
 
-def Me_Open_str_draw_2_cards_Ranking(board_list=None) :
+def Me_Open_str_draw_2_cards_Ranking( table_cards_list = None ) :
     """ Rank 1,2,3 & None """
     
-    if board_list == None :
-        board_list = board_cards_list()[:]
-    if board_list == []:
-        return None
-        
+    if table_cards_list == None :
+        if c.flop_stage == True and c.turn_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th ]
+        elif c.turn_stage == True and c.river_stage == False :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th ]
+        elif c.river_stage == True :
+            table_cards_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th , c.board_card_4th , c.board_card_5th ]
+
     if n(c.my_1th_card) == n(c.my_2th_card):
         return None
     
     rank = 0
-    for i in open_str_draw_2_Cards_list( board_list ) :
+    for i in open_str_draw_2_Cards_list( table_cards_list ) :
         rank += 1
         if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
             return rank

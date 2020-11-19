@@ -890,7 +890,16 @@ def play_pocket_3_of_kinds():
     # hand4() or hand3() or hand2() or hand1()
     if Flop_Deside():
 
-        return ("raise", 4) # hand 3:6 , hand 2:6 , hand 1:6
+        if hand4():
+            return ("raise", 4)
+        else:
+            shout("Low bet and re raise strategy")
+            if hand3():
+                return ("raise", 4) # hand 3:6 DONE
+            elif hand2():
+                return ("raise", 4) # hand 2:6 DONE
+            elif hand1():
+                return ("raise", 4) # hand 1:6 DONE
 
     elif Turn_Deside():
 
@@ -964,7 +973,17 @@ def play_pocket_full_house():
     if Flop_Deside():
 
         if Me_pocket_full_house_Ranking() == 2:
-            return ("raise", 4) # hand 3:6 , hand 2:6 , hand 1:6
+
+            if hand4():
+                return ("raise", 4)
+            else:
+                shout("Low bet and re raise strategy")
+                if hand3():
+                    return ("raise", 4) # hand 3:6 DONE
+                elif hand2():
+                    return ("raise", 4) # hand 2:6 DONE
+                elif hand1():
+                    return ("raise", 4) # hand 1:6 DONE
 
         if Me_pocket_full_house_Ranking() == 1:
             shout("Check and raise strategy")
