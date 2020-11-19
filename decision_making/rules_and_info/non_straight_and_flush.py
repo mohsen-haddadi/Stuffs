@@ -11,7 +11,7 @@ If one of them is True the rest will be False. one Function is always True.
 
 Ranking Functions return 1.a Number or 2.a tuple or 
 3.None value if their True or False Functions have not been True already 
-  or we are pre flop stage.
+  or we are at pre flop stage.
 """
 
 """

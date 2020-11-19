@@ -10,7 +10,7 @@ At Str file there is a Exeption for this: Only Table_str_1_cards and Table_str_2
 
 Ranking Functions are :1.Me_str_(1 or 2 cards) 2.Me_Open_str(1 or 2 cards)_draw .
 Ranking Functions return 1.a Number or 
-2.None value if their True or False Functions have not been True already or we are pre flop stage.
+2.None value if their True or False Functions have not been True already or we are at pre flop stage.
 Table functions has no rankings in Flush and Pair files. in Str file there are Table_.._Number functions. 
 """
 """
