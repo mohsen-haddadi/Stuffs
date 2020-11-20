@@ -15,18 +15,20 @@ from iprint import shout
 import config as c
 
 """
-some Play functions are in calendare. add them here later
-Me_str() or Me_Flush() can overlap lower than Me_full_house() (Except Me_str() and Me_2_pair() won't overlap) 
-so for all functions lower than Me_full_house() like: 1. play_hand5_individual_or_1_pair() and 2. Play_1_pair() .... , (Me_str() or Me_Flush()) are excluded.
+Me_str() or Me_Flush() can overlap lower than Me_full_house() 
+(Except Me_str() and Me_2_pair() won't overlap) 
+so for all functions lower than Me_full_house() like: 
+1. play_hand5_individual_or_1_pair() and 2. Play_1_pair() .... , 
+(Me_str() or Me_Flush()) are excluded.
 """
 
 
-def bluff_table_flush_4_cards():
+def bluff_table_flush_4_cards(): 
 
     if River_Deside() and Table_Flush_4_cards() \
     and not Me_str() and not Me_Flush() \
     and Me_Individual() and ( Table_Individual() or Table_1_pair() ) \
-    and Table_str_1_cards_Number() \
+    and Table_str_1_cards_Number() !=2 \
     and last_raise_at("River") == 0 \
     and last_raise_at("Turn") == 0 \
     and last_raise_at("Flop") <= 4 * c.BLIND_VALUE \
@@ -129,7 +131,7 @@ def to_play_individual_cards():
 
         return False
     else:
-    	return True
+        return True
 
 def play_individual_cards():
 
@@ -241,7 +243,7 @@ def to_play_2_pair():
     else:
     	return True
 
-def play_2_pair():
+def play_2_pair(): #OK
 
     if Flop_Deside() :
 
@@ -293,7 +295,7 @@ def to_play_3_of_kind():
     else:
     	return True
 
-def play_3_of_kind():
+def play_3_of_kind(): #OK
 
     if Flop_Deside() :
 
@@ -337,7 +339,7 @@ def play_3_of_kind():
            )\
         and ( am_i_last_player_by_seat_order() 
               or ( not am_i_last_player_by_seat_order() 
-                   and not did_i_raise_at("Flop") 
+                   and not did_i_raise_at("Turn") 
                  ) 
             ) :
 
@@ -377,7 +379,9 @@ def to_play_straight():
 
 def play_straight():
     """
-    If Me_str() is True, functions lower than Me_full_house() like : 1. play_hand5_individual_or_1_pair() and 2. Play_1_pair()... should return False
+    If Me_str() is True, functions lower than Me_full_house() like: 
+    1.play_hand5_individual_or_1_pair() and 2.Play_1_pair()... 
+    should return False
     """
     if Flop_Deside() :
 
@@ -543,7 +547,9 @@ def to_play_flush():
 
 def play_flush():
     """
-    If Me_Flush() is True, functions lower than Me_full_house() like : 1. play_hand5_individual_or_1_pair() and 2. Play_1_pair()... should return False
+    If Me_Flush() is True, functions lower than Me_full_house() like: 
+    1.play_hand5_individual_or_1_pair() and 2.Play_1_pair()... 
+    should return False
     """
     if Flop_Deside() :
 
@@ -593,7 +599,7 @@ def play_flush():
 
                 return ("raise", 3) 
 
-            elif Max_raise_sofar() >= 3 * c.BLIND_VALUE :
+            elif Max_raise_sofar() > 2 * c.BLIND_VALUE :
 
                 return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)    
 
@@ -652,7 +658,7 @@ def play_flush():
                 shout("Good Me_Flush hand")
 
                 if not did_i_raise_sofar() :
-                    return ("raise", 2) 
+                    return ("raise", 3) 
 
                 elif did_i_raise_sofar() :
                     return ("raise", Max_raise_sofar() // c.BLIND_VALUE)
@@ -678,8 +684,8 @@ def to_play_full_house():
 def play_full_house():
 
     if Flop_Deside() :
-
-        shout("check and raise strategy") # whether i've had raised at pre flop or not i check and raise
+        # whether I've had raised at pre flop or not i check and raise
+        shout("check and raise strategy") 
         return ("check")
 
     elif Turn_Deside() :
@@ -716,7 +722,7 @@ def to_play_4_of_kind():
     else:
     	return True
 
-def play_4_of_kind():
+def play_4_of_kind(): #OK
 
     if Flop_Deside() :
 
@@ -741,7 +747,7 @@ def play_4_of_kind():
         if did_i_raise_sofar() :
             return ("raise", (3 * Max_raise_sofar()) // c.BLIND_VALUE)
         else :
-            return ("raise", 2)
+            return ("raise", 4)
 
 
 def to_play_pocket_pair(): # Later check if a case is missed or not at River.
