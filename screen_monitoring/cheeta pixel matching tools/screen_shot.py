@@ -1,5 +1,17 @@
 import time, os
 from datetime import datetime
+import glob
+from pathlib import Path
+import os
+
+#SCREEN_SHOT_DIRECTORY ="Screen shots/2020.11.23 Monday 03.49.46_sdf"
+##arr = os.listdir(SCREEN_SHOT_DIRECTORY)
+##arr_txt = [x for x in arr if x.endswith(".png")]
+#all_files = os.listdir(SCREEN_SHOT_DIRECTORY)
+#all_images = [os.path.splitext(x)[0] for x in all_files if x.endswith(".png")]
+#print(all_images)
+
+#os.path.splitext("3.png")[0].isdigit()
 """
 if 'pip install win32api' lead to error,
 'pip install pywinutils' instead,
@@ -7,13 +19,25 @@ and then simply 'import win32api'
 """
 import pyautogui, win32api
 
-
 def create_screen_shots_folder():
     global SCREEN_SHOT_DIRECTORY
-    DATED_SCREEN_SHOT_FOLDER = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
-    SCREEN_SHOT_DIRECTORY = "Screen shots/%s_%s" %(DATED_SCREEN_SHOT_FOLDER, folder_name)
+    #DATED_SCREEN_SHOT_FOLDER = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")
+    SCREEN_SHOT_DIRECTORY = "Screen shots/%s" %(folder_name)
     if not os.path.exists( SCREEN_SHOT_DIRECTORY ):
         os.makedirs( SCREEN_SHOT_DIRECTORY )
+
+def last_screenshot_number():
+    all_files = os.listdir(SCREEN_SHOT_DIRECTORY)
+    all_images = [os.path.splitext(x)[0] for x in all_files if x.endswith(".png")]
+
+    images_name_list = []
+    for image_name in all_images:
+        if image_name.isdigit():
+            images_name_list.append(int(image_name))
+    if images_name_list == []:
+        return 0
+    else:
+        return max(images_name_list)
 
 folder_name = input('What are screen shots names?')
 create_screen_shots_folder()
@@ -26,7 +50,7 @@ create_screen_shots_folder()
 state_left = win32api.GetKeyState(83)
 print("Press 's' key to screen shot")
 
-count = 0
+count = last_screenshot_number()
 while True: 
     #a = win32api.GetKeyState(0x01) 
     a = win32api.GetKeyState(83)
@@ -37,7 +61,7 @@ while True:
         if a < 0:
             count += 1
             print('screenshot: %s'%count)
-            pyautogui.screenshot('%s/%s %s.png' 
-                                 %(SCREEN_SHOT_DIRECTORY, folder_name, count) )
+            pyautogui.screenshot('%s/%s.png' 
+                                 %(SCREEN_SHOT_DIRECTORY, count) )
 
     time.sleep(0.001)
