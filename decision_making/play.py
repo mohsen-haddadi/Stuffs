@@ -1185,7 +1185,7 @@ def play_pre_flop_raised(): # handbook and script are same
         return ("raise", (2.5 * Max_raise_sofar()) // c.BLIND_VALUE)
 
     # 'AKs', 'AQs', 'AJs', 'AKo'
-    elif holdem_starting_hand_ranking() in (4, 6, 8, 12)\
+    elif holdem_starting_hand_ranking() in (8, 10, 11, 12)\
     and Max_raise_sofar() <= 4 * c.BLIND_VALUE:
 
         return ("call")
