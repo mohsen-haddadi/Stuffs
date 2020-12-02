@@ -9,5 +9,3 @@ pygetwindow>=0
 wmi>=0
 pywin32>=0
 pywinutils>=0
-
-hi
