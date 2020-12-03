@@ -126,7 +126,7 @@ def Any_raiser_now():
 
 def number_of_players_in() : 
     """ 
-    Return 2 to 5 (if lower than 2, pixel matching was wrong)
+    Return 2 to c.TOTAL_SEATS (if lower than 2, pixel matching was wrong)
     Included me
     """
     
@@ -135,6 +135,50 @@ def number_of_players_in() :
         if c.last_player_cards_cache[Seat] == True :
             count += 1
     return count
+
+
+def my_seat_position_ranking(): #added 2020, and tested OK
+    """
+    my_seat_position_ranking is based on the beginning of the game,
+    because playing_seats dictionary is based on the beginning of the game.
+    Seated out players waiting for their first big blinds are not counted.
+    0% <= early_position < 60%
+    60% <= middle_position < 75%
+    75% <= late_position < 100%
+    """
+    total = 0
+    for i in range(1, c.TOTAL_SEATS+1) :
+        if c.small_blind_seat != c.dealer_seat : 
+            seat = Turn_Finder( c.small_blind_seat , i )
+        #(for 2 players) The rules may differs on the other websites.
+        elif c.small_blind_seat == c.dealer_seat : 
+            seat = Turn_Finder( c.big_blind_seat , i )
+            
+        if seat != c.my_seat_number :
+            if c.playing_seats[seat] == True :
+                total += 1
+        elif seat == c.my_seat_number :
+            total += 1 
+            my_position = total
+    return my_position / total
+
+def early_position():
+    if 0 <= my_seat_position_ranking() < 0.60 :
+        return True
+    else:
+        return False
+
+def middle_position():
+    if 0.60 <= my_seat_position_ranking() < 0.75 :
+        return True
+    else:
+        return False
+
+def late_position():
+    if 0.75 <= my_seat_position_ranking() < 1 :
+        return True
+    else:
+        return False
 
 
 def am_i_last_player_by_seat_order():
@@ -843,9 +887,9 @@ Not direct Practical functions:
 
 def Turn_Finder(Seat_Starter , Xth) :
     """ Return The seat number;for instance;(4,1)returns seat 4! """
-    Answer = (Seat_Starter - 1 + Xth ) % 5
+    Answer = (Seat_Starter - 1 + Xth ) % c.TOTAL_SEATS
     if Answer == 0 :
-        return 5
+        return c.TOTAL_SEATS
     else :
         return Answer
 

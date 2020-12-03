@@ -17,8 +17,8 @@ set_just_do_check_fold_to_true, screenshot_error
 import config
 from iprint import shout
 from set_variables import set_all_variables_to_none, read_and_save_bets,\
-determine_small_big_dealer_seats, reset_table_information,\
-read_and_save_banks_and_names
+determine_small_big_dealer_seats, determine_playing_seats,\
+reset_table_information, read_and_save_banks_and_names
 from observing import bot_is_observing
 from main_assist import *
 
@@ -85,6 +85,7 @@ def bot_is_playing():
         if config.bot_status != 'I_AM_PLAYING':
             break
         determine_small_big_dealer_seats()
+        determine_playing_seats()
         # In case bot is resumed:
         if not first_round_at_preflop():
             set_just_do_check_fold_to_true("program must've started "\

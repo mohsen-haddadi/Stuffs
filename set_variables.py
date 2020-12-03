@@ -30,7 +30,8 @@ def set_all_variables_to_none():
     config.player_cards_cache , config.white_chips_cache , config.red_chips_cache , config.bets_cache ,\
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache, seats_not_folded,\
-    config.did_i_raised_at  , config.my_last_raise_at , config.players_name , config.players_bank ,\
+    config.did_i_raised_at  , config.my_last_raise_at ,\
+    config.players_name , config.players_bank , config.playing_seats\
     config.BLIND_VALUE , config.TOTAL_SEATS ,\
     config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*41
 
@@ -53,6 +54,23 @@ def determine_small_big_dealer_seats():
             shout("Dealer is on seat %s" %seat)
             config.dealer_seat = seat
             break
+
+def determine_playing_seats():
+    """
+    playing_seats dictionary is used for calculating 
+    my seat positioning ranking.
+    Seated out players waiting for their first big blinds are not counted.
+    """
+    for seat in range(1, config.TOTAL_SEATS+1):
+        if ( not pm.available_seat_pixel(config.game_position, seat)
+             and pm.player_cards_pixel(config.game_position, seat) ):
+            config.playing_seats[seat] = True
+        else:
+            config.playing_seats[seat] = False
+
+    shout("TEST. playing_seats dictionary is: %s" %config.playing_seats 
+          , color = 'on_light_red')
+            
 
 ### Read_Bets & dinctionaries & Reset var funcs: ****************************************************************************************************************************
 
@@ -94,9 +112,9 @@ def read_and_save_banks_and_names() :
             config.players_name[seat] = ocr_other_names(seat)
             if red_chips(seat) :
                 config.players_bank[seat] = None
-    shout("Players Bank dictionary is: %s" %config.players_bank 
+    shout("TEST. Players Bank dictionary is: %s" %config.players_bank 
           , color = 'on_light_red')
-    shout("Players Name dictionary is: %s" %config.players_name 
+    shout("TEST. Players Name dictionary is: %s" %config.players_name 
           , color = 'on_light_red')
 
 def reset_table_information() : 
@@ -112,6 +130,7 @@ def reset_table_information() :
 
     shout("Reseting table information")
     reset_just_do_check_fold_to_false()
+    config.playing_seats = {}
     config.players_name = {}
     config.players_bank = {}
     for Seat in range(1, config.TOTAL_SEATS+1):

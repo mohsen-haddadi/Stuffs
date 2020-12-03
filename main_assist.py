@@ -222,7 +222,7 @@ def read_board_cards():
         read_and_save_turn_card()
     if c.river_stage:
         read_and_save_river_card()
- 
+
 def stages_are_sequenced(): 
     if pm.flop_pixel(c.game_position) and c.preflop_stage == False:
         return False
