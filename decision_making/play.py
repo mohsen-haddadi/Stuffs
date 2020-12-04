@@ -799,7 +799,9 @@ def play_pocket_pair(): # Later check if a case is missed or not at River.
                 return ("raise", 5) # hand 1:9 DONE
 
         # hand 1:9.1 DONE
-        elif Table_4_of_kinds() and hand4() and n(c.my_1th_card) == 14:
+        elif Table_4_of_kinds():
+            if n(c.my_1th_card) == 14 or \
+            ( n(c.my_1th_card) == 13 and n(c.board_card_1th) == 14 ):
 
             return ("raise", 5)
 
