@@ -3,21 +3,13 @@ from datetime import datetime
 import glob
 from pathlib import Path
 import os
-
-#SCREEN_SHOT_DIRECTORY ="Screen shots/2020.11.23 Monday 03.49.46_sdf"
-##arr = os.listdir(SCREEN_SHOT_DIRECTORY)
-##arr_txt = [x for x in arr if x.endswith(".png")]
-#all_files = os.listdir(SCREEN_SHOT_DIRECTORY)
-#all_images = [os.path.splitext(x)[0] for x in all_files if x.endswith(".png")]
-#print(all_images)
-
-#os.path.splitext("3.png")[0].isdigit()
 """
 if 'pip install win32api' lead to error,
 'pip install pywinutils' instead,
 and then simply 'import win32api'
 """
 import pyautogui, win32api
+
 
 def create_screen_shots_folder():
     global SCREEN_SHOT_DIRECTORY
