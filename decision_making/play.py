@@ -835,7 +835,13 @@ def play_pocket_pair(): # Later check if a case is missed or not at River.
     elif River_Deside():
         # Later check if a case is missed or not.
         if Table_4_of_kinds():
-            return ("check")
+            if n(c.my_1th_card) == 14 or \
+            ( n(c.my_1th_card) == 13 and n(c.board_card_1th) == 14 ):
+
+                return ("raise", (2 * Max_raise_sofar()) // c.BLIND_VALUE)
+
+            else:
+                return ("check")
 
         elif Table_3_of_kinds() and (Me_pocket_pair_Ranking() == 1
                                    or am_i_last_player_by_seat_order() ):
