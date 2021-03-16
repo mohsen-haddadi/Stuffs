@@ -202,5 +202,5 @@ def main():
     create_source_cards(create_table_cards = False)
 
 if __name__ == '__main__':
-	main()
+    main()
 

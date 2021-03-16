@@ -32,7 +32,7 @@ def wait_hand_ends_when_observing(waiting_minutes = 5):
         if time.time() - t1 > 60 * waiting_minutes :
             c.bot_status = 'ON_MAIN_MENU'
             shout("No hand ending after %s minutes, "\
-            	  "call operator to go to main menu" %waiting_minutes)
+                  "call operator to go to main menu" %waiting_minutes)
             break
         if game_is_paused():
             fix_game_disruption('game is unpaused')
