@@ -110,7 +110,7 @@ def hand1() :
         #shout("hand1 is True")
         return True
     else :
-        return None
+        return False
 
 def hand2() :
     """ QQ,JJ """
@@ -118,7 +118,7 @@ def hand2() :
         #shout("hand2 is True")
         return True
     else :
-        return None
+        return False
 
 def hand3() :
     """ 1010,99 """
@@ -126,7 +126,7 @@ def hand3() :
         #shout("hand3 is True")
         return True
     else :
-        return None
+        return False
 
 def hand4() :
     """ 88,77,...,22 """
@@ -134,7 +134,7 @@ def hand4() :
         #shout("hand4 is True")
         return True
     else :
-        return None
+        return False
 
 def hand5() :
     """ A10,...,KQ  3 Blind raise """
@@ -144,7 +144,7 @@ def hand5() :
             #shout("hand5 is True")
             return True
     else :
-        return None
+        return False
 
 def hand6() :
     """ KJ,QJ,,...,A2,...,(108,98 rang),109  1 Blind call """
@@ -156,7 +156,7 @@ def hand6() :
                 #shout("hand6 is True")
                 return True
     else :
-        return None
+        return False
 
 def hand7() :
     """ 72,73,...,96,107 (gheir rang)  Fold small blind position (otherwise Small always call Blind) """
@@ -169,7 +169,7 @@ def hand7() :
                 #shout("hand7 is True")
                 return True
     else :
-        return None
+        return False
 
 
 #--------------------------------------------
@@ -185,7 +185,7 @@ def hand8() :
             #shout("hand8 is True")
             return True
     else :
-        return None
+        return False
 
 def hand9() :
     """ AK,...,1010,...,(98 rang) Small position call 2 blind raise, otherwise fold that """
@@ -195,6 +195,25 @@ def hand9() :
             #shout("hand9 is True")
             return True
     else :
-        return None    
+        return False    
 
 
+"""
+# there are some hands which are not included in hand functions above:
+suits = ['Heart', 'Spade', 'Club', 'Diamond']
+ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
+         'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
+
+for rank in ranks:
+    for suit in suits:
+        c.my_1th_card = (rank, suit)
+        for rank in ranks:
+            for suit in suits:
+                c.my_2th_card = (rank, suit)
+                if c.my_1th_card == c.my_2th_card:
+                    continue
+                if any([hand1(), hand2(), hand3(), hand4(), hand5(), hand6(), hand7()]):
+                    continue
+                else:
+                    print('no category for %s %s' %(c.my_1th_card, c.my_2th_card))
+"""
