@@ -65,9 +65,11 @@ def wait_for_my_new_hand(waiting_minutes = 10):
             shout("My cards are founded", color = 'light_magenta')
             c.preflop_stage = True
             break
-        c.new_hand = hand_is_ended()
-        if not c.new_hand:
-            break
+        # 2021: It's not reasonable to break here at all. 
+        # So I comment these 3 lines:
+        #c.new_hand = hand_is_ended()
+        #if not c.new_hand:
+        #    break
         if time.time() - t1 > 60*waiting_minutes:
             fix_game_disruption('My cards are not founded for new hand '\
                                 'after %s minutes wating'%waiting_minutes)
@@ -151,8 +153,9 @@ def wait_for_sb_b_d_buttons(waiting_seconds = 5):
 
 def game_is_paused():
     """Hold 'end' button to pause the bot.
-    game_is_paused() is used in main.py and main_assist.py modules.
-    It is used at the end waiting functions or functions which contains 
+    game_is_paused() is used in main.py and main_assist.py and 
+    observing.py modules.
+    It is used at the end of waiting functions or functions which contains 
     'while True:' statement.
     After game is paused, bot should redirect to 'WAITING_FOR_FIRST_HAND' 
     status immediately.
@@ -166,9 +169,9 @@ def game_is_paused():
         else:
             c.bot_status = 'WAITING_FOR_FIRST_HAND'
         # DON'T use set_just_do_check_fold_to_true() here.
-        # we use it at wait_for_my_first_hand() function, this function will 
-        # checks if the hand is just started or not and won't waste 
-        # just started hands by doing just check_fold.
+        # we use it at *if not first_round_at_preflop():* statement.
+        # this statement will checks if the hand is just started or not 
+        # and won't waste just started hands by doing just check_fold.
         return True
     return False
 

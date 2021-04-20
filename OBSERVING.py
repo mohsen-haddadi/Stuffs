@@ -90,9 +90,9 @@ def first_player_seat():
 
 def turn_finder(starter_seat , xth) :
     """Returns the seat number; for instance; (4,1) returns seat 4!"""
-    answer = (starter_seat - 1 + xth ) % 5
+    answer = (starter_seat - 1 + xth ) % c.TOTAL_SEATS
     if answer == 0 :
-        return 5
+        return c.TOTAL_SEATS
     else :
         return answer
 

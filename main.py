@@ -125,6 +125,7 @@ def play_a_hand():
             fix_game_disruption('This hand last more than 5 minutes')
         config.new_hand = hand_is_ended()
         if config.new_hand:
+        	#append new line at csv file here. 
             shout ("-------- Hand ended --------", color = 'on_green')
             break
         if game_is_paused():
