@@ -24,6 +24,8 @@ so for all functions lower than Me_full_house() like:
 (Me_str() or Me_Flush()) are excluded.
 """
 
+def scenario(number):
+    c.scenario_list.append(number)
 
 def bluff_table_flush_4_cards(): 
 
@@ -939,8 +941,8 @@ def play_pocket_pair(): # Later check if a case is missed or not at River.
             if n(c.my_1th_card) == 14 or \
             ( n(c.my_1th_card) == 13 and n(c.board_card_1th) == 14 ):
 
-            scenario(135)
-            return ("raise", 5)
+                scenario(135)
+                return ("raise", 5)
 
         elif Table_3_of_kinds() or Table_4_of_kinds() \
         or cards_ranking(c.my_1th_card) > 1:

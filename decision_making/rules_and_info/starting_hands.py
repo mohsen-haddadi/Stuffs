@@ -49,59 +49,59 @@ def holdem_starting_hand_ranking():
 #    '73o', '94o', '32o', '62o', '93o', '92o', '83o', '82o', '72o',
 #    ]
 
-    def change_hand_format(my_1th_card, my_2th_card):
-        """
-        This function change the given hand format 
-        to the format used in the HOLDEM_169_HOLE_CARDS_RANKING_LIST
-        Example: c.my_1th_card = ('Seven', 'Spade') ; c.my_2th_card = ('Ace', 'Heart')
-        returns 'A7o'
-        """
-        if n(c.my_1th_card) == 14:
-            my_1th_card_value = 'A'
-        elif n(c.my_1th_card) == 13:
-            my_1th_card_value = 'K'
-        elif n(c.my_1th_card) == 12:
-            my_1th_card_value = 'Q'
-        elif n(c.my_1th_card) == 11:
-            my_1th_card_value = 'J'
-        elif n(c.my_1th_card) == 10:
-            my_1th_card_value = 'T'
-        else:
-            my_1th_card_value = str(n(c.my_1th_card))
-
-        if n(c.my_2th_card) == 14:
-            my_2th_card_value = 'A'
-        elif n(c.my_2th_card) == 13:
-            my_2th_card_value = 'K'
-        elif n(c.my_2th_card) == 12:
-            my_2th_card_value = 'Q'
-        elif n(c.my_2th_card) == 11:
-            my_2th_card_value = 'J'
-        elif n(c.my_2th_card) == 10:
-            my_2th_card_value = 'T'
-        else:
-            my_2th_card_value = str(n(c.my_2th_card))
-
-        if n(c.my_1th_card) > n(c.my_2th_card):
-            high_card = my_1th_card_value
-            low_card = my_2th_card_value
-        else:
-            high_card = my_2th_card_value
-            low_card = my_1th_card_value
-
-        if n(c.my_1th_card) == n(c.my_2th_card):
-            return '%s%s' %(my_1th_card_value, my_2th_card_value)
-        elif s(c.my_1th_card) == s(c.my_2th_card):
-            return '%s%ss' %(high_card, low_card)
-        elif s(c.my_1th_card) != s(c.my_2th_card):
-            return '%s%so' %(high_card, low_card)
-
     my_cards = change_hand_format(c.my_1th_card, c.my_2th_card)
     #print(my_cards)
     # hand_ranking from 1 to 169
     hand_ranking = HOLDEM_169_HOLE_CARDS_RANKING_LIST.index(my_cards) + 1
     return hand_ranking
 
+def change_hand_format(my_1th_card, my_2th_card):
+    """
+    This function change the given hand format 
+    to the format used in the HOLDEM_169_HOLE_CARDS_RANKING_LIST
+    Example: c.my_1th_card = ('Seven', 'Spade') ; c.my_2th_card = ('Ace', 'Heart')
+    returns 'A7o'
+    """
+    if n(c.my_1th_card) == 14:
+        my_1th_card_value = 'A'
+    elif n(c.my_1th_card) == 13:
+        my_1th_card_value = 'K'
+    elif n(c.my_1th_card) == 12:
+        my_1th_card_value = 'Q'
+    elif n(c.my_1th_card) == 11:
+        my_1th_card_value = 'J'
+    elif n(c.my_1th_card) == 10:
+        my_1th_card_value = 'T'
+    else:
+        my_1th_card_value = str(n(c.my_1th_card))
+
+    if n(c.my_2th_card) == 14:
+        my_2th_card_value = 'A'
+    elif n(c.my_2th_card) == 13:
+        my_2th_card_value = 'K'
+    elif n(c.my_2th_card) == 12:
+        my_2th_card_value = 'Q'
+    elif n(c.my_2th_card) == 11:
+        my_2th_card_value = 'J'
+    elif n(c.my_2th_card) == 10:
+        my_2th_card_value = 'T'
+    else:
+        my_2th_card_value = str(n(c.my_2th_card))
+
+    if n(c.my_1th_card) > n(c.my_2th_card):
+        high_card = my_1th_card_value
+        low_card = my_2th_card_value
+    else:
+        high_card = my_2th_card_value
+        low_card = my_1th_card_value
+
+    if n(c.my_1th_card) == n(c.my_2th_card):
+        return '%s%s' %(my_1th_card_value, my_2th_card_value)
+    elif s(c.my_1th_card) == s(c.my_2th_card):
+        return '%s%ss' %(high_card, low_card)
+    elif s(c.my_1th_card) != s(c.my_2th_card):
+        return '%s%so' %(high_card, low_card)
+            
 #----
 
 def hand1() :

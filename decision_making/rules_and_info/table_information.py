@@ -175,7 +175,7 @@ def middle_position():
         return False
 
 def late_position():
-    if 0.75 <= my_seat_position_ranking() < 1 :
+    if 0.75 <= my_seat_position_ranking() <= 1 :
         return True
     else:
         return False

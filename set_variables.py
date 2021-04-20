@@ -31,9 +31,11 @@ def set_all_variables_to_none():
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache, config.seats_not_folded,\
     config.did_i_raised_at  , config.my_last_raise_at ,\
-    config.players_name , config.players_bank , config.playing_seats\
+    config.players_name , config.players_bank , config.playing_seats,\
     config.BLIND_VALUE , config.TOTAL_SEATS ,\
-    config.small_blind_seat , config.big_blind_seat , config.dealer_seat = (None,)*42
+    config.small_blind_seat , config.big_blind_seat , config.dealer_seat,\
+    config.hand_number, config.game_number, config.scenario_list,\
+    config.csv_path = (None,)*46
 
 
 def determine_small_big_dealer_seats():
@@ -130,6 +132,7 @@ def reset_table_information() :
 
     shout("Reseting table information")
     reset_just_do_check_fold_to_false()
+    config.scenario_list = []
     config.playing_seats = {}
     config.players_name = {}
     config.players_bank = {}

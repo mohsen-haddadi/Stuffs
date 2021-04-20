@@ -8,11 +8,14 @@ change these 2 functions by uncommenting some lines inside them:
 import time
 
 import win32gui, win32con 
+import pandas as pd
 
 import screen_monitoring.find_game_position.find_game_position as find_game_position
+import decision_making.play
 from readability.read_cards import read_and_save_my_cards
 from readability.fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
+from hand_history_data_base.append_to_csv import append_new_line_to_csv
 #importing same level directory modules
 import config
 from iprint import shout
@@ -70,6 +73,7 @@ def bot_is_playing():
         if config.new_hand: 
             declare_the_winners()
             wait_celebration_ends(waiting_seconds = 10)
+        config.hand_number += 1
         reset_table_information()
         shout("* bot_status == 'I_AM_PLAYING' *",color = 'on_green')
         wait_for_my_new_hand(waiting_minutes = 10)
@@ -125,7 +129,8 @@ def play_a_hand():
             fix_game_disruption('This hand last more than 5 minutes')
         config.new_hand = hand_is_ended()
         if config.new_hand:
-        	#append new line at csv file here. 
+            shout ("appending hand data to csv file", color = 'on_green')
+            append_new_line_to_csv(config.csv_path) 
             shout ("-------- Hand ended --------", color = 'on_green')
             break
         if game_is_paused():
@@ -170,6 +175,14 @@ def main():
     create_report_folder()
     # Initial values:
     config.MY_PROFILE_NAME = "XOwl"
+    config.hand_number = 0
+    config.csv_path = 'hand_history_data_base/hands history version %s.csv'\
+                      %decision_making.play.VERSION
+    try:
+        df = pd.read_csv(config.csv_path)
+        config.game_number = df.at[df.index[-1], 'Game number'] + 1
+    except:
+        config.game_number = 1
     if input("Is my name: %s ?(Enter:yes/any keyword:no)" 
              % config.MY_PROFILE_NAME) != "" :
         config.MY_PROFILE_NAME = input("Enter profile name: ")
