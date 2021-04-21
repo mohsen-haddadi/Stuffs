@@ -153,7 +153,7 @@ def reset_table_information() :
     # otherwise did_i_raise_sofar() at supporting funcs file will error
     config.did_i_raised_at = {"Pre_Flop": False , "Flop": False ,
                        "Turn": False , "River": False } 
-
+    config.my_last_raise_at = {}
     # (2018) Later make sure if all rounds are starting from 0 in 
     # main While True loop (Round_... = 0 should be implemented in 
     # read_and_save_bets() for all stages so for example 

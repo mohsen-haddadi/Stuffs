@@ -414,6 +414,8 @@ def my_turn_from_last_raiser_sofar():
     """
     
     Last_Red_Seat = last_raiser_seat_sofar()
+    if Last_Red_Seat == None:
+        return None
 
     Total = 0
     for i in range(1, c.TOTAL_SEATS+1):
@@ -442,7 +444,7 @@ def my_turn_from_last_raiser_sofar():
     return ( my_position , Total ) #this line is copy & pasted here new
 
 
-def did_i_checked() :
+def did_i_check() :
     """ 
     Return True or False
     It depends on my last action, so if stage round is 0 it will look at the former stage.
@@ -473,7 +475,7 @@ def did_i_checked() :
     elif c.last_bets_cache[c.my_seat_number] != None :
         return False
 
-def did_i_called() :
+def did_i_call() :
     """ 
     Return True or False
     calling Blinds at Pre_Flop will counted as checking and returns False.
@@ -509,7 +511,7 @@ def did_i_called() :
     elif c.last_white_chips_cache[c.my_seat_number] == False :
         return False
 
-def did_i_raised() :
+def did_i_raise() :
     """ 
     Return True or False
     It depends on my last action, so if stage round is 0 it will look at the former stage.
