@@ -1,3 +1,7 @@
+"""
+TODO:
+Add 'fold' header with True or False values to csv too.
+"""
 import os
 from datetime import datetime
 
