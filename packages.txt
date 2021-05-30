@@ -2,6 +2,7 @@ pyautogui>=0
 numpy>=0
 opencv-python>=0
 pytesseract>=0
+eval7>=0
 pygame>=0
 painter>=0
 keyboard>=0
