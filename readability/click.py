@@ -183,7 +183,7 @@ def raising(Blinds):
 
     config.did_i_raised_at[stage] = True
     
-    Bets = [last_bets_cache[Seat] for Seat in range(1, config.TOTAL_SEATS+1) if last_red_chips_cache[Seat] and last_bets_cache[Seat] != None ]     
+    Bets = [config.last_bets_cache[Seat] for Seat in range(1, config.TOTAL_SEATS+1) if config.last_red_chips_cache[Seat] and config.last_bets_cache[Seat] != None ]     
 
     if config.preflop_stage and not config.flop_stage :
         Bets.append(config.BLIND_VALUE)

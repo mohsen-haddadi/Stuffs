@@ -31,11 +31,11 @@ def set_all_variables_to_none():
     config.last_white_chips_cache , config.last_red_chips_cache ,\
     config.last_player_cards_cache , config.last_bets_cache, config.seats_not_folded,\
     config.did_i_raised_at  , config.my_last_raise_at ,\
-    config.players_name , config.players_bank , config.playing_seats,\
+    config.players_name , config.players_bank , config.last_players_bank, config.playing_seats,\
     config.BLIND_VALUE , config.TOTAL_SEATS ,\
     config.small_blind_seat , config.big_blind_seat , config.dealer_seat,\
     config.hand_number, config.game_number, config.scenario_list,\
-    config.csv_path = (None,)*46
+    config.csv_path = (None,)*47
 
 
 def determine_small_big_dealer_seats():
@@ -119,6 +119,13 @@ def read_and_save_banks_and_names() :
     shout("TEST. Players Name dictionary is: %s" %config.players_name 
           , color = 'on_light_red')
 
+def read_banks():
+    for seat in range(1, config.TOTAL_SEATS+1):
+        if config.my_seat_number == seat:
+            config.last_players_bank[config.my_seat_number] = ocr_my_bank()
+        elif pm.other_player_seated_pixel(config.game_position, seat) == True:
+            config.last_players_bank[seat] = ocr_other_players_bank(seat)
+
 def reset_table_information() : 
     """
     IT'S DONE: preflop_betting_round ,...,river_betting_round & preflop_stage 
@@ -136,9 +143,11 @@ def reset_table_information() :
     config.playing_seats = {}
     config.players_name = {}
     config.players_bank = {}
+    config.last_players_bank = {}
     for Seat in range(1, config.TOTAL_SEATS+1):
         config.players_name[Seat] = None
         config.players_bank[Seat] = None
+        config.last_players_bank[Seat] = None
     config.player_cards_cache = {}
     config.white_chips_cache = {} 
     config.red_chips_cache = {}
