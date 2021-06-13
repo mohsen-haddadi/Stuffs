@@ -1,0 +1,6 @@
+The files are used for the game:
+1. read_card.py
+2. match_card.py
+3. 'Source card Images for Celeb' Folder
+
+The other files are used for creating source cards images for a new site

@@ -4,6 +4,8 @@ When play.py module is completed,
 change these 2 functions by uncommenting some lines inside them:
 1. click_decision() at main_assit.py
 2. decide() at decide.py
+
+delete lines with #💊💊💊 comment at this file when play.py is completed.
 """
 import time
 
@@ -12,6 +14,7 @@ import pandas as pd
 
 import screen_monitoring.find_game_position.find_game_position as find_game_position
 import decision_making.play
+from decision_making.rules_and_info.table_information import Flop_Deside #💊💊💊
 from readability.read_cards import read_and_save_my_cards
 from readability.fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
@@ -114,7 +117,12 @@ def bot_is_playing():
 def play_a_hand():
     t1 = time.time()
     while True:
-        if shifted_to_next_stage(): 
+        if shifted_to_next_stage():
+
+            if Flop_Deside() and config.last_player_cards_cache[config.my_seat_number]: #💊💊💊
+                # I MUST PLAY SOUND #💊💊💊
+                sound('Schiller Nachtflug') #💊💊💊
+
             read_board_cards()
             if not stages_are_sequenced():
                 set_just_do_check_fold_to_true('stages are not sequenced')
@@ -122,6 +130,7 @@ def play_a_hand():
         if its_my_turn():
             update_betting_rounds()
             read_and_save_bets()
+            read_banks()
             if config.bot_status == 'I_AM_PLAYING':
                 click_decision() #🌏🌱♣♠♦♥🌱🌏
         if t1 - time.time() > 5 * 60:

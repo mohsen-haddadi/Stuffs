@@ -1,5 +1,5 @@
 #OK
-from decision_making.play import *
+from decision_making.playpreflop import play_pre_flop
 #from play import * 
 from iprint import shout
 import config
@@ -22,61 +22,18 @@ def decide():
 
     else :
 
-        if to_play_pre_flop():
+        if Pre_Flop_Deside():
             return play_pre_flop()
 
-        elif to_play_hand5_individual_or_1_pair(): 
-            return play_hand5_individual_or_1_pair()
 
-        elif to_play_individual_cards():
-            return play_individual_cards()
-
-        elif to_play_1_pair():
-            return play_1_pair()
-
-        elif to_play_2_pair():
-            return play_2_pair()
-
-        elif to_play_3_of_kind():
-            return play_3_of_kind()
-
-        elif to_play_straight():
-            return play_straight()
-
-        elif to_play_flush():
-            return play_flush()
-
-        elif to_play_full_house():
-            return play_full_house()
-
-        elif to_play_4_of_kind():
-            return play_4_of_kind()
-
-        elif to_play_pocket_pair():
-            return play_pocket_pair()
-
-        elif to_play_pocket_3_of_kinds():
-            return play_pocket_3_of_kinds()
-
-        elif to_play_pocket_full_house():
-            return play_pocket_full_house()
-
-        elif to_play_pocket_4_of_kinds():
-            return play_pocket_4_of_kinds()
-
-
-
-        elif to_play_pre_flop_raised():
-            return play_pre_flop_raised()
-        
-#        elif to_play_flop_raised():
-#            return play_flop_raised()
+#        elif Flop_Deside():
+#            return play_flop()
 #
-#        elif to_play_turn_raised():
-#            return play_turn_raised()
+#        elif Turn_Deside():
+#            return play_turn()
 #
-#        elif to_play_river_raised():
-#            return play_river_raised()
+#        elif River_Deside():
+#            return play_river()
 #
         #uncomment lines, when play.py module is completed.
         else :

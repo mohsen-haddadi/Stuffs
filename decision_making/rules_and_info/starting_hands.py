@@ -3,6 +3,25 @@ from decision_making.rules_and_info.suit_and_value import s, n
 #from suit_and_value import s, n
 import config as c
 
+def group(string):
+    GROUPS = {
+        'A': ['AA', 'KK'],
+        'B': ['AKs', 'QQ'],
+        'C': ['AK', 'JJ','TT'],
+        'D': ['AQs', 'AQ', 'AJs', '99', '88'],
+        'E': ['AJ', 'ATs', 'KQs', '77', '66', '55'],
+        'F': ['AT', 'KQ', 'KJs', 'QJs', '44', '33', '22'],
+        'G': ['A9s', 'A8s', 'A7s', 'A6s', 'A5s', 'A4s', 'A3s', 'A2s',
+              'KTs', 'QTs', 'JTs', 'J9s', 'T9s', '98s'],
+        'H': ['KJ', 'KT', 'QJ', 'J8s', 'T8s', '87s', '76s']
+        }
+    # removing whitespaces
+    string = ''.join(string.split())
+    group_cards = []
+    for char in string:
+        group_cards = group_cards + GROUPS[char]
+    return change_hand_format(c.my_1th_card, c.my_2th_card) in group_cards
+
 def holdem_starting_hand_ranking():
     """ 
     returns 1 to 169
@@ -12,22 +31,22 @@ def holdem_starting_hand_ranking():
     """
     HOLDEM_169_HOLE_CARDS_RANKING_LIST = [
     'AA', 'KK', 'QQ', 'JJ', 'TT', '99', '88', 'AKs', '77', 'AQs',
-    'AJs', 'AKo', 'ATs', 'AQo', 'AJo', 'KQs', '66', 'A9s', 'ATo', 'KJs', 
-    'A8s', 'KTs', 'KQo', 'A7s', 'A9o', 'KJo', '55', 'QJs', 'K9s', 'A5s',
-    'A6s', 'A8o', 'KTo', 'QTs', 'A4s', 'A7o', 'K8s', 'A3s', 'QJo', 'K9o',
-    'A5o', 'A6o', 'Q9s', 'K7s', 'JTs', 'A2s', 'QTo', '44', 'A4o', 'K6s',
-    'K8o', 'Q8s', 'A3o', 'K5s', 'J9s', 'Q9o', 'JTo', 'K7o', 'A2o', 'K4s',
-    'Q7s', 'K6o', 'K3s', 'T9s', 'J8s', '33', 'Q6s', 'Q8o', 'K5o', 'J9o',
-    'K2s', 'Q5s', 'T8s', 'K4o', 'J7s', 'Q4s', 'Q7o', 'T9o', 'J8o', 'K3o',
-    'Q6o', 'Q3s', '98s', 'T7s', 'J6s', 'K2o', '22', 'Q2s', 'Q5o', 'J5s',
-    'T8o', 'J7o', 'Q4o', '97s', 'J4s', 'T6s', 'J3s', 'Q3o', '98o', '87s',
-    'T7o', 'J6o', '96s', 'J2s', 'Q2o', 'T5s', 'J5o', 'T4s', '97o', '86s',
-    'J4o', 'T6o', '95s', 'T3s', '76s', 'J3o', '87o', 'T2s', '85s', '96o',
-    'J2o', 'T5o', '94s', '75s', 'T4o', '93s', '86o', '65s', '84s', '95o',
-    'T3o', '92s', '76o', '74s', 'T2o', '54s', '85o', '64s', '83s', '94o',
-    '75o', '82s', '73s', '93o', '65o', '53s', '63s', '84o', '92o', '43s',
-    '74o', '72s', '54o', '64o', '52s', '62s', '83o', '42s', '82o', '73o',
-    '53o', '63o', '32s', '43o', '72o', '52o', '62o', '42o', '32o',
+    'AJs', 'AK', 'ATs', 'AQ', 'AJ', 'KQs', '66', 'A9s', 'AT', 'KJs', 
+    'A8s', 'KTs', 'KQ', 'A7s', 'A9', 'KJ', '55', 'QJs', 'K9s', 'A5s',
+    'A6s', 'A8', 'KT', 'QTs', 'A4s', 'A7', 'K8s', 'A3s', 'QJ', 'K9',
+    'A5', 'A6', 'Q9s', 'K7s', 'JTs', 'A2s', 'QT', '44', 'A4', 'K6s',
+    'K8', 'Q8s', 'A3', 'K5s', 'J9s', 'Q9', 'JT', 'K7', 'A2', 'K4s',
+    'Q7s', 'K6', 'K3s', 'T9s', 'J8s', '33', 'Q6s', 'Q8', 'K5', 'J9',
+    'K2s', 'Q5s', 'T8s', 'K4', 'J7s', 'Q4s', 'Q7', 'T9', 'J8', 'K3',
+    'Q6', 'Q3s', '98s', 'T7s', 'J6s', 'K2', '22', 'Q2s', 'Q5', 'J5s',
+    'T8', 'J7', 'Q4', '97s', 'J4s', 'T6s', 'J3s', 'Q3', '98', '87s',
+    'T7', 'J6', '96s', 'J2s', 'Q2', 'T5s', 'J5', 'T4s', '97', '86s',
+    'J4', 'T6', '95s', 'T3s', '76s', 'J3', '87', 'T2s', '85s', '96',
+    'J2', 'T5', '94s', '75s', 'T4', '93s', '86', '65s', '84s', '95',
+    'T3', '92s', '76', '74s', 'T2', '54s', '85', '64s', '83s', '94',
+    '75', '82s', '73s', '93', '65', '53s', '63s', '84', '92', '43s',
+    '74', '72s', '54', '64', '52s', '62s', '83', '42s', '82', '73',
+    '53', '63', '32s', '43', '72', '52', '62', '42', '32',
     ]
 #    HOLDEM_169_HOLE_CARDS_RANKING_LIST_non_heads_up = [
 #    'AA', 'KK', 'QQ', 'AKs', 'JJ', 'AQs', 'KQs', 'AJs', 'KJs', 'ATs',
@@ -100,120 +119,5 @@ def change_hand_format(my_1th_card, my_2th_card):
     elif s(c.my_1th_card) == s(c.my_2th_card):
         return '%s%ss' %(high_card, low_card)
     elif s(c.my_1th_card) != s(c.my_2th_card):
-        return '%s%so' %(high_card, low_card)
-            
-#----
-
-def hand1() :
-    """ AA,KK """
-    if  n( c.my_1th_card ) == n( c.my_2th_card )  and 13 <= n( c.my_1th_card ) <= 14 :
-        #shout("hand1 is True")
-        return True
-    else :
-        return False
-
-def hand2() :
-    """ QQ,JJ """
-    if  n( c.my_1th_card ) == n( c.my_2th_card )  and 11 <= n( c.my_1th_card ) <= 12 :
-        #shout("hand2 is True")
-        return True
-    else :
-        return False
-
-def hand3() :
-    """ 1010,99 """
-    if  n( c.my_1th_card ) == n( c.my_2th_card )  and 9 <= n( c.my_1th_card ) <= 10 :
-        #shout("hand3 is True")
-        return True
-    else :
-        return False
-
-def hand4() :
-    """ 88,77,...,22 """
-    if  n( c.my_1th_card ) == n( c.my_2th_card )  and 2 <= n( c.my_1th_card ) <= 8 :
-        #shout("hand4 is True")
-        return True
-    else :
-        return False
-
-def hand5() :
-    """ A10,...,KQ  3 Blind raise """
-    if  n( c.my_1th_card ) != n( c.my_2th_card ) :
-        if ( 12 <= n( c.my_1th_card ) <= 13 and 12 <= n( c.my_2th_card ) <= 13 ) \
-        or ( 14 in [ n( c.my_1th_card ) , n( c.my_2th_card ) ] and n( c.my_1th_card ) >= 10 and n( c.my_2th_card ) >= 10 ) :
-            #shout("hand5 is True")
-            return True
-    else :
-        return False
-
-def hand6() :
-    """ KJ,QJ,,...,A2,...,(108,98 rang),109  1 Blind call """
-    if  n( c.my_1th_card ) != n( c.my_2th_card ) :
-        if hand5() != True :
-            if 14 in [ n( c.my_1th_card ) , n( c.my_2th_card ) ] \
-            or ( n( c.my_1th_card ) >= 8 and n( c.my_2th_card ) >= 8 and s( c.my_1th_card ) == s( c.my_2th_card ) ) \
-            or ( n( c.my_1th_card ) >= 9 and n( c.my_2th_card ) >= 9 ) :
-                #shout("hand6 is True")
-                return True
-    else :
-        return False
-
-def hand7() :
-    """ 72,73,...,96,107 (gheir rang)  Fold small blind position (otherwise Small always call Blind) """
-    if not( hand1() or hand2() or hand3() or \
-            hand4() or hand5() or hand6() \
-            or s( c.my_1th_card ) == s( c.my_2th_card ) ) :
-        for i in range(2,8) :
-            if i in ( n( c.my_1th_card ) , n( c.my_2th_card ) )  and abs( n( c.my_2th_card ) - n( c.my_1th_card ) ) >= 3 \
-            and n( c.my_1th_card ) <= 10 and n( c.my_2th_card ) <= 10 :
-                #shout("hand7 is True")
-                return True
-    else :
-        return False
-
-
-#--------------------------------------------
-
-
-def hand8() :
-    """ AK,...,1010,...22,...,(65 rang) Blind position call 2 blind raise, otherwise fold that """
-    if not( hand1() or hand2() ) :
-        if hand3() or hand4() \
-        or hand5() or hand6() \
-        or ( n( c.my_1th_card ) >= 5 and n( c.my_2th_card ) >= 5 and \
-             s( c.my_1th_card ) == s( c.my_2th_card ) and abs( n( c.my_2th_card ) - n( c.my_1th_card ) ) == 1 ) :
-            #shout("hand8 is True")
-            return True
-    else :
-        return False
-
-def hand9() :
-    """ AK,...,1010,...,(98 rang) Small position call 2 blind raise, otherwise fold that """
-    if not( hand1() or hand2() ) :
-        if hand3() or hand4() \
-        or hand5() or hand6() :
-            #shout("hand9 is True")
-            return True
-    else :
-        return False    
-
-
-"""
-# there are some hands which are not included in hand functions above:
-suits = ['Heart', 'Spade', 'Club', 'Diamond']
-ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
-         'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
-
-for rank in ranks:
-    for suit in suits:
-        c.my_1th_card = (rank, suit)
-        for rank in ranks:
-            for suit in suits:
-                c.my_2th_card = (rank, suit)
-                if c.my_1th_card == c.my_2th_card:
-                    continue
-                if any([hand1(), hand2(), hand3(), hand4(), hand5(), hand6(), hand7()]):
-                    continue
-                else:
-                    print('no category for %s %s' %(c.my_1th_card, c.my_2th_card))
-"""
+        return '%s%s' %(high_card, low_card)
+             

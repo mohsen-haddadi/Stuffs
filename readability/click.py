@@ -166,8 +166,8 @@ def all_in():
 def raising(Blinds):
     """ 
     Act for both raising and betting 
-    Blinds is the amount of money like in ocr; not the number of blinds
-    if Blinds == BLIND_VALUE (or less): won't click on plus button
+    Blinds is the number of blinds ; not the amount of money like in ocr
+    if Blinds == 1 (or less): won't click on plus button
     """
     #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status,\
     #preflop_stage , flop_stage , turn_stage , river_stage , did_i_raised_at , my_last_raise_at , BLIND_VALUE
@@ -181,34 +181,39 @@ def raising(Blinds):
     elif config.river_stage == True :
         stage = "River" 
 
-    config.did_i_raised_at[stage] = True
-    
-    Bets = [config.last_bets_cache[Seat] for Seat in range(1, config.TOTAL_SEATS+1) if config.last_red_chips_cache[Seat] and config.last_bets_cache[Seat] != None ]     
+    if Blinds == 'pot':
+        click('pot')
+    else:
+        Blinds = Blinds * c.BLIND_VALUE
 
-    if config.preflop_stage and not config.flop_stage :
-        Bets.append(config.BLIND_VALUE)
-    else :
-        Bets.append(0) #That's why raising() algorithm can be use and act for betting too.
+        config.did_i_raised_at[stage] = True
+        
+        Bets = [config.last_bets_cache[Seat] for Seat in range(1, config.TOTAL_SEATS+1) if config.last_red_chips_cache[Seat] and config.last_bets_cache[Seat] != None ]     
 
-    Bets.sort(reverse = True )
+        if config.preflop_stage and not config.flop_stage :
+            Bets.append(config.BLIND_VALUE)
+        else :
+            Bets.append(0) #That's why raising() algorithm can be use and act for betting too.
 
-    Raise_base = max(Bets)
+        Bets.sort(reverse = True )
 
-    Bets_difference = [ Bets[i] - Bets[i+1] for i in range(len(Bets)-1) ]
+        Raise_base = max(Bets)
 
-    if Bets_difference == []:
-        Raise_add = config.BLIND_VALUE
-    elif max(Bets_difference) <= config.BLIND_VALUE :
-        Raise_add = config.BLIND_VALUE
-    else :
-        Raise_add = max(Bets_difference)
+        Bets_difference = [ Bets[i] - Bets[i+1] for i in range(len(Bets)-1) ]
 
-    if Blinds > Raise_base + Raise_add :
-        config.my_last_raise_at[stage] = Blinds
-    else :
-        config.my_last_raise_at[stage] = Raise_base + Raise_add
+        if Bets_difference == []:
+            Raise_add = config.BLIND_VALUE
+        elif max(Bets_difference) <= config.BLIND_VALUE :
+            Raise_add = config.BLIND_VALUE
+        else :
+            Raise_add = max(Bets_difference)
 
-    number_of_clicks_on_button('plus', ( Blinds - (Raise_base + Raise_add) ) // config.BLIND_VALUE)
+        if Blinds > Raise_base + Raise_add :
+            config.my_last_raise_at[stage] = Blinds
+        else :
+            config.my_last_raise_at[stage] = Raise_base + Raise_add
+
+        number_of_clicks_on_button('plus', ( Blinds - (Raise_base + Raise_add) ) // config.BLIND_VALUE)
     #Till here as same as raising()
 
     if pm.button_pixel(config.game_position, 'raise') :

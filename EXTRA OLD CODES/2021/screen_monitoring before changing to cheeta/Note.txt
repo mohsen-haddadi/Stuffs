@@ -1,0 +1,3 @@
+while creating screen_monitoring for new sites check if each functions needs
+to be seperated for my seat and other players seats or not.
+for example active_player_pixel() works for my seat and other seats for celeb.

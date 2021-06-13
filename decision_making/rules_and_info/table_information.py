@@ -46,6 +46,14 @@ def River_Deside() : #tested ok #screen shot and add to cheat sheet
         return False
         
 
+def raised():
+    """ For current stage """
+    for seat in last_red_chips_cache:
+        if last_red_chips_cache[seat]:
+            return True
+    return False
+
+
 def Max_raise_sofar(): 
     """ 
     Return 0 to anything
@@ -58,7 +66,7 @@ def Max_raise_sofar():
 def last_raise_now() : 
     """
     Return 0 to anything
-    Except me (I can't be included after ocr bets on my turn).
+    Included me
     for current stage
     returns 0 if it's only blinds at pre flop or no raise at current stage
     """
@@ -136,8 +144,7 @@ def number_of_players_in() :
             count += 1
     return count
 
-
-def my_seat_position_ranking(): #added 2020, and tested OK
+def my_seat_position_ranking(): #added 2021, NOT TEST
     """
     my_seat_position_ranking is based on the beginning of the game,
     because playing_seats dictionary is based on the beginning of the game.
@@ -147,15 +154,15 @@ def my_seat_position_ranking(): #added 2020, and tested OK
     75% <= late_position < 100%
     """
     total = 0
-    for i in range(1, c.TOTAL_SEATS+1) :
-        if c.small_blind_seat != c.dealer_seat : 
+    for i in range(1, len(c.last_player_cards_cache) + 1):
+        if c.small_blind_seat != c.dealer_seat: 
             seat = Turn_Finder( c.small_blind_seat , i )
         #(for 2 players) The rules may differs on the other websites.
-        elif c.small_blind_seat == c.dealer_seat : 
+        elif c.small_blind_seat == c.dealer_seat: 
             seat = Turn_Finder( c.big_blind_seat , i )
             
         if seat != c.my_seat_number :
-            if c.playing_seats[seat] == True :
+            if c.last_player_cards_cache[seat] == True:
                 total += 1
         elif seat == c.my_seat_number :
             total += 1 
@@ -622,6 +629,51 @@ def is_it_first_round() :
         return False
 
 
+def did_last_raiser_all_in(): # NOT TESTED
+    """ so far """
+    if last_raiser_seat_sofar() == None:
+        return False
+    raiser_ramaining_bank = c.last_players_bank[last_raiser_seat_sofar()]
+    if raiser_ramaining_bank == None:
+        return False
+
+    if raiser_ramaining_bank == 0:
+        return True
+    else:
+        return False
+
+def did_last_raiser_semi_all_in(): # NOT TESTED
+    """ so far """
+    if last_raiser_seat_sofar() == None:
+        return False
+    raiser_ramaining_bank = c.last_players_bank[last_raiser_seat_sofar()]
+    if raiser_ramaining_bank == None:
+        return False
+
+    raiser_ramaining_bank = raiser_ramaining_bank / c.BLIND_VALUE
+    if raiser_ramaining_bank < 10 \
+    or raiser_ramaining_bank / (Max_raise_sofar() / c.BLIND_VALUE) < 0.5:
+        return True
+    else:
+        return False
+
+def call_low_re_raise(re_raise_ratio = 2): # NOT TESTED
+    """ 
+    If someone re raise my bet or call. 
+    My 1 blind calls at pre flop returns False.
+    If i have no bet or call, it returns False.
+    """
+    my_current_bet = c.last_bets_cache[c.my_seat_number]
+    if my_current_bet == None \
+    or (Pre_Flop_Deside() and my_current_bet <= c.BLIND_VALUE):
+        return False
+    my_current_bet = my_current_bet / c.BLIND_VALUE
+    if (last_raise_now() / c.BLIND_VALUE) / my_current_bet <= re_raise_ratio:
+        return True
+    else:
+        return False
+
+
 """
 The intense of raisers Except me:
 """
@@ -1014,3 +1066,35 @@ def Players_turn_from_me_by_seat_order( Player_Seat ) :
     Answer = Players_turn_by_seat_order( Player_Seat )[0] - my_turn_by_seat_order()[0]
     return Answer
     
+
+
+# =========== TODO:
+
+def my_max_bet(): # NOT TESTED # TODO
+    """ 
+    My max raise or call. 
+    If no raise or or at pre flop or pre flop 1 blind call, it returns 1.
+    """
+    my_current_bet = c.last_bets_cache[c.my_seat_number]
+    if my_current_bet == None:
+        my_current_bet = 1 * c.BLIND_VALUE
+    if Flop_Deside():
+        return max(my_current_bet, last_raise_at('Pre_Flop'))
+    elif Turn_Deside():
+        return max(my_current_bet, last_raise_at('Pre_Flop'),
+                   last_raise_at('Flop_Deside'))
+    elif River_Deside():
+        return max(my_current_bet, last_raise_at('Pre_Flop'), 
+                   last_raise_at('Flop_Deside'), last_raise_at('Turn_Deside'))
+
+def call_low_raise(): # NOT TESTED # TODO
+    """ 
+    It is not useful for pre flop, 
+    because with weak hands my_max_bet() is 1 at pre flop 
+    and last_raise_now() can be 0, 
+    therefor it returns True with weak hands at pre flop.
+    """
+    if last_raise_now() / my_max_bet() < 0.2:
+        return True
+    else:
+        return False

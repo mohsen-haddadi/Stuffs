@@ -11,7 +11,7 @@ import pygame, keyboard
 
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import decision_making.decide
-import decision_making.rules_and_info.starting_hands as hand_ranking
+from decision_making.rules_and_info.starting_hands import group
 from readability.read_cards import read_and_save_flop_cards,\
 read_and_save_turn_card, read_and_save_river_card
 from readability.ocr import ocr_my_bank
@@ -298,7 +298,7 @@ def sound(string_name) :
     try :
         pygame.mixer.init()
         pygame.mixer.music.load( os.path.join('Sounds' ,
-                                              "%s.wav" %string_name ) )
+                                              "%s.mp3" %string_name ) )
         return pygame.mixer.music.play()
     except :
         pass
@@ -306,20 +306,20 @@ def sound(string_name) :
 def play_sound_for_good_starting_hands() :
      
     if c.preflop_stage == True and c.flop_stage == False :
-        if hand_ranking.hand1() :
-            sound("Michel")
+        if group('A'):
+            sound("Du Bist Erwacht")
             shout("Playing Music: 'Michel'", color = 'light_cyan')
-        elif hand_ranking.hand2() :
-            sound("Alan Walker")
+        elif group('B'):
+            sound("la isla bonita")
             shout("Playing Music: 'Alan Walker'", color = 'light_cyan')
-        elif hand_ranking.hand3() :
-            sound("Alan Walker")
+        elif group('C'):
+            sound("la isla bonita")
             shout("Playing Music: 'Alan Walker'", color = 'light_cyan')
-        elif hand_ranking.hand4() :
-            sound("Pocket low pairs")
+        elif group('D'):
+            sound("la isla bonita")
             shout("Playing Music: 'Pocket low pairs'", color = 'light_cyan')
-        elif hand_ranking.hand5() :
-            sound("Bob Marley")
+        elif group('EFG'):
+            sound("la isla bonita")
             shout("Playing Music: 'Bob Marley'", color = 'light_cyan')
 
 def click_decision():
@@ -332,7 +332,7 @@ def click_decision():
     elif decision[0] == "fold" :
         fold()
     elif decision[0] == "raise" :
-        raising(decision[1] * BLIND_VALUE)
+        raising(decision[1])
     elif decision[0] == "all_in" :
         all_in()
     elif decision[0] == "check_fold" :

@@ -27,7 +27,7 @@ def modify_play_module_code(module):
         file.writelines(modified_code)
 
 if __name__ == '__main__':
-    modify_play_module_code('play')
+    modify_play_module_code('playpreflop')
     #modify_play_module_code('play_raise')
 
 print(scenario_count)
