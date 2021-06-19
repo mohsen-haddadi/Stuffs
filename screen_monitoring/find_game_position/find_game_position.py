@@ -19,18 +19,19 @@ def find_game_reference_point():
     #global game_position
 
     print('searching for game region on screen...')
-    image_path = os.path.abspath(os.path.dirname(__file__)) + '/reference image.png'
-    game_position = pyautogui.locateOnScreen(image_path)
-    if game_position == None:
-        print('can not find game region, using alternative reference image after 10 sec...')
-        time.sleep(10)
-        image_path = os.path.abspath(os.path.dirname(__file__)) + '/alternative reference image.png'
-        alternative_game_position = pyautogui.locateOnScreen(image_path)
-        if alternative_game_position == None:
-            raise Exception("can not find game region on screen")
-        else:
-            game_position = ( alternative_game_position[0]+328 , alternative_game_position[1]-245 )
+    reference_images = ['reference image', 'reference image 2', 'reference image 3']
+    for reference_image in reference_images:
+        image_path = os.path.abspath(os.path.dirname(__file__)) + '/reference image.png'
 
-    game_position = (int(game_position[0]),int(game_position[1]))
-    print('game reference point is set to:(%s, %s)'%(game_position[0],game_position[1]))
-    return game_position
+        game_position = pyautogui.locateOnScreen(image_path)
+        if game_position == None:
+            print('can not find game region, using next reference image after 10 sec...')
+            time.sleep(10)
+            continue
+        else:
+            game_position = (int(game_position[0]),int(game_position[1]))
+            print('game reference point is set to:(%s, %s)'%(game_position[0],game_position[1]))
+            return game_position
+
+    raise Exception("can not find game region on screen")
+

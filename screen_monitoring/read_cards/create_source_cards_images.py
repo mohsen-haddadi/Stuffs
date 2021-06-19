@@ -1,3 +1,4 @@
+#💊 : means edited
 import time, os
 from PIL import Image
 import numpy as np, cv2
@@ -30,15 +31,15 @@ my_1th_card_region, my_2th_card_region, and table_card_region
 create_source_cards_images.crop_raw_card_image() 
 and read_card.download_my_card() read_card.download_table_card()
 """
-TABLE_CARD_VALUE_COORDINATE=(3,23,0,20) #80x80
-TABLE_CARD_SUIT_COORDINATE=(25,40,3,20) #68x60
-MY_CARD_VALUE_COORDINATE=(0,20,0,10) #40x80
-MY_CARD_SUIT_COORDINATE=(20,35,0,10) #40x60
+TABLE_CARD_VALUE_COORDINATE=(1,27,1,21) #34x28 #💊
+TABLE_CARD_SUIT_COORDINATE=(0,17,22,33) #34x28 #💊
+MY_CARD_VALUE_COORDINATE=(1,27,1,21) #34x28 #💊
+MY_CARD_SUIT_COORDINATE=(0,17,22,33) #34x28 #💊
 ZOOM = 4
 
 def create_directories_for_cards():
-    directories = ['Source Card Images for Celeb/Table Cards'
-                  ,'Source Card Images for Celeb/My Cards'
+    directories = ['Source Card Images for Cheeta/Table Cards' #💊
+                  ,'Source Card Images for Cheeta/My Cards' #💊
                   ,'Raw Images/First Table Cards'
                   ,'Raw Images/First Table Cards Raw Images'
                   ,'Raw Images/My First Cards From First Seat'
@@ -63,20 +64,17 @@ def crop_raw_card_image(create_table_cards = True):
     for name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King',
                  'Spade','Heart','Club','Diamond']: 
 
-        game_position = find_game_reference_point_from_image_file(name)
+        game_position = find_game_reference_point_from_image_file(name, create_table_cards)
         if game_position == None:
             print("Can not find game reference point at %s.png image" %name)
             continue
-        table_card_region = { 1:(game_position[0]-38, game_position[1]+215, 20, 40) , 
-                              2:(game_position[0]+25, game_position[1]+215, 20, 40) ,
-                              3:(game_position[0]+87, game_position[1]+215, 20, 40) ,
-                              4:(game_position[0]+150, game_position[1]+215, 20, 40) ,
-                              5:(game_position[0]+212, game_position[1]+215, 20, 40) }
-        my_1th_card_region = { 1:(game_position[0]+369, game_position[1]+391, 10, 40) ,
-                               2:(game_position[0]+115, game_position[1]+393, 10, 40) ,
-                               3:(game_position[0]-140, game_position[1]+390, 10, 40) ,
-                               4:(game_position[0]-171, game_position[1]+85, 10, 40) ,
-                               5:(game_position[0]+399, game_position[1]+85, 10, 40) }
+        table_card_region = { 1:(game_position[0]+3, game_position[1]+64, 34, 28) , #💊
+                              2:(game_position[0]+42, game_position[1]+64, 34, 28) , #💊
+                              3:(game_position[0]+82, game_position[1]+64, 34, 28) , #💊
+                              4:(game_position[0]+121, game_position[1]+64, 34, 28) , #💊
+                              5:(game_position[0]+161, game_position[1]+64, 34, 28) } #💊
+
+        my_1th_card_region = { 1:(game_position[0]+73, game_position[1]+195, 34, 28) } #💊
 
         if create_table_cards == True:
             image = cv2.imread("Raw Images/First Table Cards Raw Images/%s.png" %name )
@@ -140,41 +138,45 @@ def create_source_cards(create_table_cards = True ):
         _, final_image = cv2.threshold(zoomed_croped_image,thresh_level,255,cv2.THRESH_BINARY) 
 
         if create_table_cards == True:
-            cv2.imwrite('Source Card Images for Celeb/Table Cards/%s.png' %name, final_image)
+            cv2.imwrite('Source Card Images for Cheeta/Table Cards/%s.png' %name, final_image) #💊
         elif create_table_cards == False :
-            cv2.imwrite('Source Card Images for Celeb/My Cards/%s.png' %name, final_image)
+            cv2.imwrite('Source Card Images for Cheeta/My Cards/%s.png' %name, final_image) #💊
 
-def find_game_reference_point_from_image_file(file_name):
+def find_game_reference_point_from_image_file(file_name, create_table_cards): #💊
     """
     https://stackoverflow.com/questions/38473952/find-location-of-image-inside-bigger-image
     it will set game_position to (x,y) position
     there is no need to open image on top screen to sreen shot from it.
     """
-    t0 = time.time()
-    here = Image.open(r"reference image.png")
-    big  = Image.open(r"Raw Images/First Table Cards Raw Images/%s.png" %file_name)
+    reference_images = [Image.open(r"reference image.png"), Image.open(r"reference image 2.png"), Image.open(r"reference image 3.png")] #💊
+    for here in reference_images: #💊
 
-    herear = np.asarray(here)
-    bigar  = np.asarray(big)
+        if create_table_cards: #💊
+            big  = Image.open(r"Raw Images/First Table Cards Raw Images/%s.png" %file_name)
+        else: #💊
+            big  = Image.open(r"Raw Images/My First Cards From First Seat Raw Images/%s.png" %file_name) #💊
+        herear = np.asarray(here)
+        bigar  = np.asarray(big)
 
-    hereary, herearx = herear.shape[:2]
-    bigary,  bigarx  = bigar.shape[:2]
+        hereary, herearx = herear.shape[:2]
+        bigary,  bigarx  = bigar.shape[:2]
 
-    stopx = bigarx - herearx + 1
-    stopy = bigary - hereary + 1
+        stopx = bigarx - herearx + 1
+        stopy = bigary - hereary + 1
 
 
-    for y in range(0, stopy): 
-        for x in range(0, stopx):
-            x2 = x + herearx
-            y2 = y + hereary
-            pic = bigar[y:y2, x:x2]
-            test = (pic == herear)
-            if test.all():
-                print("game reference point for image '%s' is founded"%file_name)
-                #print(time.time()-t0)
-                game_position = (x,y)
-                return game_position
+        for y in range(0, stopy): 
+            for x in range(0, stopx):
+                x2 = x + herearx
+                y2 = y + hereary
+                pic = bigar[y:y2, x:x2]
+                test = (pic == herear)
+                if test.all():
+                    print("game reference point for image '%s' is founded"%file_name)
+                    #print(time.time()-t0)
+                    game_position = (x,y)
+                    return game_position
+        print('Unable to find game reference point, Trying next reference image...') #💊
     print("###Unable to find game reference point for image file %s###"%file_name)
     return None
 """
@@ -198,8 +200,8 @@ def main():
     
     crop_raw_card_image()
     create_source_cards()
-    crop_raw_card_image(create_table_cards = False)
-    create_source_cards(create_table_cards = False)
+    #crop_raw_card_image(create_table_cards = False)
+    #create_source_cards(create_table_cards = False)
 
 if __name__ == '__main__':
     main()

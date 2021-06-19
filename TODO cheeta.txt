@@ -1,0 +1,1 @@
+1. combine others and my ocr names and banks function into one ocr names and bank fucntion, and replace all functions on all modules

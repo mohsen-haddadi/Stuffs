@@ -5,7 +5,7 @@ change these 2 functions by uncommenting some lines inside them:
 1. click_decision() at main_assit.py
 2. decide() at decide.py
 
-delete lines with #💊💊💊 comment at this file when play.py is completed.
+delete lines with #❌⛏❌ comment at this file when play.py is completed.
 """
 import time
 
@@ -14,7 +14,7 @@ import pandas as pd
 
 import screen_monitoring.find_game_position.find_game_position as find_game_position
 import decision_making.play
-from decision_making.rules_and_info.table_information import Flop_Deside #💊💊💊
+from decision_making.rules_and_info.table_information import Flop_Deside #❌⛏❌
 from readability.read_cards import read_and_save_my_cards
 from readability.fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
@@ -119,9 +119,9 @@ def play_a_hand():
     while True:
         if shifted_to_next_stage():
 
-            if Flop_Deside() and config.last_player_cards_cache[config.my_seat_number]: #💊💊💊
-                # I MUST PLAY SOUND #💊💊💊
-                sound('Schiller Nachtflug') #💊💊💊
+            if Flop_Deside() and config.last_player_cards_cache[config.my_seat_number]: #❌⛏❌
+                # I MUST PLAY SOUND #❌⛏❌
+                sound('Schiller Nachtflug') #❌⛏❌
 
             read_board_cards()
             if not stages_are_sequenced():

@@ -1,3 +1,4 @@
+#💊 : means edited
 import numpy, pyautogui
 from pyautogui import pixelMatchesColor
 

@@ -14,20 +14,27 @@ import screen_monitoring.read_cards.read_cards as read_cards
 import screen_monitoring.read_cards.match_card as match_card
 import screen_monitoring.click_coordinates.click_coordinates as click_coordinates
 
-TOTAL_SEATS = 5
+TOTAL_SEATS = 6
 
 def find_game_reference_point_for_this_module():
-    #global game_position
-
     print('searching for game region on screen...')
+    reference_images = [
+        'screen_monitoring/find_game_position/reference image.png',
+        'screen_monitoring/find_game_position/reference image 2.png', 
+        'screen_monitoring/find_game_position/reference image 3.png'
+        ]
+    for reference_image in reference_images:
+        game_position = pyautogui.locateOnScreen(reference_image)
+        if game_position == None:
+            print('can not find game region, using next reference image after 5 sec...')
+            time.sleep(5)
+            continue
+        else:
+            game_position = (int(game_position[0]),int(game_position[1]))
+            print('game reference point is set to:(%s, %s)'%(game_position[0],game_position[1]))
+            return game_position
 
-    image_path ='screen_monitoring/find_game_position/reference image.png'
-    game_position = pyautogui.locateOnScreen(str(image_path))
-    if game_position == None:
-        raise Exception("can not find game region on screen")
-    else:
-        print('game reference point is set')
-        return int(game_position[0]), int(game_position[1])
+    raise Exception("can not find game region on screen")
 
 
 def test_find_game_position():
@@ -274,8 +281,8 @@ if __name__ == '__main__':
     # Globaling the game_position
     game_position = find_game_reference_point_for_this_module()
 
-    test_find_game_position()
-    test_read_cards(my_seat = 2, show_image = False)
-    test_ocr(show_images = False)
+    #test_find_game_position()
+    #test_read_cards(my_seat = 1, show_image = False)
+    test_ocr(show_images = True)
     #test_pixel_matching()
     #test_click_coordinates()

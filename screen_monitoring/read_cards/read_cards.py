@@ -1,3 +1,4 @@
+#💊 : means edited
 import time, os
 import numpy as np , cv2
 import pyautogui
@@ -19,16 +20,9 @@ def download_my_card(game_position, my_seat , xth_card):
     """
     Use specific top left corner pixel of a card to set card region. 
     """
-    my_1th_card_region = { 1:(game_position[0]+369, game_position[1]+391, 10, 40) ,
-                           2:(game_position[0]+115, game_position[1]+393, 10, 40) ,
-                           3:(game_position[0]-140, game_position[1]+390, 10, 40) ,
-                           4:(game_position[0]-171, game_position[1]+85, 10, 40) ,
-                           5:(game_position[0]+399, game_position[1]+85, 10, 40) }
-    my_2th_card_region = { 1:(game_position[0]+388, game_position[1]+391, 10, 40) ,
-                           2:(game_position[0]+133, game_position[1]+393, 10, 40) ,
-                           3:(game_position[0]-122, game_position[1]+390, 10, 40) ,
-                           4:(game_position[0]-152, game_position[1]+85, 10, 40) ,
-                           5:(game_position[0]+418, game_position[1]+85, 10, 40) }
+    my_1th_card_region = { 1:(game_position[0]+73, game_position[1]+195, 34, 28) } #💊
+    my_2th_card_region = { 1:(game_position[0]+111, game_position[1]+195, 34, 28) } #💊
+
     if xth_card == 1:
         pyautogui.screenshot("image.png" , my_1th_card_region[my_seat] )
     elif xth_card == 2:
@@ -44,11 +38,11 @@ def download_table_card(game_position, xth_card):
     Use specific top left corner pixel of a card to set card region. 
     Set top left corner of table card regions to the same height. 
     """
-    table_card_region = { 1:(game_position[0]-38, game_position[1]+215, 20, 40) , 
-                          2:(game_position[0]+25, game_position[1]+215, 20, 40) ,
-                          3:(game_position[0]+87, game_position[1]+215, 20, 40) ,
-                          4:(game_position[0]+150, game_position[1]+215, 20, 40) ,
-                          5:(game_position[0]+212, game_position[1]+215, 20, 40) }
+    table_card_region = { 1:(game_position[0]+3, game_position[1]+64, 34, 28) , #💊
+                          2:(game_position[0]+42, game_position[1]+64, 34, 28) , #💊
+                          3:(game_position[0]+82, game_position[1]+64, 34, 28) , #💊
+                          4:(game_position[0]+121, game_position[1]+64, 34, 28) , #💊
+                          5:(game_position[0]+161, game_position[1]+64, 34, 28) } #💊
 
     pyautogui.screenshot("image.png" , table_card_region[xth_card] )
     query_image = cv2.imread("image.png")

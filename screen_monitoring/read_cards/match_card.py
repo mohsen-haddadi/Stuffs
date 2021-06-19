@@ -1,3 +1,4 @@
+#💊 : means edited
 import time, os
 import cv2, numpy as np
 import pyautogui
@@ -23,10 +24,10 @@ and query cards to reach the best match card result.
 6. ZOOM constant must be the same for both source cards and query cards.
 """
 
-TABLE_CARD_VALUE_COORDINATE=(3,23,0,20) #80x80
-TABLE_CARD_SUIT_COORDINATE=(25,40,3,20) #68x60
-MY_CARD_VALUE_COORDINATE=(0,20,0,10) #40x80
-MY_CARD_SUIT_COORDINATE=(20,35,0,10) #40x60
+TABLE_CARD_VALUE_COORDINATE=(1,27,1,21) #34x28 #💊
+TABLE_CARD_SUIT_COORDINATE=(0,17,22,33) #34x28 #💊
+MY_CARD_VALUE_COORDINATE=(1,27,1,21) #34x28 #💊
+MY_CARD_SUIT_COORDINATE=(0,17,22,33) #34x28 #💊
 ZOOM = 4
 
 def pre_process_query_image(query_image, is_it_table_card ):
@@ -85,11 +86,11 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
 
         if is_it_table_card == True:
             image_path = os.path.abspath(os.path.dirname(__file__)) +\
-            "/Source Card Images for Celeb/Table Cards/%s.png"%value_name
+            "/Source Card Images for Cheeta/Table Cards/%s.png"%value_name #💊
             
         elif is_it_table_card == False:
             image_path = os.path.abspath(os.path.dirname(__file__)) +\
-            "/Source Card Images for Celeb/My Cards/%s.png"%value_name
+            "/Source Card Images for Cheeta/My Cards/%s.png"%value_name #💊
 
         value_source_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
@@ -108,10 +109,10 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
 
         if is_it_table_card == True:
             image_path = os.path.abspath(os.path.dirname(__file__)) +\
-            "/Source Card Images for Celeb/Table Cards/%s.png"%suit_name
+            "/Source Card Images for Cheeta/Table Cards/%s.png"%suit_name #💊
         elif is_it_table_card == False:
             image_path = os.path.abspath(os.path.dirname(__file__)) +\
-            "/Source Card Images for Celeb/My Cards/%s.png"%suit_name
+            "/Source Card Images for Cheeta/My Cards/%s.png"%suit_name #💊
         suit_source_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
         if isinstance(suit_source_image, type(None)):
