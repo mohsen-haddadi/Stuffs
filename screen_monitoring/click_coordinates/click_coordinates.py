@@ -1,57 +1,53 @@
+#💊 : means edited
 
 def click_coordinates(game_position, name):
-    if name == 'fold':
-        coordinate = ( game_position[0]+51, game_position[1]+581 )
-    elif name == 'check':
-        coordinate = ( game_position[0]+246, game_position[1]+578 )
-    elif name == 'call':
-        coordinate = ( game_position[0]+261, game_position[1]+575 )
-    elif name == 'bet':
-        coordinate = ( game_position[0]+461, game_position[1]+576 )
-    elif name == 'raise':
-        coordinate = ( game_position[0]+461, game_position[1]+576 )
-    elif name == 'plus':
-        coordinate = ( game_position[0]+246, game_position[1]+648 )
-    elif name == 'minus':
-        coordinate = ( game_position[0]-9, game_position[1]+648 )
-    elif name == 'half_pot':
-        pass # add coordiantes later
-    elif name == 'pot':
-        pass # add coordiantes later
-    elif name == 'all_in':
-        coordinate = ( game_position[0]+531, game_position[1]+648 )
+    if name == 'fold': #💊
+        coordinate = ( game_position[0]+187, game_position[1]+468 )
+    elif name == 'check': #💊
+        coordinate = ( game_position[0]+303, game_position[1]+471 )
+    elif name == 'call': #💊
+        coordinate = ( game_position[0]+297, game_position[1]+466 )
+    elif name == 'bet': #💊
+        coordinate = ( game_position[0]+416, game_position[1]+466 )
+    elif name == 'raise': #💊
+        coordinate = ( game_position[0]+430, game_position[1]+466 )
+    elif name == 'type_blinds': #💊
+        coordinate = ( game_position[0]+455, game_position[1]+408 )
+    elif name == 'half_pot': #💊
+        coordinate = ( game_position[0]+332, game_position[1]+375 )
+    elif name == 'pot': #💊
+        coordinate = ( game_position[0]+379, game_position[1]+378 )
+    elif name == 'all_in': #💊
+        coordinate = ( game_position[0]+431, game_position[1]+375 )
 
 
-    elif name == 'available_seat_1':
-        coordinate = ( game_position[0]+362, game_position[1]+408 )
-    elif name == 'available_seat_2':
-        coordinate = ( game_position[0]+107, game_position[1]+411 )
-    elif name == 'available_seat_3':
-        coordinate = ( game_position[0]-148, game_position[1]+408 )
-    elif name == 'available_seat_4':
-        coordinate = ( game_position[0]-178, game_position[1]+103 )
-    elif name == 'available_seat_5':
-        coordinate = ( game_position[0]+392, game_position[1]+103 )
+    elif name == 'available_seat_1': #💊
+        coordinate = ( game_position[0]+107, game_position[1]+238 )
+    elif name == 'available_seat_2': #💊
+        coordinate = ( game_position[0]-98, game_position[1]+176 )
+    elif name == 'available_seat_3': #💊
+        coordinate = ( game_position[0]-98, game_position[1]+34 )
+    elif name == 'available_seat_4': #💊
+        coordinate = ( game_position[0]+108, game_position[1]-29 )
+    elif name == 'available_seat_5': #💊
+        coordinate = ( game_position[0]+314, game_position[1]+34 )
+    elif name == 'available_seat_6': #💊
+        coordinate = ( game_position[0]+316, game_position[1]+178 )
 
-    elif name == 'exit':
-        coordinate = ( game_position[0]+378, game_position[1]+21 )
-    elif name == 'menu':
-        coordinate = ( game_position[0]-399, game_position[1]-66 )
-    elif name == 'buy_in':
-        coordinate = ( game_position[0]+71, game_position[1]+448 )
-    elif name == 'max_buy_in':
-        coordinate = (game_position[0]+264, game_position[1]+236)
-    elif name == 'min_buy_in':
-        coordinate = (game_position[0]-46, game_position[1]+244)
-    elif name == 're_buy':
-        coordinate = ( game_position[0]+91, game_position[1]+430 )
-    elif name == 'i_am_back':
-        coordinate = ( game_position[0]+137, game_position[1]+608 )
-
-    elif name == 'exit_probable_advertisement':
-        coordinate = (0, 720)
-    elif name == 'close_update_window':
-        coordinate = (1570, 10) 
+    elif name == 'exit': #💊
+        coordinate = ( game_position[0]+173, game_position[1]-263 )
+    elif name == 'menu': #💊
+        coordinate = ( game_position[0]-136, game_position[1]-257 )
+    elif name == 'buy_in': #💊
+        coordinate = ( game_position[0]-40, game_position[1]+317 )
+    elif name == 'max_buy_in': #💊
+        coordinate = (game_position[0]+214, game_position[1]+141)
+    elif name == 'min_buy_in': #💊
+        coordinate = (game_position[0]+124, game_position[1]+141)
+    elif name == 're_buy': #💊
+        coordinate = ( game_position[0]+358, game_position[1]-208 )
+    elif name == 'i_am_back': #💊
+        coordinate = ( game_position[0]+168, game_position[1]+473 )
         
     return coordinate
 

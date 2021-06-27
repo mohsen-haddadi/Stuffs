@@ -15,6 +15,36 @@ def replace_letters_comma_space_m_k(ocr_string):
 
 # If there is no script to ocr, ocr functions at ocr module
 # will return empty string '', not None.
+def ocr_my_bet():
+    """
+    my bet number on bet button
+    If ocr fails this function will uses:
+    1. fix_game_disruption()
+    2. set_just_do_check_fold_to_true()
+    """
+    
+    ocr_string = ocr.ocr_my_bet_to_string(config.game_position)
+    shout("my bet ocr string is: %s" %ocr_string)
+    eval_string = replace_letters_comma_space_m_k(ocr_string)
+    digit_string = eval_string.replace("*","")
+
+    if digit_string.isdigit():
+        return eval(eval_string)
+    # else include digit_string like: '', 'c540!'
+    else :
+        fix_game_disruption("ocr_my_bet is not digit")
+        ocr_string = ocr.ocr_my_bet_to_string(config.game_position)
+        shout("my bet ocr string is: %s" %ocr_string)
+        eval_string = replace_letters_comma_space_m_k(ocr_string)
+        digit_string = eval_string.replace("*","")
+
+        if digit_string.isdigit():
+            return eval(eval_string)
+        else:
+            set_just_do_check_fold_to_true("ocr_bet is not digit")            
+            screenshot_error("ocr_bet is not digit")
+            return None  
+
 def ocr_bet(seat):
     """
     If ocr fails this function will uses:

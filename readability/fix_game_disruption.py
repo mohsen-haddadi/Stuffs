@@ -31,8 +31,7 @@ def click(name):
     x, y = click_coordinates.click_coordinates(config.game_position, name)
     pyautogui.click(x, y)
     if name in ('available_seat_1', 'available_seat_2', 'available_seat_3',
-                'available_seat_4', 'available_seat_5', 'exit_probable_advertisement',
-                'close_update_window'):
+                'available_seat_4', 'available_seat_5'):
         shout("%s is clicked" %name, color = 'light_cyan')
     else:
         shout("%s button is clicked" %name, color = 'light_cyan')
@@ -233,7 +232,6 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
         if find_and_click_on_reconnect_button() == None :
             screenshot_error('No reconnect button founded')
 
-    click('exit_probable_advertisement') # click to Exit probable Advertisement
     shout("Position (0,720) is clicked", color = 'yellow')
     pyautogui.press('esc')
     
@@ -245,15 +243,7 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
         if config.alternative_game_position != None:
             config.game_position = ( alternative_game_position[0]+328 , alternative_game_position[1]-245 ) 
     if config.game_position != None :
-        config.game_position = (int(config.game_position[0]),int(config.game_position[1]))
-    else:
-        for process in wmi.WMI().Win32_Process ():
-            if process.Name == 'SystemSettings.exe' :
-                shout("SystemSettings Update is on desktop")
-                shout("closing Windows Update program")
-                screenshot_error('right before closing windows update program')
-                click('close_update_window')
-                break        
+        config.game_position = (int(config.game_position[0]),int(config.game_position[1])) 
 
     if config.game_position == None :
         config.game_position = find_game_position.find_game_reference_point()

@@ -8,13 +8,13 @@ import screen_monitoring.click_coordinates.click_coordinates as click_coordinate
 import config
 from iprint import shout
 from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error, raise_exception_the_problem
+from readability.ocr import ocr_my_bet
 
 def click(name):
     x, y = click_coordinates.click_coordinates(config.game_position, name)
     pyautogui.click(x, y)
     if name in ('available_seat_1', 'available_seat_2', 'available_seat_3',
-                'available_seat_4', 'available_seat_5', 'exit_probable_advertisement',
-                'close_update_window'):
+                'available_seat_4', 'available_seat_5'):
         shout("%s is clicked" %name, color = 'light_cyan')
     else:
         shout("%s button is clicked" %name, color = 'light_cyan')
@@ -111,7 +111,9 @@ def raising(Blinds):
     """
     #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status,\
     #did_i_raised_at , my_last_raise_at , BLIND_VALUE
-    if Blinds == 'pot':
+    if Blinds == 'half_pot':
+        click('half_pot')
+    elif Blinds == 'pot':
         click('pot')
     else:
         type_blinds(Blinds)
@@ -136,7 +138,7 @@ def raising(Blinds):
 #        config.my_last_raise_at[stage] = Blinds
 #    else :
 #        config.my_last_raise_at[stage] = Raise_base + Raise_add
-    config.my_last_raise_at[stage] = Blinds
+    config.my_last_raise_at[stage] = ocr_my_bet()
 
     if pm.button_pixel(config.game_position, 'raise'):
         click('raise')

@@ -262,41 +262,43 @@ def available_seat_pixel(game_position, seat): #💊
 def button_pixel(game_position, button_name):
     #It checks if button is existed and it's on its position or not.
     if button_name == 'fold': #💊
-        return pixelMatchesColor( game_position[0]+165, game_position[1]+479, (255, 255, 255), tolerance=10 )
+        x1 = pixelMatchesColor( game_position[0]+187, game_position[1]+468, (222, 224, 229), tolerance=25 )
+        x2 = pixelMatchesColor( game_position[0]+156, game_position[1]+480, (255, 255, 255), tolerance=2 )
+        return (x1 or x2)
     elif button_name == 'check': #💊
         return pixelMatchesColor( game_position[0]+303, game_position[1]+471, (41, 41, 41), tolerance=50 )      
     elif button_name == 'call': #💊
-        return pixelMatchesColor( game_position[0]+297, game_position[1]+466, (376 , 449), tolerance=30 )  
+        return pixelMatchesColor( game_position[0]+297, game_position[1]+466, (0, 0, 0), tolerance=30 )  
     elif button_name == 'bet': #💊
         return pixelMatchesColor( game_position[0]+416, game_position[1]+466, (0, 0, 0), tolerance=5 )  
     elif button_name == 'raise': #💊
         return pixelMatchesColor( game_position[0]+430, game_position[1]+466, (0, 0, 0), tolerance=5 )  
-    elif  button_name == 'half_pot': #💊
-        return pixelMatchesColor( game_position[0]+332, game_position[1]+375, (194, 197, 205), tolerance=10 )
-    elif  button_name == 'pot': #💊
-        return pixelMatchesColor( game_position[0]+379, game_position[1]+378, (194, 197, 205), tolerance=10 )
+    elif  button_name == 'half_pot': #💊 
+        return pixelMatchesColor( game_position[0]+332, game_position[1]+375, (255, 255, 255), tolerance=10 )
+    elif  button_name == 'pot': #💊 
+        return pixelMatchesColor( game_position[0]+379, game_position[1]+378, (255, 255, 255), tolerance=10 )
     elif button_name == 'all_in': #💊
         return pixelMatchesColor( game_position[0]+431, game_position[1]+375, (255, 255, 255), tolerance=10 )
 
     elif button_name == 'exit': #💊
-        return pixelMatchesColor( game_position[0]+172, game_position[1]-263, (108, 108, 108), tolerance=10 )
-    elif button_name == 'menu': #💊
-        x1 = pixelMatchesColor( game_position[0]-195, game_position[1]-268, (108, 108, 108), tolerance=10 )
-        x2 = pixelMatchesColor( game_position[0]-148, game_position[1]-266, (255, 255, 255), tolerance=10 )
+        x1 = pixelMatchesColor( game_position[0]+173, game_position[1]-263, (65, 65, 65), tolerance=10 )
+        x2 = pixelMatchesColor( game_position[0]+173, game_position[1]-263, (0, 0, 0), tolerance=10 )
         return (x1 or x2)
-    elif button_name == 'buy_in': #💊
-        x1 = pixelMatchesColor( game_position[0]+36, game_position[1]+321, (26, 112, 81), tolerance=5 ) #Buy_In_Button
-        x2 = pixelMatchesColor( game_position[0]+36, game_position[1]+321, (34, 145, 105), tolerance=5 ) #Buy_In_Button_Light
+    elif button_name == 'menu': #💊 
+        return pixelMatchesColor( game_position[0]-136, game_position[1]-257, (255, 255, 255), tolerance=10 )
+    elif button_name == 'buy_in': #💊 
+        x1 = pixelMatchesColor( game_position[0]-40, game_position[1]+317, (26, 112, 81), tolerance=10 ) #Buy_In_Button
+        x2 = pixelMatchesColor( game_position[0]-40, game_position[1]+317, (34, 145, 105), tolerance=10 ) #Buy_In_Button_Light
         return (x1 or x2)
-    elif button_name == 'max_buy_in': #💊
-        return pixelMatchesColor( game_position[0]+214, game_position[1]+141, (123, 129, 145), tolerance=5 ) #max_buy_in_button
-    elif button_name == 'min_buy_in': #💊
-        return pixelMatchesColor( game_position[0]+124, game_position[1]+141, (123, 129, 145), tolerance=5 ) #min_buy_in_button
+    elif button_name == 'max_buy_in': #💊 
+        return pixelMatchesColor( game_position[0]+214, game_position[1]+141, (255, 255, 255), tolerance=2 ) #max_buy_in_button
+    elif button_name == 'min_buy_in': #💊 
+        return pixelMatchesColor( game_position[0]+124, game_position[1]+141, (255, 255, 255), tolerance=2 ) #min_buy_in_button
     elif button_name == 're_buy': #💊
         return pixelMatchesColor( game_position[0]+358, game_position[1]-208, (26, 112, 81), tolerance=10 )
-    elif button_name == 'i_am_back': #💊
-        x1 = pixelMatchesColor( game_position[0]+152, game_position[1]+480, (63, 69, 83), tolerance=2 )
-        x2 = pixelMatchesColor( game_position[0]+152, game_position[1]+480, (81, 88, 106), tolerance=2 )
+    elif button_name == 'i_am_back': #💊 
+        x1 = pixelMatchesColor( game_position[0]+168, game_position[1]+473, (190, 195, 204), tolerance=40 )
+        x2 = pixelMatchesColor( game_position[0]+156, game_position[1]+480, (255, 255, 255), tolerance=2 )
         return (x1 or x2)
 
 

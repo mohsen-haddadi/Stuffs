@@ -212,12 +212,11 @@ def test_click_coordinates():
         pyautogui.click(x, y)
     # This list may differ for other websites
     ALL_CLICK_NAMES = [
-    'fold', 'check', 'call', 'bet', 'raise', 'all_in', 
+    'fold', 'check', 'call', 'bet', 'raise', 'all_in', 'pot', 'half_pot',
     'available_seat_1', 'available_seat_2', 'available_seat_3',
-    'available_seat_4', 'available_seat_5',
+    'available_seat_4', 'available_seat_5', 'available_seat_6',
     'exit', 'menu',
-    'buy_in', 'max_buy_in', 'min_buy_in', 're_buy', 'i_am_back',
-    'exit_probable_advertisement', 'close_update_window',
+    'buy_in', 'max_buy_in', 'min_buy_in', 're_buy', 'i_am_back'
     ]
     for name in ALL_CLICK_NAMES:
         print('clicking on %s in 3 seconds...'%name)
@@ -228,12 +227,11 @@ def test_pixel_matching():
 
     # This list may differ for other websites
     ALL_CLICK_NAMES = [
-    'fold', 'check', 'call', 'bet', 'raise', 'plus', 'minus', 'all_in', 
+    'fold', 'check', 'call', 'bet', 'raise', 'all_in', 'pot', 'half_pot',
     #'available_seat_1', 'available_seat_2', 'available_seat_3',
-    #'available_seat_4', 'available_seat_5',
+    #'available_seat_4', 'available_seat_5', 'available_seat_6',
     'exit', 'menu',
-    'buy_in', 'max_buy_in', 'min_buy_in', 're_buy', 'i_am_back',
-    #'exit_probable_advertisement', 'close_update_window',
+    'buy_in', 'max_buy_in', 'min_buy_in', 're_buy', 'i_am_back'
     ]
 
     print('\n***testing pixel matching for buttons:***')
