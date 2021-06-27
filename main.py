@@ -68,7 +68,7 @@ def bot_is_waiting_for_first_hand():
     """ 
     shout("* bot_status == 'WAITING_FOR_FIRST_HAND' *",color = 'on_green')
     rebuy_if_bank_is_low(min_blinds = 15)
-    wait_for_my_first_hand(waiting_minutes = 5)
+    wait_for_my_first_hand(waiting_minutes = 8)
 
 def bot_is_playing():
     while True:

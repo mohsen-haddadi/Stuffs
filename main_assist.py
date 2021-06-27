@@ -81,7 +81,7 @@ def wait_for_my_new_hand(waiting_minutes = 10):
             fix_game_disruption('game is unpaused')
             break 
             
-def wait_for_my_first_hand(waiting_minutes = 5):
+def wait_for_my_first_hand(waiting_minutes = 8):
     """Don't break this waiting function if c.new_hand is True, because 
     I'm waiting for first hand and maybe several hands are played without me.
     """

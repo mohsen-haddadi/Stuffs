@@ -39,3 +39,47 @@ banks:
 447 , 436   to    ,   : (po + 71 , po - 13  , 35 , 9)   Y_middle = 440 -> -9
 695 , 492   to    ,   : (po + 319 , po + 43 , 35 , 9)   Y_middle = 496 -> 47
 695 , 628   to    ,   : (po + 319 , po + 179 , 35 , 9)   Y_middle = 632 -> 183
+
+
+pixel matching needs:
+# my_seat_won_pixel all
+# other_seat_won_pixel all
+available_seat_pixel 1, all available at once
+add bet by typing
+
+
+BB chips:
+(0 ,0 ,0) tolerance 30
+
+(376 , 449)
+450, 635   po: 74, 186
+308,574    po: 68, 125
+360, 503   po: -16, 449
+664, 471   po: 288, 22
+616,500    po: 240, 51
+611, 614   po: 235, 165
+
+Call:
+(0, 0, 0) tolerance 30
+(376 , 449)
+673,915    po: 297, 466
+
+Check:
+(41, 41, 41) tolerance 50
+(376 , 449)
+679,920    po: 303, 471
+
+Bet:
+(0, 0, 0) tolerance 5
+(376 , 449)
+792,915    po: 416, 466
+
+Raise:
+(0, 0, 0) tolerance 5
+(376 , 449)
+806,915    po: 430, 466
+
+re_buy:
+(26, 112, 81) or (34, 145, 105) tolerance 5
+(376 , 449)
+340,770    po: , 466

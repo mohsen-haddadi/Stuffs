@@ -47,7 +47,7 @@ def hold_click(name ,seconds = 10):
 def click_on_button(button_name): 
     # for call, check, fold, bet, raise,
     # exit, menu, rebuy_menu,
-    # exit_yes, leave_next_hand_ok, buy_in, and re_buy buttons.
+    # exit_yes, buy_in, and re_buy buttons.
     #global game_position, just_do_check_fold , my_seat_number , MY_PROFILE_NAME , bot_status 
 
     if pm.button_pixel(config.game_position, button_name) : 
@@ -77,7 +77,7 @@ def click_on_button(button_name):
             else :
                 set_just_do_check_fold_to_true("There is problem on clicking on button %s" %button_name)
 
-        elif button_name in ('exit', 'menu', 'rebuy_menu'):
+        elif button_name in ('exit', 'menu'):
 
             fix_game_disruption("button %s is not visible" %button_name )
             if pm.button_pixel(config.game_position, button_name):
@@ -87,24 +87,9 @@ def click_on_button(button_name):
             else:
                 raise_exception_the_problem("button %s is not visible" %button_name)
 
-        elif button_name in ('exit_yes', 'leave_next_hand_ok', 'buy_in', 're_buy'):
+        elif button_name in ('buy_in', 're_buy', 'max_buy_in', 'min_buy_in'):
 
             raise_exception_the_problem("button %s is not visible" %button_name)
-
-def hold_click_on_button(button_name, seconds = 10): 
-    # for buy_in_plus and buy_in_minus and re_buy_plus and re_buy_minus buttons
-    # It holds left click for 10s
-    #global game_position
-
-    if pm.button_pixel(config.game_position, button_name) :
-        hold_click(button_name ,seconds = seconds)
-
-    else :
-        time.sleep(2)
-        if pm.button_pixel(config.game_position, button_name) :
-            hold_click(button_name ,seconds = seconds)
-        else :
-            raise_exception_the_problem("button %s is not visible" %button_name) 
 
 def ocr_my_name():
     """
@@ -152,9 +137,9 @@ def sit_in(chips): # "Min buy in" or "Max buy in"
         if Buy_In != True :
             fix_game_disruption("Sit_In(chips):Buy_In != True")
         if (chips == "Min buy in" and config.my_seat_number != None) :
-            hold_click_on_button('buy_in_minus', seconds = 10)
+            click_on_button('min_buy_in')
         if (chips == "Max buy in" and config.my_seat_number != None):
-            hold_click_on_button('buy_in_plus', seconds = 10)
+            click_on_button('max_buy_in')
         if config.my_seat_number != None :
             click_on_button('buy_in')
             screenshot_error("Rebuyed")

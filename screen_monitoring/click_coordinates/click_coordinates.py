@@ -14,10 +14,13 @@ def click_coordinates(game_position, name):
         coordinate = ( game_position[0]+246, game_position[1]+648 )
     elif name == 'minus':
         coordinate = ( game_position[0]-9, game_position[1]+648 )
-    elif name == 'all_in':
-        coordinate = ( game_position[0]+531, game_position[1]+648 )
+    elif name == 'half_pot':
+        pass # add coordiantes later
     elif name == 'pot':
         pass # add coordiantes later
+    elif name == 'all_in':
+        coordinate = ( game_position[0]+531, game_position[1]+648 )
+
 
     elif name == 'available_seat_1':
         coordinate = ( game_position[0]+362, game_position[1]+408 )
@@ -32,26 +35,16 @@ def click_coordinates(game_position, name):
 
     elif name == 'exit':
         coordinate = ( game_position[0]+378, game_position[1]+21 )
-    elif name == 'exit_yes':
-        coordinate = ( game_position[0]+47, game_position[1]+355 )
     elif name == 'menu':
         coordinate = ( game_position[0]-399, game_position[1]-66 )
-    elif name == 'rebuy_menu':
-        coordinate = ( game_position[0]+513, game_position[1]+14 )
-    elif name == 'leave_next_hand_ok':
-        coordinate = ( game_position[0]+108, game_position[1]+342 )
     elif name == 'buy_in':
         coordinate = ( game_position[0]+71, game_position[1]+448 )
-    elif name == 'buy_in_plus':
+    elif name == 'max_buy_in':
         coordinate = (game_position[0]+264, game_position[1]+236)
-    elif name == 'buy_in_minus':
+    elif name == 'min_buy_in':
         coordinate = (game_position[0]-46, game_position[1]+244)
     elif name == 're_buy':
         coordinate = ( game_position[0]+91, game_position[1]+430 )
-    elif name == 're_buy_plus':
-        coordinate = (game_position[0]+264, game_position[1]+254)
-    elif name == 're_buy_minus':
-        coordinate = ( game_position[0]-46, game_position[1]+261)
     elif name == 'i_am_back':
         coordinate = ( game_position[0]+137, game_position[1]+608 )
 

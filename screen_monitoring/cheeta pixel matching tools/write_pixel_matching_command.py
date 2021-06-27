@@ -12,15 +12,25 @@ except Exception as e:
     print(e)
 
 def find_game_reference_point_for_cheet():
-
     print('searching for game region on screen...')
-    image_path = os.path.abspath(os.path.dirname(__file__)) + '/reference image.png' # or '/reference image 2.png'
-    game_position = pyautogui.locateOnScreen(image_path)
-    if game_position == None:
-        raise Exception("can not find game region on screen")
-    game_position = (int(game_position[0]),int(game_position[1]))
-    print('game reference point is set to:(%s, %s)'%(game_position[0],game_position[1]))
-    return game_position
+    reference_images = [
+        os.path.abspath(os.path.dirname(__file__)) + '/reference image.png',
+        os.path.abspath(os.path.dirname(__file__)) + '/reference image 2.png',
+        os.path.abspath(os.path.dirname(__file__)) + '/reference image 3.png',
+        ]
+    for reference_image in reference_images:
+        game_position = pyautogui.locateOnScreen(reference_image)
+        if game_position == None:
+            print('can not find game region, using next reference image after 5 sec...')
+            time.sleep(5)
+            continue
+        else:
+            game_position = (int(game_position[0]),int(game_position[1]))
+            print('game reference point is set to:(%s, %s)'%(game_position[0],game_position[1]))
+            return game_position
+
+    raise Exception("can not find game region on screen")
+
 
 #game_position = (500,500) # TEST
 game_position = find_game_reference_point_for_cheet()

@@ -49,70 +49,65 @@ def big_blind_pixel(game_position, seat):
         return pixelMatchesColor( game_position[0]+400, game_position[1]+212, (185,185,185), tolerance=10 ) #Big_seat_5
 
 #2020
-def dealer_pixel(game_position, seat):
+def dealer_pixel(game_position, seat): #💊
     # check if a seat is on dealer position by returning True or False
     if seat == 1:
-        return pixelMatchesColor( game_position[0]+397, game_position[1]+330, (255,155,0), tolerance=10 ) #Dealer_seat_1
+        return pixelMatchesColor( game_position[0]+39, game_position[1]+202, (170, 129, 54), tolerance=10 ) #Dealer_seat_1
     if seat == 2:
-        return pixelMatchesColor( game_position[0]+144, game_position[1]+333, (254,193,0), tolerance=10 ) #Dealer_seat_2
+        return pixelMatchesColor( game_position[0]-46, game_position[1]+174, (170, 129, 54), tolerance=10 ) #Dealer_seat_2
     if seat == 3:
-        return pixelMatchesColor( game_position[0]-116, game_position[1]+330, (255,154,0), tolerance=10 ) #Dealer_seat_3
+        return pixelMatchesColor( game_position[0]-89, game_position[1]+93, (170, 129, 54), tolerance=10 ) #Dealer_seat_3
     if seat == 4:
-        return pixelMatchesColor( game_position[0]-202, game_position[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_4
+        return pixelMatchesColor( game_position[0]+157, game_position[1]+34, (170, 129, 54), tolerance=10 ) #Dealer_seat_4
     if seat == 5:
-        return pixelMatchesColor( game_position[0]+429, game_position[1]+212, (255,160,0), tolerance=10 ) #Dealer_seat_5 
+        return pixelMatchesColor( game_position[0]+294, game_position[1]+91, (170, 129, 54), tolerance=10 ) #Dealer_seat_5
+    if seat == 6:
+        return pixelMatchesColor( game_position[0]+286, game_position[1]+157, (170, 129, 54), tolerance=10 ) #Dealer_seat_6 
 
-def player_chips_pixel(game_position, seat): #New define function for celeb
+def player_chips_pixel(game_position, seat): #💊
     # Checks if there is any call/bet/raising chips in front of a seat or not, by returning True or False
     if seat==1:
-        return pixelMatchesColor( game_position[0]+298, game_position[1]+317, (240,16,0), tolerance=10 ) #Bet_coin_seat_1
+        return pixelMatchesColor( game_position[0]+74, game_position[1]+186, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_1
     if seat==2:
-        return pixelMatchesColor( game_position[0]+79, game_position[1]+320, (237,16,0), tolerance=10 ) #Bet_coin_seat_2
+        return pixelMatchesColor( game_position[0]+68, game_position[1]+125, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_2
     if seat==3:
-        return pixelMatchesColor( game_position[0]-138, game_position[1]+317, (241,17,0), tolerance=10 ) #Bet_coin_seat_3
+        return pixelMatchesColor( game_position[0]-16, game_position[1]+449, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_3
     if seat==4:
-        return pixelMatchesColor( game_position[0]-143, game_position[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_4
+        return pixelMatchesColor( game_position[0]+288, game_position[1]+22, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_4
     if seat==5:
-        return pixelMatchesColor( game_position[0]+302, game_position[1]+231, (241,17,0), tolerance=10 ) #Bet_coin_seat_5
+        return pixelMatchesColor( game_position[0]+235, game_position[1]+165, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_5
 
-def player_cards_pixel(game_position, seat):
+def player_cards_pixel(game_position, seat): #💊
     # It checks if a player has cards in his hands or not, by returning True of False
-    if seat==1:
-        c1 = pixelMatchesColor( game_position[0]+330, game_position[1]+331, (154,7,13), tolerance=5 ) #Cards_seat_1
-        c2 = pixelMatchesColor( game_position[0]+328, game_position[1]+333, (154,7,13), tolerance=5 ) 
-        return c1 or c2
-    if seat==2:
-        c1 = pixelMatchesColor( game_position[0]+74, game_position[1]+332, (154,7,13), tolerance=5 ) #Cards_seat_2
-        c2 = pixelMatchesColor( game_position[0]+72, game_position[1]+334, (154,7,13), tolerance=5 ) 
-        return c1 or c2
-    if seat==3:
-        c1 = pixelMatchesColor( game_position[0]-181, game_position[1]+331, (154,7,13), tolerance=5 ) #Cards_seat_3
-        c2 = pixelMatchesColor( game_position[0]-183, game_position[1]+333, (154,7,13), tolerance=5 ) 
-        return c1 or c2
-    if seat==4:
-        c1 = pixelMatchesColor( game_position[0]-140, game_position[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_4
-        c2 = pixelMatchesColor( game_position[0]-142, game_position[1]+193, (154,7,13), tolerance=20 )
-        return c1 or c2
-    if seat==5:
-        c1 = pixelMatchesColor( game_position[0]+359, game_position[1]+212, (154,7,13), tolerance=5 ) #Cards_seat_5 
-        c2 = pixelMatchesColor( game_position[0]+357, game_position[1]+193, (154,7,13), tolerance=20 ) 
-        return c1 or c2
-
-def other_player_seated_pixel(game_position, seat): # celeb
-    # It checks at ordinary situations if there is a player on the seat or not
-
     if seat == 1:
-        return pixelMatchesColor( game_position[0]+321, game_position[1]+403, (4,6,7), tolerance=2 ) #Others_In_seat_1
+        return pixelMatchesColor( game_position[0]+75, game_position[1]+197, (255, 255, 255), tolerance=10 ) #Cards_seat_1
     if seat == 2:
-        return pixelMatchesColor( game_position[0]+161, game_position[1]+398, (5,7,8), tolerance=2 ) #Others_In_seat_2
+        return pixelMatchesColor( game_position[0]-139, game_position[1]+136, (255, 255, 255), tolerance=10 ) #Cards_seat_2
     if seat == 3:
-        return pixelMatchesColor( game_position[0]-94, game_position[1]+403, (4,6,7), tolerance=2 ) #Others_In_seat_3
+        return pixelMatchesColor( game_position[0]-139, game_position[1]-1, (255, 255, 255), tolerance=10 ) #Cards_seat_3
     if seat == 4:
-        return pixelMatchesColor( game_position[0]-124, game_position[1]+163, (4,6,7), tolerance=2 ) #Others_In_seat_4
+        return pixelMatchesColor( game_position[0]+75, game_position[1]-57, (255, 255, 255), tolerance=10 )#Cards_seat_4
     if seat == 5:
-        return pixelMatchesColor( game_position[0]+431, game_position[1]+183, (4,5,6), tolerance=2 ) #Others_In_seat_5
+        return pixelMatchesColor( game_position[0]+322, game_position[1]-1, (255, 255, 255), tolerance=10 ) #Cards_seat_5
+    if seat == 6:
+        return pixelMatchesColor( game_position[0]+322, game_position[1]+135, (255, 255, 255), tolerance=10 ) #Cards_seat_6
 
-def i_am_seated_pixel(game_position, seat):
+def other_player_seated_pixel(game_position, seat): #💊
+    # It checks at ordinary situations if there is a player on the seat or not
+    if seat == 1:
+        return pixelMatchesColor( game_position[0]+153, game_position[1]+247, (245, 245, 245), tolerance=20 ) #Others_In_seat_1
+    if seat == 2:
+        return pixelMatchesColor( game_position[0]-60, game_position[1]+182, (245, 245, 245), tolerance=20 ) #Others_In_seat_2
+    if seat == 3:
+        return pixelMatchesColor( game_position[0]-60, game_position[1]+50, (245, 245, 245), tolerance=20 ) #Others_In_seat_3
+    if seat == 4:
+        return pixelMatchesColor( game_position[0]+152, game_position[1]-4, (245, 245, 245), tolerance=20 )#Others_In_seat_4
+    if seat == 5:
+        return pixelMatchesColor( game_position[0]+400, game_position[1]+49, (245, 245, 245), tolerance=20 ) #Others_In_seat_5
+    if seat == 6:
+        return pixelMatchesColor( game_position[0]+400, game_position[1]+183, (245, 245, 245), tolerance=20 ) #Others_In_seat_6
+
+def i_am_seated_pixel(game_position, seat):# remove it
     # It checks at ordinary situations if I am on the seat or not
 
     if seat == 1 :
@@ -131,19 +126,21 @@ def i_am_seated_pixel(game_position, seat):
         x = pixelMatchesColor( game_position[0]+458, game_position[1]+181, (7,8,10) ) #me_in_5
         return (x)
 
-def active_player_pixel(game_position, seat): # celeb
+def active_player_pixel(game_position, seat): #💊
     # It checks whose player turn is, 
     # using the lighting pixel on a seat, by returning True or False 
     if seat==1:
-        return pixelMatchesColor( game_position[0]+346, game_position[1]+328, (34,41,48), tolerance=5 ) #Light_Turn_seat_1
+        return pixelMatchesColor( game_position[0]+64, game_position[1]+255, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_1
     if seat==2:
-        return pixelMatchesColor( game_position[0]+96, game_position[1]+330, (47,59,69), tolerance=5 ) #Light_Turn_seat_2
+        return pixelMatchesColor( game_position[0]-151, game_position[1]+194, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_2
     if seat==3:
-        return pixelMatchesColor( game_position[0]-116, game_position[1]+328, (34,41,48), tolerance=5 ) #Light_Turn_seat_3
+        return pixelMatchesColor( game_position[0]-151, game_position[1]+58, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_3
     if seat==4:
-        return pixelMatchesColor( game_position[0]-161, game_position[1]+219, (33,41,47), tolerance=5 ) #Light_Turn_seat_4
+        return pixelMatchesColor( game_position[0]+64, game_position[1]+2, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_4
     if seat==5:
-        return pixelMatchesColor( game_position[0]+383, game_position[1]+217, (31,40,45), tolerance=5 ) #Light_Turn_seat_5
+        return pixelMatchesColor( game_position[0]+312, game_position[1]+58, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_5
+    if seat==6:
+        return pixelMatchesColor( game_position[0]+310, game_position[1]+194, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_6
 #2020
 def my_seat_won_pixel(game_position, seat):
     # looking for a sign of winning on my seat to check if I have won the game by returning True or False    
@@ -246,121 +243,60 @@ def are_chips_white_or_red_pixel(game_position, seat): #celeb
 
 # pixel matchings to click on buttons:
 
-def available_seat_pixel(game_position, seat):
+def available_seat_pixel(game_position, seat): #💊
     # It checks if the seat is free to be seated or not, by returning True or False
     if seat == 1 :
-        x1 = pixelMatchesColor( game_position[0]+362, game_position[1]+408, (1,79,164) ) #Seat1
-        x2 = pixelMatchesColor( game_position[0]+362, game_position[1]+408, (21,102,189) ) #Seat1_Light
-        return (x1 or x2)
+        return pixelMatchesColor( game_position[0]+107, game_position[1]+238, (26, 112, 81), tolerance=10 )
     if seat == 2 :
-        x1 = pixelMatchesColor( game_position[0]+107, game_position[1]+411, (1,78,163) ) #Seat2
-        x2 = pixelMatchesColor( game_position[0]+107, game_position[1]+411, (21,101,188) ) #Seat2_Light
-        return (x1 or x2)
+        return pixelMatchesColor( game_position[0]-98, game_position[1]+176, (26, 112, 81), tolerance=10 )
     if seat == 3 :
-        x1 = pixelMatchesColor( game_position[0]-148, game_position[1]+408, (1,79,164) ) #Seat3
-        x2 = pixelMatchesColor( game_position[0]-148, game_position[1]+408, (21,102,189) ) #Seat3_Light
-        return (x1 or x2)
+        return pixelMatchesColor( game_position[0]-98, game_position[1]+34, (26, 112, 81), tolerance=10 )
     if seat == 4 :
-        x1 = pixelMatchesColor( game_position[0]-178, game_position[1]+103, (1,79,164) ) #Seat4
-        x2 = pixelMatchesColor( game_position[0]-178, game_position[1]+103, (21,102,189) ) #Seat4_Light
-        return (x1 or x2)
+        return pixelMatchesColor( game_position[0]+108, game_position[1]-29, (26, 112, 81), tolerance=10 )
     if seat == 5 :
-        x1 = pixelMatchesColor( game_position[0]+392, game_position[1]+103, (1,79,164) ) #Seat5
-        x2 = pixelMatchesColor( game_position[0]+392, game_position[1]+103, (21,102,189) ) #Seat5_Light
-        return (x1 or x2)
+        return pixelMatchesColor( game_position[0]+314, game_position[1]+34, (26, 112, 81), tolerance=10 )
+    if seat == 6 :
+        return pixelMatchesColor( game_position[0]+316, game_position[1]+178, (26, 112, 81), tolerance=10 )
 
 
 def button_pixel(game_position, button_name):
     #It checks if button is existed and it's on its position or not.
-    if button_name == 'fold':
-        x1 = pixelMatchesColor( game_position[0]+51, game_position[1]+581, (190,22,28) ) #Fold
-        x2 = pixelMatchesColor( game_position[0]+51, game_position[1]+581, (220,27,33) ) #Fold_Light
-        return (x1 or x2)
-    elif button_name == 'check':
-        x1 = pixelMatchesColor( game_position[0]+246, game_position[1]+578, (1,83,170) ) #Check_up
-        x2 = pixelMatchesColor( game_position[0]+246, game_position[1]+584, (254,254,254) ) #Check_down
-        x3 = pixelMatchesColor( game_position[0]+246, game_position[1]+578, (1,95,194) ) #Check_up_Light
-        x4 = pixelMatchesColor( game_position[0]+246, game_position[1]+584, (254,254,254) ) #Check_down_Light
-        return ( (x1 and x2) or (x3 and x4) )        
-    elif button_name == 'call':
-        x1 = pixelMatchesColor( game_position[0]+261, game_position[1]+575, (0,84,172) ) #Call_up
-        x2 = pixelMatchesColor( game_position[0]+260, game_position[1]+579, (249,249,249) ) #Call_down
-        x3 = pixelMatchesColor( game_position[0]+261, game_position[1]+575, (0,97,198) ) #Call_up_Light
-        x4 = pixelMatchesColor( game_position[0]+260, game_position[1]+579, (249,249,249) ) #Call_down_Light
-        return ( (x1 and x2) or (x3 and x4) )
-    elif button_name == 'bet':
-        x1 = pixelMatchesColor( game_position[0]+461, game_position[1]+576, (24,115,0), tolerance=15 ) #Bet_up
-        x2 = pixelMatchesColor( game_position[0]+463, game_position[1]+579, (242,242,242), tolerance=15 ) #Bet_down
-        x3 = pixelMatchesColor( game_position[0]+461, game_position[1]+576, (28,135,0), tolerance=15 ) #Bet_up_Light
-        x4 = pixelMatchesColor( game_position[0]+463, game_position[1]+579, (242,242,242), tolerance=15 ) #Bet_down_Light
-        return ( (x1 and x2) or (x3 and x4) )
-    elif button_name == 'raise':
-        x1 = pixelMatchesColor( game_position[0]+461, game_position[1]+576, (25,117,0), tolerance=15 ) #Raise_up
-        x2 = pixelMatchesColor( game_position[0]+448, game_position[1]+579, (239,239,239), tolerance=15 ) #Raise_down
-        x3 = pixelMatchesColor( game_position[0]+461, game_position[1]+576, (29,137,0), tolerance=15 ) #Raise_up_Light
-        x4 = pixelMatchesColor( game_position[0]+448, game_position[1]+579, (239,239,239), tolerance=15 ) #Raise_down_Light
-        return ( (x1 and x2) or (x3 and x4) )
-    elif button_name == 'plus':
-        x1 = pixelMatchesColor( game_position[0]+246, game_position[1]+648, (58,68,83) ) #Plus_Button
-        x2 = pixelMatchesColor( game_position[0]+246, game_position[1]+648, (77,88,105) ) #Plus_Button_Light
-        return (x1 or x2)
-    elif button_name == 'minus':
-        x1 = pixelMatchesColor( game_position[0]-9, game_position[1]+648, (58,68,83) ) #Minus_Button
-        x2 = pixelMatchesColor( game_position[0]-9, game_position[1]+648, (77,88,105) ) #Minus_Button_Light
-        return (x1 or x2)
-    elif button_name == 'all_in':
-        x1 = pixelMatchesColor( game_position[0]+531, game_position[1]+648, (207,90,6) ) #All_In_Button
-        x2 = pixelMatchesColor( game_position[0]+531, game_position[1]+648, (235,98,0) ) #All_In_Button_Light
-        return (x1 or x2)
+    if button_name == 'fold': #💊
+        return pixelMatchesColor( game_position[0]+165, game_position[1]+479, (255, 255, 255), tolerance=10 )
+    elif button_name == 'check': #💊
+        return pixelMatchesColor( game_position[0]+303, game_position[1]+471, (41, 41, 41), tolerance=50 )      
+    elif button_name == 'call': #💊
+        return pixelMatchesColor( game_position[0]+297, game_position[1]+466, (376 , 449), tolerance=30 )  
+    elif button_name == 'bet': #💊
+        return pixelMatchesColor( game_position[0]+416, game_position[1]+466, (0, 0, 0), tolerance=5 )  
+    elif button_name == 'raise': #💊
+        return pixelMatchesColor( game_position[0]+430, game_position[1]+466, (0, 0, 0), tolerance=5 )  
+    elif  button_name == 'half_pot': #💊
+        return pixelMatchesColor( game_position[0]+332, game_position[1]+375, (194, 197, 205), tolerance=10 )
+    elif  button_name == 'pot': #💊
+        return pixelMatchesColor( game_position[0]+379, game_position[1]+378, (194, 197, 205), tolerance=10 )
+    elif button_name == 'all_in': #💊
+        return pixelMatchesColor( game_position[0]+431, game_position[1]+375, (255, 255, 255), tolerance=10 )
 
-
-
-    elif button_name == 'exit':
-        x1 = pixelMatchesColor( game_position[0]+378, game_position[1]+21, (130,135,146) ) #Exit_Button
-        x2 = pixelMatchesColor( game_position[0]+378, game_position[1]+21, (156,160,168) ) #Exit_Button_Light
+    elif button_name == 'exit': #💊
+        return pixelMatchesColor( game_position[0]+172, game_position[1]-263, (108, 108, 108), tolerance=10 )
+    elif button_name == 'menu': #💊
+        x1 = pixelMatchesColor( game_position[0]-195, game_position[1]-268, (108, 108, 108), tolerance=10 )
+        x2 = pixelMatchesColor( game_position[0]-148, game_position[1]-266, (255, 255, 255), tolerance=10 )
         return (x1 or x2)
-    elif button_name == 'exit_yes':
-        x1 = pixelMatchesColor( game_position[0]+47, game_position[1]+355, (168,11,16) ) #Exit_Yes_Button
-        x2 = pixelMatchesColor( game_position[0]+47, game_position[1]+355, (177,13,19) ) #Exit_Yes_Button_Light
+    elif button_name == 'buy_in': #💊
+        x1 = pixelMatchesColor( game_position[0]+36, game_position[1]+321, (26, 112, 81), tolerance=5 ) #Buy_In_Button
+        x2 = pixelMatchesColor( game_position[0]+36, game_position[1]+321, (34, 145, 105), tolerance=5 ) #Buy_In_Button_Light
         return (x1 or x2)
-    elif button_name == 'menu':
-        x1 = pixelMatchesColor( game_position[0]-399, game_position[1]-66, (38,44,47), tolerance=5 ) #Menu_Button
-        x2 = pixelMatchesColor( game_position[0]-399, game_position[1]-66, (78,83,97), tolerance=5 ) #Menu_Button_Light
-        return (x1 or x2)
-    elif button_name == 'rebuy_menu':
-        x1 = pixelMatchesColor( game_position[0]+513, game_position[1]+14, (203,0,6) ) #Rebuy_Menu_Button
-        return (x1)
-    elif button_name == 'leave_next_hand_ok':
-        x1 = pixelMatchesColor( game_position[0]+108, game_position[1]+342, (0,83,171) ) #Leave_Next_Hand_OK_Button
-        x2 = pixelMatchesColor( game_position[0]+108, game_position[1]+342, (0,95,193) ) #Leave_Next_Hand_OK_Button_Light
-        return (x1 or x2)
-    elif button_name == 'buy_in':
-        x1 = pixelMatchesColor( game_position[0]+71, game_position[1]+448, (26,123,0) ) #Buy_In_Button
-        x2 = pixelMatchesColor( game_position[0]+71, game_position[1]+448, (32,149,0) ) #Buy_In_Button_Light
-        return (x1 or x2)
-    elif button_name == 'buy_in_plus':
-        x1 = pixelMatchesColor( game_position[0]+264, game_position[1]+236, (58,68,83) ) #Buy_In_Plus_Button
-        x2 = pixelMatchesColor( game_position[0]+264, game_position[1]+236, (77,88,105) ) #Buy_In_Plus_Button_Light
-        return (x1 or x2)
-    elif button_name == 'buy_in_minus':
-        x1 = pixelMatchesColor( game_position[0]-46, game_position[1]+244, (54,62,76) ) #Buy_In_Minus_Button
-        x2 = pixelMatchesColor( game_position[0]-46, game_position[1]+244, (70,80,96) ) #Buy_In_Minus_Button_Light
-        return (x1 or x2)
-    elif button_name == 're_buy':
-        x1 = pixelMatchesColor( game_position[0]+91, game_position[1]+430, (26,124,0) ) #Re_Buy_Button
-        x2 = pixelMatchesColor( game_position[0]+91, game_position[1]+430, (32,150,0) ) #Re_Buy_Button_Light
-        return (x1 or x2)
-    elif button_name == 're_buy_plus':
-        x1 = pixelMatchesColor( game_position[0]+264, game_position[1]+254, (58,68,83) ) #Re_Buy_Plus_Button
-        x2 = pixelMatchesColor( game_position[0]+264, game_position[1]+254, (77,88,105) ) #Re_Buy_Plus_Button_Light
-        return (x1 or x2)
-    elif button_name == 're_buy_minus':
-        x1 = pixelMatchesColor( game_position[0]-46, game_position[1]+261, (54,62,76) ) #Re_Buy_Minus_Button
-        x2 = pixelMatchesColor( game_position[0]-46, game_position[1]+261, (70,80,96) ) #Re_Buy_Minus_Button_Light
-        return (x1 or x2)
-    elif button_name == 'i_am_back':
-        x1 = pixelMatchesColor( game_position[0]+137, game_position[1]+608, (1,80,165) ) #I_am_back_Button
-        x2 = pixelMatchesColor( game_position[0]+137, game_position[1]+608, (1,91,188) ) #I_am_back_Button_Light
+    elif button_name == 'max_buy_in': #💊
+        return pixelMatchesColor( game_position[0]+214, game_position[1]+141, (123, 129, 145), tolerance=5 ) #max_buy_in_button
+    elif button_name == 'min_buy_in': #💊
+        return pixelMatchesColor( game_position[0]+124, game_position[1]+141, (123, 129, 145), tolerance=5 ) #min_buy_in_button
+    elif button_name == 're_buy': #💊
+        return pixelMatchesColor( game_position[0]+358, game_position[1]-208, (26, 112, 81), tolerance=10 )
+    elif button_name == 'i_am_back': #💊
+        x1 = pixelMatchesColor( game_position[0]+152, game_position[1]+480, (63, 69, 83), tolerance=2 )
+        x2 = pixelMatchesColor( game_position[0]+152, game_position[1]+480, (81, 88, 106), tolerance=2 )
         return (x1 or x2)
 
 

@@ -101,6 +101,12 @@ def find_bank_x_size(game_position, seat): #💊
             break
     #print(f' bank dx for seat{seat} is: {dx}')
     return dx
+def download_my_bet_image(game_position):
+
+    MY_BET_IMAGE_REGION = (game_position[0]+400, game_position[1]+471, 43, 9) #💊
+
+    pil_image = pyautogui.screenshot( region = MY_BET_IMAGE_REGION ) #💊
+    return pil_image
 
 def download_bet_image(game_position, seat):
 
@@ -119,6 +125,7 @@ def download_bet_image(game_position, seat):
 
     pil_image = pyautogui.screenshot( region = BET_IMAGE_REGION ) #💊
     return pil_image
+
 
 def download_other_players_bank_image(game_position, seat):
 
@@ -172,6 +179,13 @@ def download_my_name_image(game_position, seat):
     pil_image = pyautogui.screenshot( region = MY_NAME_IMAGE_REGION [seat] )
     return pil_image
 
+def ocr_my_bet_to_string(game_position):
+    """ the bet number on the bet button """
+    pil_image = download_my_bet_image(game_position)
+    image = pre_process_ocr_image(pil_image)
+    string = remove_blank_lines(ocr(image))
+    string = replace_letters_s_o(string)
+    return string
 
 def ocr_bet_to_string(game_position, seat):
 
