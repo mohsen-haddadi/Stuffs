@@ -248,13 +248,8 @@ def test_pixel_matching():
     print('pre_flop_pixel is: %s' %pm.pre_flop_pixel(game_position) )
     print('flop_pixel is: %s' %pm.flop_pixel(game_position) )  
     print('turn_pixel is: %s' %pm.turn_pixel(game_position) )  
-    print('river_pixel is: %s' %pm.river_pixel(game_position) )    
-    for seat in range(1, TOTAL_SEATS+1):
-        print('small_blind_pixel at seat %s is: %s'
-              %(seat, pm.small_blind_pixel(game_position, seat) ) )
-    for seat in range(1, TOTAL_SEATS+1):
-        print('big_blind_pixel at seat %s is: %s'
-              %(seat, pm.big_blind_pixel(game_position, seat) ) )
+    print('river_pixel is: %s' %pm.river_pixel(game_position) )
+    print('i_am_seated_pixel is: %s'%pm.i_am_seated_pixel(game_position))   
     for seat in range(1, TOTAL_SEATS+1):
         print('dealer_pixel at seat %s is: %s'
               %(seat, pm.dealer_pixel(game_position, seat) ) )
@@ -268,20 +263,11 @@ def test_pixel_matching():
         print('other_player_seated_pixel at seat %s is: %s'
               %(seat, pm.other_player_seated_pixel(game_position, seat) ) )
     for seat in range(1, TOTAL_SEATS+1):
-        print('i_am_seated_pixel at seat %s is: %s'
-              %(seat, pm.i_am_seated_pixel(game_position, seat) ) )
-    for seat in range(1, TOTAL_SEATS+1):
         print('active_player_pixel at seat %s is: %s'
               %(seat, pm.active_player_pixel(game_position, seat) ) )
     for seat in range(1, TOTAL_SEATS+1):
-        print('my_seat_won_pixel at seat %s is: %s'
-              %(seat, pm.my_seat_won_pixel(game_position, seat) ) )
-    for seat in range(1, TOTAL_SEATS+1):
-        print('other_seat_won_pixel at seat %s is: %s'
-              %(seat, pm.other_seat_won_pixel(game_position, seat) ) )
-    for seat in range(1, TOTAL_SEATS+1):
-        print('notification_banner_pixel at seat %s is: %s'
-              %(seat, pm.notification_banner_pixel(game_position, seat) ) )
+        print('seat_won_pixel at seat %s is: %s'
+              %(seat, pm.seat_won_pixel(game_position, seat) ) )
     for seat in range(1, TOTAL_SEATS+1):
         print('are_chips_white_or_red_pixel at seat %s is: %s'
               %(seat, pm.are_chips_white_or_red_pixel(game_position, seat) ) )

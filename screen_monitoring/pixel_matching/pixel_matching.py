@@ -6,47 +6,20 @@ def pre_flop_pixel(game_position):
     # Check if the game is on pre flop by returning True or False
     return not flop_pixel(game_position)
 
-def flop_pixel(game_position):
+def flop_pixel(game_position): #💊
     # Check if the game is on flop by returning True or False
-    flop = pixelMatchesColor( game_position[0]+136, game_position[1]+218, (237,237,237) ) #Flop
+    flop = pixelMatchesColor( game_position[0]+85, game_position[1]+65, (255, 255, 255), tolerance=10 ) #Flop
     return flop 
 
-def turn_pixel(game_position):
+def turn_pixel(game_position): #💊
     # Check if the game is on turn by returning True or False
-    turn = pixelMatchesColor( game_position[0]+196, game_position[1]+218, (237,237,237) ) #Turn
+    turn = pixelMatchesColor( game_position[0]+124, game_position[1]+65, (255, 255, 255), tolerance=10 ) #Turn
     return turn 
 
-def river_pixel(game_position):
+def river_pixel(game_position): #💊
     # Check if the game is on river by returning True or False
-    river = pixelMatchesColor( game_position[0]+261, game_position[1]+218, (237,237,237) ) #River
+    river = pixelMatchesColor( game_position[0]+163, game_position[1]+65, (255, 255, 255), tolerance=10 ) #River
     return river 
-#2020
-def small_blind_pixel(game_position, seat):
-    # check if a seat is on small blind position by returning True or False
-    if seat == 1:
-        return pixelMatchesColor( game_position[0]+369, game_position[1]+329, (18,111,213), tolerance=10 ) #Small_seat_1
-    if seat == 2:
-        return pixelMatchesColor( game_position[0]+111, game_position[1]+332, (21,124,218), tolerance=10 ) #Small_seat_2
-    if seat == 3:
-        return pixelMatchesColor( game_position[0]-145, game_position[1]+329, (16,105,211), tolerance=10 ) #Small_seat_3
-    if seat == 4:
-        return pixelMatchesColor( game_position[0]-173, game_position[1]+212, (22,112,212), tolerance=10 ) #Small_seat_4
-    if seat == 5:
-        return pixelMatchesColor( game_position[0]+400, game_position[1]+212, (22,112,212), tolerance=10 ) #Small_seat_5
-
-#2020
-def big_blind_pixel(game_position, seat):
-    # check if a seat is on big blind position by returning True or False
-    if seat == 1:
-        return pixelMatchesColor( game_position[0]+367, game_position[1]+329, (180,180,180), tolerance=10 ) #Big_seat_1
-    if seat == 2:
-        return pixelMatchesColor( game_position[0]+111, game_position[1]+332, (200,200,200), tolerance=10 ) #Big_seat_2
-    if seat == 3:
-        return pixelMatchesColor( game_position[0]-145, game_position[1]+329, (185,185,185), tolerance=10 ) #Big_seat_3
-    if seat == 4:
-        return pixelMatchesColor( game_position[0]-174, game_position[1]+212, (185,185,185), tolerance=10 ) #Big_seat_4
-    if seat == 5:
-        return pixelMatchesColor( game_position[0]+400, game_position[1]+212, (185,185,185), tolerance=10 ) #Big_seat_5
 
 #2020
 def dealer_pixel(game_position, seat): #💊
@@ -75,7 +48,9 @@ def player_chips_pixel(game_position, seat): #💊
     if seat==4:
         return pixelMatchesColor( game_position[0]+288, game_position[1]+22, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_4
     if seat==5:
-        return pixelMatchesColor( game_position[0]+235, game_position[1]+165, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_5
+        return pixelMatchesColor( game_position[0]+240, game_position[1]+51, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_5
+    if seat==6:
+        return pixelMatchesColor( game_position[0]+235, game_position[1]+165, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_6
 
 def player_cards_pixel(game_position, seat): #💊
     # It checks if a player has cards in his hands or not, by returning True of False
@@ -107,24 +82,9 @@ def other_player_seated_pixel(game_position, seat): #💊
     if seat == 6:
         return pixelMatchesColor( game_position[0]+400, game_position[1]+183, (245, 245, 245), tolerance=20 ) #Others_In_seat_6
 
-def i_am_seated_pixel(game_position, seat):# remove it
+def i_am_seated_pixel(game_position): #💊
     # It checks at ordinary situations if I am on the seat or not
-
-    if seat == 1 :
-        x = pixelMatchesColor( game_position[0]+426, game_position[1]+381, (8,9,11) ) #me_in_1
-        return (x)
-    if seat == 2 :
-        x = pixelMatchesColor( game_position[0]+177, game_position[1]+382, (10,12,14) ) #me_in_2
-        return (x)
-    if seat == 3 :
-        x = pixelMatchesColor( game_position[0]-75, game_position[1]+379, (8,10,12) ) #me_in_3
-        return (x)
-    if seat == 4 :
-        x = pixelMatchesColor( game_position[0]-106, game_position[1]+161, (9,11,13) ) #me_in_4
-        return (x)
-    if seat == 5 :
-        x = pixelMatchesColor( game_position[0]+458, game_position[1]+181, (7,8,10) ) #me_in_5
-        return (x)
+    return pixelMatchesColor( game_position[0]-251, game_position[1]+375, (237, 237, 237), tolerance=10 )
 
 def active_player_pixel(game_position, seat): #💊
     # It checks whose player turn is, 
@@ -141,57 +101,32 @@ def active_player_pixel(game_position, seat): #💊
         return pixelMatchesColor( game_position[0]+312, game_position[1]+58, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_5
     if seat==6:
         return pixelMatchesColor( game_position[0]+310, game_position[1]+194, (166, 31, 103), tolerance=10 ) #Light_Turn_seat_6
-#2020
-def my_seat_won_pixel(game_position, seat):
-    # looking for a sign of winning on my seat to check if I have won the game by returning True or False    
-    if seat == 1:
-        return pixelMatchesColor( game_position[0]+442, game_position[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-1
-    if seat == 2:
-        return pixelMatchesColor( game_position[0]+187, game_position[1]+422, (248,123,10), tolerance=5 ) #Win-Finish-Me-seat-2
-    if seat == 3:
-        return pixelMatchesColor( game_position[0]-68, game_position[1]+415, (248,125,9), tolerance=5 ) #Win-Finish-Me-seat-3
-    if seat == 4:
-        return pixelMatchesColor( game_position[0]-98, game_position[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-4
-    if seat == 5:
-        return pixelMatchesColor( game_position[0]+472, game_position[1]+95, (250,130,6), tolerance=5 ) #Win-Finish-Me-seat-5
 
-#2020
-def other_seat_won_pixel(game_position, seat):
+def seat_won_pixel(game_position, seat): #💊
     # looking for a sign on other's seat to check if they have won the game by returning True or False
-    if seat == 1:
-        return pixelMatchesColor( game_position[0]+419, game_position[1]+412, (249,126,8), tolerance=5 ) #Win-Finish-Others-seat-1
-    if seat == 2:
-        return pixelMatchesColor( game_position[0]+164, game_position[1]+411, (249,127,8), tolerance=5 ) #Win-Finish-Others-seat-2
-    if seat == 3:
-        return pixelMatchesColor( game_position[0]-91, game_position[1]+419, (248,123,9), tolerance=5 ) #Win-Finish-Others-seat-3
-    if seat == 4:
-        return pixelMatchesColor( game_position[0]-121, game_position[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-4
-    if seat == 5:
-        return pixelMatchesColor( game_position[0]+449, game_position[1]+112, (248,124,9), tolerance=5 ) #Win-Finish-Others-seat-5
-
-def notification_banner_pixel(game_position, seat): # celeb
-    # It checks if a notification banner which contains messages like:
-    # 'FOLD, CHECK, BET, RAISE, CALL, ALL_IN' has covered player name or not,
-    # by returning True of False.
     if seat == 1 :
-        x1 = pixelMatchesColor( game_position[0]+291, game_position[1]+348, (62,72,86), tolerance=5 ) #Gray_Sign_Me_seat_1
-        x2 = pixelMatchesColor( game_position[0]+315, game_position[1]+351, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_1
+        x1 = pixelMatchesColor( game_position[0]+70, game_position[1]+207, (232, 184, 9), tolerance=10 )
+        x2 = pixelMatchesColor( game_position[0]+150, game_position[1]+206, (232, 184, 9), tolerance=10 )
         return (x1 or x2)
     if seat == 2 :
-        x1 = pixelMatchesColor( game_position[0]+36, game_position[1]+351, (61,70,85), tolerance=5 ) #Gray_Sign_Me_seat_2
-        x2 = pixelMatchesColor( game_position[0]+60, game_position[1]+353, (61,71,86), tolerance=5 ) #Gray_Sign_Other_seat_2
+        x1 = pixelMatchesColor( game_position[0]-144, game_position[1]+144, (232, 184, 9), tolerance=10 ) 
+        x2 = pixelMatchesColor( game_position[0]-64, game_position[1]+142, (232, 184, 9), tolerance=10 )
         return (x1 or x2)
     if seat == 3 :
-        x1 = pixelMatchesColor( game_position[0]-219, game_position[1]+348, (62,72,86), tolerance=5 ) #Gray_Sign_Me_seat_3
-        x2 = pixelMatchesColor( game_position[0]-195, game_position[1]+351, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_3
+        x1 = pixelMatchesColor( game_position[0]-123, game_position[1]-5, (232, 184, 9), tolerance=10 ) 
+        x2 = pixelMatchesColor( game_position[0]-87, game_position[1]-5, (232, 184, 9), tolerance=10 ) 
         return (x1 or x2)
     if seat == 4 :
-        x1 = pixelMatchesColor( game_position[0]-249, game_position[1]+43, (62,72,87), tolerance=5 ) #Gray_Sign_Me_seat_4
-        x2 = pixelMatchesColor( game_position[0]-225, game_position[1]+46, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_4
+        x1 = pixelMatchesColor( game_position[0]+90, game_position[1]-60, (232, 184, 9), tolerance=10 ) 
+        x2 = pixelMatchesColor( game_position[0]+127, game_position[1]-60, (232, 184, 9), tolerance=10 )
         return (x1 or x2)
     if seat == 5 :
-        x1 = pixelMatchesColor( game_position[0]+321, game_position[1]+43, (62,72,87), tolerance=5 ) #Gray_Sign_Me_seat_5
-        x2 = pixelMatchesColor( game_position[0]+345, game_position[1]+46, (61,70,85), tolerance=5 ) #Gray_Sign_Other_seat_5
+        x1 = pixelMatchesColor( game_position[0]+327, game_position[1]-4, (232, 184, 9), tolerance=10 )
+        x2 = pixelMatchesColor( game_position[0]+375, game_position[1]-4, (232, 184, 9), tolerance=10 ) 
+        return (x1 or x2)
+    if seat == 6 :
+        x1 = pixelMatchesColor( game_position[0]+335, game_position[1]+131, (232, 184, 9), tolerance=10 )
+        x2 = pixelMatchesColor( game_position[0]+375, game_position[1]+131, (232, 184, 9), tolerance=10 ) 
         return (x1 or x2)
  
 def are_chips_white_or_red_pixel(game_position, seat): #celeb

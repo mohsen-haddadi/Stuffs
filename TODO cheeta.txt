@@ -5,5 +5,7 @@
 5. search 'all_in' through all the project, and then on site find out whether going all in works with 1 button or 2 buttons
 6. add click('pot') coordinate to click module
 7. search c.my_seat_number =  through all the project, and then assign c.my_seat_number = 1
-8.
+8. change white_chips() and red_chips() to called_chips() and raised_chips() through project.
+9. move white_chips() and red_chips() function definition to from set variables to other module
+10.
 

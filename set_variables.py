@@ -37,19 +37,15 @@ def set_all_variables_to_none():
     config.hand_number, config.game_number, config.scenario_list,\
     config.csv_path = (None,)*47
 
+def turn_finder(starter_seat , xth) :
+    """Returns the seat number; for instance; (4,1) returns seat 4!"""
+    answer = (starter_seat - 1 + xth ) % c.TOTAL_SEATS
+    if answer == 0 :
+        return c.TOTAL_SEATS
+    else :
+        return answer
 
-def determine_small_big_dealer_seats():
-    for seat in range(1, config.TOTAL_SEATS+1):
-        if pm.small_blind_pixel(config.game_position, seat):
-            shout("Small blind is on seat %s" %seat)
-            config.small_blind_seat = seat
-            break
-
-    for seat in range(1, config.TOTAL_SEATS+1):
-        if pm.big_blind_pixel(config.game_position, seat):
-            shout("Big blind is on seat %s" %seat)
-            config.big_blind_seat = seat
-            break
+def determine_small_big_dealer_seats(): #💊
 
     for seat in range(1, config.TOTAL_SEATS+1):
         if pm.dealer_pixel(config.game_position, seat):
@@ -57,10 +53,32 @@ def determine_small_big_dealer_seats():
             config.dealer_seat = seat
             break
 
+    config.small_blind_seat = None
+    config.big_blind_seat = None
+
+    for i in range(1, len(config.TOTAL_SEATS) + 1):
+        seat = turn_finder( config.dealer_seat , i )
+        if pm.player_chips_pixel(seat):
+            # Modify this line if at other websites 
+            # small and big blinds are equal.
+            if ocr_bet(seat) / config.BLIND_VALUE < 1:
+                config.small_blind_seat = seat
+                    for i in range(1, len(config.TOTAL_SEATS) + 1):
+                        seat = turn_finder( config.small_blind_seat , i )
+                            if pm.player_chips_pixel(seat):
+                                if ocr_bet(seat) / config.BLIND_VALUE == 1:
+                                    config.big_blind_seat = seat
+    if None in (config.small_blind_seat, config.big_blind_seat):
+        set_just_do_check_fold_to_true('small or big blind seat have not been set')
+    else:
+        shout("Small blind is on seat %s" %config.small_blind_seat)
+        shout("Big blind is on seat %s" %config.big_blind_seat)
+
+
 def determine_playing_seats():
     """
     playing_seats dictionary is used for calculating 
-    my seat positioning ranking.
+    my seat positioning ranking. # NOT ANYMORE #💊
     Seated out players waiting for their first big blinds are not counted.
     """
     for seat in range(1, config.TOTAL_SEATS+1):
@@ -80,11 +98,19 @@ def white_chips(seat):
     # It checks if there is a white colored chips in front of a seat,
     # by returning True or False, to find out if a player has call or not
     #global game_position
+        config.last_bets_cache[Seat] \
+        = config.bets_cache["%s %s" %(stage, betting_round)][Seat]
 
-    if pm.player_chips_pixel(config.game_position, seat):
-        return not pm.are_chips_white_or_red_pixel(config.game_position, seat)
-    else :
+    
+
+
+    if not pm.player_chips_pixel(config.game_position, seat):
         return False
+    for i in range(1, config.TOTAL_SEATS+1):
+        if c.preflop_stage and not c.flop_stage:
+            if
+
+        
 
 def red_chips(seat):
     """It checks if there is a red colored chips in front of a seat,
@@ -212,22 +238,8 @@ def read_and_save_bets() :
 
         config.player_cards_cache["%s %s" %(stage, betting_round)][Seat] \
         = pm.player_cards_pixel(config.game_position, Seat)
-        config.white_chips_cache["%s %s" %(stage, betting_round)][Seat] \
-        = white_chips(Seat)
-        config.red_chips_cache["%s %s" %(stage, betting_round)][Seat] \
-        = red_chips(Seat)
-        config.last_player_cards_cache[Seat] \
-        = config.player_cards_cache["%s %s" %(stage, betting_round)][Seat]
-        config.last_white_chips_cache[Seat] \
-        = config.white_chips_cache["%s %s" %(stage, betting_round)][Seat]
-        config.last_red_chips_cache[Seat] \
-        = config.red_chips_cache["%s %s" %(stage, betting_round)][Seat]
 
-        # Can replace with:
-        # if pm.player_chips_pixel(config.game_position, seat):
-        if (config.last_white_chips_cache[Seat] == True 
-            or config.last_red_chips_cache[Seat] == True):
-
+        if pm.player_chips_pixel(config.game_position, seat): #💊
             config.bets_cache["%s %s" %(stage, betting_round)][Seat] = ocr_bet(Seat)
 
             if config.last_white_chips_cache[Seat] == True : 
@@ -242,10 +254,22 @@ def read_and_save_bets() :
                         config.bets_cache["%s %s" %(stage, betting_round)][Seat])
                       , color = 'light_green')
         else :
-
             config.bets_cache["%s %s" %(stage, betting_round)][Seat] = None
+
         config.last_bets_cache[Seat] \
         = config.bets_cache["%s %s" %(stage, betting_round)][Seat]
+
+    for Seat in range(1, config.TOTAL_SEATS+1):
+        config.white_chips_cache["%s %s" %(stage, betting_round)][Seat] \
+        = white_chips(Seat)
+        config.red_chips_cache["%s %s" %(stage, betting_round)][Seat] \
+        = red_chips(Seat) #💊
+        config.last_player_cards_cache[Seat] \
+        = config.player_cards_cache["%s %s" %(stage, betting_round)][Seat]
+        config.last_white_chips_cache[Seat] \
+        = config.white_chips_cache["%s %s" %(stage, betting_round)][Seat]
+        config.last_red_chips_cache[Seat] \
+        = config.red_chips_cache["%s %s" %(stage, betting_round)][Seat]
 
     # (2018) Delete this later. just for testing if rounds are 
     # started from 0, esp at preflop stage        

@@ -90,7 +90,7 @@ def click_on_button(button_name):
 
             raise_exception_the_problem("button %s is not visible" %button_name)
 
-def ocr_my_name():
+def ocr_my_name(): #💊
     """
     If ocr fails this function will uses:
     (will use nothing)
@@ -98,10 +98,6 @@ def ocr_my_name():
     1. fix_game_disruption()
     2. set_just_do_check_fold_to_true()
     """
-    if pm.my_seat_won_pixel(config.game_position, config.my_seat_number):
-        return True
-    if pm.notification_banner_pixel(config.game_position, config.my_seat_number):
-        return None
     string = ocr.ocr_my_name_to_string(config.game_position, config.my_seat_number)
     shout("my name ocr string at seat %s is: %s" %(config.my_seat_number, string))
     return string
@@ -164,26 +160,20 @@ def is_internet_disconnected():
      pass
   return True
 
-def check_i_am_in_or_out():
+def check_i_am_in_or_out(): #💊
     #global game_position, my_seat_number , MY_PROFILE_NAME , just_do_check_fold
 
     if pm.button_pixel(config.game_position, 'i_am_back') == True :
         click('i_am_back')
-    if ocr_my_name() == config.MY_PROFILE_NAME or ocr_my_name() == True :
+    if ocr_my_name() == config.MY_PROFILE_NAME:
         shout("I am In", color = 'yellow')
         return ("In")
 
-    for i in range(1,6):
-        if pm.i_am_seated_pixel(config.game_position, i) :
-            if is_internet_disconnected() == False and find_and_click_on_reconnect_button() == None :
-                if config.my_seat_number == i :
-                    shout("I am In not by OCR")
-                    return ("In")
-                else :
-                    config.my_seat_number = i
-                    shout('I AM IN,BUT MY SEAT IS MANUALLY CHANGED TO: %s' %config.my_seat_number)
-                    set_just_do_check_fold_to_true("My seat is manually changed!")
-                    return ("In")
+    if pm.i_am_seated_pixel(config.game_position):
+        if is_internet_disconnected() == False and find_and_click_on_reconnect_button() == None :
+            if config.my_seat_number == 1:
+                shout("I am In not by OCR")
+                return ("In")
                 
     shout("I am Out", color = 'yellow')
     return ("Out")

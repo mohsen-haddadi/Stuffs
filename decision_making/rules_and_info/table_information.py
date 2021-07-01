@@ -146,15 +146,14 @@ def number_of_players_in() :
 
 def my_seat_position_ranking(): #added 2021, NOT TEST
     """
-    my_seat_position_ranking is based on the beginning of the game,
-    because playing_seats dictionary is based on the beginning of the game.
-    Seated out players waiting for their first big blinds are not counted.
+    my_seat_position_ranking is based on last_player_cards_cache,
+    so for example I can be middle_position() at first and then be late_position().
     0% <= early_position < 60%
     60% <= middle_position < 75%
     75% <= late_position < 100%
     """
     total = 0
-    for i in range(1, len(c.last_player_cards_cache) + 1):
+    for i in range(1, len(c.TOTAL_SEATS) + 1): #💊
         if c.small_blind_seat != c.dealer_seat: 
             seat = Turn_Finder( c.small_blind_seat , i )
         #(for 2 players) The rules may differs on the other websites.

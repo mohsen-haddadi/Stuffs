@@ -43,7 +43,7 @@ def wait_new_hand_starts_when_observing(waiting_minutes = 30):
     t1 = time.time()
     fixing_retry = 1
     while True:
-        if sb_b_d_buttons_are_founded():
+        if dealer_button_is_founded(): #💊
             break
         if (time.time()-t1) > ((60*waiting_minutes)/4) and fixing_retry <= 1:
             fixing_retry += 1
@@ -58,12 +58,11 @@ def wait_new_hand_starts_when_observing(waiting_minutes = 30):
             break 
 
 
-def am_i_in_or_not():
+def am_i_in_or_not(): #💊
 
-    for i in range(1, config.TOTAL_SEATS+1):
-        if pm.i_am_seated_pixel(c.game_position, i) :
-            c.my_seat_number = i
-            return True
+    if pm.i_am_seated_pixel(c.game_position) :
+        c.my_seat_number = 1
+        return True
     c.my_seat_number = None
     return False
 

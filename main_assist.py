@@ -140,11 +140,11 @@ def wait_for_sb_b_d_buttons(waiting_seconds = 5):
     """5 seconds waiting does not need c.new_hand to break it"""
     t1 = time.time()
     while True:
-        if sb_b_d_buttons_are_founded():
+        if dealer_button_is_founded():  #💊
             break
         if time.time() - t1 > waiting_seconds:
             fix_game_disruption('sb b d buttons are not founded')
-            if not sb_b_d_buttons_are_founded():
+            if not dealer_button_is_founded():  #💊
                 set_just_do_check_fold_to_true('sb b d buttons are not founded')
             break
         if game_is_paused():
@@ -177,25 +177,14 @@ def game_is_paused():
 
 
 
-def sb_b_d_buttons_are_founded():
+def dealer_button_is_founded(): #💊
     """For cheet there is no small or big blind buttons"""
-    small_blind_button_founded = False
-    big_blind_button_founded = False 
     dealer_button_founded = False
-    for seat in range(1, c.TOTAL_SEATS+1):
-        if pm.small_blind_pixel(c.game_position, seat) == True:
-            small_blind_button_founded = True
-            break
-    for seat in range(1, c.TOTAL_SEATS+1):
-        if pm.big_blind_pixel(c.game_position, seat) == True:
-            big_blind_button_founded = True
-            break
     for seat in range(1, c.TOTAL_SEATS+1):
         if pm.dealer_pixel(c.game_position, seat) == True:
             dealer_button_founded = True
             break
-    return small_blind_button_founded and big_blind_button_founded \
-           and dealer_button_founded
+    return dealer_button_founded
 
 def shifted_to_next_stage():
     if (not c.flop_stage and pm.flop_pixel(c.game_position) 
@@ -255,7 +244,7 @@ def update_betting_rounds():
         shout('TESTING. river_betting_round is:%s'
               %c.river_betting_round, color = 'on_light_red')
 
-def hand_is_ended():
+def hand_is_ended(): #💊
     """
     This is an important function, because it determines
     when new hand will start.
@@ -263,20 +252,27 @@ def hand_is_ended():
     1.Yellow around winning cards 
     2.If everyone fold the somebodies raise, only one player have cards.
     """
+    players_cards_count == 0
     for seat in range(1, c.TOTAL_SEATS+1):
-        if pm.my_seat_won_pixel(c.game_position, seat):
+        if pm.seat_won_pixel(c.game_position, seat):
             return True
-        if pm.other_seat_won_pixel(c.game_position, seat):
+        if pm.dealer_pixel(c.game_position, seat) and seat != c.dealer_seat:
+            c.dealer_seat = seat
             return True
+        if pm.player_cards_pixel(c.game_position, seat):
+            players_cards_count += 1
+    if players_cards_count == 1:
+        return True
     return False
 
 def declare_the_winners():
     """May differs for Cheet"""
     for seat in range(1, c.TOTAL_SEATS+1):
-        if pm.my_seat_won_pixel(c.game_position, seat) == True:
-            shout("I won the game!", color = 'on_light_magenta')
-        if pm.other_seat_won_pixel(c.game_position, seat) == True :
-            shout("Seat %s won the game!" %seat)
+        if pm.seat_won_pixel(c.game_position, seat) == True:
+            if c.my_seat_number == seat:
+                shout("I won the game!", color = 'on_light_magenta')
+            else:
+                shout("Seat %s won the game!" %seat)
 
 def rebuy_if_bank_is_low(min_blinds = 15):
     my_bank = ocr_my_bank()

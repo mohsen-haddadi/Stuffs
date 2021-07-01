@@ -130,7 +130,7 @@ def ocr_my_bank():
                              %config.my_seat_number)
             return None            
 
-def ocr_other_names(seat):
+def ocr_other_names(seat): #💊
     """
     If ocr fails this function will uses:
     (will use nothing)
@@ -138,16 +138,14 @@ def ocr_other_names(seat):
     1. fix_game_disruption()
     2. set_just_do_check_fold_to_true()
     """
-    name_is_hidden_1 = pm.other_seat_won_pixel(config.game_position, seat)
-    name_is_hidden_2 = pm.notification_banner_pixel(config.game_position, seat)
-    if name_is_hidden_1 or name_is_hidden_2 :
+    string = ocr.ocr_other_names_to_string(config.game_position, seat)
+    shout("other name ocr string at seat %s is: %s" %(seat, string) )
+    if string == '': #💊
         return None
-    else :
-        string = ocr.ocr_other_names_to_string(config.game_position, seat)
-        shout("other name ocr string at seat %s is: %s" %(seat, string) )
+    else:
         return string
 
-def ocr_my_name():
+def ocr_my_name(): #💊
     """
     If ocr fails this function will uses:
     (will use nothing)
@@ -155,10 +153,6 @@ def ocr_my_name():
     1. fix_game_disruption()
     2. set_just_do_check_fold_to_true()
     """
-    if pm.my_seat_won_pixel(config.game_position, config.my_seat_number):
-        return True
-    if pm.notification_banner_pixel(config.game_position, config.my_seat_number):
-        return None
     string = ocr.ocr_my_name_to_string(config.game_position, config.my_seat_number)
     shout("my name ocr string at seat %s is: %s" %(config.my_seat_number, string))
     return string
