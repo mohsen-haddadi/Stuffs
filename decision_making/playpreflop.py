@@ -1,5 +1,6 @@
 VERSION = 1
 
+import configs as c
 from decision_making.rules_and_info.starting_hands import group, holdem_starting_hand_ranking
 from decision_making.rules_and_info.table_information import *
 

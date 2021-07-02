@@ -1,5 +1,5 @@
 #OK
-import config as c
+import configs as c
 
 """
 All functions in this file are cache.

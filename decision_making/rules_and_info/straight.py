@@ -1,7 +1,7 @@
 #OK
 from decision_making.rules_and_info.suit_and_value import s, n, board_cards_list
 #from suit_and_value import s, n
-import config as c
+import configs as c
 
 """
 Functions with True or False return,are in 2 kind of categoreis: 1.Me_str_ Me_Open_str_draw 2.Table_str 

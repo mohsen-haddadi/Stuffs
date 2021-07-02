@@ -1,4 +1,4 @@
-import config as c
+import configs as c
 """
 A file to be created in future
 This file is consist of aggressive(seat_num), hands_played(seat_num),

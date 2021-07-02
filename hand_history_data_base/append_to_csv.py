@@ -1,13 +1,14 @@
 """
 TODO:
 Add 'fold' header with True or False values to csv too.
+Edit hand_category() function to groups A, B, C,...
 """
 import os
 from datetime import datetime
 
 import pandas as pd
 
-import config as c
+import configs as c
 import decision_making.play
 from readability.ocr import ocr_my_bank
 from decision_making.rules_and_info.table_information import \

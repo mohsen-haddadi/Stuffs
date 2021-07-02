@@ -1,7 +1,7 @@
 #OK
 from decision_making.rules_and_info.suit_and_value import s, n, board_cards_list
 #from suit_and_value import s, n
-import config # don't import as c while there is a variable named c.
+import configs # don't import as c while there is a variable named c.
 
 """
 Functions with True or False return,are in 2 kind of categoreis: 1.Me_Flush_ Me_Flush_draw 2.Table_Flush Table_Flush_draw
@@ -22,10 +22,10 @@ def Me_Flush_by_3_table_cards(board_list=None) :
     if board_list == []:
         return False
         
-    if s(config.my_1th_card) == s(config.my_2th_card) :
+    if s(configs.my_1th_card) == s(configs.my_2th_card) :
         sign = 0
         for i in board_list :
-            if s(config.my_1th_card) == s(i) :
+            if s(configs.my_1th_card) == s(i) :
                 sign += 1
         if sign == 3 :
             return True
@@ -42,9 +42,9 @@ def Me_Flush_by_4_table_cards(board_list=None) :
     sign1 = 0
     sign2 = 0
     for i in board_list :
-        if s(config.my_1th_card) == s(i) :
+        if s(configs.my_1th_card) == s(i) :
             sign1 += 1
-        if s(config.my_2th_card) == s(i) :
+        if s(configs.my_2th_card) == s(i) :
             sign2 += 1
     if sign1 == 4 or sign2 == 4 :
         return True
@@ -64,17 +64,17 @@ def Me_Flush_by_5_table_cards(board_list=None) :
     sign1 = 0
     sign2 = 0
     for i in board_list :
-        if s(config.my_1th_card) == s(i) :
+        if s(configs.my_1th_card) == s(i) :
             sign1 += 1
-        if s(config.my_2th_card) == s(i) :
+        if s(configs.my_2th_card) == s(i) :
             sign2 += 1
 
     if sign1 == 5 and sign2 == 5:
-        My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
+        My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
     elif sign1 == 5 :
-        My_highest = n(config.my_1th_card)
+        My_highest = n(configs.my_1th_card)
     elif sign2 == 5 :
-        My_highest = n(config.my_2th_card)
+        My_highest = n(configs.my_2th_card)
     sign_List = []
     for i in board_list :
         sign_List.append(n(i))
@@ -118,42 +118,42 @@ def Me_Flush_Ranking(board_list=None) :
     sign_List = []
     
     if c >= 3 :
-        if s(config.my_1th_card) == s(config.my_2th_card) :
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "c" :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "c" :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) :
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "c" :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "c" :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "c" : sign_List.append(n(i))
 
     elif d >= 3 :
-        if s(config.my_1th_card) == s(config.my_2th_card) :
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "d" :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "d" :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) :
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "d" :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "d" :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "d" : sign_List.append(n(i))
             
     elif h >= 3 :
-        if s(config.my_1th_card) == s(config.my_2th_card) :
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "h" :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "h" :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) :
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "h" :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "h" :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "h" : sign_List.append(n(i))
 
     elif sp >= 3 :
-        if s(config.my_1th_card) == s(config.my_2th_card) :
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "s" :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "s" :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) :
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "s" :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "s" :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "s" : sign_List.append(n(i))
 
@@ -176,10 +176,10 @@ def Me_Flush_draw_by_2_table_cards(board_list=None) :
     if board_list == []:
         return False
         
-    if s(config.my_1th_card) == s(config.my_2th_card) and len(board_list) <= 4 :
+    if s(configs.my_1th_card) == s(configs.my_2th_card) and len(board_list) <= 4 :
         sign = 0
         for i in board_list :
-            if s(config.my_1th_card) == s(i) :
+            if s(configs.my_1th_card) == s(i) :
                 sign += 1
         if sign == 2 :
             return True
@@ -194,11 +194,11 @@ def Me_Flush_draw_by_3_table_cards(board_list=None) :
         
     sign1 = 0
     sign2 = 0
-    if s(config.my_1th_card) != s(config.my_2th_card) and len(board_list) <= 4 : 
+    if s(configs.my_1th_card) != s(configs.my_2th_card) and len(board_list) <= 4 : 
         for i in board_list :
-            if s(config.my_1th_card) == s(i) :
+            if s(configs.my_1th_card) == s(i) :
                 sign1 += 1
-            if s(config.my_2th_card) == s(i) :
+            if s(configs.my_2th_card) == s(i) :
                 sign2 += 1
         if sign1 == 3 or sign2 == 3 :
             return True
@@ -228,43 +228,43 @@ def Me_Flush_draw_Ranking(board_list=None) :
     sign_List = []
     
     if c >= 2 :
-        if s(config.my_1th_card) == s(config.my_2th_card) and s(config.my_1th_card) == "c" and c == 2:
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "c" and c == 3 :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "c" and c == 3 :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) and s(configs.my_1th_card) == "c" and c == 2:
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "c" and c == 3 :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "c" and c == 3 :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "c" : sign_List.append(n(i))
 
     elif d >= 2 :
-        if s(config.my_1th_card) == s(config.my_2th_card) and s(config.my_1th_card) == "d" and d == 2:
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "d" and d == 3 :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "d" and d == 3 :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) and s(configs.my_1th_card) == "d" and d == 2:
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "d" and d == 3 :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "d" and d == 3 :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "d" : sign_List.append(n(i))
 
             
     elif h >= 2 :
-        if s(config.my_1th_card) == s(config.my_2th_card) and s(config.my_1th_card) == "h" and h == 2:
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "h" and h == 3 :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "h" and h == 3 :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) and s(configs.my_1th_card) == "h" and h == 2:
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "h" and h == 3 :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "h" and h == 3 :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "h" : sign_List.append(n(i))
 
     elif sp >= 2 :
-        if s(config.my_1th_card) == s(config.my_2th_card) and s(config.my_1th_card) == "s" and sp == 2:
-            My_highest = max(n(config.my_1th_card),n(config.my_2th_card))
-        elif s(config.my_1th_card) == "s" and sp == 3 :
-            My_highest = n(config.my_1th_card)
-        elif s(config.my_2th_card) == "s" and sp == 3 :
-            My_highest = n(config.my_2th_card)
+        if s(configs.my_1th_card) == s(configs.my_2th_card) and s(configs.my_1th_card) == "s" and sp == 2:
+            My_highest = max(n(configs.my_1th_card),n(configs.my_2th_card))
+        elif s(configs.my_1th_card) == "s" and sp == 3 :
+            My_highest = n(configs.my_1th_card)
+        elif s(configs.my_2th_card) == "s" and sp == 3 :
+            My_highest = n(configs.my_2th_card)
         for i in board_list :
             if s(i) == "s" : sign_List.append(n(i))
 

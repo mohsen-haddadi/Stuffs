@@ -1,4 +1,4 @@
-import config as c
+import configs as c
 
 def s(card) :
     """ returns suit of a card in string format"""

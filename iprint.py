@@ -4,7 +4,7 @@ from datetime import datetime
 
 from painter import paint
 
-import config
+import configs as c
 
 paint.enabled = True # for cmd use
 
@@ -63,8 +63,8 @@ def shout(string, color = None, save = True) :
             print("%s: %s" %(date_and_time, string))
 
     if save:
-        text_file_name = os.path.join("Reports/%s" %config.DATED_REPORT_FOLDER,
-                                      config.DATED_REPORT_FOLDER)
+        text_file_name = os.path.join("Reports/%s" %c.DATED_REPORT_FOLDER,
+                                      c.DATED_REPORT_FOLDER)
         text_file = open("%s.txt" %text_file_name , "a")
         try:
             text_file.write("%s: %s" %(date_and_time, string))

@@ -20,7 +20,7 @@ raising, check_fold
 from readability.fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
 #importing same level directory modules
-import config as c
+import configs as c
 from iprint import shout
 from set_variables import red_chips
 
@@ -106,7 +106,7 @@ def wait_for_my_first_hand(waiting_minutes = 8):
             fix_game_disruption('game is unpaused')
             break 
 
-def first_round_at_preflop():
+def first_round_at_preflop(): #💊
     """ 
     This function is created to help handling the bot after the game is
     unpaused in 'I_AM_PLAYING' bot status.
@@ -115,25 +115,17 @@ def first_round_at_preflop():
     Even at preflop (betting_round = 0) (first_round_at_preflop() is True) 
     I can resume the game without doing set_just_do_check_fold_to_true().
     """
-    def is_there_any_raiser():
-        """ Except me """
-        for seat in range(1, c.TOTAL_SEATS+1):
-            if seat == c.my_seat_number:
-                continue
-            elif red_chips(seat):
-                return True
-        return False
 
     if not pm.pre_flop_pixel(c.game_position):
         return False 
-    if is_there_any_raiser():
-        shout('doing some ocr to check if it is first_round_at_preflop or not')
-        if c.my_seat_number in (c.big_blind_seat, c.big_blind_seat):
-            if ocr_bet(c.my_seat_number) > c.BLIND_VALUE:
-                return False
-        else:
-            if pm.player_chips_pixel(c.game_position, c.my_seat_number):
-                return False
+
+    if c.my_seat_number in (c.small_blind_seat, c.big_blind_seat):
+        shout('doing ocr on my seat to check if it is first_round_at_preflop or not')
+        if ocr_bet(c.my_seat_number, printing = False) > c.BLIND_VALUE:
+            return False
+    else:
+        if pm.player_chips_pixel(c.game_position, c.my_seat_number):
+            return False
     return True
 
 def wait_for_sb_b_d_buttons(waiting_seconds = 5):
@@ -257,7 +249,7 @@ def hand_is_ended(): #💊
         if pm.seat_won_pixel(c.game_position, seat):
             return True
         if pm.dealer_pixel(c.game_position, seat) and seat != c.dealer_seat:
-            c.dealer_seat = seat
+            c.dealer_seat = seat #💊
             return True
         if pm.player_cards_pixel(c.game_position, seat):
             players_cards_count += 1

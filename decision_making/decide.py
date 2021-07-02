@@ -2,22 +2,22 @@
 from decision_making.playpreflop import play_pre_flop
 #from play import * 
 from iprint import shout
-import config
+import configs as c
 
 def decide():
 
-    if config.preflop_stage == True and config.flop_stage == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
+    if c.preflop_stage == True and c.flop_stage == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
         shout("*Deciding on preflop*", color = 'light_cyan')
-    elif config.flop_stage == True and config.turn_stage == False :
+    elif c.flop_stage == True and c.turn_stage == False :
         shout("*Deciding on flop*", color = 'light_cyan')
-    elif config.turn_stage == True and config.river_stage == False :
+    elif c.turn_stage == True and c.river_stage == False :
         shout("*Deciding on turn*", color = 'light_cyan')
-    elif config.river_stage == True :
+    elif c.river_stage == True :
         shout("*Deciding on river*", color = 'light_cyan')
     else :
         shout("*Deciding on unknown*", color = 'light_cyan')
     
-    if config.just_do_check_fold == True :
+    if c.just_do_check_fold == True :
         return ("check_fold")
 
     else :

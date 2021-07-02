@@ -20,7 +20,7 @@ from readability.fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
 from hand_history_data_base.append_to_csv import append_new_line_to_csv
 #importing same level directory modules
-import config
+import configs as c
 from iprint import shout
 from set_variables import set_all_variables_to_none, read_and_save_bets,\
 determine_small_big_dealer_seats, determine_playing_seats,\
@@ -34,8 +34,8 @@ def bot_is_on_main_menu():
                     "menu automation is built " \
                     "( fix_game_disruption --> Sit_In --> "\
                     "table is full --> exit --> "\
-                    "config.bot_status = 'ON_MAIN_MENU' --> main menu "\
-                    "--> config.bot_status = 'WAITING_FOR_FIRST_HAND' )")
+                    "c.bot_status = 'ON_MAIN_MENU' --> main menu "\
+                    "--> c.bot_status = 'WAITING_FOR_FIRST_HAND' )")
 
 def bot_is_waiting_till_next_hand():
     """
@@ -57,7 +57,7 @@ def bot_is_waiting_till_next_hand():
     sound('Play yourself')
     shout('OPERATOR MUST PLAY THIS HAND!', color = 'rainbow', save = False)
     wait_hand_ends(waiting_minutes = 5)  
-    config.bot_status = 'WAITING_FOR_FIRST_HAND'
+    c.bot_status = 'WAITING_FOR_FIRST_HAND'
     fix_game_disruption("Game was played manually for a hand")
 
 def bot_is_waiting_for_first_hand():
@@ -72,24 +72,24 @@ def bot_is_waiting_for_first_hand():
 
 def bot_is_playing():
     while True:
-        config.new_hand = hand_is_ended()
-        if config.new_hand: 
+        c.new_hand = hand_is_ended()
+        if c.new_hand: 
             declare_the_winners()
             wait_celebration_ends(waiting_seconds = 10)
-        config.hand_number += 1
+        c.hand_number += 1
         reset_table_information()
         shout("* bot_status == 'I_AM_PLAYING' *",color = 'on_green')
         wait_for_my_new_hand(waiting_minutes = 10)
         # use this statement after functions which use fix_game_disruption()
-        if config.bot_status != 'I_AM_PLAYING': 
+        if c.bot_status != 'I_AM_PLAYING': 
             break
         # use this statement after waiting functions 
-        # which uses config.new_hand = hand_is_ended()
-        if config.new_hand: 
+        # which uses c.new_hand = hand_is_ended()
+        if c.new_hand: 
             continue
         shout ("-------- New Hand Started --------", color = 'on_green')
         wait_for_sb_b_d_buttons(waiting_seconds = 5) 
-        if config.bot_status != 'I_AM_PLAYING':
+        if c.bot_status != 'I_AM_PLAYING':
             break
         determine_small_big_dealer_seats()
         determine_playing_seats()
@@ -100,15 +100,15 @@ def bot_is_playing():
         read_and_save_my_cards()
         rebuy_if_bank_is_low(min_blinds = 15)
         read_and_save_banks_and_names()
-        if config.bot_status != 'I_AM_PLAYING': 
+        if c.bot_status != 'I_AM_PLAYING': 
             break
         play_sound_for_good_starting_hands()
         shout("Waiting for my turn at preflop_stage...", 'light_magenta') 
         # Playing a whole hand in this loop
         play_a_hand()
-        if config.bot_status != 'I_AM_PLAYING':
+        if c.bot_status != 'I_AM_PLAYING':
             break
-        if config.new_hand: 
+        if c.new_hand: 
             continue
         if game_is_paused():
             fix_game_disruption('game is unpaused')
@@ -119,7 +119,7 @@ def play_a_hand():
     while True:
         if shifted_to_next_stage():
 
-            if Flop_Deside() and config.last_player_cards_cache[config.my_seat_number]: #❌⛏❌
+            if Flop_Deside() and c.last_player_cards_cache[c.my_seat_number]: #❌⛏❌
                 # I MUST PLAY SOUND #❌⛏❌
                 sound('Schiller Nachtflug') #❌⛏❌
 
@@ -131,45 +131,45 @@ def play_a_hand():
             update_betting_rounds()
             read_and_save_bets()
             read_banks()
-            if config.bot_status == 'I_AM_PLAYING':
+            if c.bot_status == 'I_AM_PLAYING':
                 click_decision() #🌏🌱♣♠♦♥🌱🌏
         if t1 - time.time() > 5 * 60:
-            config.bot_status = 'WAITING_FOR_FIRST_HAND'
+            c.bot_status = 'WAITING_FOR_FIRST_HAND'
             fix_game_disruption('This hand last more than 5 minutes')
-        config.new_hand = hand_is_ended()
-        if config.new_hand:
+        c.new_hand = hand_is_ended()
+        if c.new_hand:
             shout ("appending hand data to csv file", color = 'on_green')
-            append_new_line_to_csv(config.csv_path) 
+            append_new_line_to_csv(c.csv_path) 
             shout ("-------- Hand ended --------", color = 'on_green')
             break
         if game_is_paused():
             fix_game_disruption('game is unpaused')
             break 
-        if config.bot_status != 'I_AM_PLAYING':
+        if c.bot_status != 'I_AM_PLAYING':
             break
 
 def start_the_bot():
     while True:
         # Changes when time runs out or when doing some game fixing issues.
-        if config.bot_status == 'ON_MAIN_MENU':
+        if c.bot_status == 'ON_MAIN_MENU':
             bot_is_on_main_menu()
         # Changes when game is paused, and changes back 
         # to 'WAITING_FOR_FIRST_HAND' status only when game is unpaused.
-        elif config.bot_status == 'OBSERVING':
+        elif c.bot_status == 'OBSERVING':
             bot_is_observing()
         # Initial value. Changes when game is unpaused.
         # Also changes when time runs out or when doing some game fixing 
         # issues (In other cases than 'ON_MAIN_MENU' status) 
-        elif config.bot_status == 'WAITING_FOR_FIRST_HAND':
+        elif c.bot_status == 'WAITING_FOR_FIRST_HAND':
             bot_is_waiting_for_first_hand()
         # Changes when my first hand by my cards pixels is appeared
         # after 'WAITING_FOR_FIRST_HAND' status.
-        elif config.bot_status == 'I_AM_PLAYING':
+        elif c.bot_status == 'I_AM_PLAYING':
             bot_is_playing()
         # Changes when decide function encountered deficiency. And then changes
         # back to 'WAITING_FOR_FIRST_HAND' status when hand is finished.
         # When ever i complete the play module, I won't use this status anymore.
-        elif config.bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND':
+        elif c.bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND':
             bot_is_waiting_till_next_hand()
         else:
             raise Exception("bot_status can be only 'ON_MAIN_MENU' or "\
@@ -183,23 +183,23 @@ def main():
     set_all_variables_to_none()
     create_report_folder()
     # Initial values:
-    config.MY_PROFILE_NAME = "XOwl"
-    config.hand_number = 0
-    config.csv_path = 'hand_history_data_base/hands history version %s.csv'\
+    c.MY_PROFILE_NAME = "XOwl"
+    c.hand_number = 0
+    c.csv_path = 'hand_history_data_base/hands history version %s.csv'\
                       %decision_making.play.VERSION
     try:
-        df = pd.read_csv(config.csv_path)
-        config.game_number = df.at[df.index[-1], 'Game number'] + 1
+        df = pd.read_csv(c.csv_path)
+        c.game_number = df.at[df.index[-1], 'Game number'] + 1
     except:
-        config.game_number = 1
+        c.game_number = 1
     if input("Is my name: %s ?(Enter:yes/any keyword:no)" 
-             % config.MY_PROFILE_NAME) != "" :
-        config.MY_PROFILE_NAME = input("Enter profile name: ")
-    config.my_seat_number = 2 #int( input("My seat number? ") )
-    config.TOTAL_SEATS = 5
-    config.BLIND_VALUE = 100000000
-    config.bot_status = 'WAITING_FOR_FIRST_HAND'
-    config.game_position = find_game_position.find_game_reference_point()
+             % c.MY_PROFILE_NAME) != "" :
+        c.MY_PROFILE_NAME = input("Enter profile name: ")
+    c.my_seat_number = 1 #int( input("My seat number? ") ) #💊
+    c.TOTAL_SEATS = 5
+    c.BLIND_VALUE = 100000000
+    c.bot_status = 'WAITING_FOR_FIRST_HAND'
+    c.game_position = find_game_position.find_game_reference_point()
 
     start_the_bot()
 

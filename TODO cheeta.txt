@@ -1,11 +1,13 @@
 1. combine others and my ocr names and banks function into one ocr names and bank fucntion, and replace all functions on all modules
 2. add ocr function at ocr module for bet number on call button, if ocr of call is not equal to max raise do just_check_and_fold()
 3. combine i_am_seated_pixel function at pixel_matching.py
-4. search available_seat_pixel() function through all the project and do editing where ever needed.
+(DONE) 4. search available_seat_pixel() function through all the project and do editing where ever needed.
 5. search 'all_in' through all the project, and then on site find out whether going all in works with 1 button or 2 buttons
-6. add click('pot') coordinate to click module
-7. search c.my_seat_number =  through all the project, and then assign c.my_seat_number = 1
+(DONE) 6. add click('pot') coordinate to click module
+(DONE) 7. search c.my_seat_number =  through all the project, and then assign c.my_seat_number = 1
 8. change white_chips() and red_chips() to called_chips() and raised_chips() through project.
-9. move white_chips() and red_chips() function definition to from set variables to other module
-10.
+9. move white_chips() and red_chips() function definition from set variables to other module
+(DONE) 10. config is a standard library module, so change my config module name to configs through project.
+11. edit ocr module at screen_monitoring package to something neater and nicer.
+12.
 

@@ -9,7 +9,7 @@ from readability.ocr import ocr_bet
 from readability.read_cards import read_and_save_my_cards
 from readability.fix_game_disruption import fix_game_disruption, screenshot_error
 #importing same level directory modules
-import config as c
+import configs as c
 from iprint import shout
 from set_variables import determine_small_big_dealer_seats,\
 reset_table_information, read_and_save_banks_and_names
@@ -61,7 +61,7 @@ def wait_new_hand_starts_when_observing(waiting_minutes = 30):
 def am_i_in_or_not(): #💊
 
     if pm.i_am_seated_pixel(c.game_position) :
-        c.my_seat_number = 1
+        c.my_seat_number = 1 #💊
         return True
     c.my_seat_number = None
     return False
@@ -114,26 +114,17 @@ def ready_to_report(seat_to_report):
     """Target player is ready to report when he is not deciding"""
     return not pm.active_player_pixel(c.game_position, seat_to_report)
 
-def report_the_player(seat_to_report):
+def report_the_player(seat_to_report): #💊
     #global seats_not_folded
     if not pm.player_cards_pixel(c.game_position, seat_to_report):
         c.seats_not_folded[seat] = False
         shout('Seat %s has folded' %seat_to_report, color = 'light_cyan')
     elif not pm.player_chips_pixel(c.game_position, seat_to_report):
         shout('Seat %s has checked' %seat_to_report, color = 'light_cyan')
-    # It happens for big blind seat at preflop stage.
-    elif (not pm.are_chips_white_or_red_pixel(c.game_position, seat_to_report) 
-          and seat_to_report == c.big_blind_seat ):
-        shout('Seat %s has checked' %seat_to_report, color = 'light_cyan')
-    elif not pm.are_chips_white_or_red_pixel(c.game_position, seat_to_report):
-        shout('Seat %s has called' %seat_to_report, color = 'light_cyan')
-    elif pm.are_chips_white_or_red_pixel(c.game_position, seat_to_report):
+    # checked happens for big blind seat at preflop stage.
+    else: #💊
         bet = ocr_bet(seat_to_report)
-        shout('Seat %s has raised %s' %(seat_to_report, bet), color = 'light_cyan')
-
-
-
-
+        shout('Seat %s has checked/called/raised %s' %(seat_to_report, bet), color = 'light_cyan')
 
 
 def bot_is_observing():

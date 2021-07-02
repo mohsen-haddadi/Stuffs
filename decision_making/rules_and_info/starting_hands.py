@@ -1,7 +1,7 @@
 #OK
 from decision_making.rules_and_info.suit_and_value import s, n
 #from suit_and_value import s, n
-import config as c
+import configs as c
 
 def group(string):
     GROUPS = {

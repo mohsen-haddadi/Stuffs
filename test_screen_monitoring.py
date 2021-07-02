@@ -171,32 +171,32 @@ def test_ocr(show_images = False):
     print('my bet :%s'%my_bet)
     if show_images == True :
         show_my_bet_images(game_position)
-#    for seat in range(1, TOTAL_SEATS+1):
-#        bet = ocr.ocr_bet_to_string(game_position, seat) 
-#        print('bet on seat %s:%s'%(seat, bet) )
-#        if show_images == True :
-#            show_bets_images(game_position, seat)
-#    for seat in range(1, TOTAL_SEATS+1):
-#        other_players_bank = ocr.ocr_other_players_bank_to_string(game_position,
-#                                                              seat) 
-#        print('other_players_bank on seat %s:%s'%(seat, other_players_bank) )
-#        if show_images == True :
-#            show_other_players_bank_images(game_position, seat)
-#    for seat in range(1, TOTAL_SEATS+1):
-#        my_bank = ocr.ocr_my_bank_to_string(game_position, seat) 
-#        print('my_bank on seat %s:%s'%(seat, my_bank) )
-#        if show_images == True :
-#            show_my_bank_images(game_position, seat)
-#    for seat in range(1, TOTAL_SEATS+1):
-#        other_names = ocr.ocr_other_names_to_string(game_position, seat) 
-#        print('other_names on seat %s:%s'%(seat, other_names) )
-#        if show_images == True :
-#            show_other_names_images(game_position, seat)
-#    for seat in range(1, TOTAL_SEATS+1):
-#        my_name = ocr.ocr_my_name_to_string(game_position, seat) 
-#        print('my_name on seat %s:%s'%(seat, my_name) )
-#        if show_images == True :
-#            show_my_name_images(game_position, seat)
+    for seat in range(1, TOTAL_SEATS+1):
+        bet = ocr.ocr_bet_to_string(game_position, seat) 
+        print('bet on seat %s:%s'%(seat, bet) )
+        if show_images == True :
+            show_bets_images(game_position, seat)
+    for seat in range(1, TOTAL_SEATS+1):
+        other_players_bank = ocr.ocr_other_players_bank_to_string(game_position,
+                                                              seat) 
+        print('other_players_bank on seat %s:%s'%(seat, other_players_bank) )
+        if show_images == True :
+            show_other_players_bank_images(game_position, seat)
+    for seat in range(1, TOTAL_SEATS+1):
+        my_bank = ocr.ocr_my_bank_to_string(game_position, seat) 
+        print('my_bank on seat %s:%s'%(seat, my_bank) )
+        if show_images == True :
+            show_my_bank_images(game_position, seat)
+    for seat in range(1, TOTAL_SEATS+1):
+        other_names = ocr.ocr_other_names_to_string(game_position, seat) 
+        print('other_names on seat %s:%s'%(seat, other_names) )
+        if show_images == True :
+            show_other_names_images(game_position, seat)
+    for seat in range(1, TOTAL_SEATS+1):
+        my_name = ocr.ocr_my_name_to_string(game_position, seat) 
+        print('my_name on seat %s:%s'%(seat, my_name) )
+        if show_images == True :
+            show_my_name_images(game_position, seat)
 
     t = time.time() - t0
     print('total time consumption: %s' %t)
@@ -268,9 +268,6 @@ def test_pixel_matching():
     for seat in range(1, TOTAL_SEATS+1):
         print('seat_won_pixel at seat %s is: %s'
               %(seat, pm.seat_won_pixel(game_position, seat) ) )
-    for seat in range(1, TOTAL_SEATS+1):
-        print('are_chips_white_or_red_pixel at seat %s is: %s'
-              %(seat, pm.are_chips_white_or_red_pixel(game_position, seat) ) )
 
 if __name__ == '__main__':
     # Globaling the game_position

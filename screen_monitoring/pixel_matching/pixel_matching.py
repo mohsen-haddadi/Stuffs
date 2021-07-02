@@ -128,53 +128,6 @@ def seat_won_pixel(game_position, seat): #💊
         x1 = pixelMatchesColor( game_position[0]+335, game_position[1]+131, (232, 184, 9), tolerance=10 )
         x2 = pixelMatchesColor( game_position[0]+375, game_position[1]+131, (232, 184, 9), tolerance=10 ) 
         return (x1 or x2)
- 
-def are_chips_white_or_red_pixel(game_position, seat): #celeb
-    """
-    If the color of the sign behind chips is 
-    red it returns True (bet(not bet on preflop)/raise), 
-    if the color is white it returns False (call)
-    """
-    def avg_color(x,y,h,w) :
-        image = pyautogui.screenshot(region=(x, y , h, w) )
-        image.convert('RGB')
-        open_cv_image = numpy.array(image)
-
-        avg_color_per_row = numpy.average(open_cv_image, axis=0)
-        avg_color = numpy.average(avg_color_per_row, axis=0)
-        return avg_color
-
-    if seat == 1 :
-        x = avg_color(game_position[0]+313,game_position[1]+310,15,15) #Bet_White_or_Red_seat1
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 2 :
-        x = avg_color(game_position[0]+95,game_position[1]+312,15,15) #Bet_White_or_Red_seat2
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 3 :
-        x = avg_color(game_position[0]-123,game_position[1]+310,15,15) #Bet_White_or_Red_seat3
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 4 :
-        x = avg_color(game_position[0]-128,game_position[1]+223,15,15) #Bet_White_or_Red_seat4
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-    if seat == 5 :
-        x = avg_color(game_position[0]+318,game_position[1]+223,15,15) #Bet_White_or_Red_seat5
-        if x[2] < 20 :
-            return True
-        else :
-            return False
-
 
 # pixel matchings to click on buttons:
 
