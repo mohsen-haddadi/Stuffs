@@ -176,27 +176,27 @@ def test_ocr(show_images = False):
         print('bet on seat %s:%s'%(seat, bet) )
         if show_images == True :
             show_bets_images(game_position, seat)
-    for seat in range(1, TOTAL_SEATS+1):
+    for seat in range(2, TOTAL_SEATS+1):
         other_players_bank = ocr.ocr_other_players_bank_to_string(game_position,
                                                               seat) 
         print('other_players_bank on seat %s:%s'%(seat, other_players_bank) )
         if show_images == True :
             show_other_players_bank_images(game_position, seat)
-    for seat in range(1, TOTAL_SEATS+1):
+    for seat in range(1, 2):
         my_bank = ocr.ocr_my_bank_to_string(game_position, seat) 
         print('my_bank on seat %s:%s'%(seat, my_bank) )
         if show_images == True :
             show_my_bank_images(game_position, seat)
-    for seat in range(1, TOTAL_SEATS+1):
-        other_names = ocr.ocr_other_names_to_string(game_position, seat) 
-        print('other_names on seat %s:%s'%(seat, other_names) )
-        if show_images == True :
-            show_other_names_images(game_position, seat)
-    for seat in range(1, TOTAL_SEATS+1):
-        my_name = ocr.ocr_my_name_to_string(game_position, seat) 
-        print('my_name on seat %s:%s'%(seat, my_name) )
-        if show_images == True :
-            show_my_name_images(game_position, seat)
+#    for seat in range(1, TOTAL_SEATS+1):
+#        other_names = ocr.ocr_other_names_to_string(game_position, seat) 
+#        print('other_names on seat %s:%s'%(seat, other_names) )
+#        if show_images == True :
+#            show_other_names_images(game_position, seat)
+#    for seat in range(1, TOTAL_SEATS+1):
+#        my_name = ocr.ocr_my_name_to_string(game_position, seat) 
+#        print('my_name on seat %s:%s'%(seat, my_name) )
+#        if show_images == True :
+#            show_my_name_images(game_position, seat)
 
     t = time.time() - t0
     print('total time consumption: %s' %t)
@@ -275,6 +275,8 @@ if __name__ == '__main__':
 
     #test_find_game_position()
     #test_read_cards(my_seat = 1, show_image = False)
-    test_ocr(show_images = True)
-    #test_pixel_matching()
+    #test_ocr(show_images = True)
+    test_pixel_matching()
     #test_click_coordinates()
+
+    #pyautogui.click(game_position[0] + 68,game_position[1] + 125)
