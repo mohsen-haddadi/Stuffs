@@ -1,0 +1,30 @@
+2021/07/03 20:55:47.38: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/03 20:55:47.76: my bank ocr string at seat 1 is: 86.5
+2021/07/03 20:55:47.76: My bank is:86.5
+2021/07/03 20:55:47.76: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/03 20:55:47.77: My cards are founded
+2021/07/03 20:55:49.44: Reseting table information
+2021/07/03 20:55:49.44: * bot_status == 'I_AM_PLAYING' *
+2021/07/03 20:55:49.44: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/03 20:55:49.44: My cards are founded
+2021/07/03 20:55:49.44: -------- New Hand Started --------
+2021/07/03 20:55:49.47: Dealer is on seat 1
+2021/07/03 20:55:49.93: bet ocr string at seat 2 is: 0.5
+2021/07/03 20:55:50.28: bet ocr string at seat 2 is: 0.5
+2021/07/03 20:55:50.65: bet ocr string at seat 2 is: 0.5
+2021/07/03 20:55:50.90: bet ocr string at seat 3 is: 1
+2021/07/03 20:55:51.09: bet ocr string at seat 4 is: 8
+2021/07/03 20:55:51.37: bet ocr string at seat 3 is: 1
+2021/07/03 20:55:51.60: bet ocr string at seat 3 is: 1
+2021/07/03 20:55:51.81: bet ocr string at seat 4 is: 8
+2021/07/03 20:55:52.01: bet ocr string at seat 4 is: 8
+2021/07/03 20:55:52.03: Small blind is on seat 2
+2021/07/03 20:55:52.03: Big blind is on seat 3
+2021/07/03 20:55:52.14: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: False, 6: True}
+2021/07/03 20:55:53.28: My cards are: ('Two', 'Diamond'), ('Seven', 'Club')
+2021/07/03 20:55:53.53: my bank ocr string at seat 1 is: 86.5
+2021/07/03 20:55:53.53: My bank is:86.5
+2021/07/03 20:55:53.81: my bank ocr string at seat 1 is: 86.5
+2021/07/03 20:55:53.81: my name ocr string at seat 1 is: 
+2021/07/03 20:55:54.09: other players bank ocr string at seat 2 is: 266
+2021/07/03 20:55:54.09: other name ocr string at seat 2 is: 

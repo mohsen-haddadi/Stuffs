@@ -1,0 +1,49 @@
+2021/07/03 23:51:08.43: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/03 23:51:08.88: my bank ocr string at seat 1 is: 4-0
+2021/07/03 23:51:08.88: My bank is:40
+2021/07/03 23:51:08.88: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/03 23:51:13.20: My cards are founded
+2021/07/03 23:51:15.25: Reseting table information
+2021/07/03 23:51:15.25: * bot_status == 'I_AM_PLAYING' *
+2021/07/03 23:51:15.26: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/03 23:51:15.27: My cards are founded
+2021/07/03 23:51:15.27: -------- New Hand Started --------
+2021/07/03 23:51:15.30: Dealer is on seat 1
+2021/07/03 23:51:15.76: -------
+2021/07/03 23:51:15.77: fix_game_disruption() <-- ocr_bet is not digit at seat 1 is running....
+2021/07/03 23:51:15.83: internet is connected
+2021/07/03 23:51:15.83: Position (0,720) is clicked
+2021/07/03 23:51:16.76: Game region refounded after fix_game_disruption()
+2021/07/03 23:51:16.94: i_am_back button is clicked
+2021/07/03 23:51:16.96: After fix_game_disruption() --> just_do_check_fold is True.
+2021/07/03 23:51:17.11: i_am_back button is clicked
+2021/07/03 23:51:17.11: my name ocr string at seat 1 is: 
+2021/07/03 23:51:17.18: internet is connected
+2021/07/03 23:51:17.18: looking for reconnect button
+2021/07/03 23:51:18.29: I am In not by OCR
+2021/07/03 23:51:18.29: -------
+2021/07/03 23:51:18.65: just_do_check_fold is set to True: ocr_bet is not digit
+2021/07/03 23:51:18.65: Screenshot Error: ocr_bet is not digit at seat 1
+2021/07/03 23:51:19.51: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/03 23:51:19.61: TEST. playing_seats dictionary is: {1: False, 2: True, 3: False, 4: False, 5: False, 6: False}
+2021/07/03 23:51:19.64: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/03 23:51:20.83: -------
+2021/07/03 23:51:20.83: fix_game_disruption() <-- my cards are read Unknown is running....
+2021/07/03 23:51:20.87: internet is connected
+2021/07/03 23:51:20.87: Position (0,720) is clicked
+2021/07/03 23:51:21.45: Game region refounded after fix_game_disruption()
+2021/07/03 23:51:21.51: my name ocr string at seat 1 is: 
+2021/07/03 23:51:21.56: internet is connected
+2021/07/03 23:51:21.56: looking for reconnect button
+2021/07/03 23:51:22.48: I am In not by OCR
+2021/07/03 23:51:22.48: -------
+2021/07/03 23:51:24.12: just_do_check_fold is set to True: my cards are read Unknown again
+2021/07/03 23:51:24.12: My cards are: ('Unknown', 'Unknown'), ('Unknown', 'Unknown')
+2021/07/03 23:51:24.61: my bank ocr string at seat 1 is: 38.5
+2021/07/03 23:51:24.61: My bank is:38.5
+2021/07/03 23:51:24.96: my bank ocr string at seat 1 is: 38.5
+2021/07/03 23:51:24.96: my name ocr string at seat 1 is: 
+2021/07/03 23:51:25.34: other players bank ocr string at seat 2 is: 100
+2021/07/03 23:51:25.34: other name ocr string at seat 2 is: 
+2021/07/03 23:51:25.80: TEST. Players Bank dictionary is: {1: 38.5, 2: 100.5, 3: None, 4: None, 5: None, 6: None}
+2021/07/03 23:51:25.80: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}

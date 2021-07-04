@@ -170,38 +170,13 @@ def check_i_am_in_or_out(): #💊
         return ("In")
 
     if pm.i_am_seated_pixel(c.game_position):
-        if is_internet_disconnected() == False and find_and_click_on_reconnect_button() == None :
+        if is_internet_disconnected() == False:
             if c.my_seat_number == 1:
                 shout("I am In not by OCR")
                 return ("In")
                 
     shout("I am Out", color = 'yellow')
     return ("Out")
-
-def find_and_click_on_reconnect_button():
-    #global game_position
-
-    shout('looking for reconnect button')
-    x1 = pyautogui.locateCenterOnScreen('screen_monitoring/find_game_position/reconnect button.png')
-    if x1 != None :
-        pyautogui.click(x1)
-        shout('reconnect button founded and clicked', color = 'yellow')
-        time.sleep(5)
-        if pm.button_pixel(c.game_position, 'i_am_back') == True :
-            click('i_am_back')
-        return x1
-    
-    x2 = pyautogui.locateCenterOnScreen('screen_monitoring/find_game_position/reconnect button.png')
-    if x2 != None :
-        pyautogui.click(x2)
-        shout('reconnect button founded and clicked', color = 'yellow')
-        time.sleep(5)
-        if pm.button_pixel(c.game_position, 'i_am_back') == True :
-            click('i_am_back')
-        return x1
-
-    else :
-        return None
 
 def fix_game_disruption(String = None): #if find_game_reference_point() == None or ...
     #global game_position , my_seat_number , MY_PROFILE_NAME , bot_status , just_do_check_fold
@@ -219,30 +194,21 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
             continue
         shout('Internet is Connected Back!')
         time.sleep(15)
-        if find_and_click_on_reconnect_button() == None :
-            screenshot_error('No reconnect button founded')
 
-    shout("Position (0,720) is clicked", color = 'yellow')
-    pyautogui.press('esc')
+
+    #pyautogui.press('esc')
     
     c.game_position = pyautogui.locateOnScreen(
                     'screen_monitoring/find_game_position/reference image.png')
-    if c.game_position == None:
-        c.alternative_game_position = pyautogui.locateOnScreen(
-                    'screen_monitoring/find_game_position/alternative reference image.png')   
-        if c.alternative_game_position != None:
-            c.game_position = ( alternative_game_position[0]+328 , alternative_game_position[1]-245 ) 
     if c.game_position != None :
         c.game_position = (int(c.game_position[0]),int(c.game_position[1])) 
-
-    if c.game_position == None :
+    else:
         c.game_position = find_game_position.find_game_reference_point()
     if c.game_position != None :
         shout("Game region refounded after fix_game_disruption()"
               , color = 'yellow')
     
     if c.bot_status != 'OBSERVING':
-        
         if pm.button_pixel(c.game_position, 'i_am_back'):
             click('i_am_back')
             if pm.player_cards_pixel(c.game_position, c.my_seat_number) == True :
@@ -253,7 +219,6 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
                 c.bot_status = 'WAITING_FOR_FIRST_HAND'
                 shout("After fix_game_disruption() --> bot_status is 'WAITING_FOR_FIRST_HAND'."
                       , color = 'on_yellow')
-
         if check_i_am_in_or_out() == "Out":
             sit_in("Min buy in")
 

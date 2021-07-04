@@ -9,5 +9,12 @@
 9. move white_chips() and red_chips() function definition from set variables to other module
 (DONE) 10. config is a standard library module, so change my config module name to configs through project.
 11. edit ocr module at screen_monitoring package to something neater and nicer.
-12.
 
+(DONE) 12. board cards are not reset, becuase if i print c.board_4th_card at flop_stage it will print former table card. fix it.
+13. when nacht flug song is played BOT STATUS is not 'operator should play hand'. fix it
+14. when bot status shifts to 'operator should play hand', add an press ENTER option within 10 seconds 
+    if oprator is there or not. if not, bot just do check fold. before pressing ENTER click on the sublime or cmd header using pywin.
+15. use pywin to move your debugger when you run the bot.
+16. press and hold END button then change bot status to 'OBSERVING'. then start debugging observing status.
+(DONE) 17. add exat date and time to csv file.
+17. change cards name format from ('Ten', 'Spade') to 'Ts' through all project. search and edit 'Unknown' too.

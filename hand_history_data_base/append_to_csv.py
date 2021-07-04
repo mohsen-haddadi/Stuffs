@@ -9,7 +9,7 @@ from datetime import datetime
 import pandas as pd
 
 import configs as c
-import decision_making.play
+import decision_making.playpreflop
 from readability.ocr import ocr_my_bank
 from decision_making.rules_and_info.table_information import \
 early_position, middle_position, late_position
@@ -32,16 +32,16 @@ def append_new_line_to_csv(csv_path):
             # If bank is in big blinds. Depends on the site.  
             'Winning bb': [won_money()], 
             'Cards': [hand.change_hand_format(c.my_1th_card, c.my_2th_card)], 
-            'Hand category': [hand_category()], 
+            'Hand group': [hand_group()], 
             'Starting hand ranking': [hand.holdem_starting_hand_ranking()],
             'Check fold': [c.just_do_check_fold], 
             # If bank is in big blinds. Depends on the site.
-            'Money profit': [won_money() * c.BLIND_VALUE], 
+            'Money profit': [(lambda x: x * c.BLIND_VALUE if x != None else None)(won_money())], 
             'Scenario list': [c.scenario_list],
             'First scenario': [c.scenario_list[0]], 
             'Last scenario': [c.scenario_list[-1]], 
             'Last 2 scenarios': [c.scenario_list[-2:]], 
-            'play version': [decision_making.play.VERSION], 
+            'play version': [decision_making.playpreflop.VERSION], 
             'Blind': [c.BLIND_VALUE], 
             'Seat position': [seat_position()], 
             'Small blind': [c.my_seat_number == c.small_blind_seat], 
@@ -50,7 +50,8 @@ def append_new_line_to_csv(csv_path):
             'Total players': [c.TOTAL_SEATS], 
             'Website': ['cheeta'], 
             'Game number': [1], 
-            'Game time': [game_time()]
+            'Game time': [game_time()],
+            'Hand exact ending time': [datetime.now().strftime("%Y-%m-%d %H-%M-%S")]
             }
         df = pd.DataFrame(new_line, index=[0])
         #df = df.astype(int)
@@ -61,16 +62,16 @@ def append_new_line_to_csv(csv_path):
             # If bank is in big blinds. Depends on the site.
             'Winning bb': won_money(), 
             'Cards': hand.change_hand_format(c.my_1th_card, c.my_2th_card), 
-            'Hand category': hand_category(), 
+            'Hand group': hand_group(), 
             'Starting hand ranking': hand.holdem_starting_hand_ranking(),
             'Check fold': c.just_do_check_fold, 
             # If bank is in big blinds. Depends on the site.
-            'Money profit': won_money() * c.BLIND_VALUE, 
+            'Money profit': (lambda x: x * c.BLIND_VALUE if x != None else None)(won_money()),
             'Scenario list': c.scenario_list,
             'First scenario': [c.scenario_list[0]], 
             'Last scenario': [c.scenario_list[-1]], 
             'Last 2 scenarios': c.scenario_list[-2:],
-            'play version': decision_making.play.VERSION, 
+            'play version': decision_making.playpreflop.VERSION, 
             'Blind': c.BLIND_VALUE, 
             'Seat position': seat_position(), 
             'Small blind': c.my_seat_number == c.small_blind_seat, 
@@ -79,7 +80,8 @@ def append_new_line_to_csv(csv_path):
             'Total players': c.TOTAL_SEATS, 
             'Website': 'cheeta', 
             'Game number': c.game_number, 
-            'Game time': game_time()
+            'Game time': game_time(),
+            'Hand exact ending time': datetime.now().strftime("%Y-%m-%d %H-%M-%S")
             }
         df = pd.read_csv(csv_path)
         df = df.append(new_line, ignore_index=True)
@@ -92,31 +94,11 @@ def append_new_line_to_csv(csv_path):
 
     #print(df)
 
-def hand_category():
-    overlap_hand = ''
-    if hand.hand8() and  hand.hand9():
-        overlap_hand = ' hand8 hand9'
-    elif  hand.hand8():
-        overlap_hand = ' hand8'
-    elif  hand.hand9():
-        overlap_hand = ' hand9'
-
-    if  hand.hand1():
-        return 'hand1%s' %overlap_hand
-    elif  hand.hand2():
-        return 'hand2%s' %overlap_hand
-    elif  hand.hand3():
-        return 'hand3%s' %overlap_hand
-    elif  hand.hand4():
-        return 'hand4%s' %overlap_hand
-    elif  hand.hand5():
-        return 'hand5%s' %overlap_hand
-    elif  hand.hand6():
-        return 'hand6%s' %overlap_hand
-    elif  hand.hand7():
-        return 'hand7%s' %overlap_hand
-    else:
-        return None
+def hand_group():
+    for char in 'ABCDEFGH':
+        if hand.group(char):
+            return char
+    return 'N/A'
 
 def seat_position():
     if early_position():

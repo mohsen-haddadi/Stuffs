@@ -1,0 +1,96 @@
+2021/07/03 23:14:32.05: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/03 23:14:32.40: my bank ocr string at seat 1 is: 4-0
+2021/07/03 23:14:32.40: -------
+2021/07/03 23:14:32.40: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/03 23:14:32.50: internet is connected
+2021/07/03 23:14:32.50: Position (0,720) is clicked
+2021/07/03 23:14:33.19: Game region refounded after fix_game_disruption()
+2021/07/03 23:14:33.24: my name ocr string at seat 1 is: 
+2021/07/03 23:14:33.28: internet is connected
+2021/07/03 23:14:33.28: looking for reconnect button
+2021/07/03 23:14:34.47: I am In not by OCR
+2021/07/03 23:14:34.47: -------
+2021/07/03 23:14:34.78: my bank ocr string at seat 1 is: 4-0
+2021/07/03 23:14:34.78: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/03 23:14:35.60: My bank can't be read
+2021/07/03 23:14:35.61: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/03 23:14:44.87: My cards are founded
+2021/07/03 23:14:47.06: Reseting table information
+2021/07/03 23:14:47.06: * bot_status == 'I_AM_PLAYING' *
+2021/07/03 23:14:47.06: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/03 23:14:47.08: My cards are founded
+2021/07/03 23:14:47.08: -------- New Hand Started --------
+2021/07/03 23:14:47.18: Dealer is on seat 3
+2021/07/03 23:14:48.10: Small blind is on seat 4
+2021/07/03 23:14:48.10: Big blind is on seat 5
+2021/07/03 23:14:48.19: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: True, 6: True}
+2021/07/03 23:14:48.23: doing ocr on my seat to check if it is first_round_at_preflop or not
+2021/07/03 23:14:50.14: My cards are: ('Four', 'Heart'), ('Five', 'Heart')
+2021/07/03 23:14:50.53: my bank ocr string at seat 1 is: 39
+2021/07/03 23:14:50.53: My bank is:39
+2021/07/03 23:14:50.95: my bank ocr string at seat 1 is: 39
+2021/07/03 23:14:50.95: my name ocr string at seat 1 is: 
+2021/07/03 23:14:51.34: other players bank ocr string at seat 2 is: 38.5
+2021/07/03 23:14:51.34: other name ocr string at seat 2 is: 
+2021/07/03 23:14:51.73: other players bank ocr string at seat 3 is: B8
+2021/07/03 23:14:51.73: ocr_other_players_bank is not digit and set to None at seat 3
+2021/07/03 23:14:51.83: other name ocr string at seat 3 is: 
+2021/07/03 23:14:52.23: other players bank ocr string at seat 4 is: 52.5
+2021/07/03 23:14:52.23: other name ocr string at seat 4 is: 
+2021/07/03 23:14:52.89: other players bank ocr string at seat 5 is: 125
+2021/07/03 23:14:52.89: other name ocr string at seat 5 is: 
+2021/07/03 23:14:53.50: other players bank ocr string at seat 6 is: 172
+2021/07/03 23:14:53.50: other name ocr string at seat 6 is: 
+2021/07/03 23:14:53.85: TEST. Players Bank dictionary is: {1: 39, 2: 38.5, 3: None, 4: 53.0, 5: 126, 6: 355}
+2021/07/03 23:14:53.86: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/03 23:14:53.86: Waiting for my turn at preflop_stage...
+2021/07/03 23:14:53.92: It is my turn now
+2021/07/03 23:14:53.92: TESTING. preflop_betting_round is:0
+2021/07/03 23:14:54.45: bet ocr string at seat 1 is: 1
+2021/07/03 23:14:54.85: bet ocr string at seat 4 is: 0.5
+2021/07/03 23:14:55.30: bet ocr string at seat 5 is: 1
+2021/07/03 23:14:55.78: bet ocr string at seat 6 is: 183
+2021/07/03 23:14:55.78: Seat1 Call: $1
+2021/07/03 23:14:55.79: Seat4 Call: $0.5
+2021/07/03 23:14:55.79: Seat5 Call: $1
+2021/07/03 23:14:55.80: Seat6 Raise: $183
+2021/07/03 23:14:55.81: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 1, 2: None, 3: None, 4: 0.5, 5: 1, 6: 183}}
+2021/07/03 23:14:56.71: my bank ocr string at seat 1 is: 39
+2021/07/03 23:14:57.28: other players bank ocr string at seat 2 is: 38.5
+2021/07/03 23:14:57.98: other players bank ocr string at seat 3 is: B8
+2021/07/03 23:14:57.99: ocr_other_players_bank is not digit and set to None at seat 3
+2021/07/03 23:14:58.44: other players bank ocr string at seat 4 is: 52.5
+2021/07/03 23:14:58.75: other players bank ocr string at seat 5 is: 125
+2021/07/03 23:14:59.10: other players bank ocr string at seat 6 is: 172
+2021/07/03 23:14:59.10: *Deciding on preflop*
+2021/07/03 23:14:59.10: Screenshot Error: returned string is not in standard format
+2021/07/03 23:14:59.79: wrong returned string is: fold
+2021/07/03 23:14:59.95: check button is clicked
+2021/07/03 23:15:35.24: It is my turn now
+2021/07/03 23:15:35.24: TESTING. preflop_betting_round is:1
+2021/07/03 23:15:35.66: bet ocr string at seat 1 is: 1
+2021/07/03 23:15:36.03: bet ocr string at seat 2 is: 2
+2021/07/03 23:15:36.32: bet ocr string at seat 4 is: 2
+2021/07/03 23:15:36.65: bet ocr string at seat 5 is: 2
+2021/07/03 23:15:36.94: bet ocr string at seat 6 is: 283
+2021/07/03 23:15:36.94: Seat1 Call: $1
+2021/07/03 23:15:36.95: Seat2 Raise: $2
+2021/07/03 23:15:36.95: Seat4 Call: $2
+2021/07/03 23:15:36.95: Seat5 Call: $2
+2021/07/03 23:15:36.95: Seat6 Raise: $283
+2021/07/03 23:15:36.96: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 1, 2: None, 3: None, 4: 0.5, 5: 1, 6: 183}, 'Pre_Flop 1': {1: 1, 2: 2, 3: None, 4: 2, 5: 2, 6: 283}}
+2021/07/03 23:15:37.48: my bank ocr string at seat 1 is: 39
+2021/07/03 23:15:38.05: other players bank ocr string at seat 2 is: 36.5
+2021/07/03 23:15:38.45: other players bank ocr string at seat 3 is: 258
+2021/07/03 23:15:38.80: other players bank ocr string at seat 4 is: 51
+2021/07/03 23:15:39.18: other players bank ocr string at seat 5 is: 15
+2021/07/03 23:15:39.51: other players bank ocr string at seat 6 is: 171
+2021/07/03 23:15:39.51: *Deciding on preflop*
+2021/07/03 23:15:39.51: Screenshot Error: returned string is not in standard format
+2021/07/03 23:15:40.29: wrong returned string is: fold
+2021/07/03 23:15:40.48: fold button is clicked
+2021/07/03 23:15:41.92: Waiting for my turn at flop_stage...
+2021/07/03 23:15:43.90: Flop cards are: ('Eight', 'Heart'), ('Seven', 'Diamond'), ('Four', 'Diamond')
+2021/07/03 23:16:09.21: appending hand data to csv file
+2021/07/03 23:16:09.51: my bank ocr string at seat 1 is: 39
+2021/07/03 23:16:09.81: my bank ocr string at seat 1 is: 39

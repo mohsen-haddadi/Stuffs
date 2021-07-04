@@ -1,0 +1,27 @@
+2021/07/03 21:17:38.37: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/03 21:17:38.68: my bank ocr string at seat 1 is: 
+2021/07/03 21:17:38.68: -------
+2021/07/03 21:17:38.68: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/03 21:17:38.72: internet is connected
+2021/07/03 21:17:38.73: Position (0,720) is clicked
+2021/07/03 21:17:39.22: Game region refounded after fix_game_disruption()
+2021/07/03 21:17:39.28: my name ocr string at seat 1 is: 
+2021/07/03 21:17:39.32: internet is connected
+2021/07/03 21:17:39.32: looking for reconnect button
+2021/07/03 21:17:40.12: I am In not by OCR
+2021/07/03 21:17:40.12: -------
+2021/07/03 21:17:40.37: my bank ocr string at seat 1 is: 
+2021/07/03 21:17:40.37: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/03 21:17:40.84: My bank can't be read
+2021/07/03 21:17:40.84: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/03 21:17:40.86: My cards are founded
+2021/07/03 21:17:42.72: Reseting table information
+2021/07/03 21:17:42.72: * bot_status == 'I_AM_PLAYING' *
+2021/07/03 21:17:42.72: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/03 21:17:42.72: My cards are founded
+2021/07/03 21:17:42.72: -------- New Hand Started --------
+2021/07/03 21:17:42.86: Dealer is on seat 4
+2021/07/03 21:17:43.48: Small blind is on seat 6
+2021/07/03 21:17:43.48: Big blind is on seat 1
+2021/07/03 21:17:43.57: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: False, 6: True}
+2021/07/03 21:17:43.59: doing ocr on my seat to check if it is first_round_at_preflop or not

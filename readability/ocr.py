@@ -5,12 +5,13 @@ import configs as c
 from iprint import shout
 from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error
 
-def replace_letters_comma_space_m_k(ocr_string):
+def replace_letters_comma_space_m_k(ocr_string): #💊
     string = ocr_string
     string = string.replace(" ","")
     string = string.replace(",","")
-    string = string.replace("M","*1000000")
-    string = string.replace("K","*1000")
+    string = string.replace("-","") #💊
+    #string = string.replace("M","*1000000")
+    #string = string.replace("K","*1000")
     return string
 
 # If there is no script to ocr, ocr functions at ocr module
@@ -28,7 +29,7 @@ def ocr_my_bet():
     eval_string = replace_letters_comma_space_m_k(ocr_string)
     digit_string = eval_string.replace("*","")
 
-    if digit_string.isdigit():
+    if digit_string.replace(".", "", 1).isdigit():
         return eval(eval_string)
     # else include digit_string like: '', 'c540!'
     else :
@@ -38,7 +39,7 @@ def ocr_my_bet():
         eval_string = replace_letters_comma_space_m_k(ocr_string)
         digit_string = eval_string.replace("*","")
 
-        if digit_string.isdigit():
+        if digit_string.replace(".", "", 1).isdigit():
             return eval(eval_string)
         else:
             set_just_do_check_fold_to_true("ocr_bet is not digit")            
@@ -58,7 +59,7 @@ def ocr_bet(seat, printing = True):
     eval_string = replace_letters_comma_space_m_k(ocr_string)
     digit_string = eval_string.replace("*","")
 
-    if digit_string.isdigit():
+    if digit_string.replace(".", "", 1).isdigit():
         return eval(eval_string)
     # else include digit_string like: '', 'c540!'
     else :
@@ -69,7 +70,7 @@ def ocr_bet(seat, printing = True):
         eval_string = replace_letters_comma_space_m_k(ocr_string)
         digit_string = eval_string.replace("*","")
 
-        if digit_string.isdigit():
+        if digit_string.replace(".", "", 1).isdigit():
             return eval(eval_string)
         else:
             set_just_do_check_fold_to_true("ocr_bet is not digit")            
@@ -91,7 +92,7 @@ def ocr_other_players_bank(seat):
           %(seat, ocr_string))
     eval_string = replace_letters_comma_space_m_k(ocr_string)
     digit_string = eval_string.replace("*","")
-    if digit_string.isdigit():
+    if digit_string.replace(".", "", 1).isdigit():
         return eval(eval_string)
     # else include digit_string like: '', 'c540!'
     else:
@@ -113,7 +114,7 @@ def ocr_my_bank():
     eval_string = replace_letters_comma_space_m_k(ocr_string)
     digit_string = eval_string.replace("*","")
 
-    if digit_string.isdigit():
+    if digit_string.replace(".", "", 1).isdigit():
         return eval(eval_string)
     # else include digit_string like: '', 'c540!'
     else :
@@ -125,7 +126,7 @@ def ocr_my_bank():
         eval_string = replace_letters_comma_space_m_k(ocr_string)
         digit_string = eval_string.replace("*","")
 
-        if digit_string.isdigit():
+        if digit_string.replace(".", "", 1).isdigit():
             return eval(eval_string)
         else:           
             screenshot_error("ocr_my_bank is not digit at seat %s"
@@ -157,4 +158,7 @@ def ocr_my_name(): #💊
     """
     string = ocr.ocr_my_name_to_string(c.game_position, c.my_seat_number)
     shout("my name ocr string at seat %s is: %s" %(c.my_seat_number, string))
-    return string
+    if string == '': #💊
+        return None
+    else:
+        return string

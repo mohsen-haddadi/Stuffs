@@ -1,12 +1,13 @@
 #OK
 from decision_making.playpreflop import play_pre_flop
+from decision_making.rules_and_info.table_information import Pre_Flop_Deside, Flop_Deside, Turn_Deside, River_Deside
 #from play import * 
 from iprint import shout
 import configs as c
 
 def decide():
 
-    if c.preflop_stage == True and c.flop_stage == False : # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
+    if c.preflop_stage == True and c.flop_stage == False: # instead i can use FUNCTIONS_table_information.Pre_Flop_Deside() too
         shout("*Deciding on preflop*", color = 'light_cyan')
     elif c.flop_stage == True and c.turn_stage == False :
         shout("*Deciding on flop*", color = 'light_cyan')
@@ -18,7 +19,7 @@ def decide():
         shout("*Deciding on unknown*", color = 'light_cyan')
     
     if c.just_do_check_fold == True :
-        return ("check_fold")
+        return "check_fold"
 
     else :
 
@@ -37,5 +38,5 @@ def decide():
 #
         #uncomment lines, when play.py module is completed.
         else :
-            return ("not defined")
+            return "not defined"
 

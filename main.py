@@ -9,12 +9,12 @@ delete lines with #❌⛏❌ comment at this file when play.py is completed.
 """
 import time
 
-import win32gui, win32con 
 import pandas as pd
 
 import screen_monitoring.find_game_position.find_game_position as find_game_position
-import decision_making.play
+import decision_making.playpreflop
 from decision_making.rules_and_info.table_information import Flop_Deside #❌⛏❌
+import screen_monitoring.pixel_matching.pixel_matching as pm #❌⛏❌
 from readability.read_cards import read_and_save_my_cards
 from readability.fix_game_disruption import fix_game_disruption,\
 set_just_do_check_fold_to_true, screenshot_error
@@ -24,7 +24,7 @@ import configs as c
 from iprint import shout
 from set_variables import set_all_variables_to_none, read_and_save_bets,\
 determine_small_big_dealer_seats, determine_playing_seats,\
-reset_table_information, read_and_save_banks_and_names
+reset_table_information, read_and_save_banks_and_names, read_banks
 from observing import bot_is_observing
 from main_assist import *
 
@@ -119,8 +119,8 @@ def play_a_hand():
     while True:
         if shifted_to_next_stage():
 
-            if Flop_Deside() and c.last_player_cards_cache[c.my_seat_number]: #❌⛏❌
-                # I MUST PLAY SOUND #❌⛏❌
+            if Flop_Deside() and pm.player_cards_pixel(c.game_position, c.my_seat_number): #❌⛏❌
+                shout('operator should play the hand is suppose to get activated soon') #❌⛏❌
                 sound('Schiller Nachtflug') #❌⛏❌
 
             read_board_cards()
@@ -138,8 +138,9 @@ def play_a_hand():
             fix_game_disruption('This hand last more than 5 minutes')
         c.new_hand = hand_is_ended()
         if c.new_hand:
-            shout ("appending hand data to csv file", color = 'on_green')
-            append_new_line_to_csv(c.csv_path) 
+            if not c.just_do_check_fold:
+                shout ("appending hand data to csv file", color = 'on_green')
+                append_new_line_to_csv(c.csv_path) 
             shout ("-------- Hand ended --------", color = 'on_green')
             break
         if game_is_paused():
@@ -177,8 +178,10 @@ def start_the_bot():
                             "or 'WAITING_FOR_FIRST_HAND' or 'I_AM_PLAYING'")
 
 def main():
-    hwnd = win32gui.GetForegroundWindow()
-    win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,1153,222,440,593,0)
+    # hwnd = win32gui.GetForegroundWindow()
+    # win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,1153,222,440,593,0)
+    resize_window('chrome')
+    resize_window('debugger')
     # Cleaning variables off the last run by set them all to None.
     set_all_variables_to_none()
     create_report_folder()
@@ -186,18 +189,18 @@ def main():
     c.MY_PROFILE_NAME = "XOwl"
     c.hand_number = 0
     c.csv_path = 'hand_history_data_base/hands history version %s.csv'\
-                      %decision_making.play.VERSION
+                      %decision_making.playpreflop.VERSION
     try:
         df = pd.read_csv(c.csv_path)
         c.game_number = df.at[df.index[-1], 'Game number'] + 1
     except:
         c.game_number = 1
-    if input("Is my name: %s ?(Enter:yes/any keyword:no)" 
-             % c.MY_PROFILE_NAME) != "" :
-        c.MY_PROFILE_NAME = input("Enter profile name: ")
+    #if input("Is my name: %s ?(Enter:yes/any keyword:no)" 
+    #         % c.MY_PROFILE_NAME) != "" :
+    #    c.MY_PROFILE_NAME = input("Enter profile name: ")
     c.my_seat_number = 1 #int( input("My seat number? ") ) #💊
-    c.TOTAL_SEATS = 5
-    c.BLIND_VALUE = 100000000
+    c.TOTAL_SEATS = 6
+    c.BLIND_VALUE = 1
     c.bot_status = 'WAITING_FOR_FIRST_HAND'
     c.game_position = find_game_position.find_game_reference_point()
 

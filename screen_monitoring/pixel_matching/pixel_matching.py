@@ -42,11 +42,11 @@ def player_chips_pixel(game_position, seat): #💊
     if seat==1:
         return pixelMatchesColor( game_position[0]+74, game_position[1]+186, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_1
     if seat==2:
-        return pixelMatchesColor( game_position[0]+68, game_position[1]+125, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_2
+        return pixelMatchesColor( game_position[0]-69, game_position[1]+125, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_2
     if seat==3:
-        return pixelMatchesColor( game_position[0]-16, game_position[1]+449, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_3
+        return pixelMatchesColor( game_position[0]-16, game_position[1]+54, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_3
     if seat==4:
-        return pixelMatchesColor( game_position[0]+288, game_position[1]+22, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_4
+        return pixelMatchesColor( game_position[0]+88, game_position[1]+22, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_4
     if seat==5:
         return pixelMatchesColor( game_position[0]+240, game_position[1]+51, (0 ,0 ,0), tolerance=30 ) #Bet_coin_seat_5
     if seat==6:
@@ -169,8 +169,8 @@ def button_pixel(game_position, button_name):
         return pixelMatchesColor( game_position[0]+431, game_position[1]+375, (255, 255, 255), tolerance=10 )
 
     elif button_name == 'exit': #💊
-        x1 = pixelMatchesColor( game_position[0]+173, game_position[1]-263, (65, 65, 65), tolerance=10 )
-        x2 = pixelMatchesColor( game_position[0]+173, game_position[1]-263, (0, 0, 0), tolerance=10 )
+        x1 = pixelMatchesColor( game_position[0]+56, game_position[1]-263, (108, 108, 108), tolerance=10 )
+        x2 = pixelMatchesColor( game_position[0]+56, game_position[1]-263, (0, 0, 0), tolerance=10 )
         return (x1 or x2)
     elif button_name == 'menu': #💊 
         return pixelMatchesColor( game_position[0]-136, game_position[1]-257, (255, 255, 255), tolerance=10 )

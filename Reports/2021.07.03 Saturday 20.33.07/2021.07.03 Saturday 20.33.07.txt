@@ -1,0 +1,23 @@
+2021/07/03 20:33:10.06: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/03 20:33:10.41: my bank ocr string at seat 1 is: 86.5
+2021/07/03 20:33:10.41: -------
+2021/07/03 20:33:10.41: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/03 20:33:10.44: internet is connected
+2021/07/03 20:33:10.44: Position (0,720) is clicked
+2021/07/03 20:33:10.94: Game region refounded after fix_game_disruption()
+2021/07/03 20:33:11.00: my name ocr string at seat 1 is: 
+2021/07/03 20:33:11.05: internet is connected
+2021/07/03 20:33:11.05: looking for reconnect button
+2021/07/03 20:33:11.84: I am In not by OCR
+2021/07/03 20:33:11.84: -------
+2021/07/03 20:33:12.11: my bank ocr string at seat 1 is: 86.5
+2021/07/03 20:33:12.11: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/03 20:33:12.56: My bank can't be read
+2021/07/03 20:33:12.56: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/03 20:33:12.56: My cards are founded
+2021/07/03 20:33:14.23: Reseting table information
+2021/07/03 20:33:14.23: * bot_status == 'I_AM_PLAYING' *
+2021/07/03 20:33:14.23: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/03 20:33:14.23: My cards are founded
+2021/07/03 20:33:14.23: -------- New Hand Started --------
+2021/07/03 20:33:14.26: Dealer is on seat 1

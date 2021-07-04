@@ -7,14 +7,14 @@ Note 2: If I've resume the game, set
 import time, os
 from datetime import datetime
 
-import pygame, keyboard
+import pygame, keyboard, pygetwindow
 
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import decision_making.decide
 from decision_making.rules_and_info.starting_hands import group
 from readability.read_cards import read_and_save_flop_cards,\
 read_and_save_turn_card, read_and_save_river_card
-from readability.ocr import ocr_my_bank
+from readability.ocr import ocr_my_bank, ocr_bet
 from readability.click import fold, check, call, all_in,\
 raising, check_fold
 from readability.fix_game_disruption import fix_game_disruption,\
@@ -118,15 +118,27 @@ def first_round_at_preflop(): #💊
 
     if not pm.pre_flop_pixel(c.game_position):
         return False 
-
-    if c.my_seat_number in (c.small_blind_seat, c.big_blind_seat):
+    if pm.player_chips_pixel(c.game_position, c.my_seat_number):
         shout('doing ocr on my seat to check if it is first_round_at_preflop or not')
-        if ocr_bet(c.my_seat_number, printing = False) > c.BLIND_VALUE:
+        bet = ocr_bet(c.my_seat_number, printing = False)
+        if bet == None: # to avoid math Error
+            return True 
+        if bet > c.BLIND_VALUE:
             return False
-    else:
-        if pm.player_chips_pixel(c.game_position, c.my_seat_number):
-            return False
-    return True
+        else:
+            return True     
+
+#    if c.my_seat_number in (c.small_blind_seat, c.big_blind_seat):
+#        shout('doing ocr on my seat to check if it is first_round_at_preflop or not')
+#        bet = ocr_bet(c.my_seat_number, printing = False)
+#        if bet == None: # to avoid math Error
+#            return True 
+#        if bet > c.BLIND_VALUE:
+#            return False
+#    else:
+#        if pm.player_chips_pixel(c.game_position, c.my_seat_number):
+#            return False
+#    return True
 
 def wait_for_sb_b_d_buttons(waiting_seconds = 5):
     """5 seconds waiting does not need c.new_hand to break it"""
@@ -244,7 +256,7 @@ def hand_is_ended(): #💊
     1.Yellow around winning cards 
     2.If everyone fold the somebodies raise, only one player have cards.
     """
-    players_cards_count == 0
+    players_cards_count = 0
     for seat in range(1, c.TOTAL_SEATS+1):
         if pm.seat_won_pixel(c.game_position, seat):
             return True
@@ -292,40 +304,42 @@ def sound(string_name) :
         pass
 
 def play_sound_for_good_starting_hands() :
-     
+    if 'Unknown' in c.my_1th_card or 'Unknown' in c.my_2th_card:
+        return None # this will stop function and avoid error.
     if c.preflop_stage == True and c.flop_stage == False :
         if group('A'):
             sound("Du Bist Erwacht")
-            shout("Playing Music: 'Michel'", color = 'light_cyan')
+            shout("Playing Music: group A", color = 'light_cyan')
         elif group('B'):
             sound("la isla bonita")
-            shout("Playing Music: 'Alan Walker'", color = 'light_cyan')
+            shout("Playing Music: group B", color = 'light_cyan')
         elif group('C'):
             sound("la isla bonita")
-            shout("Playing Music: 'Alan Walker'", color = 'light_cyan')
+            shout("Playing Music: group C", color = 'light_cyan')
         elif group('D'):
             sound("la isla bonita")
-            shout("Playing Music: 'Pocket low pairs'", color = 'light_cyan')
+            shout("Playing Music: 'group D'", color = 'light_cyan')
         elif group('EFG'):
             sound("la isla bonita")
-            shout("Playing Music: 'Bob Marley'", color = 'light_cyan')
+            shout("Playing Music: group EFG", color = 'light_cyan')
 
 def click_decision():
 
     decision = decision_making.decide.decide()
-    if decision[0] == "check" :
+    shout(f'decision is: {decision}', color = 'light_cyan')
+    if decision == "check":
         check()
-    elif decision[0] == "call" :
+    elif decision == "call":
         call()
-    elif decision[0] == "fold" :
+    elif decision == "fold":
         fold()
-    elif decision[0] == "raise" :
+    elif type(decision) == tuple and decision == "raise":
         raising(decision[1])
-    elif decision[0] == "all_in" :
+    elif decision == "all_in":
         all_in()
-    elif decision[0] == "check_fold" :
+    elif decision == "check_fold":
         check_fold()
-    elif decision[0] == "not defined" :
+    elif decision == "not defined":
         c.bot_status = 'OPERATOR_SHOULD_PLAY_THE_HAND'
         # uncomment these 2 next lines and remove line above, 
         # when play.py module is completed.
@@ -338,6 +352,22 @@ def click_decision():
         screenshot_error("returned string is not in standard format")
         check_fold()
     time.sleep(1)
+
+def resize_window(window): #💊
+    if window == 'chrome':
+        win = pygetwindow.getWindowsWithTitle('chrome')[0]
+        win.size = (974, 1047)
+        win.moveTo(-7, 0)
+    elif window == 'debugger':
+        for debugger_name in ['sublime', 'command prompt']:
+            try:
+                win = pygetwindow.getWindowsWithTitle(debugger_name)[0]
+            except:
+                continue
+        win.size = (974, 1047)
+        win.moveTo(953, 0)
+    #print(win.size)
+    #print(win.topleft)
 
 def create_report_folder():
     c.DATED_REPORT_FOLDER = datetime.now().strftime("%Y.%m.%d %A %H.%M.%S")

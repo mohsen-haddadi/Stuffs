@@ -1,0 +1,18 @@
+2021/07/04 00:00:51.81: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/04 00:00:52.23: my bank ocr string at seat 1 is: 39
+2021/07/04 00:00:52.23: My bank is:39
+2021/07/04 00:00:52.23: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/04 00:01:29.87: My cards are founded
+2021/07/04 00:01:30.28: Reseting table information
+2021/07/04 00:01:30.28: * bot_status == 'I_AM_PLAYING' *
+2021/07/04 00:01:30.28: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/04 00:01:30.30: My cards are founded
+2021/07/04 00:01:30.30: -------- New Hand Started --------
+2021/07/04 00:01:31.27: Dealer is on seat 5
+2021/07/04 00:01:31.37: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/04 00:01:31.47: TEST. playing_seats dictionary is: {1: False, 2: True, 3: False, 4: False, 5: True, 6: True}
+2021/07/04 00:01:31.48: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/04 00:01:33.13: -------
+2021/07/04 00:01:33.13: fix_game_disruption() <-- my cards are read Unknown is running....
+2021/07/04 00:01:33.20: internet is connected
+2021/07/04 00:01:33.20: Position (0,720) is clicked

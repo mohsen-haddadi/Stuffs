@@ -4,7 +4,7 @@ First open the game or the image of the game on the screen to start testing.
 """
 import time
 
-import cv2, pyautogui, win32gui, win32con
+import cv2, pyautogui, pygetwindow
 import numpy as np
 
 import screen_monitoring.find_game_position.find_game_position as find_game_position
@@ -204,15 +204,28 @@ def test_ocr(show_images = False):
 
 def test_click_coordinates():
 
-    hwnd = win32gui.GetForegroundWindow()
-    win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,1153,222,440,593,0)
+    def resize_window(window): #💊
+        if window == 'chrome':
+            win = pygetwindow.getWindowsWithTitle('chrome')[0]
+            win.size = (974, 1047)
+            win.moveTo(-7, 0)
+        elif window == 'debugger':
+            for debugger_name in ['sublime', 'command prompt']:
+                try:
+                    win = pygetwindow.getWindowsWithTitle(debugger_name)[0]
+                except:
+                    continue
+            win.size = (974, 1047)
+            win.moveTo(953, 0)
+    resize_window('debugger')
 
     def click(name):
         x, y = click_coordinates.click_coordinates(game_position, name)
         pyautogui.click(x, y)
     # This list may differ for other websites
     ALL_CLICK_NAMES = [
-    'fold', 'check', 'call', 'bet', 'raise', 'all_in', 'pot', 'half_pot',
+    'fold', 'check', 'call', 'bet', 'raise',
+    'half_pot', 'pot', 'all_in','type_blinds',
     'available_seat_1', 'available_seat_2', 'available_seat_3',
     'available_seat_4', 'available_seat_5', 'available_seat_6',
     'exit', 'menu',
@@ -227,7 +240,7 @@ def test_pixel_matching():
 
     # This list may differ for other websites
     ALL_CLICK_NAMES = [
-    'fold', 'check', 'call', 'bet', 'raise', 'all_in', 'pot', 'half_pot',
+    'fold', 'check', 'call', 'bet', 'raise','half_pot', 'pot', 'all_in',
     #'available_seat_1', 'available_seat_2', 'available_seat_3',
     #'available_seat_4', 'available_seat_5', 'available_seat_6',
     'exit', 'menu',
@@ -276,7 +289,8 @@ if __name__ == '__main__':
     #test_find_game_position()
     #test_read_cards(my_seat = 1, show_image = False)
     #test_ocr(show_images = True)
-    test_pixel_matching()
-    #test_click_coordinates()
+    #test_pixel_matching()
+    test_click_coordinates()
 
-    #pyautogui.click(game_position[0] + 68,game_position[1] + 125)
+    #pyautogui.click(game_position[0] + 455,game_position[1] + 408)
+

@@ -48,8 +48,8 @@ def River_Deside() : #tested ok #screen shot and add to cheat sheet
 
 def raised():
     """ For current stage """
-    for seat in last_red_chips_cache:
-        if last_red_chips_cache[seat]:
+    for seat in c.last_red_chips_cache:
+        if c.last_red_chips_cache[seat]:
             return True
     return False
 
@@ -153,7 +153,7 @@ def my_seat_position_ranking(): #added 2021, NOT TEST
     75% <= late_position < 100%
     """
     total = 0
-    for i in range(1, len(c.TOTAL_SEATS) + 1): #💊
+    for i in range(1, c.TOTAL_SEATS + 1): #💊
         if c.small_blind_seat != c.dealer_seat: 
             seat = Turn_Finder( c.small_blind_seat , i )
         #(for 2 players) The rules may differs on the other websites.

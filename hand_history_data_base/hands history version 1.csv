@@ -1,8 +1,5 @@
-Hand number,Winning bb,Cards,Hand category,Starting hand ranking,Check fold,Money profit,Scenario list,First scenario,Last scenario,Last 2 scenarios,play version,Blind,Seat position,Small blind,Big blind,dealer,Total players,Website,Game number,Game time
-1,19901000,94o,hand7,140,True,1990100000000000,[None],,,[None],1,100000000,late_position,False,False,False,5,cheeta,1,21-3
-1,19901000,94o,hand7,140,True,1990100000000000,[None],[None],[None],[None],1,100000000,late_position,False,False,False,5,cheeta,2,21-3
-1,19901000,94o,hand7,140,True,1990100000000000,[None],[None],[None],[None],1,100000000,late_position,False,False,False,5,cheeta,3,21-3
-3,19901000,94o,hand7,140,True,1990100000000000,[None],[None],[None],[None],1,100000000,late_position,False,False,False,5,cheeta,3,21-3
-4,19901000,94o,hand7,140,True,1990100000000000,[None],[None],[None],[None],1,100000000,late_position,False,False,False,5,cheeta,3,21-3
-6,19901000,94o,hand7,140,True,1990100000000000,[None],[None],[None],[None],1,100000000,late_position,False,False,False,5,cheeta,3,21-3
-1,19901000,94o,hand7,140,True,1990100000000000,[None],[None],[None],[None],1,100000000,late_position,False,False,False,5,cheeta,4,21-3
+Hand number,Winning bb,Cards,Hand group,Starting hand ranking,Check fold,Money profit,Scenario list,First scenario,Last scenario,Last 2 scenarios,play version,Blind,Seat position,Small blind,Big blind,dealer,Total players,Website,Game number,Game time
+1,0.0,63s,,147,,0.0,[48],48,48,[48],1,1,early_position,False,True,False,6,cheeta,1,21-3
+1,0.0,92,,149,,0.0,[1],[1],[1],[1],1,1,early_position,True,False,False,6,cheeta,2,21-3
+6,0.0,T8s,H,73,0.0,0.0,[20],[20],[20],[20],1,1,middle_position,False,True,False,6,cheeta,3,21-3
+12,0.0,Q8s,N/A,52,0.0,0.0,[20],[20],[20],[20],1,1,early_position,False,True,False,6,cheeta,3,21-3

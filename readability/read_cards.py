@@ -3,7 +3,7 @@ import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.read_cards.read_cards as read_cards
 import configs as c
 from iprint import shout
-from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true
+from readability.fix_game_disruption import fix_game_disruption, set_just_do_check_fold_to_true, screenshot_error
 
 
 def read_and_save_my_cards():
@@ -23,6 +23,7 @@ def read_and_save_my_cards():
             or 'Unknown' in c.my_2th_card
             or pm.flop_pixel(c.game_position) ):
 
+            screenshot_error('my cards are read Unknown')
             set_just_do_check_fold_to_true("my cards are read Unknown again")
 
     shout("My cards are: %s, %s"
@@ -51,8 +52,7 @@ def read_and_save_flop_cards():
 
             set_just_do_check_fold_to_true("Flop cards are read 'Unknown' again")
 
-    shout("Flop cards are: %s, %s, %s" 
-          %(c.board_card_1th, c.board_card_2th, c.board_card_3th)
+    shout(f"Flop cards are: {c.board_card_1th}, {c.board_card_2th}, {c.board_card_3th}"
           , color = 'green')
 
 def read_and_save_turn_card(): 
@@ -71,7 +71,7 @@ def read_and_save_turn_card():
 
             set_just_do_check_fold_to_true("Turn card is read 'Unknown' again")
 
-    shout("Turn card is: %s" %(c.board_card_4th[0])
+    shout(f"Turn card is: {c.board_card_4th}"
           , color = 'green')
 
 def read_and_save_river_card(): 
@@ -89,6 +89,6 @@ def read_and_save_river_card():
 
             set_just_do_check_fold_to_true("River card is read 'Unknown' again")
 
-    shout("River card is: %s" %(c.board_card_5th[0])
+    shout(f"River card is: {c.board_card_5th}"
           , color = 'green')
 

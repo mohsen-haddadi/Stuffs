@@ -16,65 +16,65 @@ def play_pre_flop():
             if not group('ABCD'): # pdf recommendation is group('ABCDEF')
                 if holdem_starting_hand_ranking() > 145:
                     scenario(1)
-                    return('fold')
+                    return 'fold'
                 else:
                     scenario(2)
-                    return('call')
+                    return 'call'
             else:
                 scenario(3)
-                return('raise', 3.5)
+                return 'raise', 3.5
 
         elif c.my_seat_number == c.big_blind_seat:
             if early_position():
                 if group('ABCD'): # pdf recommendation is group('ABCDEF')
                     scenario(4)
-                    return('raise', 3.5)
+                    return 'raise', 3.5
                 else:
                     scenario(5)
-                    return('check')
+                    return 'check'
             elif middle_position():
                 if group('ABCDE'): # pdf recommendation is group('ABCDEF')
                     scenario(6)
-                    return('raise', 3.5)
+                    return 'raise', 3.5
                 else:
                     scenario(7)
-                    return('check')
+                    return 'check'
             elif late_position():
                 if group('ABCDEF'):
                     scenario(8)
-                    return('raise', 3.5)
+                    return 'raise', 3.5
                 else:
                     scenario(9)
-                    return('check')
+                    return 'check'
 
         else:
             if early_position():
                 if group('ABCD'):
                     scenario(10)
-                    return('raise', 3.5)
+                    return 'raise', 3.5
                 else:
                     scenario(11)
-                    return('fold')
+                    return 'fold'
             elif middle_position():
                 if group('ABCDE'):
                     scenario(12)
-                    return('raise', 3.5)
+                    return 'raise', 3.5
                 elif group('FG'):
                     scenario(13)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(14)
-                    return('fold')
+                    return 'fold'
             elif late_position():
                 if group('ABCDEF'):
                     scenario(15)
-                    return('raise', 3.5)
+                    return 'raise', 3.5
                 elif group('GH'):
                     scenario(16)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(17)
-                    return('fold')   
+                    return 'fold' 
 
 
 
@@ -85,114 +85,114 @@ def play_pre_flop():
 
             if group('ABC'): # pdf recommendation is group('ABCD')
                 scenario(18)
-                return('raise', 'pot')
+                return 'raise', 'pot'
             elif group('DEF'): # pdf recommendation is group('EF')
                 scenario(19)
-                return('call')
+                return 'call'
             else:
                 scenario(20)
-                return('fold')
+                return 'fold'
 
         elif Max_raise_sofar() / c.BLIND_VALUE < 5:
             if early_position():
                 if group('AB'):
                     scenario(21)
-                    return('raise', 'pot')
+                    return 'raise', 'pot'
                 elif group('C'):
                     scenario(22)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(23)
-                    return('fold')
+                    return 'fold'
             elif middle_position():
                 if group('AB'):
                     scenario(24)
-                    return('raise', 'pot')
+                    return 'raise', 'pot'
                 elif group('C'): # my recommendation is group('CD')
                     scenario(25)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(26)
-                    return('fold')
+                    return 'fold'
             elif late_position():
                 if group('AB'):
                     scenario(27)
-                    return('raise', 'pot')
+                    return 'raise', 'pot'
                 elif group('CD'):
                     scenario(28)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(29)
-                    return('fold')
+                    return 'fold'
 
         elif 5 <= Max_raise_sofar() / c.BLIND_VALUE < 10:
             if early_position():
                 if group('A'):
                     scenario(30)
-                    return('raise', 'pot')
+                    return 'raise', 'pot'
                 elif group('BC'):
                     scenario(31)
-                    return('call')
+                    return 'call'
                 elif call_low_re_raise(1.99):
                     scenario(32)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(33)
-                    return('fold')
+                    return 'fold'
             elif middle_position():
                 if group('AB'):
                     scenario(34)
-                    return('raise', 'pot')
+                    return 'raise', 'pot'
                 elif group('C'): # my recommendation is group('CD')
                     scenario(35)
-                    return('call')
+                    return 'call'
                 elif call_low_re_raise(1.99):
                     scenario(36)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(37)
-                    return('fold')
+                    return 'fold'
             elif late_position():
                 if group('AB'):
                     scenario(38)
-                    return('raise', 'pot')
+                    return 'raise', 'pot'
                 elif group('CD'):
                     scenario(39)
-                    return('call')
+                    return 'call'
                 elif call_low_re_raise(1.99):
                     scenario(40)
-                    return('call')
+                    return 'call'
                 else:
                     scenario(41)
-                    return('fold')
+                    return 'fold'
 
         elif 10 <= Max_raise_sofar() / c.BLIND_VALUE < 20:
 
             if group('A'):
                 scenario(42)
-                return('raise', 'pot')
+                return 'raise', 'pot'
             elif group('B'): # for low stack tables can be group('BC')
                 scenario(43)
-                return('call')
+                return 'call'
             elif call_low_re_raise(1.99):
                 scenario(44)
-                return('call')
+                return 'call'
             else:
                 scenario(45)
-                return('fold')
+                return 'fold'
 
 
         elif 20 <= Max_raise_sofar() / c.BLIND_VALUE:
 
             if group('A'): # for low stack tables can be group('AB')
                 scenario(46)
-                return('raise', 'all in')
+                return 'all_in'
             elif group('B') and call_low_re_raise():
                 scenario(47)
-                return('call')
+                return 'call'
             else:
                 scenario(48)
-                return('fold')
+                return 'fold'
 
 
 
@@ -274,37 +274,37 @@ def play_pre_flop():
             if raiser_bank == None or raiser_bank / c.BLIND_VALUE > 40 :
                 if group('A'):
                     scenario(49)
-                    return('raise', 'pot')
+                    return 'raise', 'pot')
                 elif group('B'): # for low stack tables can be group('BC')
                     scenario(50)
-                    return('call')
+                    return 'call')
                 else:
                     scenario(51)
-                    return('fold')
+                    return 'fold')
             else:
                 if number_of_raisers_now() == 1:
                     if group('AB'):
                         scenario(52)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     elif group('C'): # Separated 'elif' just for statistical conclusions.
                         scenario(53)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     else:
                         scenario(54)
-                        return('fold')
+                        return 'fold')
                 else:
                     if group('A'):
                         scenario(55)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     elif group('B'): # Separated 'elif' just for statistical conclusions.
                         scenario(56)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     elif group('C'): 
                         scenario(57)
-                        return('call')
+                        return 'call')
                     else:
                         scenario(58)
-                        return('fold')
+                        return 'fold')
 
         elif 20 <= Max_raise_sofar() / c.BLIND_VALUE:
             raiser_bank = c.players_bank[last_raiser_seat_sofar()]
@@ -312,38 +312,38 @@ def play_pre_flop():
             if raiser_bank == None or raiser_bank / c.BLIND_VALUE > 40 :
                 if group('A'): # for low stack tables can be group('AB')
                     scenario(59)
-                    return('raise', 'all in')
+                    return 'raise', 'all in')
                 elif group('B') and call_low_re_raise():
                     scenario(60)
-                    return('call')
+                    return 'call')
                 else:
                     scenario(61)
-                    return('fold')
+                    return 'fold')
             else:
                 if number_of_raisers_now() == 1:
                     if group('AB'):
                         scenario(62)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     elif group('C'): # Separated 'elif' just for statistical conclusions.
                         scenario(63)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     else:
                         scenario(64)
-                        return('fold')
+                        return 'fold')
                 else:
                     
                     if group('A'):
                         scenario(65)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     elif group('B'): # Separated 'elif' just for statistical conclusions.
                         scenario(66)
-                        return('raise', 'all in')
+                        return 'raise', 'all in')
                     elif group('C'): 
                         scenario(67)
-                        return('call')
+                        return 'call')
                     else:
                         scenario(68)
-                        return('fold')
+                        return 'fold')
 """
 
 

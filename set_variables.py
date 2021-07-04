@@ -58,16 +58,25 @@ def determine_small_big_dealer_seats(): #💊 #NOT TESTED
 
     for i in range(1, c.TOTAL_SEATS + 1):
         seat = turn_finder( c.dealer_seat , i )
-        if pm.player_chips_pixel(seat):
+        if pm.player_chips_pixel(c.game_position, seat):
             # Modify this line if at other websites 
             # small and big blinds are equal.
-            if ocr_bet(seat, printing = False) / c.BLIND_VALUE < 1:
+            bet = ocr_bet(seat, printing = False)
+            if bet == None: # to avoid devision Error
+                continue
+            if bet / c.BLIND_VALUE < 1:
                 c.small_blind_seat = seat
-                    for i in range(1, c.TOTAL_SEATS + 1):
-                        seat = turn_finder( c.small_blind_seat , i )
-                            if pm.player_chips_pixel(seat):
-                                if ocr_bet(seat, printing = False) / c.BLIND_VALUE == 1:
-                                    c.big_blind_seat = seat
+                break
+    if c.small_blind_seat != None:
+        for i in range(1, c.TOTAL_SEATS + 1):
+            seat = turn_finder( c.small_blind_seat , i )
+            if pm.player_chips_pixel(c.game_position, seat):
+                bet = ocr_bet(seat, printing = False)
+                if bet == None: # to avoid devision Error
+                    continue
+                if bet / c.BLIND_VALUE == 1:
+                    c.big_blind_seat = seat
+                    break
     if None in (c.small_blind_seat, c.big_blind_seat):
         set_just_do_check_fold_to_true('small or big blind seat have not been set')
     else:
@@ -209,10 +218,10 @@ def read_and_save_banks_and_names(): #💊
         elif pm.other_player_seated_pixel(c.game_position, seat) == True:
             c.players_bank[seat] = ocr_other_players_bank(seat)
             c.players_name[seat] = ocr_other_names(seat)
-            if pm.player_chips_pixel(seat): #💊
+            if pm.player_chips_pixel(c.game_position, seat): #💊
                 bet = ocr_bet(seat, printing = False) #💊
-                if bet != None: #💊
-                    c.players_bank[seat] = c.players_bank[seat] - bet #💊
+                if bet != None and c.players_bank[seat] != None: #💊
+                    c.players_bank[seat] = c.players_bank[seat] + bet #💊
     shout("TEST. Players Bank dictionary is: %s" %c.players_bank 
           , color = 'on_light_red')
     shout("TEST. Players Name dictionary is: %s" %c.players_name 
@@ -277,6 +286,8 @@ def reset_table_information() :
     c.flop_stage = False 
     c.turn_stage = False 
     c.river_stage = False 
+    c.board_card_1th, c.board_card_2th, c.board_card_3th, \
+    c.board_card_4th, c.board_card_5th, c.my_1th_card, c.my_2th_card = ('Unknown',) * 7
 
 def read_and_save_bets() :
     #global game_position, player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\
@@ -312,7 +323,7 @@ def read_and_save_bets() :
         c.player_cards_cache["%s %s" %(stage, betting_round)][Seat] \
         = pm.player_cards_pixel(c.game_position, Seat)
 
-        if pm.player_chips_pixel(c.game_position, seat): #💊
+        if pm.player_chips_pixel(c.game_position, Seat): #💊
             c.bets_cache["%s %s" %(stage, betting_round)][Seat] = ocr_bet(Seat)
         else :
             c.bets_cache["%s %s" %(stage, betting_round)][Seat] = None

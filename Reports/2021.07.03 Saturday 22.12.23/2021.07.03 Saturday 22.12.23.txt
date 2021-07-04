@@ -1,0 +1,73 @@
+2021/07/03 22:12:25.86: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/03 22:12:26.14: my bank ocr string at seat 1 is: 
+2021/07/03 22:12:26.15: -------
+2021/07/03 22:12:26.15: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/03 22:12:26.25: internet is connected
+2021/07/03 22:12:26.25: Position (0,720) is clicked
+2021/07/03 22:12:26.70: Game region refounded after fix_game_disruption()
+2021/07/03 22:12:26.78: my name ocr string at seat 1 is: 
+2021/07/03 22:12:26.81: internet is connected
+2021/07/03 22:12:26.81: looking for reconnect button
+2021/07/03 22:12:27.67: I am In not by OCR
+2021/07/03 22:12:27.67: -------
+2021/07/03 22:12:27.89: my bank ocr string at seat 1 is: 
+2021/07/03 22:12:27.89: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/03 22:12:28.68: My bank can't be read
+2021/07/03 22:12:28.68: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/03 22:12:28.70: My cards are founded
+2021/07/03 22:12:30.55: Reseting table information
+2021/07/03 22:12:30.55: * bot_status == 'I_AM_PLAYING' *
+2021/07/03 22:12:30.55: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/03 22:12:30.56: My cards are founded
+2021/07/03 22:12:30.56: -------- New Hand Started --------
+2021/07/03 22:12:30.69: Dealer is on seat 4
+2021/07/03 22:12:31.36: Small blind is on seat 6
+2021/07/03 22:12:31.36: Big blind is on seat 1
+2021/07/03 22:12:31.47: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: False, 6: True}
+2021/07/03 22:12:31.49: doing ocr on my seat to check if it is first_round_at_preflop or not
+2021/07/03 22:12:32.71: My cards are: ('Four', 'Heart'), ('Four', 'Diamond')
+2021/07/03 22:12:32.99: my bank ocr string at seat 1 is: 
+2021/07/03 22:12:32.99: -------
+2021/07/03 22:12:32.99: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/03 22:12:33.02: internet is connected
+2021/07/03 22:12:33.02: Position (0,720) is clicked
+2021/07/03 22:12:33.53: Game region refounded after fix_game_disruption()
+2021/07/03 22:12:33.58: my name ocr string at seat 1 is: 
+2021/07/03 22:12:33.63: internet is connected
+2021/07/03 22:12:33.63: looking for reconnect button
+2021/07/03 22:12:34.44: I am In not by OCR
+2021/07/03 22:12:34.44: -------
+2021/07/03 22:12:34.69: my bank ocr string at seat 1 is: 
+2021/07/03 22:12:34.69: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/03 22:12:35.49: My bank can't be read
+2021/07/03 22:12:35.75: my bank ocr string at seat 1 is: 
+2021/07/03 22:12:35.75: -------
+2021/07/03 22:12:35.75: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/03 22:12:35.76: internet is connected
+2021/07/03 22:12:35.78: Position (0,720) is clicked
+2021/07/03 22:12:36.28: Game region refounded after fix_game_disruption()
+2021/07/03 22:12:36.34: my name ocr string at seat 1 is: 
+2021/07/03 22:12:36.37: internet is connected
+2021/07/03 22:12:36.37: looking for reconnect button
+2021/07/03 22:12:37.20: I am In not by OCR
+2021/07/03 22:12:37.20: -------
+2021/07/03 22:12:37.40: my bank ocr string at seat 1 is: 
+2021/07/03 22:12:37.40: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/03 22:12:38.23: my name ocr string at seat 1 is: 
+2021/07/03 22:12:38.49: other players bank ocr string at seat 2 is: 268.5
+2021/07/03 22:12:38.49: other name ocr string at seat 2 is: 
+2021/07/03 22:12:38.94: other players bank ocr string at seat 3 is: 38.5
+2021/07/03 22:12:38.94: other name ocr string at seat 3 is: 
+2021/07/03 22:12:39.48: other players bank ocr string at seat 4 is: 72
+2021/07/03 22:12:39.48: other name ocr string at seat 4 is: 
+2021/07/03 22:12:39.78: other players bank ocr string at seat 6 is: 56.5
+2021/07/03 22:12:39.78: other name ocr string at seat 6 is: 
+2021/07/03 22:12:40.03: TEST. Players Bank dictionary is: {1: None, 2: 269.5, 3: 39.5, 4: 72, 5: None, 6: 57.0}
+2021/07/03 22:12:40.03: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/03 22:12:40.11: Playing Music: group EFG
+2021/07/03 22:12:40.11: Waiting for my turn at preflop_stage...
+2021/07/03 22:15:03.32: Waiting for my turn at river_stage...
+2021/07/03 22:15:04.42: -------
+2021/07/03 22:15:04.42: fix_game_disruption() <-- River card is read 'Unknown' is running....
+2021/07/03 22:15:04.47: internet is connected
+2021/07/03 22:15:04.47: Position (0,720) is clicked

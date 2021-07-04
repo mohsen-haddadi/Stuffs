@@ -35,7 +35,7 @@ def click_coordinates(game_position, name):
         coordinate = ( game_position[0]+316, game_position[1]+178 )
 
     elif name == 'exit': #💊
-        coordinate = ( game_position[0]+173, game_position[1]-263 )
+        coordinate = ( game_position[0]+56, game_position[1]-263 )
     elif name == 'menu': #💊
         coordinate = ( game_position[0]-136, game_position[1]-257 )
     elif name == 'buy_in': #💊
