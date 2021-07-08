@@ -1,0 +1,69 @@
+2021/07/08 21:15:52.48: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/08 21:15:52.89: my bank ocr string at seat 1 is: 37
+2021/07/08 21:15:52.90: My bank is:37
+2021/07/08 21:15:52.91: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/08 21:15:59.77: My cards are founded
+2021/07/08 21:16:01.82: Reseting table information
+2021/07/08 21:16:01.82: * bot_status == 'I_AM_PLAYING' *
+2021/07/08 21:16:01.83: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/08 21:16:01.84: My cards are founded
+2021/07/08 21:16:01.84: -------- New Hand Started --------
+2021/07/08 21:16:01.87: Dealer is on seat 1
+2021/07/08 21:16:02.88: Small blind is on seat 3
+2021/07/08 21:16:02.89: Big blind is on seat 4
+2021/07/08 21:16:02.99: TEST. playing_seats dictionary is: {1: True, 2: False, 3: True, 4: True, 5: True, 6: True}
+2021/07/08 21:16:03.05: Screenshot Error: just_do_check_fold: program must've started again from middle of the game
+2021/07/08 21:16:04.39: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/08 21:16:06.70: My hole cards are: Ah, 2c
+2021/07/08 21:16:06.94: my bank ocr string at seat 1 is: 37
+2021/07/08 21:16:06.94: My bank is:37
+2021/07/08 21:16:07.17: my bank ocr string at seat 1 is: 37
+2021/07/08 21:16:07.17: my name ocr string at seat 1 is: 
+2021/07/08 21:16:07.47: other players bank ocr string at seat 2 is: 24
+2021/07/08 21:16:07.47: other name ocr string at seat 2 is: 
+2021/07/08 21:16:07.78: other players bank ocr string at seat 3 is: 75.5
+2021/07/08 21:16:07.79: other name ocr string at seat 3 is: 
+2021/07/08 21:16:08.54: other players bank ocr string at seat 4 is: 62
+2021/07/08 21:16:08.54: other name ocr string at seat 4 is: 
+2021/07/08 21:16:09.12: other players bank ocr string at seat 5 is: 144
+2021/07/08 21:16:09.12: other name ocr string at seat 5 is: 
+2021/07/08 21:16:09.62: other players bank ocr string at seat 6 is: 35.5
+2021/07/08 21:16:09.62: other name ocr string at seat 6 is: 
+2021/07/08 21:16:09.83: TEST. Players Bank dictionary is: {1: 37, 2: 24, 3: 76.0, 4: 63, 5: 145, 6: 218.5}
+2021/07/08 21:16:09.83: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/08 21:16:09.84: Waiting for my turn at preflop_stage...
+2021/07/08 21:16:09.90: It is my turn now
+2021/07/08 21:16:09.90: TESTING. preflop_betting_round is:0
+2021/07/08 21:16:10.36: bet ocr string at seat 3 is: 0.5
+2021/07/08 21:16:10.60: bet ocr string at seat 4 is: 1
+2021/07/08 21:16:10.84: bet ocr string at seat 5 is: 1
+2021/07/08 21:16:11.07: bet ocr string at seat 6 is: 183
+2021/07/08 21:16:11.07: Seat3 Call: $0.5
+2021/07/08 21:16:11.07: Seat4 Call: $1
+2021/07/08 21:16:11.07: Seat5 Call: $1
+2021/07/08 21:16:11.08: Seat6 Raise: $183
+2021/07/08 21:16:11.08: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: None, 2: None, 3: 0.5, 4: 1, 5: 1, 6: 183}}
+2021/07/08 21:16:11.31: my bank ocr string at seat 1 is: 37
+2021/07/08 21:16:11.59: other players bank ocr string at seat 2 is: 24
+2021/07/08 21:16:11.88: other players bank ocr string at seat 3 is: 75.5
+2021/07/08 21:16:12.15: other players bank ocr string at seat 4 is: 62
+2021/07/08 21:16:12.44: other players bank ocr string at seat 5 is: 144
+2021/07/08 21:16:12.73: other players bank ocr string at seat 6 is: 35.5
+2021/07/08 21:16:12.73: *Deciding on preflop*
+2021/07/08 21:16:12.74: decision is: check_fold
+2021/07/08 21:16:12.95: fold button is clicked
+2021/07/08 21:16:17.21: Waiting for my turn at flop_stage...
+2021/07/08 21:16:19.56: Flop cards are: Jh, Ks, Qs
+2021/07/08 21:16:26.92: Waiting for my turn at river_stage...
+2021/07/08 21:16:26.94: operator should play the hand is suppose to get activated soon
+2021/07/08 21:16:28.14: -------
+2021/07/08 21:16:28.16: Screenshot Error: fix_game_disruption: River card is read 'Unknown'
+2021/07/08 21:16:29.13: fix_game_disruption() <-- River card is read 'Unknown' is running....
+2021/07/08 21:16:29.23: internet is connected
+2021/07/08 21:16:30.96: Game region refounded after fix_game_disruption()
+2021/07/08 21:16:31.02: my name ocr string at seat 1 is: 
+2021/07/08 21:16:31.08: internet is connected
+2021/07/08 21:16:31.08: I am In not by OCR
+2021/07/08 21:16:31.08: -------
+2021/07/08 21:16:31.85: Screenshot Error: just_do_check_fold: River card is read 'Unknown' again
+2021/07/08 21:16:32.66: just_do_check_fold is set to True: River card is read 'Unknown' again

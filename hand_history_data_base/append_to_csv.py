@@ -31,7 +31,7 @@ def append_new_line_to_csv(csv_path):
             'Hand number': [c.hand_number],
             # If bank is in big blinds. Depends on the site.  
             'Winning bb': [won_money()], 
-            'Cards': [hand.change_hand_format(c.my_1th_card, c.my_2th_card)], 
+            'Cards': [hand.change_hand_format(c.my_hole_cards)], 
             'Hand group': [hand_group()], 
             'Starting hand ranking': [hand.holdem_starting_hand_ranking()],
             'Check fold': [c.just_do_check_fold], 
@@ -61,7 +61,7 @@ def append_new_line_to_csv(csv_path):
             'Hand number': c.hand_number,
             # If bank is in big blinds. Depends on the site.
             'Winning bb': won_money(), 
-            'Cards': hand.change_hand_format(c.my_1th_card, c.my_2th_card), 
+            'Cards': hand.change_hand_format(c.my_hole_cards), 
             'Hand group': hand_group(), 
             'Starting hand ranking': hand.holdem_starting_hand_ranking(),
             'Check fold': c.just_do_check_fold, 

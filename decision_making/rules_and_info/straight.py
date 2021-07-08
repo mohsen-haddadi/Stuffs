@@ -1,5 +1,5 @@
 #OK
-from decision_making.rules_and_info.suit_and_value import s, n, board_cards_list
+from decision_making.rules_and_info.suit_and_value import s, n
 #from suit_and_value import s, n
 import configs as c
 
@@ -293,7 +293,7 @@ def Table_str_1_cards(board_list=None) :
     """
 
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -306,7 +306,7 @@ def Table_str_2_cards(board_list=None) :
     """ Only Table_str_1_cards and Table_str_2_cards Functions can be True at the same time """    
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -318,7 +318,7 @@ def Table_str_2_cards(board_list=None) :
 def Table_str_1_cards_Number(board_list=None) :
     """ Min Number is 0 if Table_str_1_cards == Flase, Max Number is 2 """
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return 0
 
@@ -330,7 +330,7 @@ def Table_str_2_cards_Number(board_list=None) :
     At River just 30% it happens to be 0 for both Table_str_1_ and Table_str_2 at the same time.
     """
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return 0
 
@@ -339,7 +339,7 @@ def Table_str_2_cards_Number(board_list=None) :
 def Table_str_5_cards(board_list=None):
     """ At River happens. returns True or False """
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -354,7 +354,7 @@ def Table_str_5_cards(board_list=None):
 def Me_str_1_cards(board_list=None) :
     """ if Me_str_2_cards == True : return False """
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -362,13 +362,13 @@ def Me_str_1_cards(board_list=None) :
         return False
     
     for i in str_1_Cards_list( board_list ) :
-        if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
+        if n(c.my_hole_cards[0]) == i or n(c.my_hole_cards[1]) == i :
             return True
-        if n(c.my_1th_card) == 14 :
-            if 1 == i or n(c.my_2th_card) == i :
+        if n(c.my_hole_cards[0]) == 14 :
+            if 1 == i or n(c.my_hole_cards[1]) == i :
                 return True
-        if n(c.my_2th_card) == 14 :
-            if n(c.my_1th_card) == i or 1 == i :
+        if n(c.my_hole_cards[1]) == 14 :
+            if n(c.my_hole_cards[0]) == i or 1 == i :
                 return True   
      
     return False
@@ -377,20 +377,20 @@ def Me_str_2_cards(board_list=None) :
     """ if Me_str_1_cards == True : return False """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
-    if n(c.my_1th_card) == n(c.my_2th_card):
+    if n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]):
         return False
     for i in str_2_Cards_list( board_list ) :
-        if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) in i and n(c.my_hole_cards[1]) in i :
             return True
-        if n(c.my_1th_card) == 14 :
-            if 1 in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) == 14 :
+            if 1 in i and n(c.my_hole_cards[1]) in i :
                 return True
-        if n(c.my_2th_card) == 14 :
-            if n(c.my_1th_card) in i and 1 in i :
+        if n(c.my_hole_cards[1]) == 14 :
+            if n(c.my_hole_cards[0]) in i and 1 in i :
                 return True   
     return False
 
@@ -402,7 +402,7 @@ def Me_str_1_cards_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -412,13 +412,13 @@ def Me_str_1_cards_Ranking(board_list=None) :
     rank = 0
     for i in str_1_Cards_list( board_list ) :
         rank += 1
-        if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
+        if n(c.my_hole_cards[0]) == i or n(c.my_hole_cards[1]) == i :
             return rank
-        if n(c.my_1th_card) == 14 :
-            if 1 == i or n(c.my_2th_card) == i :
+        if n(c.my_hole_cards[0]) == 14 :
+            if 1 == i or n(c.my_hole_cards[1]) == i :
                 return rank
-        if n(c.my_2th_card) == 14 :
-            if n(c.my_1th_card) == i or 1 == i :
+        if n(c.my_hole_cards[1]) == 14 :
+            if n(c.my_hole_cards[0]) == i or 1 == i :
                 return rank    
 
 def Me_str_2_cards_Ranking(board_list=None) :
@@ -428,29 +428,29 @@ def Me_str_2_cards_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
-    if n(c.my_1th_card) == n(c.my_2th_card):
+    if n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]):
         return None
     rank = 0
     for i in str_2_Cards_list( board_list ) :
         rank += 1
-        if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) in i and n(c.my_hole_cards[1]) in i :
             return rank
-        if n(c.my_1th_card) == 14 :
-            if 1 in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) == 14 :
+            if 1 in i and n(c.my_hole_cards[1]) in i :
                 return rank
-        if n(c.my_2th_card) == 14 :
-            if n(c.my_1th_card) in i and 1 in i :
+        if n(c.my_hole_cards[1]) == 14 :
+            if n(c.my_hole_cards[0]) in i and 1 in i :
                 return rank
 
 def Me_str(board_list=None) : 
     """ if Me_str_2_cards or Me_str_1_cards """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
@@ -481,17 +481,17 @@ def is_there_any_better_possible_1_card_straight_on_table(board_list=None) : # s
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     if Table_str_1_cards( board_list ) == False :
         return False
-    elif Me_str_1_cards_Ranking( board_list , c.my_1th_card , c.my_2th_card ) == 1 : 
+    elif Me_str_1_cards_Ranking( board_list , c.my_hole_cards[0] , c.my_hole_cards[1] ) == 1 : 
         return False 
-    elif Me_str_2_cards( board_list , c.my_1th_card , c.my_2th_card ) == False :
+    elif Me_str_2_cards( board_list , c.my_hole_cards[0] , c.my_hole_cards[1] ) == False :
         return True
-    elif max(c.my_1th_card,c.my_2th_card) < str_1_Cards_list( board_list )[0] : #equal is not possible
+    elif max(c.my_hole_cards[0],c.my_hole_cards[1]) < str_1_Cards_list( board_list )[0] : #equal is not possible
         return True
     else :
         return False
@@ -504,7 +504,7 @@ def Me_Open_str_draw_1_cards(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
@@ -513,7 +513,7 @@ def Me_Open_str_draw_1_cards(board_list=None) :
         return False
     
     for i in open_str_draw_1_Cards_list( board_list ) :
-        if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
+        if n(c.my_hole_cards[0]) == i or n(c.my_hole_cards[1]) == i :
             return True
     return False    
 
@@ -521,20 +521,20 @@ def Me_Open_str_draw_2_cards(board_list=None) :
     """ if Me_str == True: retun False """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
-    if n(c.my_1th_card) == n(c.my_2th_card):
+    if n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]):
         return False
     for i in open_str_draw_2_Cards_list( board_list ) :
-        if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) in i and n(c.my_hole_cards[1]) in i :
             return True
-        if n(c.my_1th_card) == 14 :
-            if 1 in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) == 14 :
+            if 1 in i and n(c.my_hole_cards[1]) in i :
                 return True
-        if n(c.my_2th_card) == 14 :
-            if n(c.my_1th_card) in i and 1 in i :
+        if n(c.my_hole_cards[1]) == 14 :
+            if n(c.my_hole_cards[0]) in i and 1 in i :
                 return True   
     return False
 
@@ -542,7 +542,7 @@ def Me_Open_str_draw_1_cards_Ranking(board_list=None) :
     """ Rank 1,2 & None """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
         
@@ -553,30 +553,30 @@ def Me_Open_str_draw_1_cards_Ranking(board_list=None) :
     rank = 0
     for i in open_str_draw_1_Cards_list( board_list ) :
         rank += 1
-        if n(c.my_1th_card) == i or n(c.my_2th_card) == i :
+        if n(c.my_hole_cards[0]) == i or n(c.my_hole_cards[1]) == i :
             return rank
 
 def Me_Open_str_draw_2_cards_Ranking(board_list=None) :
     """ Rank 1,2,3 & None """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
         
-    if n(c.my_1th_card) == n(c.my_2th_card):
+    if n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]):
         return None
     
     rank = 0
     for i in open_str_draw_2_Cards_list( board_list ) :
         rank += 1
-        if n(c.my_1th_card) in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) in i and n(c.my_hole_cards[1]) in i :
             return rank
-        if n(c.my_1th_card) == 14 :
-            if 1 in i and n(c.my_2th_card) in i :
+        if n(c.my_hole_cards[0]) == 14 :
+            if 1 in i and n(c.my_hole_cards[1]) in i :
                 return rank
-        if n(c.my_2th_card) == 14 :
-            if n(c.my_1th_card) in i and 1 in i :
+        if n(c.my_hole_cards[1]) == 14 :
+            if n(c.my_hole_cards[0]) in i and 1 in i :
                 return rank
     
 

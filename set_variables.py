@@ -23,8 +23,7 @@ def set_all_variables_to_none():
     c.preflop_stage , c.flop_stage , c.turn_stage , c.river_stage ,\
     c.preflop_betting_round , c.flop_betting_round ,\
     c.turn_betting_round , c.river_betting_round ,\
-    c.board_card_1th , c.board_card_2th , c.board_card_3th ,\
-    c.board_card_4th, c.board_card_5th , c.my_1th_card , c.my_2th_card ,\
+    c.board_cards , c.my_hole_cards,\
     c.my_seat_number , c.MY_PROFILE_NAME ,\
     c.just_do_check_fold , c.bot_status , c.new_hand,\
     c.player_cards_cache , c.white_chips_cache , c.red_chips_cache , c.bets_cache ,\
@@ -35,7 +34,7 @@ def set_all_variables_to_none():
     c.BLIND_VALUE , c.TOTAL_SEATS ,\
     c.small_blind_seat , c.big_blind_seat , c.dealer_seat,\
     c.hand_number, c.game_number, c.scenario_list,\
-    c.csv_path = (None,)*47
+    c.csv_path = (None,)*42
 
 def turn_finder(starter_seat , xth) :
     """Returns the seat number; for instance; (4,1) returns seat 4!"""
@@ -286,8 +285,8 @@ def reset_table_information() :
     c.flop_stage = False 
     c.turn_stage = False 
     c.river_stage = False 
-    c.board_card_1th, c.board_card_2th, c.board_card_3th, \
-    c.board_card_4th, c.board_card_5th, c.my_1th_card, c.my_2th_card = ('Unknown',) * 7
+    c.board_cards = []
+    c.my_hole_cards = []
 
 def read_and_save_bets() :
     #global game_position, player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\

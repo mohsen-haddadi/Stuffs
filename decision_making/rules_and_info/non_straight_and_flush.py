@@ -1,5 +1,5 @@
 #OK
-from decision_making.rules_and_info.suit_and_value import s, n, board_cards_list
+from decision_making.rules_and_info.suit_and_value import s, n
 #from suit_and_value import s, n
 import configs as c
 
@@ -26,7 +26,7 @@ def Table_Individual_Cards_List(board_list=None) :
     """ [7,7,5,10] returns [10, 5]"""
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return []
 
@@ -39,7 +39,7 @@ def Table_2_same_Cards_List(board_list=None) :
     """ [7,7,5,5,6] returns [7, 5]"""
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return []
 
@@ -56,7 +56,7 @@ def Table_3_same_Cards_List(board_list=None) :
     """ [] or max one index"""
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return []
 
@@ -73,7 +73,7 @@ def Table_4_same_Cards_List(board_list=None) :
     """ [] or max one index"""
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return []
 
@@ -90,7 +90,7 @@ def Table_4_same_Cards_List(board_list=None) :
 def Table_Individual(board_list=None) : 
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -108,7 +108,7 @@ def Table_Individual(board_list=None) :
 def Table_1_pair(board_list=None) : 
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -128,7 +128,7 @@ def Table_1_pair(board_list=None) :
 def Table_2_pair(board_list=None) : 
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -147,7 +147,7 @@ def Table_2_pair(board_list=None) :
 def Table_3_of_kinds(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
@@ -167,7 +167,7 @@ def Table_3_of_kinds(board_list=None) :
 def Table_full_house(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
@@ -187,7 +187,7 @@ def Table_full_house(board_list=None) :
 def Table_4_of_kinds(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
@@ -209,13 +209,13 @@ def Table_4_of_kinds(board_list=None) :
 def Me_Individual(board_list=None):
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 0 and board_list.count( n(c.my_2th_card) ) == 0 and n(c.my_1th_card) != n(c.my_2th_card) :
+    if board_list.count( n(c.my_hole_cards[0]) ) == 0 and board_list.count( n(c.my_hole_cards[1]) ) == 0 and n(c.my_hole_cards[0]) != n(c.my_hole_cards[1]) :
         return True
     else :
         return False
@@ -223,13 +223,13 @@ def Me_Individual(board_list=None):
 def Me_pocket_pair(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 0 and board_list.count( n(c.my_2th_card) ) == 0 and n(c.my_1th_card) == n(c.my_2th_card) :
+    if board_list.count( n(c.my_hole_cards[0]) ) == 0 and board_list.count( n(c.my_hole_cards[1]) ) == 0 and n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]) :
         return True
     else :
         return False
@@ -238,14 +238,14 @@ def Me_pocket_pair(board_list=None) :
 def Me_1_pair(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if (board_list.count( n(c.my_1th_card) ) == 1 and board_list.count( n(c.my_2th_card) ) == 0) \
-       or (board_list.count( n(c.my_1th_card) ) == 0 and board_list.count( n(c.my_2th_card) ) == 1):
+    if (board_list.count( n(c.my_hole_cards[0]) ) == 1 and board_list.count( n(c.my_hole_cards[1]) ) == 0) \
+       or (board_list.count( n(c.my_hole_cards[0]) ) == 0 and board_list.count( n(c.my_hole_cards[1]) ) == 1):
         return True
     else :
         return False
@@ -253,13 +253,13 @@ def Me_1_pair(board_list=None) :
 def Me_2_pair(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 1 and board_list.count( n(c.my_2th_card) ) == 1 and n(c.my_1th_card) != n(c.my_2th_card) :
+    if board_list.count( n(c.my_hole_cards[0]) ) == 1 and board_list.count( n(c.my_hole_cards[1]) ) == 1 and n(c.my_hole_cards[0]) != n(c.my_hole_cards[1]) :
         return True
     else :
         return False
@@ -267,14 +267,14 @@ def Me_2_pair(board_list=None) :
 def Me_3_of_kinds(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if (board_list.count( n(c.my_1th_card) ) == 2 and board_list.count( n(c.my_2th_card) ) == 0) \
-       or (board_list.count( n(c.my_1th_card) ) == 0 and board_list.count( n(c.my_2th_card) ) == 2):
+    if (board_list.count( n(c.my_hole_cards[0]) ) == 2 and board_list.count( n(c.my_hole_cards[1]) ) == 0) \
+       or (board_list.count( n(c.my_hole_cards[0]) ) == 0 and board_list.count( n(c.my_hole_cards[1]) ) == 2):
         return True
     else :
         return False
@@ -282,13 +282,13 @@ def Me_3_of_kinds(board_list=None) :
 def Me_pocket_3_of_kinds(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 1 and board_list.count( n(c.my_2th_card) ) == 1 and n(c.my_1th_card) == n(c.my_2th_card) and ( Table_Individual( board_list ) or Table_4_of_kinds( board_list ) ) :
+    if board_list.count( n(c.my_hole_cards[0]) ) == 1 and board_list.count( n(c.my_hole_cards[1]) ) == 1 and n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]) and ( Table_Individual( board_list ) or Table_4_of_kinds( board_list ) ) :
         return True
     else :
         return False
@@ -296,14 +296,14 @@ def Me_pocket_3_of_kinds(board_list=None) :
 def Me_full_house(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if ( (board_list.count( n(c.my_1th_card) ) == 2 and 1 <= board_list.count( n(c.my_2th_card) ) <= 2)\
-       or (1 <= board_list.count( n(c.my_1th_card) ) <= 2 and board_list.count( n(c.my_2th_card) ) == 2) ) and n(c.my_1th_card) != n(c.my_2th_card) :
+    if ( (board_list.count( n(c.my_hole_cards[0]) ) == 2 and 1 <= board_list.count( n(c.my_hole_cards[1]) ) <= 2)\
+       or (1 <= board_list.count( n(c.my_hole_cards[0]) ) <= 2 and board_list.count( n(c.my_hole_cards[1]) ) == 2) ) and n(c.my_hole_cards[0]) != n(c.my_hole_cards[1]) :
         return True
     else :
         return False
@@ -311,13 +311,13 @@ def Me_full_house(board_list=None) :
 def Me_pocket_full_house(board_list=None) :
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
 
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 1 and board_list.count( n(c.my_2th_card) ) == 1 and n(c.my_1th_card) == n(c.my_2th_card) \
+    if board_list.count( n(c.my_hole_cards[0]) ) == 1 and board_list.count( n(c.my_hole_cards[1]) ) == 1 and n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]) \
        and ( Table_1_pair( board_list ) or Table_2_pair( board_list ) or Table_3_of_kinds( board_list ) ):
         return True
     else :
@@ -326,13 +326,13 @@ def Me_pocket_full_house(board_list=None) :
 def Me_4_of_kinds(board_list=None) : 
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 3 or board_list.count( n(c.my_2th_card) ) == 3 :
+    if board_list.count( n(c.my_hole_cards[0]) ) == 3 or board_list.count( n(c.my_hole_cards[1]) ) == 3 :
         return True
     else :
         return False
@@ -340,13 +340,13 @@ def Me_4_of_kinds(board_list=None) :
 def Me_pocket_4_of_kinds(board_list=None) : 
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return False
         
     board_list = [n(i) for i in board_list ]
 
-    if board_list.count( n(c.my_1th_card) ) == 2 and board_list.count( n(c.my_2th_card) ) == 2 and n(c.my_1th_card) == n(c.my_2th_card) :
+    if board_list.count( n(c.my_hole_cards[0]) ) == 2 and board_list.count( n(c.my_hole_cards[1]) ) == 2 and n(c.my_hole_cards[0]) == n(c.my_hole_cards[1]) :
         return True
     else :
         return False
@@ -376,7 +376,7 @@ def cards_ranking(My_Card, board_list=None) : # screenshot va be cheat sheet e p
     2: (10, [12,10,7]). 4: (5, [12,10,7]). 6: (3, [12,11,7,6,5])
     """
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return 1
 
@@ -402,7 +402,7 @@ def Me_Individual_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -411,7 +411,7 @@ def Me_Individual_Ranking(board_list=None) :
         board_list = [n(i) for i in board_list ]        
         board_list.sort(reverse=True)
 
-        My_Card = max(c.my_1th_card,c.my_2th_card)
+        My_Card = max(c.my_hole_cards[0],c.my_hole_cards[1])
         rank = 1
         for i in range(14,1,-1):
             if i == My_Card :
@@ -430,7 +430,7 @@ def Me_pocket_pair_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -440,7 +440,7 @@ def Me_pocket_pair_Ranking(board_list=None) :
         board_list.sort(reverse=True)
         
         board_list = [i for i in board_list if board_list.count( i ) == 1]
-        My_Card = c.my_1th_card
+        My_Card = c.my_hole_cards[0]
         rank = 1
         for i in range(14,1,-1):
             if i == My_Card :
@@ -458,7 +458,7 @@ def Me_1_pair_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -468,12 +468,12 @@ def Me_1_pair_Ranking(board_list=None) :
         board_list.sort(reverse=True)
 
         board_list = [i for i in board_list if board_list.count( i ) == 1]
-        if board_list.count( n(c.my_1th_card) ) == 1 :
-            My_Card = c.my_1th_card
-            My_Kicker = c.my_2th_card
-        elif board_list.count( n(c.my_2th_card) ) == 1 :
-            My_Card = c.my_2th_card
-            My_Kicker = c.my_1th_card
+        if board_list.count( n(c.my_hole_cards[0]) ) == 1 :
+            My_Card = c.my_hole_cards[0]
+            My_Kicker = c.my_hole_cards[1]
+        elif board_list.count( n(c.my_hole_cards[1]) ) == 1 :
+            My_Card = c.my_hole_cards[1]
+            My_Kicker = c.my_hole_cards[0]
 
         return ( Cards_Matching ( board_list , My_Card ) , n(My_Kicker) )
 
@@ -484,7 +484,7 @@ def Me_2_pair_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -493,7 +493,7 @@ def Me_2_pair_Ranking(board_list=None) :
         board_list = [n(i) for i in board_list ]        
         board_list.sort(reverse=True)
 
-        return ( Cards_Matching( board_list , max(c.my_1th_card,c.my_2th_card) ) , Cards_Matching( board_list , min(c.my_1th_card,c.my_2th_card) ) )
+        return ( Cards_Matching( board_list , max(c.my_hole_cards[0],c.my_hole_cards[1]) ) , Cards_Matching( board_list , min(c.my_hole_cards[0],c.my_hole_cards[1]) ) )
 
 def Me_3_of_kinds_Ranking(board_list=None) : 
     """
@@ -505,7 +505,7 @@ def Me_3_of_kinds_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -514,12 +514,12 @@ def Me_3_of_kinds_Ranking(board_list=None) :
         board_list = [n(i) for i in board_list ]        
         board_list.sort(reverse=True)
 
-        if board_list.count( n(c.my_1th_card) ) == 2 :
-            My_Card = c.my_1th_card
-            My_Kicker = c.my_2th_card
-        elif board_list.count( n(c.my_2th_card) ) == 2 :
-            My_Card = c.my_2th_card
-            My_Kicker = c.my_2th_card
+        if board_list.count( n(c.my_hole_cards[0]) ) == 2 :
+            My_Card = c.my_hole_cards[0]
+            My_Kicker = c.my_hole_cards[1]
+        elif board_list.count( n(c.my_hole_cards[1]) ) == 2 :
+            My_Card = c.my_hole_cards[1]
+            My_Kicker = c.my_hole_cards[1]
 
         Card = []
         for i in range( len(board_list) ) :
@@ -536,7 +536,7 @@ def Me_pocket_3_of_kinds_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -547,7 +547,7 @@ def Me_pocket_3_of_kinds_Ranking(board_list=None) :
         board_list = [n(i) for i in board_list ]        
         board_list.sort(reverse=True)
 
-        My_Card = c.my_1th_card
+        My_Card = c.my_hole_cards[0]
         return Cards_Matching( board_list , My_Card )
 
 def Me_full_house_Ranking(board_list=None) : 
@@ -559,7 +559,7 @@ def Me_full_house_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -576,13 +576,13 @@ def Me_full_house_Ranking(board_list=None) :
                     Card.append( board_list[i] )
             Card.sort(reverse=True)
 
-            if Card[0] not in ( n(c.my_1th_card) ,n(c.my_2th_card) ) :
+            if Card[0] not in ( n(c.my_hole_cards[0]) ,n(c.my_hole_cards[1]) ) :
                 return 4 # very rare
             else :
-                if Card[1] not in ( n(c.my_1th_card) ,n(c.my_2th_card) ) and Card[1] != min(board_list) :
+                if Card[1] not in ( n(c.my_hole_cards[0]) ,n(c.my_hole_cards[1]) ) and Card[1] != min(board_list) :
                     return 1
-                if ( n(c.my_1th_card) ) != Card[0] : My_Card = c.my_1th_card
-                if ( n(c.my_2th_card) ) != Card[0] : My_Card = c.my_2th_card
+                if ( n(c.my_hole_cards[0]) ) != Card[0] : My_Card = c.my_hole_cards[0]
+                if ( n(c.my_hole_cards[1]) ) != Card[0] : My_Card = c.my_hole_cards[1]
                 Card2 = []
                 for i in (board_list) :
                     if Card[0] == i or i in Card2:
@@ -591,10 +591,10 @@ def Me_full_house_Ranking(board_list=None) :
                         Card2.append(i)
                 return Cards_Matching( Card2 , My_Card )
 
-        if board_list.count( n(c.my_1th_card) ) == 1 :
-            My_Card = c.my_1th_card
-        elif board_list.count( n(c.my_2th_card) ) == 1 :
-            My_Card = c.my_2th_card
+        if board_list.count( n(c.my_hole_cards[0]) ) == 1 :
+            My_Card = c.my_hole_cards[0]
+        elif board_list.count( n(c.my_hole_cards[1]) ) == 1 :
+            My_Card = c.my_hole_cards[1]
             
         Card = []
         for i in range( len(board_list) ) :
@@ -613,7 +613,7 @@ def Me_pocket_full_house_Ranking(board_list=None) :
     """
     
     if board_list == None :
-        board_list = board_cards_list()[:]
+        board_list = c.board_cards[:]
     if board_list == []:
         return None
 
@@ -627,9 +627,9 @@ def Me_pocket_full_house_Ranking(board_list=None) :
                 if board_list.count( board_list[i] ) == 2 :
                     Card = board_list[i]
                     break
-            if Card < c.my_1th_card :
+            if Card < c.my_hole_cards[0] :
                 return 1
-            elif Card > c.my_1th_card :
+            elif Card > c.my_hole_cards[0] :
                 return 2
             
         elif Table_2_pair( board_list ) == True :
@@ -638,11 +638,11 @@ def Me_pocket_full_house_Ranking(board_list=None) :
                 if board_list.count( board_list[i] ) == 2 and board_list[i] not in Card:
                     Card.append( board_list[i] )
             
-            if max(Card) < c.my_1th_card :
+            if max(Card) < c.my_hole_cards[0] :
                 return 1
-            elif min(Card) < c.my_1th_card < max(Card) :
+            elif min(Card) < c.my_hole_cards[0] < max(Card) :
                 return 3
-            elif min(Card) > c.my_1th_card :
+            elif min(Card) > c.my_hole_cards[0] :
                 return 4
 
         elif Table_3_of_kinds( board_list ) == True :

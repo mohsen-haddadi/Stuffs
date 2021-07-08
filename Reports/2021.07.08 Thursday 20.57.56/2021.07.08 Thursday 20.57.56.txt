@@ -1,0 +1,101 @@
+2021/07/08 20:57:57.17: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/08 20:57:58.00: my bank ocr string at seat 1 is: IRT 11.82
+2021/07/08 20:57:58.00: -------
+2021/07/08 20:57:58.00: Screenshot Error: fix_game_disruption: ocr_my_bank is not digit at seat 1
+2021/07/08 20:57:58.53: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/08 20:57:58.61: internet is connected
+2021/07/08 20:57:58.98: Game region refounded after fix_game_disruption()
+2021/07/08 20:57:59.04: my name ocr string at seat 1 is: 
+2021/07/08 20:57:59.11: internet is connected
+2021/07/08 20:57:59.11: I am In not by OCR
+2021/07/08 20:57:59.11: -------
+2021/07/08 20:57:59.38: my bank ocr string at seat 1 is: IRT 11.82
+2021/07/08 20:57:59.38: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/08 20:57:59.86: My bank can't be read
+2021/07/08 20:57:59.86: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/08 20:58:04.25: My cards are founded
+2021/07/08 20:58:05.97: Reseting table information
+2021/07/08 20:58:05.97: * bot_status == 'I_AM_PLAYING' *
+2021/07/08 20:58:05.98: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/08 20:58:05.99: My cards are founded
+2021/07/08 20:58:05.99: -------- New Hand Started --------
+2021/07/08 20:58:06.05: Dealer is on seat 2
+2021/07/08 20:58:06.36: -------
+2021/07/08 20:58:06.36: Screenshot Error: fix_game_disruption: ocr_bet is not digit at seat 1
+2021/07/08 20:58:06.89: fix_game_disruption() <-- ocr_bet is not digit at seat 1 is running....
+2021/07/08 20:58:06.93: internet is connected
+2021/07/08 20:58:07.42: Game region refounded after fix_game_disruption()
+2021/07/08 20:58:07.47: my name ocr string at seat 1 is: 
+2021/07/08 20:58:07.52: internet is connected
+2021/07/08 20:58:07.53: I am In not by OCR
+2021/07/08 20:58:07.54: -------
+2021/07/08 20:58:08.26: Screenshot Error: just_do_check_fold: ocr_bet is not digit
+2021/07/08 20:58:10.11: just_do_check_fold is set to True: ocr_bet is not digit
+2021/07/08 20:58:10.11: Screenshot Error: ocr_bet is not digit at seat 1
+2021/07/08 20:58:10.93: Screenshot Error: just_do_check_fold: small or big blind seat have not been set
+2021/07/08 20:58:11.50: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/08 20:58:11.59: TEST. playing_seats dictionary is: {1: True, 2: True, 3: False, 4: False, 5: True, 6: False}
+2021/07/08 20:58:11.63: doing ocr on my seat to check if it is first_round_at_preflop or not
+2021/07/08 20:58:11.83: -------
+2021/07/08 20:58:11.83: Screenshot Error: fix_game_disruption: ocr_bet is not digit at seat 1
+2021/07/08 20:58:12.42: fix_game_disruption() <-- ocr_bet is not digit at seat 1 is running....
+2021/07/08 20:58:12.45: internet is connected
+2021/07/08 20:58:13.00: Game region refounded after fix_game_disruption()
+2021/07/08 20:58:13.20: i_am_back button is clicked
+2021/07/08 20:58:13.25: After fix_game_disruption() --> just_do_check_fold is True.
+2021/07/08 20:58:13.28: my name ocr string at seat 1 is: 
+2021/07/08 20:58:13.33: internet is connected
+2021/07/08 20:58:13.34: I am In not by OCR
+2021/07/08 20:58:13.34: -------
+2021/07/08 20:58:13.61: Screenshot Error: just_do_check_fold: ocr_bet is not digit
+2021/07/08 20:58:14.23: just_do_check_fold is set to True: ocr_bet is not digit
+2021/07/08 20:58:14.24: Screenshot Error: ocr_bet is not digit at seat 1
+2021/07/08 20:58:16.13: -------
+2021/07/08 20:58:16.13: Screenshot Error: fix_game_disruption: my cards are read Unknown
+2021/07/08 20:58:16.69: fix_game_disruption() <-- my cards are read Unknown is running....
+2021/07/08 20:58:16.72: internet is connected
+2021/07/08 20:58:17.18: Game region refounded after fix_game_disruption()
+2021/07/08 20:58:17.25: my name ocr string at seat 1 is: 
+2021/07/08 20:58:17.31: internet is connected
+2021/07/08 20:58:17.31: I am In not by OCR
+2021/07/08 20:58:17.31: -------
+2021/07/08 20:58:18.86: Screenshot Error: my hole cards are read Unknown
+2021/07/08 20:58:19.41: Screenshot Error: just_do_check_fold: my hole cards are read Unknown again
+2021/07/08 20:58:19.98: just_do_check_fold is set to True: my hole cards are read Unknown again
+2021/07/08 20:58:19.98: My hole cards are: Unknown, Unknown
+2021/07/08 20:58:20.32: my bank ocr string at seat 1 is: IRT 11.23
+2021/07/08 20:58:20.32: -------
+2021/07/08 20:58:20.33: Screenshot Error: fix_game_disruption: ocr_my_bank is not digit at seat 1
+2021/07/08 20:58:20.89: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/08 20:58:20.93: internet is connected
+2021/07/08 20:58:21.37: Game region refounded after fix_game_disruption()
+2021/07/08 20:58:21.44: my name ocr string at seat 1 is: 
+2021/07/08 20:58:21.49: internet is connected
+2021/07/08 20:58:21.49: I am In not by OCR
+2021/07/08 20:58:21.49: -------
+2021/07/08 20:58:21.78: my bank ocr string at seat 1 is: IRT 11.23
+2021/07/08 20:58:21.78: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/08 20:58:22.37: My bank can't be read
+2021/07/08 20:58:22.76: my bank ocr string at seat 1 is: IRT 11.23
+2021/07/08 20:58:22.76: -------
+2021/07/08 20:58:22.77: Screenshot Error: fix_game_disruption: ocr_my_bank is not digit at seat 1
+2021/07/08 20:58:23.39: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/08 20:58:23.42: internet is connected
+2021/07/08 20:58:23.83: Game region refounded after fix_game_disruption()
+2021/07/08 20:58:23.89: my name ocr string at seat 1 is: 
+2021/07/08 20:58:23.94: internet is connected
+2021/07/08 20:58:23.95: I am In not by OCR
+2021/07/08 20:58:23.95: -------
+2021/07/08 20:58:24.24: my bank ocr string at seat 1 is: IRT 11.23
+2021/07/08 20:58:24.24: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/08 20:58:24.76: my name ocr string at seat 1 is: 
+2021/07/08 20:58:25.04: other players bank ocr string at seat 2 is: [RT 83.61
+2021/07/08 20:58:25.04: ocr_other_players_bank is not digit and set to None at seat 2
+2021/07/08 20:58:25.04: other name ocr string at seat 2 is: 
+2021/07/08 20:58:25.35: other players bank ocr string at seat 5 is: [RT 57.91
+2021/07/08 20:58:25.35: ocr_other_players_bank is not digit and set to None at seat 5
+2021/07/08 20:58:25.35: other name ocr string at seat 5 is: 
+2021/07/08 20:58:25.40: TEST. Players Bank dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/08 20:58:25.40: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/08 20:58:25.40: Waiting for my turn at preflop_stage...
+2021/07/08 20:58:25.44: Waiting for my turn at flop_stage...

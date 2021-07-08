@@ -21,7 +21,7 @@ def group(string):
     group_cards = []
     for char in string:
         group_cards = group_cards + GROUPS[char]
-    return change_hand_format(c.my_1th_card, c.my_2th_card) in group_cards
+    return change_hand_format(c.my_hole_cards) in group_cards
 
 def holdem_starting_hand_ranking():
     """ 
@@ -69,21 +69,22 @@ def holdem_starting_hand_ranking():
 #    '73o', '94o', '32o', '62o', '93o', '92o', '83o', '82o', '72o',
 #    ]
 
-    my_cards = change_hand_format(c.my_1th_card, c.my_2th_card)
+    my_cards = change_hand_format(c.my_hole_cards)
     #print(my_cards)
     # hand_ranking from 1 to 169
     hand_ranking = HOLDEM_169_HOLE_CARDS_RANKING_LIST.index(my_cards) + 1
     return hand_ranking
 
-def change_hand_format(my_1th_card, my_2th_card): #💊 
+def change_hand_format(my_hole_cards): #💊 
     """
     This function change the given hand format 
     to the format used in the HOLDEM_169_HOLE_CARDS_RANKING_LIST
-    Example: my_1th_card = '7s' ; my_2th_card = 'Ah'
+    Example: my_hole_cards = ['7s', 'Ah']
     returns 'A7o'
     """
-    if 'Unknown' in my_1th_card or 'Unknown' in my_2th_card:
+    if 'Unknown' in my_hole_cards:
         return 'Unknown'
+    my_1th_card, my_2th_card = my_hole_cards
 
     if n(my_1th_card) > n(my_2th_card):
         high_card = my_1th_card[0]

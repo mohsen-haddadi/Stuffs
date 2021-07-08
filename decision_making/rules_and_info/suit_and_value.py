@@ -26,17 +26,3 @@ def n(card): #💊
         return 14
     else:
         return int(card[0])
-
-def board_cards_list():
-    if c.preflop_stage and not c.flop_stage :
-        board_list = []
-    elif c.flop_stage and not c.turn_stage :
-        board_list = [ c.board_card_1th, c.board_card_2th, c.board_card_3th ]
-    elif c.turn_stage and not c.river_stage :
-        board_list = [ c.board_card_1th , c.board_card_2th , c.board_card_3th,
-                       c.board_card_4th ]
-    elif c.river_stage :
-        board_list = [ c.board_card_1th, c.board_card_2th, c.board_card_3th,
-                       c.board_card_4th , c.board_card_5th ]
-
-    return board_list

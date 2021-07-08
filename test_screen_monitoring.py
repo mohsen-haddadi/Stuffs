@@ -88,17 +88,18 @@ def test_read_cards(my_seat = 1, show_image = False):
             #cv2.imwrite('Table %sth card screenshot suit_image.png'
             #            %xth_card, suit_image)
 
-    my_1th_card, my_2th_card =\
+    my_hole_cards =\
     read_cards.read_my_cards(game_position, my_seat)
-    table_1th_card, table_2th_card, table_3th_card =\
+    flop_cards =\
     read_cards.read_flop_cards(game_position)
-    table_4th_card = read_cards.read_turn_card(game_position)
-    table_5th_card = read_cards.read_river_card(game_position)
+    turn_card = read_cards.read_turn_card(game_position)
+    river_card = read_cards.read_river_card(game_position)
+    board_cards = flop_cards
+    board_cards.append(turn_card)
+    board_cards.append(river_card)
 
-    print('my cards are:%s , %s'%(my_1th_card, my_2th_card))
-    print('table cards are:%s, %s, %s, %s, %s'
-    %(table_1th_card, table_2th_card, table_3th_card,
-      table_4th_card, table_5th_card))
+    print(f'my hole cards are: {my_hole_cards}')
+    print(f'board cards are: {board_cards}')
     if show_image == True:
         show_my_pre_process_card_images(game_position, my_seat)
         show_table_pre_process_card_images(game_position)

@@ -1,0 +1,8 @@
+2021/07/08 21:05:01.61: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/08 21:05:01.98: my bank ocr string at seat 1 is: 22
+2021/07/08 21:05:01.98: My bank is:22
+2021/07/08 21:05:01.99: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/08 21:05:15.32: My cards are founded
+2021/07/08 21:05:17.64: Reseting table information
+2021/07/08 21:05:17.64: * bot_status == 'I_AM_PLAYING' *
+2021/07/08 21:05:17.64: Looking for my cards in 'I_AM_PLAYING' Section...

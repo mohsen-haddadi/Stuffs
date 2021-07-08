@@ -182,7 +182,7 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     #global game_position , my_seat_number , MY_PROFILE_NAME , bot_status , just_do_check_fold
 
     shout( 7*"-" , color = 'yellow')
-    screenshot_error(f'fix_game_disruption: {String}') # FOR DEBUGING. delete this line later. 
+    screenshot_error('fix_game_disruption: %s' %String) # FOR DEBUGING. delete this line later. 
     if String == None :
         shout("fix_game_disruption() is running....", color = 'yellow')
     elif type(String) == str :
@@ -233,7 +233,7 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
 
 def set_just_do_check_fold_to_true(string = None) :
     #global just_do_check_fold
-    screenshot_error(f'just_do_check_fold: {string}') # FOR DEBUGING. delete this line later. 
+    screenshot_error('just do check fold: %s' %string) # FOR DEBUGING. delete this line later. 
     c.just_do_check_fold = True
     if string == None :
         shout("just_do_check_fold is set to True", color = 'on_yellow')
@@ -243,7 +243,7 @@ def set_just_do_check_fold_to_true(string = None) :
 def reset_just_do_check_fold_to_false() :
     #global just_do_check_fold
     if c.just_do_check_fold == True :
-        shout("just_do_check_fold is reset to False")
+        shout("just do check fold is reset to False")
         c.just_do_check_fold = False
  
 def screenshot_error(type_of_error): #type_of_error in string

@@ -304,8 +304,8 @@ def sound(string_name) :
         pass
 
 def play_sound_for_good_starting_hands() :
-    if 'Unknown' == c.my_1th_card or 'Unknown' == c.my_2th_card: #💊
-        return None # this will stop function and avoid error.
+    if 'Unknown' in c.my_hole_cards: #💊
+        return None # this will stop function and avoids error.
     if c.preflop_stage == True and c.flop_stage == False :
         if group('A'):
             sound("Du Bist Erwacht")
@@ -359,13 +359,13 @@ def resize_window(window): #💊
         win.size = (974, 1047)
         win.moveTo(-7, 0)
     elif window == 'debugger':
-        for debugger_name in ['sublime', 'command prompt']:
+        for debugger_name in ['sublime', 'command prompt', 'cmd']:
             try:
                 win = pygetwindow.getWindowsWithTitle(debugger_name)[0]
+                win.size = (974, 1047)
+                win.moveTo(953, 0)
             except:
                 continue
-        win.size = (974, 1047)
-        win.moveTo(953, 0)
     #print(win.size)
     #print(win.topleft)
 
