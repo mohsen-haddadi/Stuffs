@@ -1,47 +1,31 @@
+#💊 : means edited
 import configs as c
 
-def s(card) :
+def s(card): #💊
     """ returns suit of a card in string format"""
-    if card[1] == 'Spade':
-        return 's'
-    elif card[1] == 'Heart':
-        return 'h'
-    elif card[1] == 'Club':
-        return 'c'
-    elif card[1] == 'Diamond':
-        return 'd'
+    if card == 'Unknown':
+        return 'Unknown'
+    else:
+        return card[1]
 
-def n(card) :
+def n(card): #💊
     """ returns value of a card by numbering them from 2 to 14"""
     if isinstance(card, int) and 2 <= card <= 14:
         return card 
+    elif card == 'Unknown':
+        return 'Unknown'
+    elif card[0] == 'T':
+        return 10
+    elif card[0] == 'J':
+        return 11
+    elif card[0] == 'Q':
+        return 12
+    elif card[0] == 'K':
+        return 13
+    elif card[0] == 'A':
+        return 14
     else:
-        if card[0] == 'Two':
-            return 2
-        elif card[0] == 'Three':
-            return 3
-        elif card[0] == 'Four':
-            return 4
-        elif card[0] == 'Five':
-            return 5
-        elif card[0] == 'Six':
-            return 6
-        elif card[0] == 'Seven':
-            return 7
-        elif card[0] == 'Eight':
-            return 8
-        elif card[0] == 'Nine':
-            return 9
-        elif card[0] == 'Ten':
-            return 10
-        elif card[0] == 'Jack':
-            return 11
-        elif card[0] == 'Queen':
-            return 12
-        elif card[0] == 'King':
-            return 13
-        elif card[0] == 'Ace':
-            return 14
+        return int(card[0])
 
 def board_cards_list():
     if c.preflop_stage and not c.flop_stage :

@@ -304,7 +304,7 @@ def sound(string_name) :
         pass
 
 def play_sound_for_good_starting_hands() :
-    if 'Unknown' in c.my_1th_card or 'Unknown' in c.my_2th_card:
+    if 'Unknown' == c.my_1th_card or 'Unknown' == c.my_2th_card: #💊
         return None # this will stop function and avoid error.
     if c.preflop_stage == True and c.flop_stage == False :
         if group('A'):
