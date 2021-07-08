@@ -23,7 +23,7 @@ def group(string):
         group_cards = group_cards + GROUPS[char]
     return change_hand_format(c.my_hole_cards) in group_cards
 
-def holdem_starting_hand_ranking():
+def holdem_starting_hand_ranking(my_hole_cards):
     """ 
     returns 1 to 169
     1 represent the most powerful hand and 169 represent the weakest hand.
@@ -69,7 +69,7 @@ def holdem_starting_hand_ranking():
 #    '73o', '94o', '32o', '62o', '93o', '92o', '83o', '82o', '72o',
 #    ]
 
-    my_cards = change_hand_format(c.my_hole_cards)
+    my_cards = change_hand_format(my_hole_cards)
     #print(my_cards)
     # hand_ranking from 1 to 169
     hand_ranking = HOLDEM_169_HOLE_CARDS_RANKING_LIST.index(my_cards) + 1

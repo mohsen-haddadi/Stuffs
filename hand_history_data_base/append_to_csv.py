@@ -33,7 +33,7 @@ def append_new_line_to_csv(csv_path):
             'Winning bb': [won_money()], 
             'Cards': [hand.change_hand_format(c.my_hole_cards)], 
             'Hand group': [hand_group()], 
-            'Starting hand ranking': [hand.holdem_starting_hand_ranking()],
+            'Starting hand ranking': [hand.holdem_starting_hand_ranking(c.my_hole_cards)],
             'Check fold': [c.just_do_check_fold], 
             # If bank is in big blinds. Depends on the site.
             'Money profit': [(lambda x: x * c.BLIND_VALUE if x != None else None)(won_money())], 
@@ -63,7 +63,7 @@ def append_new_line_to_csv(csv_path):
             'Winning bb': won_money(), 
             'Cards': hand.change_hand_format(c.my_hole_cards), 
             'Hand group': hand_group(), 
-            'Starting hand ranking': hand.holdem_starting_hand_ranking(),
+            'Starting hand ranking': hand.holdem_starting_hand_ranking(c.my_hole_cards),
             'Check fold': c.just_do_check_fold, 
             # If bank is in big blinds. Depends on the site.
             'Money profit': (lambda x: x * c.BLIND_VALUE if x != None else None)(won_money()),

@@ -11,4 +11,7 @@ Hand number,Winning bb,Cards,Hand group,Starting hand ranking,Check fold,Money p
 6,0.0,A3,,53,0.0,0.0,[33],[33],[33],[33],1,1,early_position,False,True,False,6,cheeta,5,21-3,2021-07-07 00-27-19
 14,-0.5,AK,C,12,0.0,-0.5,[3],[3],[3],[3],1,1,early_position,True,False,False,6,cheeta,5,21-3,2021-07-07 00-39-46
 2,0.0,72,,165,0.0,0.0,[20],[20],[20],[20],1,1,early_position,True,False,False,6,cheeta,6,21-3,2021-07-07 01-05-39
-8,0.0,Q2,N/A,105,0.0,0.0,[48],[48],[48],[48],1,1,early_position,True,False,False,6,cheeta,7,21-3,2021-07-07 01-18-10
+8,0.0,Q2,,105,0.0,0.0,[48],[48],[48],[48],1,1,early_position,True,False,False,6,cheeta,7,21-3,2021-07-07 01-18-10
+1,-0.5,92,,149,,-0.5,[20],[20],[20],[20],1,1,early_position,False,True,False,6,cheeta,8,3-9,2021-07-09 03-41-19
+2,0.0,Q9,,56,,0.0,[20],[20],[20],[20],1,1,early_position,True,False,False,6,cheeta,8,3-9,2021-07-09 03-42-04
+5,0.0,A3s,G,38,0.0,0.0,[48],[48],[48],[48],1,1,early_position,True,False,False,6,cheeta,8,3-9,2021-07-09 03-44-43

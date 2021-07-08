@@ -1,0 +1,15 @@
+2021/07/09 03:14:29.20: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/09 03:14:29.96: my bank ocr string at seat 1 is: IRT 59.09
+2021/07/09 03:14:29.96: -------
+2021/07/09 03:14:29.96: Screenshot Error: fix_game_disruption: ocr_my_bank is not digit at seat 1
+2021/07/09 03:14:30.43: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/09 03:14:31.88: internet is connected
+2021/07/09 03:14:32.34: Game region refounded after fix_game_disruption()
+2021/07/09 03:14:32.41: my name ocr string at seat 1 is: 
+2021/07/09 03:14:33.61: internet is connected
+2021/07/09 03:14:33.62: I am In not by OCR
+2021/07/09 03:14:33.62: -------
+2021/07/09 03:14:33.89: my bank ocr string at seat 1 is: IRT 59.09
+2021/07/09 03:14:33.89: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/09 03:14:34.39: My bank can't be read
+2021/07/09 03:14:34.39: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...

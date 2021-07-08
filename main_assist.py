@@ -11,6 +11,7 @@ import pygame, keyboard, pygetwindow
 
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import decision_making.decide
+import decision_making.rules_and_info.odds as odds
 from decision_making.rules_and_info.starting_hands import group
 from readability.read_cards import read_and_save_flop_cards,\
 read_and_save_turn_card, read_and_save_river_card
@@ -231,12 +232,12 @@ def calculate_win_odds():
         c.next_win_odds_average = odds.next_win_odds_average(all_possible_win_odds_list)
         c.draw_odds = odds.draw_odds(all_possible_win_odds_list, 95)
 
-        shout(f'win_odds is: {win_odds}', color = 'light_cyan')
-        shout(f'next_win_odds_average is: {next_win_odds_average}', color = 'light_cyan')
-        shout(f'draw_odds is: {draw_odds}', color = 'light_cyan')
+        shout(f'win_odds is: {c.win_odds}', color = 'light_cyan')
+        shout(f'next_win_odds_average is: {c.next_win_odds_average}', color = 'light_cyan')
+        shout(f'draw_odds is: {c.draw_odds}', color = 'light_cyan')
     if c.river_stage:
         win_odds = odds.win_odds(c.board_cards, c.my_hole_cards)
-        shout(f'win_odds is: {win_odds}', color = 'light_cyan')
+        shout(f'win_odds is: {c.win_odds}', color = 'light_cyan')
 
 
 def stages_are_sequenced(): 

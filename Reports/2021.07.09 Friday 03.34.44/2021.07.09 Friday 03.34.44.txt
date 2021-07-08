@@ -1,0 +1,37 @@
+2021/07/09 03:34:44.96: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/09 03:34:45.53: my bank ocr string at seat 1 is: 67
+2021/07/09 03:34:45.53: My bank is:67
+2021/07/09 03:34:45.54: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/09 03:34:45.56: My cards are founded
+2021/07/09 03:34:47.20: Reseting table information
+2021/07/09 03:34:47.20: * bot_status == 'I_AM_PLAYING' *
+2021/07/09 03:34:47.21: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/09 03:34:47.22: My cards are founded
+2021/07/09 03:34:47.22: -------- New Hand Started --------
+2021/07/09 03:34:47.25: Dealer is on seat 1
+2021/07/09 03:34:47.94: Screenshot Error: just do check fold: small or big blind seat have not been set
+2021/07/09 03:34:48.53: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/09 03:34:48.62: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: False, 6: True}
+2021/07/09 03:34:48.64: Screenshot Error: just do check fold: program must've started again from middle of the game
+2021/07/09 03:34:49.48: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/09 03:34:51.01: My hole cards are: Js, Kh
+2021/07/09 03:34:51.33: my bank ocr string at seat 1 is: 67
+2021/07/09 03:34:51.33: My bank is:67
+2021/07/09 03:34:51.70: my bank ocr string at seat 1 is: 67
+2021/07/09 03:34:51.70: my name ocr string at seat 1 is: 
+2021/07/09 03:34:52.07: other players bank ocr string at seat 2 is: 98.5
+2021/07/09 03:34:52.07: other name ocr string at seat 2 is: 
+2021/07/09 03:34:52.71: other players bank ocr string at seat 3 is: 60.5
+2021/07/09 03:34:52.71: other name ocr string at seat 3 is: 
+2021/07/09 03:34:53.39: other players bank ocr string at seat 4 is: 188.5
+2021/07/09 03:34:53.39: other name ocr string at seat 4 is: 
+2021/07/09 03:34:53.76: other players bank ocr string at seat 5 is: 65
+2021/07/09 03:34:53.76: other name ocr string at seat 5 is: 
+2021/07/09 03:34:54.25: other players bank ocr string at seat 6 is: 99
+2021/07/09 03:34:54.26: other name ocr string at seat 6 is: 
+2021/07/09 03:34:54.28: TEST. Players Bank dictionary is: {1: 67, 2: 109.5, 3: 71.5, 4: 188.5, 5: 65, 6: 99}
+2021/07/09 03:34:54.28: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/09 03:34:54.29: Waiting for my turn at preflop_stage...
+2021/07/09 03:34:54.34: Waiting for my turn at flop_stage...
+2021/07/09 03:34:54.36: operator should play the hand is suppose to get activated soon
+2021/07/09 03:34:57.02: Flop cards are: 3s, 7c, 2d

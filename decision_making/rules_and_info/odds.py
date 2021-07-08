@@ -1,6 +1,6 @@
 import eval7, time, itertools
 
-from starting_hands import holdem_starting_hand_ranking
+from decision_making.rules_and_info.starting_hands import holdem_starting_hand_ranking
 
 def create_all_1326_hole_cards_list():
    SUITS = ['s', 'd', 'c', 'h']
