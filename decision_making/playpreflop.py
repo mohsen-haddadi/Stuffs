@@ -247,63 +247,42 @@ def play_pre_flop():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 """
         elif 10 <= Max_raise_sofar() / c.BLIND_VALUE < 20:
             raiser_bank = c.players_bank[last_raiser_seat_sofar()]
             if raiser_bank == None or raiser_bank / c.BLIND_VALUE > 40 :
                 if group('A'):
-                    scenario(49)
+                    
                     return 'raise', 'pot')
                 elif group('B'): # for low stack tables can be group('BC')
-                    scenario(50)
+                    
                     return 'call')
                 else:
-                    scenario(51)
+                    
                     return 'fold')
             else:
                 if number_of_raisers_now() == 1:
                     if group('AB'):
-                        scenario(52)
+                        
                         return 'raise', 'all in')
                     elif group('C'): # Separated 'elif' just for statistical conclusions.
-                        scenario(53)
+                        
                         return 'raise', 'all in')
                     else:
-                        scenario(54)
+                        
                         return 'fold')
                 else:
                     if group('A'):
-                        scenario(55)
+                        
                         return 'raise', 'all in')
                     elif group('B'): # Separated 'elif' just for statistical conclusions.
-                        scenario(56)
+                        
                         return 'raise', 'all in')
                     elif group('C'): 
-                        scenario(57)
+                        
                         return 'call')
                     else:
-                        scenario(58)
+                        
                         return 'fold')
 
         elif 20 <= Max_raise_sofar() / c.BLIND_VALUE:
@@ -311,40 +290,47 @@ def play_pre_flop():
 
             if raiser_bank == None or raiser_bank / c.BLIND_VALUE > 40 :
                 if group('A'): # for low stack tables can be group('AB')
-                    scenario(59)
+                    
                     return 'raise', 'all in')
                 elif group('B') and call_low_re_raise():
-                    scenario(60)
+                    
                     return 'call')
                 else:
-                    scenario(61)
+                    
                     return 'fold')
             else:
                 if number_of_raisers_now() == 1:
                     if group('AB'):
-                        scenario(62)
+                        
                         return 'raise', 'all in')
                     elif group('C'): # Separated 'elif' just for statistical conclusions.
-                        scenario(63)
+                        
                         return 'raise', 'all in')
                     else:
-                        scenario(64)
+                        
                         return 'fold')
                 else:
                     
                     if group('A'):
-                        scenario(65)
+                        
                         return 'raise', 'all in')
                     elif group('B'): # Separated 'elif' just for statistical conclusions.
-                        scenario(66)
+                        
                         return 'raise', 'all in')
                     elif group('C'): 
-                        scenario(67)
+                        
                         return 'call')
                     else:
-                        scenario(68)
+                        
                         return 'fold')
 """
+
+
+
+
+
+
+
 
 
 

@@ -219,6 +219,26 @@ def read_board_cards():
     if c.river_stage:
         read_and_save_river_card()
 
+
+def calculate_win_odds():
+    if c.bot_status != 'I_AM_PLAYING' or c.just_do_check_fold == True:
+        return None
+    shout('calculating win odds...')
+    if (c.flop_stage or c.turn_stage) and not c.river_stage:
+        c.win_odds = odds.win_odds(c.board_cards, c.my_hole_cards)
+        # time consuming line at flop:
+        all_possible_win_odds_list = odds.all_possible_win_odds(c.board_cards, c.my_hole_cards) 
+        c.next_win_odds_average = odds.next_win_odds_average(all_possible_win_odds_list)
+        c.draw_odds = odds.draw_odds(all_possible_win_odds_list, 95)
+
+        shout(f'win_odds is: {win_odds}', color = 'light_cyan')
+        shout(f'next_win_odds_average is: {next_win_odds_average}', color = 'light_cyan')
+        shout(f'draw_odds is: {draw_odds}', color = 'light_cyan')
+    if c.river_stage:
+        win_odds = odds.win_odds(c.board_cards, c.my_hole_cards)
+        shout(f'win_odds is: {win_odds}', color = 'light_cyan')
+
+
 def stages_are_sequenced(): 
     if pm.flop_pixel(c.game_position) and c.preflop_stage == False:
         return False

@@ -28,6 +28,8 @@ def modify_play_module_code(module):
 
 if __name__ == '__main__':
     modify_play_module_code('playpreflop')
-    #modify_play_module_code('play_raise')
+    modify_play_module_code('playflop')
+    modify_play_module_code('playturn')
+    modify_play_module_code('playriver')
 
 print(scenario_count)

@@ -123,10 +123,13 @@ def play_a_hand():
                 shout('operator should play the hand is suppose to get activated soon') #❌⛏❌
                 sound('Schiller Nachtflug') #❌⛏❌
 
-            read_board_cards()
             if not stages_are_sequenced():
                 set_just_do_check_fold_to_true('stages are not sequenced')
                 screenshot_error('stages are not sequenced')
+
+            read_board_cards()
+            calculate_win_odds()
+            
         if its_my_turn():
             update_betting_rounds()
             read_and_save_bets()

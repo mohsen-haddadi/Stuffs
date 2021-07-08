@@ -14,7 +14,7 @@
 13. when nacht flug song is played BOT STATUS is not 'operator should play hand'. fix it
 14. when bot status shifts to 'operator should play hand', add an press ENTER option within 10 seconds 
     if oprator is there or not. if not, bot just do check fold. before pressing ENTER click on the sublime or cmd header using pywin.
-15. use pywin to move your debugger when you run the bot.
+(DONE) 15. use pywin to move your debugger when you run the bot.
 16. press and hold END button then change bot status to 'OBSERVING'. then start debugging observing status.
 (DONE) 17. add exat date and time to csv file.
-17. change cards name format from ('Ten', 'Spade') to 'Ts' through all project. search and edit 'Unknown' too.
+(DONE) 17. change cards name format from ('Ten', 'Spade') to 'Ts' through all project. search and edit 'Unknown' too.

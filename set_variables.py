@@ -33,8 +33,9 @@ def set_all_variables_to_none():
     c.players_name , c.players_bank , c.last_players_bank, c.playing_seats,\
     c.BLIND_VALUE , c.TOTAL_SEATS ,\
     c.small_blind_seat , c.big_blind_seat , c.dealer_seat,\
+    c.win_odds , c.next_win_odds_average , c.draw_odds ,\
     c.hand_number, c.game_number, c.scenario_list,\
-    c.csv_path = (None,)*42
+    c.csv_path = (None,)*45
 
 def turn_finder(starter_seat , xth) :
     """Returns the seat number; for instance; (4,1) returns seat 4!"""
@@ -287,6 +288,9 @@ def reset_table_information() :
     c.river_stage = False 
     c.board_cards = []
     c.my_hole_cards = []
+    c.win_odds = None
+    c.next_win_odds_average = None
+    c.draw_odds = None
 
 def read_and_save_bets() :
     #global game_position, player_cards_cache , white_chips_cache , red_chips_cache , bets_cache ,\

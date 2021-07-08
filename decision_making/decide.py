@@ -27,15 +27,15 @@ def decide():
             return play_pre_flop()
 
 
-#        elif Flop_Deside():
-#            return play_flop()
-#
-#        elif Turn_Deside():
-#            return play_turn()
-#
-#        elif River_Deside():
-#            return play_river()
-#
+        elif Flop_Deside():
+            return play_flop()
+
+        elif Turn_Deside():
+            return play_turn()
+
+        elif River_Deside():
+            return play_river()
+
         #uncomment lines, when play.py module is completed.
         else :
             return "not defined"
