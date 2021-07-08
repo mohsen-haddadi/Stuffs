@@ -138,6 +138,14 @@ def raising(Blinds):
 #        c.my_last_raise_at[stage] = Blinds
 #    else :
 #        c.my_last_raise_at[stage] = Raise_base + Raise_add
+    if c.preflop_stage == True and c.flop_stage == False :
+        stage = "Pre_Flop"
+    elif c.flop_stage == True and c.turn_stage == False :
+        stage = "Flop"
+    elif c.turn_stage == True and c.river_stage == False :
+        stage = "Turn"
+    elif c.river_stage == True :
+        stage = "River"
     c.my_last_raise_at[stage] = ocr_my_bet()
 
     if pm.button_pixel(c.game_position, 'raise'):

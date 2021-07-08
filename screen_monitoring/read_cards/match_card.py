@@ -81,8 +81,7 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
     best_value_match_name = "Unknown"
     best_suit_match_name = "Unknown"
 
-    for value_name in ['Ace','Two','Three','Four','Five','Six','Seven',
-                       'Eight','Nine','Ten','Jack','Queen','King'] :
+    for value_name in ['A','2','3','4','5','6','7','8','9','T','J','Q','K']: #💊
 
         if is_it_table_card == True:
             image_path = os.path.abspath(os.path.dirname(__file__)) +\
@@ -105,7 +104,7 @@ def match_card(value_image, suit_image, is_it_table_card, VALUE_DIFFERENCE_LIMIT
             best_value_difference_amount = difference_amount
             best_value_name = value_name
 
-    for suit_name in ['Spade','Heart','Club','Diamond'] :
+    for suit_name in ['s','h','c','d']: #💊
 
         if is_it_table_card == True:
             image_path = os.path.abspath(os.path.dirname(__file__)) +\
@@ -206,7 +205,7 @@ def test():
         """
         Use specific top left corner pixel of a card to set card COORDINATES. 
         """
-        query_image_name = "Ace"
+        query_image_name = "A" #💊
         query_image = cv2.imread("Raw Images/First Table Cards/%s.png" %query_image_name)
         if isinstance(query_image, type(None)):
             raise Exception("Unable to read %s.png image" %query_image_name)

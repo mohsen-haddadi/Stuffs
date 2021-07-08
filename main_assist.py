@@ -333,7 +333,7 @@ def click_decision():
         call()
     elif decision == "fold":
         fold()
-    elif type(decision) == tuple and decision == "raise":
+    elif type(decision) == tuple and decision[0] == "raise":
         raising(decision[1])
     elif decision == "all_in":
         all_in()

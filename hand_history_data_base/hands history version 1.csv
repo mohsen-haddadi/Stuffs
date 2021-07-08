@@ -1,5 +1,14 @@
-Hand number,Winning bb,Cards,Hand group,Starting hand ranking,Check fold,Money profit,Scenario list,First scenario,Last scenario,Last 2 scenarios,play version,Blind,Seat position,Small blind,Big blind,dealer,Total players,Website,Game number,Game time
-1,0.0,63s,,147,,0.0,[48],48,48,[48],1,1,early_position,False,True,False,6,cheeta,1,21-3
-1,0.0,92,,149,,0.0,[1],[1],[1],[1],1,1,early_position,True,False,False,6,cheeta,2,21-3
-6,0.0,T8s,H,73,0.0,0.0,[20],[20],[20],[20],1,1,middle_position,False,True,False,6,cheeta,3,21-3
-12,0.0,Q8s,N/A,52,0.0,0.0,[20],[20],[20],[20],1,1,early_position,False,True,False,6,cheeta,3,21-3
+Hand number,Winning bb,Cards,Hand group,Starting hand ranking,Check fold,Money profit,Scenario list,First scenario,Last scenario,Last 2 scenarios,play version,Blind,Seat position,Small blind,Big blind,dealer,Total players,Website,Game number,Game time,Hand exact ending time
+1,0.0,63s,,147,,0.0,[48],48,48,[48],1,1,early_position,False,True,False,6,cheeta,1,21-3,
+1,0.0,92,,149,,0.0,[1],[1],[1],[1],1,1,early_position,True,False,False,6,cheeta,2,21-3,
+6,0.0,T8s,H,73,0.0,0.0,[20],[20],[20],[20],1,1,middle_position,False,True,False,6,cheeta,3,21-3,
+12,0.0,Q8s,,52,0.0,0.0,[20],[20],[20],[20],1,1,early_position,False,True,False,6,cheeta,3,21-3,
+1,2.5,KQ,F,23,,2.5,[None],[None],[None],[None],1,1,late_position,False,True,False,6,cheeta,4,21-3,2021-07-06 23-53-30
+4,0.0,Q4,,93,0.0,0.0,[None],[None],[None],[None],1,1,early_position,True,False,False,6,cheeta,4,21-3,2021-07-06 23-58-46
+8,2.0,Q7,,77,0.0,2.0,[None],[None],[None],[None],1,1,late_position,False,True,False,6,cheeta,4,21-3,2021-07-07 00-01-32
+9,0.0,A7,,36,0.0,0.0,[None],[None],[None],[None],1,1,early_position,True,False,False,6,cheeta,4,21-3,2021-07-07 00-01-51
+2,0.0,82,,159,0.0,0.0,[1],[1],[1],[1],1,1,early_position,True,False,False,6,cheeta,5,21-3,2021-07-07 00-22-32
+6,0.0,A3,,53,0.0,0.0,[33],[33],[33],[33],1,1,early_position,False,True,False,6,cheeta,5,21-3,2021-07-07 00-27-19
+14,-0.5,AK,C,12,0.0,-0.5,[3],[3],[3],[3],1,1,early_position,True,False,False,6,cheeta,5,21-3,2021-07-07 00-39-46
+2,0.0,72,,165,0.0,0.0,[20],[20],[20],[20],1,1,early_position,True,False,False,6,cheeta,6,21-3,2021-07-07 01-05-39
+8,0.0,Q2,N/A,105,0.0,0.0,[48],[48],[48],[48],1,1,early_position,True,False,False,6,cheeta,7,21-3,2021-07-07 01-18-10

@@ -53,22 +53,25 @@ def download_table_card(game_position, xth_card):
 
 def read_my_cards(game_position, my_seat):
     """
-    Example: returns [('Eight', 'Spade') , ('Ace', 'Club')]
-    my_1th_card, my_2th_card = my_cards
+    Example: returns ['8s' , 'Ac'] #💊
+    my_1th_card, my_2th_card = board_cards
     """
-    my_cards = []
+    board_cards = []
     for xth_card in [1,2]:    
         query_image = download_my_card(game_position, my_seat , xth_card)
         value_image, suit_image = match_card.pre_process_query_image(query_image, False)
         #cv2.imwrite('%s screenshot value_image.png' %xth_card, value_image)
         #cv2.imwrite('%s screenshot suit_image.png' %xth_card, suit_image)
         result = match_card.match_floating_card(value_image, suit_image, False)
-        my_cards.append(result[:2])
-    return my_cards
+        if 'Unknown' in result[:2]: #💊
+            board_cards.append('Unknown') #💊
+        else: #💊
+            board_cards.append(f'{result[0]}{result[1]}') #💊
+    return board_cards
 
 def read_flop_cards(game_position):
     """
-    Example: returns [('Unknown', 'Spade') , ('Queen', 'Club') , ('Two', 'Club')]
+    Example: returns ['Unknown', 'Qc', 'Tc'] #💊
     table_1th_card, table_2th_card, table_3th_card = flop_cards
     """
     flop_cards = []
@@ -76,26 +79,37 @@ def read_flop_cards(game_position):
         query_image = download_table_card(game_position, xth_card)
         value_image, suit_image = match_card.pre_process_query_image(query_image, True)
         result = match_card.match_floating_card(value_image, suit_image, True)
-        flop_cards.append(result[:2])
+        if 'Unknown' in result[:2]: #💊
+            flop_cards.append('Unknown') #💊
+        else: #💊
+            flop_cards.append(f'{result[0]}{result[1]}') #💊
     return flop_cards
 
 def read_turn_card(game_position):
     """
-    Example: returns ('Four', 'Spade') 
+    Example: returns '4s' #💊 
     table_4th_card = turn_card
     """
     query_image = download_table_card(game_position, 4)
     value_image, suit_image = match_card.pre_process_query_image(query_image, True)
     turn_card = match_card.match_floating_card(value_image, suit_image, True)
-    return turn_card[:2]
+    if 'Unknown' in turn_card[:2]: #💊
+        turn_card = 'Unknown' #💊
+    else: #💊
+        turn_card = f'{turn_card[0]}{turn_card[1]}' #💊
+    return turn_card
 
 def read_river_card(game_position):
     """
-    Example: returns ('Four', 'Spade') 
+    Example: returns '4s' #💊
     table_5th_card = river_card
     """
     query_image = download_table_card(game_position, 5)
     value_image, suit_image = match_card.pre_process_query_image(query_image, True)
     river_card = match_card.match_floating_card(value_image, suit_image, True)
-    return river_card[:2]
+    if 'Unknown' in river_card[:2]: #💊
+        river_card = 'Unknown' #💊
+    else: #💊
+        river_card = f'{river_card[0]}{river_card[1]}' #💊
+    return river_card
 

@@ -17,7 +17,7 @@ def decide():
         shout("*Deciding on river*", color = 'light_cyan')
     else :
         shout("*Deciding on unknown*", color = 'light_cyan')
-    
+
     if c.just_do_check_fold == True :
         return "check_fold"
 

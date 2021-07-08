@@ -287,10 +287,10 @@ if __name__ == '__main__':
     game_position = find_game_reference_point_for_this_module()
 
     #test_find_game_position()
-    #test_read_cards(my_seat = 1, show_image = False)
+    test_read_cards(my_seat = 1, show_image = False)
     #test_ocr(show_images = True)
     #test_pixel_matching()
-    test_click_coordinates()
+    #test_click_coordinates()
 
     #pyautogui.click(game_position[0] + 455,game_position[1] + 408)
 

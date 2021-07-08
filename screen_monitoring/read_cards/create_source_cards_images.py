@@ -61,8 +61,7 @@ def crop_raw_card_image(create_table_cards = True):
     #global table_card_region, my_1th_card_region
     #load_variables()
 
-    for name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King',
-                 'Spade','Heart','Club','Diamond']: 
+    for name in ['A','2','3','4','5','6','7','8','9','T','J','Q','K','s','h','c','d']: #💊
 
         game_position = find_game_reference_point_from_image_file(name, create_table_cards)
         if game_position == None:
@@ -110,17 +109,16 @@ def create_source_cards(create_table_cards = True ):
     # MY_CARD_VALUE_COORDINATE, MY_CARD_SUIT_COORDINATE, ZOOM
     #load_variables()
 
-    for name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King',
-                 'Spade','Heart','Club','Diamond'] :
+    for name in ['A','2','3','4','5','6','7','8','9','T','J','Q','K','s','h','c','d']: #💊
         if create_table_cards == True:
             image = cv2.imread("Raw Images/First Table Cards/%s.png" %name)
-            if name not in ('Spade','Heart','Club','Diamond'):
+            if name not in ('s','h','c','d'): #💊
                 y0, y1, x0, x1 = TABLE_CARD_VALUE_COORDINATE
             else :
                 y0, y1, x0, x1 = TABLE_CARD_SUIT_COORDINATE
         elif create_table_cards == False :
             image = cv2.imread("Raw Images/My First Cards From First Seat/%s.png" %name)
-            if name not in ('Spade','Heart','Club','Diamond'):
+            if name not in ('s','h','c','d'): #💊
                 y0, y1, x0, x1 = MY_CARD_VALUE_COORDINATE
             else :
                 y0, y1, x0, x1 = MY_CARD_SUIT_COORDINATE

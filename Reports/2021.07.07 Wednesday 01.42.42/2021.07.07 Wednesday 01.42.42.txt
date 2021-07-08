@@ -1,0 +1,276 @@
+2021/07/07 01:42:43.11: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/07 01:42:43.56: my bank ocr string at seat 1 is: 63
+2021/07/07 01:42:43.57: My bank is:63
+2021/07/07 01:42:43.57: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/07 01:42:43.60: My cards are founded
+2021/07/07 01:42:45.45: Reseting table information
+2021/07/07 01:42:45.47: * bot_status == 'I_AM_PLAYING' *
+2021/07/07 01:42:45.51: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/07 01:42:45.53: My cards are founded
+2021/07/07 01:42:45.54: -------- New Hand Started --------
+2021/07/07 01:42:45.68: Dealer is on seat 4
+2021/07/07 01:42:47.18: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/07 01:42:47.28: TEST. playing_seats dictionary is: {1: True, 2: False, 3: False, 4: False, 5: False, 6: True}
+2021/07/07 01:42:47.42: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/07 01:42:49.74: My cards are: ('Seven', 'Club'), ('Two', 'Heart')
+2021/07/07 01:42:50.03: my bank ocr string at seat 1 is: 63
+2021/07/07 01:42:50.04: My bank is:63
+2021/07/07 01:42:50.33: my bank ocr string at seat 1 is: 63
+2021/07/07 01:42:50.34: my name ocr string at seat 1 is: 
+2021/07/07 01:42:50.63: other players bank ocr string at seat 2 is: Q
+2021/07/07 01:42:50.63: ocr_other_players_bank is not digit and set to None at seat 2
+2021/07/07 01:42:50.64: other name ocr string at seat 2 is: 
+2021/07/07 01:42:50.96: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:42:50.97: other name ocr string at seat 4 is: 
+2021/07/07 01:42:51.27: other players bank ocr string at seat 5 is: 39.5
+2021/07/07 01:42:51.28: other name ocr string at seat 5 is: 
+2021/07/07 01:42:51.55: other players bank ocr string at seat 6 is: 120
+2021/07/07 01:42:51.55: other name ocr string at seat 6 is: 
+2021/07/07 01:42:51.56: TEST. Players Bank dictionary is: {1: 63, 2: None, 3: None, 4: 96.5, 5: 39.5, 6: 120}
+2021/07/07 01:42:51.56: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/07 01:42:51.56: Waiting for my turn at preflop_stage...
+2021/07/07 01:42:51.62: Waiting for my turn at flop_stage...
+2021/07/07 01:42:51.64: operator should play the hand is suppose to get activated soon
+2021/07/07 01:42:55.90: Flop cards are: ('Six', 'Spade'), ('Nine', 'Club'), ('Ten', 'Spade')
+2021/07/07 01:42:58.95: It is my turn now
+2021/07/07 01:42:58.95: TESTING. flop_betting_round is:0
+2021/07/07 01:42:59.16: shouting from read_and_save_bets(), bets_cache is: {'Flop 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:42:59.44: my bank ocr string at seat 1 is: 63
+2021/07/07 01:42:59.95: other players bank ocr string at seat 2 is: Q
+2021/07/07 01:42:59.96: ocr_other_players_bank is not digit and set to None at seat 2
+2021/07/07 01:43:00.43: other players bank ocr string at seat 3 is: D
+2021/07/07 01:43:00.43: ocr_other_players_bank is not digit and set to None at seat 3
+2021/07/07 01:43:00.75: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:43:01.05: other players bank ocr string at seat 5 is: 39.5
+2021/07/07 01:43:01.36: other players bank ocr string at seat 6 is: 120
+2021/07/07 01:43:01.36: *Deciding on flop*
+2021/07/07 01:43:01.36: decision is: check_fold
+2021/07/07 01:43:01.50: check button is clicked
+2021/07/07 01:43:02.94: Waiting for my turn at turn_stage...
+2021/07/07 01:43:03.83: Turn card is: ('Two', 'Club')
+2021/07/07 01:43:25.65: It is my turn now
+2021/07/07 01:43:25.65: TESTING. turn_betting_round is:0
+2021/07/07 01:43:25.85: shouting from read_and_save_bets(), bets_cache is: {'Flop 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}, 'Turn 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:43:26.11: my bank ocr string at seat 1 is: 63
+2021/07/07 01:43:26.41: other players bank ocr string at seat 2 is: Q
+2021/07/07 01:43:26.41: ocr_other_players_bank is not digit and set to None at seat 2
+2021/07/07 01:43:26.77: other players bank ocr string at seat 3 is: 33
+2021/07/07 01:43:27.07: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:43:27.38: other players bank ocr string at seat 5 is: 39.5
+2021/07/07 01:43:27.74: other players bank ocr string at seat 6 is: 120
+2021/07/07 01:43:27.75: *Deciding on turn*
+2021/07/07 01:43:27.84: decision is: check_fold
+2021/07/07 01:43:27.99: check button is clicked
+2021/07/07 01:43:30.27: Waiting for my turn at river_stage...
+2021/07/07 01:43:30.93: River card is: ('Five', 'Diamond')
+2021/07/07 01:43:41.43: It is my turn now
+2021/07/07 01:43:41.43: TESTING. river_betting_round is:0
+2021/07/07 01:43:41.63: shouting from read_and_save_bets(), bets_cache is: {'Flop 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}, 'Turn 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}, 'River 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:43:41.86: my bank ocr string at seat 1 is: 63
+2021/07/07 01:43:42.18: other players bank ocr string at seat 2 is: Q
+2021/07/07 01:43:42.18: ocr_other_players_bank is not digit and set to None at seat 2
+2021/07/07 01:43:42.50: other players bank ocr string at seat 3 is: 33
+2021/07/07 01:43:42.84: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:43:43.34: other players bank ocr string at seat 5 is: 39.5
+2021/07/07 01:43:43.92: other players bank ocr string at seat 6 is: 120
+2021/07/07 01:43:43.92: *Deciding on river*
+2021/07/07 01:43:43.92: decision is: check_fold
+2021/07/07 01:43:44.06: check button is clicked
+2021/07/07 01:43:45.83: -------- Hand ended --------
+2021/07/07 01:43:46.40: Seat 6 won the game!
+2021/07/07 01:43:50.12: Reseting table information
+2021/07/07 01:43:50.13: just_do_check_fold is reset to False
+2021/07/07 01:43:50.13: * bot_status == 'I_AM_PLAYING' *
+2021/07/07 01:43:50.13: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/07 01:43:50.77: My cards are founded
+2021/07/07 01:43:50.78: -------- New Hand Started --------
+2021/07/07 01:43:50.98: Dealer is on seat 6
+2021/07/07 01:43:51.81: Small blind is on seat 1
+2021/07/07 01:43:51.81: Big blind is on seat 2
+2021/07/07 01:43:51.91: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: True, 6: True}
+2021/07/07 01:43:51.95: doing ocr on my seat to check if it is first_round_at_preflop or not
+2021/07/07 01:43:54.10: My cards are: ('Seven', 'Diamond'), ('Seven', 'Club')
+2021/07/07 01:43:54.37: my bank ocr string at seat 1 is: 62.5
+2021/07/07 01:43:54.37: My bank is:62.5
+2021/07/07 01:43:54.85: my bank ocr string at seat 1 is: 62.5
+2021/07/07 01:43:54.86: my name ocr string at seat 1 is: 
+2021/07/07 01:43:55.30: other players bank ocr string at seat 2 is: 39
+2021/07/07 01:43:55.30: other name ocr string at seat 2 is: 
+2021/07/07 01:43:56.10: other players bank ocr string at seat 3 is: 32
+2021/07/07 01:43:56.12: other name ocr string at seat 3 is: 
+2021/07/07 01:43:57.43: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:43:57.43: other name ocr string at seat 4 is: 
+2021/07/07 01:43:57.93: other players bank ocr string at seat 5 is: 38.5
+2021/07/07 01:43:57.94: other name ocr string at seat 5 is: 
+2021/07/07 01:43:59.95: other players bank ocr string at seat 6 is: 12
+2021/07/07 01:43:59.96: other name ocr string at seat 6 is: 
+2021/07/07 01:44:00.00: TEST. Players Bank dictionary is: {1: 62.5, 2: 40, 3: 33, 4: 96.5, 5: 39.5, 6: 12}
+2021/07/07 01:44:00.05: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/07 01:44:00.07: Playing Music: group EFG
+2021/07/07 01:44:00.09: Waiting for my turn at preflop_stage...
+2021/07/07 01:44:00.17: It is my turn now
+2021/07/07 01:44:00.17: TESTING. preflop_betting_round is:0
+2021/07/07 01:44:00.64: bet ocr string at seat 1 is: 0.5
+2021/07/07 01:44:01.14: bet ocr string at seat 2 is: 1
+2021/07/07 01:44:01.61: bet ocr string at seat 3 is: 1
+2021/07/07 01:44:02.06: bet ocr string at seat 5 is: 1
+2021/07/07 01:44:02.09: Seat1 Call: $0.5
+2021/07/07 01:44:02.10: Seat2 Call: $1
+2021/07/07 01:44:02.10: Seat3 Call: $1
+2021/07/07 01:44:02.10: Seat5 Call: $1
+2021/07/07 01:44:02.11: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 0.5, 2: 1, 3: 1, 4: None, 5: 1, 6: None}}
+2021/07/07 01:44:02.38: my bank ocr string at seat 1 is: 62.5
+2021/07/07 01:44:02.71: other players bank ocr string at seat 2 is: 39
+2021/07/07 01:44:03.11: other players bank ocr string at seat 3 is: 32
+2021/07/07 01:44:03.52: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:44:03.94: other players bank ocr string at seat 5 is: 38.5
+2021/07/07 01:44:04.25: other players bank ocr string at seat 6 is: 122
+2021/07/07 01:44:04.25: *Deciding on preflop*
+2021/07/07 01:44:04.26: decision is: call
+2021/07/07 01:44:04.48: call button is clicked
+2021/07/07 01:44:20.11: It is my turn now
+2021/07/07 01:44:20.11: TESTING. preflop_betting_round is:1
+2021/07/07 01:44:20.56: bet ocr string at seat 1 is: 1
+2021/07/07 01:44:21.43: bet ocr string at seat 2 is: 1
+2021/07/07 01:44:21.59: Seat1 Call: $1
+2021/07/07 01:44:21.67: Seat2 Call: $1
+2021/07/07 01:44:21.68: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 0.5, 2: 1, 3: 1, 4: None, 5: 1, 6: None}, 'Pre_Flop 1': {1: 1, 2: 1, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:44:22.20: my bank ocr string at seat 1 is: 62
+2021/07/07 01:44:22.51: other players bank ocr string at seat 2 is: 39
+2021/07/07 01:44:22.81: other players bank ocr string at seat 3 is: 32
+2021/07/07 01:44:23.22: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:44:23.67: other players bank ocr string at seat 5 is: 38.5
+2021/07/07 01:44:24.12: other players bank ocr string at seat 6 is: 122
+2021/07/07 01:44:24.12: *Deciding on preflop*
+2021/07/07 01:44:24.12: decision is: call
+2021/07/07 01:44:24.15: -------
+2021/07/07 01:44:24.16: fix_game_disruption() <-- button call is not visible is running....
+2021/07/07 01:44:26.18: internet is connected
+2021/07/07 01:44:26.64: Game region refounded after fix_game_disruption()
+2021/07/07 01:44:26.70: my name ocr string at seat 1 is: 
+2021/07/07 01:44:28.12: internet is connected
+2021/07/07 01:44:28.13: I am In not by OCR
+2021/07/07 01:44:28.13: -------
+2021/07/07 01:44:28.19: just_do_check_fold is set to True: There is problem on clicking on button call
+2021/07/07 01:44:29.64: Waiting for my turn at flop_stage...
+2021/07/07 01:44:29.65: operator should play the hand is suppose to get activated soon
+2021/07/07 01:44:31.61: Flop cards are: ('Jack', 'Club'), ('Ten', 'Club'), ('Three', 'Diamond')
+2021/07/07 01:44:31.67: It is my turn now
+2021/07/07 01:44:31.67: TESTING. flop_betting_round is:0
+2021/07/07 01:44:31.87: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 0.5, 2: 1, 3: 1, 4: None, 5: 1, 6: None}, 'Pre_Flop 1': {1: 1, 2: 1, 3: None, 4: None, 5: None, 6: None}, 'Flop 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:44:32.18: my bank ocr string at seat 1 is: 62
+2021/07/07 01:44:32.50: other players bank ocr string at seat 2 is: 39
+2021/07/07 01:44:32.78: other players bank ocr string at seat 3 is: 32
+2021/07/07 01:44:33.12: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:44:33.50: other players bank ocr string at seat 5 is: 38.5
+2021/07/07 01:44:33.90: other players bank ocr string at seat 6 is: 122
+2021/07/07 01:44:33.90: *Deciding on flop*
+2021/07/07 01:44:33.90: decision is: check_fold
+2021/07/07 01:44:34.04: check button is clicked
+2021/07/07 01:44:44.50: It is my turn now
+2021/07/07 01:44:44.51: TESTING. flop_betting_round is:1
+2021/07/07 01:44:44.70: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 0.5, 2: 1, 3: 1, 4: None, 5: 1, 6: None}, 'Pre_Flop 1': {1: 1, 2: 1, 3: None, 4: None, 5: None, 6: None}, 'Flop 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}, 'Flop 1': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:44:44.95: my bank ocr string at seat 1 is: 62
+2021/07/07 01:44:45.27: other players bank ocr string at seat 2 is: 39
+2021/07/07 01:44:45.62: other players bank ocr string at seat 3 is: 32
+2021/07/07 01:44:46.06: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:44:46.35: other players bank ocr string at seat 5 is: 38.5
+2021/07/07 01:44:46.64: other players bank ocr string at seat 6 is: 122
+2021/07/07 01:44:46.64: *Deciding on flop*
+2021/07/07 01:44:46.64: decision is: check_fold
+2021/07/07 01:44:46.77: check button is clicked
+2021/07/07 01:44:48.21: Waiting for my turn at turn_stage...
+2021/07/07 01:44:49.09: Turn card is: ('King', 'Spade')
+2021/07/07 01:44:53.06: It is my turn now
+2021/07/07 01:44:53.07: TESTING. turn_betting_round is:0
+2021/07/07 01:44:53.27: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: 0.5, 2: 1, 3: 1, 4: None, 5: 1, 6: None}, 'Pre_Flop 1': {1: 1, 2: 1, 3: None, 4: None, 5: None, 6: None}, 'Flop 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}, 'Flop 1': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}, 'Turn 0': {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}}
+2021/07/07 01:44:53.62: my bank ocr string at seat 1 is: 62
+2021/07/07 01:44:54.01: other players bank ocr string at seat 2 is: 39
+2021/07/07 01:44:54.30: other players bank ocr string at seat 3 is: 32
+2021/07/07 01:44:54.61: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:44:58.05: other players bank ocr string at seat 5 is: 38.5
+2021/07/07 01:44:58.45: other players bank ocr string at seat 6 is: 122
+2021/07/07 01:44:58.45: *Deciding on turn*
+2021/07/07 01:44:58.45: decision is: check_fold
+2021/07/07 01:44:58.61: check button is clicked
+2021/07/07 01:45:00.02: Waiting for my turn at river_stage...
+2021/07/07 01:45:00.80: River card is: ('Five', 'Heart')
+2021/07/07 01:45:04.64: -------- Hand ended --------
+2021/07/07 01:45:04.71: I won the game!
+2021/07/07 01:45:08.49: Reseting table information
+2021/07/07 01:45:08.49: just_do_check_fold is reset to False
+2021/07/07 01:45:08.51: * bot_status == 'I_AM_PLAYING' *
+2021/07/07 01:45:08.52: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/07 01:45:08.89: My cards are founded
+2021/07/07 01:45:08.89: -------- New Hand Started --------
+2021/07/07 01:45:08.93: Dealer is on seat 1
+2021/07/07 01:45:09.61: -------
+2021/07/07 01:45:09.61: fix_game_disruption() <-- ocr_bet is not digit at seat 2 is running....
+2021/07/07 01:45:11.16: internet is connected
+2021/07/07 01:45:11.64: Game region refounded after fix_game_disruption()
+2021/07/07 01:45:11.70: my name ocr string at seat 1 is: 
+2021/07/07 01:45:13.32: internet is connected
+2021/07/07 01:45:13.32: I am In not by OCR
+2021/07/07 01:45:13.33: -------
+2021/07/07 01:45:14.64: Small blind is on seat 2
+2021/07/07 01:45:14.64: Big blind is on seat 3
+2021/07/07 01:45:14.76: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: False, 5: True, 6: True}
+2021/07/07 01:45:14.79: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/07 01:45:17.45: My cards are: ('Nine', 'Heart'), ('Ace', 'Spade')
+2021/07/07 01:45:17.67: my bank ocr string at seat 1 is: 66
+2021/07/07 01:45:17.68: My bank is:66
+2021/07/07 01:45:17.91: my bank ocr string at seat 1 is: 66
+2021/07/07 01:45:17.91: my name ocr string at seat 1 is: 
+2021/07/07 01:45:18.31: other players bank ocr string at seat 2 is: 38.5
+2021/07/07 01:45:18.31: other name ocr string at seat 2 is: 
+2021/07/07 01:45:19.17: other players bank ocr string at seat 3 is: 31
+2021/07/07 01:45:19.17: other name ocr string at seat 3 is: 
+2021/07/07 01:45:19.75: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:45:19.76: other name ocr string at seat 4 is: 
+2021/07/07 01:45:20.13: other players bank ocr string at seat 5 is: 36.5
+2021/07/07 01:45:20.13: other name ocr string at seat 5 is: 
+2021/07/07 01:45:20.69: other players bank ocr string at seat 6 is: 120
+2021/07/07 01:45:20.69: other name ocr string at seat 6 is: 
+2021/07/07 01:45:20.93: TEST. Players Bank dictionary is: {1: 66, 2: 39.0, 3: 32, 4: 96.5, 5: 38.5, 6: 403}
+2021/07/07 01:45:20.94: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/07 01:45:20.94: Waiting for my turn at preflop_stage...
+2021/07/07 01:45:21.00: It is my turn now
+2021/07/07 01:45:21.00: TESTING. preflop_betting_round is:0
+2021/07/07 01:45:21.45: bet ocr string at seat 2 is: 0.5
+2021/07/07 01:45:21.73: bet ocr string at seat 3 is: 1
+2021/07/07 01:45:22.00: bet ocr string at seat 5 is: 2
+2021/07/07 01:45:22.24: bet ocr string at seat 6 is: 283
+2021/07/07 01:45:22.24: Seat2 Call: $0.5
+2021/07/07 01:45:22.24: Seat3 Call: $1
+2021/07/07 01:45:22.24: Seat5 Raise: $2
+2021/07/07 01:45:22.25: Seat6 Raise: $283
+2021/07/07 01:45:22.26: shouting from read_and_save_bets(), bets_cache is: {'Pre_Flop 0': {1: None, 2: 0.5, 3: 1, 4: None, 5: 2, 6: 283}}
+2021/07/07 01:45:22.49: my bank ocr string at seat 1 is: 66
+2021/07/07 01:45:22.79: other players bank ocr string at seat 2 is: 38.5
+2021/07/07 01:45:23.11: other players bank ocr string at seat 3 is: 31
+2021/07/07 01:45:23.51: other players bank ocr string at seat 4 is: 96.5
+2021/07/07 01:45:24.06: other players bank ocr string at seat 5 is: 36.5
+2021/07/07 01:45:24.41: other players bank ocr string at seat 6 is: 120
+2021/07/07 01:45:24.42: *Deciding on preflop*
+2021/07/07 01:45:24.43: decision is: check_fold
+2021/07/07 01:45:24.68: fold button is clicked
+2021/07/07 01:45:30.79: Waiting for my turn at flop_stage...
+2021/07/07 01:45:33.14: Flop cards are: ('Six', 'Spade'), ('Six', 'Heart'), ('Seven', 'Heart')
+2021/07/07 01:45:52.68: Waiting for my turn at turn_stage...
+2021/07/07 01:45:53.39: Turn card is: ('Eight', 'Heart')
+2021/07/07 01:45:56.90: Waiting for my turn at river_stage...
+2021/07/07 01:45:57.96: River card is: ('Five', 'Spade')
+2021/07/07 01:46:01.34: -------- Hand ended --------
+2021/07/07 01:46:01.91: Seat 6 won the game!
+2021/07/07 01:46:05.15: Reseting table information
+2021/07/07 01:46:05.15: just_do_check_fold is reset to False
+2021/07/07 01:46:05.16: * bot_status == 'I_AM_PLAYING' *
+2021/07/07 01:46:05.16: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/07 01:46:05.68: My cards are founded
+2021/07/07 01:46:05.68: -------- New Hand Started --------
+2021/07/07 01:46:05.75: Dealer is on seat 2
+2021/07/07 01:46:06.78: Small blind is on seat 3
+2021/07/07 01:46:06.78: Big blind is on seat 4
+2021/07/07 01:46:06.88: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: True, 6: True}
+2021/07/07 01:46:06.92: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/07 01:46:08.74: My cards are: ('Queen', 'Heart'), ('Ace', 'Club')
