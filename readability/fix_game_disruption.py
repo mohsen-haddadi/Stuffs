@@ -10,10 +10,10 @@ These functions are repetitive in this module to avoid nested imports:
     1. click()  2. hold_click  3. click_on_button()  
     4. hold_click_on_button()  5. ocr_my_name()
 """
-import socket, wmi, time
+import socket, wmi, time, os
 from datetime import datetime
 
-import pyautogui
+import pyautogui, pygame
 
 import screen_monitoring.pixel_matching.pixel_matching as pm
 import screen_monitoring.find_game_position.find_game_position as find_game_position
@@ -24,8 +24,31 @@ import screen_monitoring.click_coordinates.click_coordinates as click_coordinate
 import screen_monitoring.ocr.ocr as ocr
 import configs as c
 from iprint import shout
+# to avoid unknown import error, sound function is copied here from main_assist.py
+#from main_assist import sound # it causes error
 
+def sound(string_name, *next_sound) :
+    try :
+        pygame.mixer.init()
+        pygame.mixer.music.load( os.path.join('Sounds' ,
+                                              "%s.mp3" %string_name ) )
+        # only one sound can be queued
+        for queue_sound in next_sound:
+            pygame.mixer.music.queue( os.path.join('Sounds' ,
+                                                  "%s.mp3" %queue_sound ) )
+        return pygame.mixer.music.play()
+    except :
+        pass
 
+def warning_sound_30_min():
+    """
+    'Restart program': 21 s
+    'restart warning': 7 s
+    """
+    start = time.time()
+    for _ in range(60):
+        sound('Restart program', 'restart warning')
+        time.sleep(30)
 
 def click(name):
     x, y = click_coordinates.click_coordinates(c.game_position, name)
@@ -165,6 +188,8 @@ def check_i_am_in_or_out(): #💊
 
     if pm.button_pixel(c.game_position, 'i_am_back') == True :
         click('i_am_back')
+    if pm.button_pixel(c.game_position, 'sit_out'):
+        click('sit_out')
     if ocr_my_name() == c.MY_PROFILE_NAME:
         shout("I am In", color = 'yellow')
         return ("In")
@@ -182,7 +207,7 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     #global game_position , my_seat_number , MY_PROFILE_NAME , bot_status , just_do_check_fold
 
     shout( 7*"-" , color = 'yellow')
-    screenshot_error('fix_game_disruption: %s' %String) # FOR DEBUGING. delete this line later. 
+    screenshot_error('fix game disruption %s' %String) # FOR DEBUGING. delete this line later. 
     if String == None :
         shout("fix_game_disruption() is running....", color = 'yellow')
     elif type(String) == str :
@@ -204,10 +229,17 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
     if c.game_position != None :
         c.game_position = (int(c.game_position[0]),int(c.game_position[1])) 
     else:
-        c.game_position = find_game_position.find_game_reference_point()
+        try:
+            c.game_position = find_game_position.find_game_reference_point()
+        except:
+            shout('can not find game region on screen')
+            shout('Restart program ,Exception will be raised in 30 minutes', color = 'on_yellow')
+            warning_sound_30_min()
+            raise Exception("can not find game region on screen")
     if c.game_position != None :
         shout("Game region refounded after fix_game_disruption()"
               , color = 'yellow')
+
     
     if c.bot_status != 'OBSERVING':
         if pm.button_pixel(c.game_position, 'i_am_back'):
@@ -233,7 +265,8 @@ def fix_game_disruption(String = None): #if find_game_reference_point() == None 
 
 def set_just_do_check_fold_to_true(string = None) :
     #global just_do_check_fold
-    screenshot_error('just do check fold: %s' %string) # FOR DEBUGING. delete this line later. 
+    screenshot_error('just do check fold %s' %string) # FOR DEBUGING. delete this line later. 
+    sound('check fold is set true', 'Warning Siren')
     c.just_do_check_fold = True
     if string == None :
         shout("just_do_check_fold is set to True", color = 'on_yellow')
@@ -243,7 +276,7 @@ def set_just_do_check_fold_to_true(string = None) :
 def reset_just_do_check_fold_to_false() :
     #global just_do_check_fold
     if c.just_do_check_fold == True :
-        shout("just do check fold is reset to False")
+        shout("just_do_check_fold is reset to False")
         c.just_do_check_fold = False
  
 def screenshot_error(type_of_error): #type_of_error in string

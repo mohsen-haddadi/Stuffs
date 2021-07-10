@@ -20,8 +20,10 @@ def find_game_reference_point_for_this_module():
     print('searching for game region on screen...')
     reference_images = [
         'screen_monitoring/find_game_position/reference image.png',
-        'screen_monitoring/find_game_position/reference image 2.png', 
-        'screen_monitoring/find_game_position/reference image 3.png'
+        'screen_monitoring/find_game_position/reference image 2.png',
+        'screen_monitoring/find_game_position/reference image 3.png', 
+        'screen_monitoring/find_game_position/reference image 4.png',
+        'screen_monitoring/find_game_position/reference image 5.png'
         ]
     for reference_image in reference_images:
         game_position = pyautogui.locateOnScreen(reference_image)
@@ -122,7 +124,11 @@ def test_ocr(show_images = False):
 
     def show_bets_images(game_position, seat):  
         pil_image = ocr.download_bet_image(game_position, seat)
-        image = ocr.pre_process_ocr_image(pil_image)
+        if seat == 6:
+            thresh_level = 50
+        else:
+            thresh_level = None
+        image = ocr.pre_process_ocr_image(pil_image, thresh_level = thresh_level)
         cv2_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
         cv2.imshow('bet on seat %s:%s'%(seat, bet), cv2_image)
         cv2.waitKey(0)
@@ -141,7 +147,7 @@ def test_ocr(show_images = False):
 
     def show_my_bank_images(game_position, seat):  
         pil_image = ocr.download_my_bank_image(game_position, seat)
-        image = ocr.pre_process_ocr_image(pil_image)
+        image = ocr.pre_process_ocr_image(pil_image, thresh_level = 170)
         cv2_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
         cv2.imshow('my_bank on seat %s:%s'%(seat, my_bank), cv2_image)
         cv2.waitKey(0)
@@ -150,7 +156,7 @@ def test_ocr(show_images = False):
 
     def show_other_names_images(game_position, seat):  
         pil_image = ocr.download_other_names_image(game_position, seat)
-        image = ocr.pre_process_ocr_image(pil_image)
+        image = ocr.pre_process_ocr_image(pil_image, thresh_level = 170)
         cv2_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
         cv2.imshow('other_names on seat %s:%s'%(seat, other_names), cv2_image)
         cv2.waitKey(0)
@@ -177,6 +183,7 @@ def test_ocr(show_images = False):
         print('bet on seat %s:%s'%(seat, bet) )
         if show_images == True :
             show_bets_images(game_position, seat)
+
     for seat in range(2, TOTAL_SEATS+1):
         other_players_bank = ocr.ocr_other_players_bank_to_string(game_position,
                                                               seat) 
@@ -188,6 +195,7 @@ def test_ocr(show_images = False):
         print('my_bank on seat %s:%s'%(seat, my_bank) )
         if show_images == True :
             show_my_bank_images(game_position, seat)
+
 #    for seat in range(1, TOTAL_SEATS+1):
 #        other_names = ocr.ocr_other_names_to_string(game_position, seat) 
 #        print('other_names on seat %s:%s'%(seat, other_names) )
@@ -288,10 +296,10 @@ if __name__ == '__main__':
     game_position = find_game_reference_point_for_this_module()
 
     #test_find_game_position()
-    test_read_cards(my_seat = 1, show_image = False)
-    #test_ocr(show_images = True)
-    #test_pixel_matching()
+    #test_read_cards(my_seat = 1, show_image = False)
+    #test_ocr(show_images = False)
+    test_pixel_matching()
     #test_click_coordinates()
 
-    #pyautogui.click(game_position[0] + 455,game_position[1] + 408)
+    #pyautogui.click(game_position[0]-139, game_position[1]+136)
 

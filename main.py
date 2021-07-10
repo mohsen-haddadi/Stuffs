@@ -30,6 +30,7 @@ from main_assist import *
 
 def bot_is_on_main_menu():
     shout("* bot_status == 'ON_MAIN_MENU' *", color = 'on_green')
+    sound('Restart program', 'restart warning')
     raise Exception("5.This can not happen IN FUTURE because main "\
                     "menu automation is built " \
                     "( fix_game_disruption --> Sit_In --> "\
@@ -54,7 +55,7 @@ def bot_is_waiting_till_next_hand():
     beside the bot.
     """
     shout("* bot_status == 'OPERATOR_SHOULD_PLAY_THE_HAND' *",color ='on_green')
-    sound('Play yourself')
+    sound('OPERATOR MUST PLAY THIS HAND', 'Warning Siren')
     shout('OPERATOR MUST PLAY THIS HAND!', color = 'rainbow', save = False)
     wait_hand_ends(waiting_minutes = 5)  
     c.bot_status = 'WAITING_FOR_FIRST_HAND'
@@ -91,6 +92,8 @@ def bot_is_playing():
         wait_for_sb_b_d_buttons(waiting_seconds = 5) 
         if c.bot_status != 'I_AM_PLAYING':
             break
+        # sleep till dealer spread the cards to avoid pixel matching errors
+        time.sleep(5)
         determine_small_big_dealer_seats()
         determine_playing_seats()
         # In case bot is resumed:
@@ -119,9 +122,9 @@ def play_a_hand():
     while True:
         if shifted_to_next_stage():
 
-            if Flop_Deside() and pm.player_cards_pixel(c.game_position, c.my_seat_number): #❌⛏❌
-                shout('operator should play the hand is suppose to get activated soon') #❌⛏❌
-                sound('Schiller Nachtflug') #❌⛏❌
+#            if Flop_Deside() and pm.player_cards_pixel(c.game_position, c.my_seat_number): #❌⛏❌
+#                shout('operator should play the hand is suppose to get activated soon') #❌⛏❌
+#                sound('operator should play the hand is suppose to get activated soon', 'Warning Siren') #❌⛏❌
 
             if not stages_are_sequenced():
                 set_just_do_check_fold_to_true('stages are not sequenced')
@@ -136,7 +139,7 @@ def play_a_hand():
             read_banks()
             if c.bot_status == 'I_AM_PLAYING':
                 click_decision() #🌏🌱♣♠♦♥🌱🌏
-        if t1 - time.time() > 5 * 60:
+        if time.time() - t1 > 5 * 60:
             c.bot_status = 'WAITING_FOR_FIRST_HAND'
             fix_game_disruption('This hand last more than 5 minutes')
         c.new_hand = hand_is_ended()

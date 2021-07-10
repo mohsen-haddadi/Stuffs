@@ -1,0 +1,33 @@
+2021/07/09 20:41:29.91: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/09 20:41:30.25: my bank ocr string at seat 1 is: IRT 11.87
+2021/07/09 20:41:30.25: -------
+2021/07/09 20:41:30.26: Screenshot Error: fix game disruption ocr_my_bank is not digit at seat 1
+2021/07/09 20:41:30.84: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/09 20:41:33.80: internet is connected
+2021/07/09 20:41:34.24: Game region refounded after fix_game_disruption()
+2021/07/09 20:41:34.32: my name ocr string at seat 1 is: 
+2021/07/09 20:41:35.56: internet is connected
+2021/07/09 20:41:35.56: I am In not by OCR
+2021/07/09 20:41:35.56: -------
+2021/07/09 20:41:35.89: my bank ocr string at seat 1 is: IRT 11.87
+2021/07/09 20:41:35.89: Screenshot Error: ocr_my_bank is not digit at seat 1
+2021/07/09 20:41:36.46: My bank can't be read
+2021/07/09 20:41:36.46: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/09 20:41:53.30: My cards are founded
+2021/07/09 20:41:55.01: Reseting table information
+2021/07/09 20:41:55.02: * bot_status == 'I_AM_PLAYING' *
+2021/07/09 20:41:55.02: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/09 20:41:55.03: My cards are founded
+2021/07/09 20:41:55.03: -------- New Hand Started --------
+2021/07/09 20:42:02.81: Dealer is on seat 2
+2021/07/09 20:42:02.91: Screenshot Error: just do check fold small or big blind seat have not been set
+2021/07/09 20:42:03.52: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/09 20:42:03.61: TEST. playing_seats dictionary is: {1: False, 2: True, 3: True, 4: False, 5: True, 6: False}
+2021/07/09 20:42:03.62: Screenshot Error: just do check fold program must've started again from middle of the game
+2021/07/09 20:42:04.13: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/09 20:42:05.73: -------
+2021/07/09 20:42:05.73: Screenshot Error: fix game disruption my cards are read Unknown
+2021/07/09 20:42:06.41: fix_game_disruption() <-- my cards are read Unknown is running....
+2021/07/09 20:42:07.63: internet is connected
+2021/07/09 20:43:00.59: can not find game region on screen
+2021/07/09 20:43:00.59: Restart program ,Exception will be raised in 30 minutes

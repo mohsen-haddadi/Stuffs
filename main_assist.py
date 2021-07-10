@@ -128,7 +128,7 @@ def first_round_at_preflop(): #💊
             return False
         else:
             return True     
-
+    return True
 #    if c.my_seat_number in (c.small_blind_seat, c.big_blind_seat):
 #        shout('doing ocr on my seat to check if it is first_round_at_preflop or not')
 #        bet = ocr_bet(c.my_seat_number, printing = False)
@@ -315,11 +315,15 @@ def its_my_turn():
         return True
     return False
 
-def sound(string_name) :
+def sound(string_name, *next_sound) :
     try :
         pygame.mixer.init()
         pygame.mixer.music.load( os.path.join('Sounds' ,
                                               "%s.mp3" %string_name ) )
+        # only one sound can be queued
+        for queue_sound in next_sound:
+            pygame.mixer.music.queue( os.path.join('Sounds' ,
+                                                  "%s.mp3" %queue_sound ) )
         return pygame.mixer.music.play()
     except :
         pass
@@ -329,19 +333,19 @@ def play_sound_for_good_starting_hands() :
         return None # this will stop function and avoids error.
     if c.preflop_stage == True and c.flop_stage == False :
         if group('A'):
-            sound("Du Bist Erwacht")
+            sound('my hole cards is group a', 'john cena the time is now')
             shout("Playing Music: group A", color = 'light_cyan')
         elif group('B'):
-            sound("la isla bonita")
+            sound('my hole cards is group b', 'happy notification')
             shout("Playing Music: group B", color = 'light_cyan')
         elif group('C'):
-            sound("la isla bonita")
+            sound('my hole cards is group c')
             shout("Playing Music: group C", color = 'light_cyan')
         elif group('D'):
-            sound("la isla bonita")
+            sound('my hole cards is group d')
             shout("Playing Music: 'group D'", color = 'light_cyan')
         elif group('EFG'):
-            sound("la isla bonita")
+            sound('my hole cards is group e f g')
             shout("Playing Music: group EFG", color = 'light_cyan')
 
 def click_decision():
@@ -372,7 +376,7 @@ def click_decision():
     else :
         screenshot_error("returned string is not in standard format")
         check_fold()
-    time.sleep(1)
+    time.sleep(2)
 
 def resize_window(window): #💊
     if window == 'chrome':

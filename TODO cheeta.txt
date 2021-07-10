@@ -11,7 +11,7 @@
 11. edit ocr module at screen_monitoring package to something neater and nicer.
 
 (DONE) 12. board cards are not reset, becuase if i print c.board_4th_card at flop_stage it will print former table card. fix it.
-13. when nacht flug song is played BOT STATUS is not 'operator should play hand'. fix it
+13. when "operator should play the hand is suppose to get activated soon" is printed BOT STATUS is not 'operator should play hand'. fix it.
 14. when bot status shifts to 'operator should play hand', add an press ENTER option within 10 seconds 
     if oprator is there or not. if not, bot just do check fold. before pressing ENTER click on the sublime or cmd header using pywin.
 (DONE) 15. use pywin to move your debugger when you run the bot.

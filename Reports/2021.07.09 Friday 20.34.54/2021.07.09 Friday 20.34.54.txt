@@ -1,0 +1,12 @@
+2021/07/09 20:34:55.22: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/09 20:34:55.98: my bank ocr string at seat 1 is: IRT 11-87
+2021/07/09 20:34:55.98: -------
+2021/07/09 20:34:55.98: Screenshot Error: fix game disruption ocr_my_bank is not digit at seat 1
+2021/07/09 20:34:56.64: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/09 20:34:58.39: internet is connected
+2021/07/09 20:34:58.84: Game region refounded after fix_game_disruption()
+2021/07/09 20:34:58.93: my name ocr string at seat 1 is: 
+2021/07/09 20:34:58.95: I am Out
+2021/07/09 20:34:58.95: Searching for a seat to sit in
+2021/07/09 20:34:59.27: exit button is clicked
+2021/07/09 20:35:04.28: -------

@@ -48,7 +48,9 @@ def click_coordinates(game_position, name):
         coordinate = ( game_position[0]+358, game_position[1]-208 )
     elif name == 'i_am_back': #💊
         coordinate = ( game_position[0]+168, game_position[1]+473 )
-        
+    elif name == 'sit_out': #💊
+        coordinate = ( game_position[0]-256, game_position[1]+364 )
+
     return coordinate
 
 

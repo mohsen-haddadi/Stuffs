@@ -8,12 +8,18 @@ from datetime import datetime
 
 import pandas as pd
 
+from iprint import shout
 import configs as c
 import decision_making.playpreflop
 from readability.ocr import ocr_my_bank
 from decision_making.rules_and_info.table_information import \
 early_position, middle_position, late_position
 import decision_making.rules_and_info.starting_hands as hand
+
+def scenario(number):
+    shout(f'scenario number: {number}', color = 'light_cyan')
+    c.scenario_list.append(number)
+
 def is_file_empty(csv_path):
     """ Check if file is empty by confirming if its size is 0 bytes"""
     # https://thispointer.com/python-three-ways-to-check-if-a-file-is-empty/
@@ -101,12 +107,17 @@ def hand_group():
     return 'N/A'
 
 def seat_position():
-    if early_position():
-        return 'early_position'
-    elif middle_position():
-        return 'middle_position'
-    elif late_position():
-        return 'late_position'
+    # if at preflop everyone fold, c.last_player_cards_cache will
+    # not be set, and it will cuase error
+    try:
+        if early_position():
+            return 'early_position'
+        elif middle_position():
+            return 'middle_position'
+        elif late_position():
+            return 'late_position'
+    except:
+        return 'N/A'
 
 def game_time():
     hour = datetime.now().strftime("%H")

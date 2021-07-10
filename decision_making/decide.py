@@ -1,5 +1,8 @@
 #OK
 from decision_making.playpreflop import play_pre_flop
+from decision_making.playflop import play_flop
+from decision_making.playturn import play_turn
+from decision_making.playriver import play_river
 from decision_making.rules_and_info.table_information import Pre_Flop_Deside, Flop_Deside, Turn_Deside, River_Deside
 #from play import * 
 from iprint import shout

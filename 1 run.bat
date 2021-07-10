@@ -1,2 +1,2 @@
 cd F:\Poker
-cmd /K python -m main.py
+cmd /K python main.py

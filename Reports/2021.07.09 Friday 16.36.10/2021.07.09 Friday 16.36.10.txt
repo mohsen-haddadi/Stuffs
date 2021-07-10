@@ -1,0 +1,84 @@
+2021/07/09 16:36:10.85: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/09 16:36:11.17: my bank ocr string at seat 1 is: 29
+2021/07/09 16:36:11.17: My bank is:29
+2021/07/09 16:36:11.17: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/09 16:37:02.63: My cards are founded
+2021/07/09 16:37:04.42: Reseting table information
+2021/07/09 16:37:04.42: * bot_status == 'I_AM_PLAYING' *
+2021/07/09 16:37:04.45: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/09 16:37:04.48: My cards are founded
+2021/07/09 16:37:04.49: -------- New Hand Started --------
+2021/07/09 16:37:09.60: Dealer is on seat 3
+2021/07/09 16:37:10.49: Small blind is on seat 4
+2021/07/09 16:37:10.49: Big blind is on seat 5
+2021/07/09 16:37:10.59: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: True, 6: False}
+2021/07/09 16:37:10.62: Screenshot Error: just do check fold program must've started again from middle of the game
+2021/07/09 16:37:11.20: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/09 16:37:12.56: My hole cards are: 5s, 5d
+2021/07/09 16:37:12.82: my bank ocr string at seat 1 is: E
+2021/07/09 16:37:12.82: -------
+2021/07/09 16:37:12.83: Screenshot Error: fix game disruption ocr_my_bank is not digit at seat 1
+2021/07/09 16:37:13.33: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/09 16:37:14.84: internet is connected
+2021/07/09 16:37:15.44: Game region refounded after fix_game_disruption()
+2021/07/09 16:37:15.68: i_am_back button is clicked
+2021/07/09 16:37:15.75: After fix_game_disruption() --> just_do_check_fold is True.
+2021/07/09 16:37:15.90: i_am_back button is clicked
+2021/07/09 16:37:15.90: my name ocr string at seat 1 is: 
+2021/07/09 16:37:17.14: internet is connected
+2021/07/09 16:37:17.14: I am In not by OCR
+2021/07/09 16:37:17.14: -------
+2021/07/09 16:37:17.42: my bank ocr string at seat 1 is: 29
+2021/07/09 16:37:17.42: My bank is:29
+2021/07/09 16:37:17.70: my bank ocr string at seat 1 is: 29
+2021/07/09 16:37:17.70: my name ocr string at seat 1 is: 
+2021/07/09 16:37:18.01: other players bank ocr string at seat 2 is: 141
+2021/07/09 16:37:18.01: other name ocr string at seat 2 is: 
+2021/07/09 16:37:18.32: other players bank ocr string at seat 3 is: 398
+2021/07/09 16:37:18.32: other name ocr string at seat 3 is: 
+2021/07/09 16:37:18.66: other players bank ocr string at seat 4 is: 10033
+2021/07/09 16:37:18.66: other name ocr string at seat 4 is: 
+2021/07/09 16:37:19.23: other players bank ocr string at seat 5 is: 102.5
+2021/07/09 16:37:19.23: other name ocr string at seat 5 is: 
+2021/07/09 16:37:19.78: other players bank ocr string at seat 6 is: 61
+2021/07/09 16:37:19.78: other name ocr string at seat 6 is: 
+2021/07/09 16:37:19.78: TEST. Players Bank dictionary is: {1: 29, 2: 141, 3: 398, 4: 10033.5, 5: 103.5, 6: 61}
+2021/07/09 16:37:19.79: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/09 16:37:19.81: Playing Music: group EFG
+2021/07/09 16:37:19.81: Waiting for my turn at preflop_stage...
+2021/07/09 16:37:32.15: Waiting for my turn at flop_stage...
+2021/07/09 16:37:35.71: Flop cards are: Jc, Jh, 3d
+2021/07/09 16:37:51.00: -------- Hand ended --------
+2021/07/09 16:37:56.61: Reseting table information
+2021/07/09 16:37:56.61: just_do_check_fold is reset to False
+2021/07/09 16:37:56.61: * bot_status == 'I_AM_PLAYING' *
+2021/07/09 16:37:56.61: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/09 16:37:57.26: My cards are founded
+2021/07/09 16:37:57.26: -------- New Hand Started --------
+2021/07/09 16:38:05.53: Screenshot Error: just do check fold small or big blind seat have not been set
+2021/07/09 16:38:07.10: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/09 16:38:07.24: TEST. playing_seats dictionary is: {1: True, 2: True, 3: True, 4: True, 5: True, 6: True}
+2021/07/09 16:38:07.28: Screenshot Error: just do check fold program must've started again from middle of the game
+2021/07/09 16:38:08.79: just_do_check_fold is set to True: program must've started again from middle of the game
+2021/07/09 16:38:13.08: My hole cards are: 4d, 7s
+2021/07/09 16:38:13.71: my bank ocr string at seat 1 is: E
+2021/07/09 16:38:13.71: -------
+2021/07/09 16:38:13.72: Screenshot Error: fix game disruption ocr_my_bank is not digit at seat 1
+2021/07/09 16:38:15.32: fix_game_disruption() <-- ocr_my_bank is not digit at seat 1 is running....
+2021/07/09 16:38:16.58: internet is connected
+2021/07/09 16:38:17.84: Game region refounded after fix_game_disruption()
+2021/07/09 16:38:18.03: my name ocr string at seat 1 is: 
+2021/07/09 16:38:19.37: internet is connected
+2021/07/09 16:38:19.38: I am In not by OCR
+2021/07/09 16:38:19.39: -------
+2021/07/09 16:38:19.93: my bank ocr string at seat 1 is: 29
+2021/07/09 16:38:19.93: My bank is:29
+2021/07/09 16:38:20.43: my bank ocr string at seat 1 is: 29
+2021/07/09 16:38:20.43: my name ocr string at seat 1 is: 
+2021/07/09 16:38:20.99: other players bank ocr string at seat 2 is: 139
+2021/07/09 16:38:21.00: other name ocr string at seat 2 is: 
+2021/07/09 16:38:21.53: other players bank ocr string at seat 3 is: 398
+2021/07/09 16:38:21.53: other name ocr string at seat 3 is: 
+2021/07/09 16:38:22.32: other players bank ocr string at seat 4 is: 98.5
+2021/07/09 16:38:22.32: other name ocr string at seat 4 is: 
+2021/07/09 16:38:23.12: other players bank ocr string at seat 5 is: 107

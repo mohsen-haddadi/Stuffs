@@ -55,7 +55,7 @@ def player_chips_pixel(game_position, seat): #💊
 def player_cards_pixel(game_position, seat): #💊
     # It checks if a player has cards in his hands or not, by returning True of False
     if seat == 1:
-        return pixelMatchesColor( game_position[0]+75, game_position[1]+197, (255, 255, 255), tolerance=10 ) #Cards_seat_1
+        return pixelMatchesColor( game_position[0]+76, game_position[1]+196, (255, 255, 255), tolerance=10 ) #Cards_seat_1
     if seat == 2:
         return pixelMatchesColor( game_position[0]-139, game_position[1]+136, (255, 255, 255), tolerance=10 ) #Cards_seat_2
     if seat == 3:
@@ -188,5 +188,7 @@ def button_pixel(game_position, button_name):
         x1 = pixelMatchesColor( game_position[0]+168, game_position[1]+473, (190, 195, 204), tolerance=40 )
         x2 = pixelMatchesColor( game_position[0]+156, game_position[1]+480, (255, 255, 255), tolerance=2 )
         return (x1 or x2)
+    elif button_name == 'sit_out': #💊 
+        return pixelMatchesColor( game_position[0]-256, game_position[1]+364, (26, 112, 81), tolerance=10 )
 
 

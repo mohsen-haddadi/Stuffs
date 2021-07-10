@@ -1,11 +1,10 @@
 VERSION = 1
 
 import configs as c
+from hand_history_data_base.append_to_csv import scenario
 from decision_making.rules_and_info.starting_hands import group, holdem_starting_hand_ranking
 from decision_making.rules_and_info.table_information import *
 
-def scenario(number):
-    c.scenario_list.append(number)
 
 def play_pre_flop():
 
@@ -14,7 +13,7 @@ def play_pre_flop():
 
         if c.my_seat_number == c.small_blind_seat:
             if not group('ABCD'): # pdf recommendation is group('ABCDEF')
-                if holdem_starting_hand_ranking() > 145:
+                if holdem_starting_hand_ranking(c.my_hole_cards) > 145:
                     scenario(1)
                     return 'fold'
                 else:
@@ -23,8 +22,9 @@ def play_pre_flop():
             else:
                 scenario(3)
                 return 'raise', 3.5
-
-        elif c.my_seat_number == c.big_blind_seat:
+        # as first hand if i don't wait for big blind, i have already one bigblind called.
+        # to avoid 'button fold is not visible' error, or c.last_bets_cache != None is used
+        elif c.my_seat_number == c.big_blind_seat or c.last_bets_cache[c.my_seat_number] != None:
             if early_position():
                 if group('ABCD'): # pdf recommendation is group('ABCDEF')
                     scenario(4)

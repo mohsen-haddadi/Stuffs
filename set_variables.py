@@ -297,7 +297,7 @@ def read_and_save_bets() :
     #       last_white_chips_cache , last_red_chips_cache , last_player_cards_cache , last_bets_cache,\
     #       preflop_betting_round , flop_betting_round , turn_betting_round , river_betting_round ,\
     #       preflop_stage , flop_stage , turn_stage , river_stage
-
+    shout('read_and_save_bets...')
 
     if c.preflop_stage == True and c.flop_stage == False :
         stage = "Pre_Flop"

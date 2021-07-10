@@ -31,7 +31,18 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\t
 #pytesseract.pytesseract.tesseract_cmd = r'F:\mohsen\POKER\Softwares\Installed programs\DeepMind Pokerbot\tesseract.exe'
 
 
-def pre_process_ocr_image(pil_image):
+
+#def pre_process_ocr_image(pil_image):
+#
+#    RATIO = 5
+#    zoomed_pil_image = pil_image.resize( (pil_image.size[0] * \
+#                                   RATIO, pil_image.size[1] * RATIO) 
+#                                  ,Image.ANTIALIAS)
+#    zoomed_gray_image = cv2.cvtColor(np.array(zoomed_pil_image)
+#                                     ,cv2.COLOR_BGR2GRAY)
+#    return zoomed_gray_image
+
+def pre_process_ocr_image(pil_image ,thresh_level = None):
 
     RATIO = 5
     zoomed_pil_image = pil_image.resize( (pil_image.size[0] * \
@@ -39,7 +50,12 @@ def pre_process_ocr_image(pil_image):
                                   ,Image.ANTIALIAS)
     zoomed_gray_image = cv2.cvtColor(np.array(zoomed_pil_image)
                                      ,cv2.COLOR_BGR2GRAY)
-    return zoomed_gray_image
+    # thresh make image pure black and white:
+    if thresh_level != None:
+        _, final_image = cv2.threshold(zoomed_gray_image,thresh_level,255,cv2.THRESH_BINARY)
+    else:
+        final_image = zoomed_gray_image
+    return final_image
 
 def ocr(image):
 
@@ -121,6 +137,7 @@ def download_bet_image(game_position, seat):
     elif seat == 5:
         BET_IMAGE_REGION = (game_position[0]+200, game_position[1]+50, 50, 9) #💊
     elif seat == 6:
+        #BET_IMAGE_REGION = (game_position[0]+196, game_position[1]+161, 51, 15) #💊
         BET_IMAGE_REGION = (game_position[0]+196, game_position[1]+164, 50, 9) #💊
 
     pil_image = pyautogui.screenshot( region = BET_IMAGE_REGION ) #💊
@@ -190,7 +207,11 @@ def ocr_my_bet_to_string(game_position):
 def ocr_bet_to_string(game_position, seat):
 
     pil_image = download_bet_image(game_position, seat)
-    image = pre_process_ocr_image(pil_image)
+    if seat == 6:
+        thresh_level = 50
+    else:
+        thresh_level = None
+    image = pre_process_ocr_image(pil_image, thresh_level = thresh_level)
     string = remove_blank_lines(ocr(image))
     string = replace_letters_s_o(string)
     return string
@@ -198,7 +219,7 @@ def ocr_bet_to_string(game_position, seat):
 def ocr_other_players_bank_to_string(game_position, seat): #corrected for celeb poker
     
     pil_image = download_other_players_bank_image(game_position, seat)
-    image = pre_process_ocr_image(pil_image)
+    image = pre_process_ocr_image(pil_image, thresh_level = 170)
     string = remove_blank_lines(ocr(image))
     string = replace_letters_s_o(string)
     return string
@@ -206,7 +227,7 @@ def ocr_other_players_bank_to_string(game_position, seat): #corrected for celeb 
 def ocr_my_bank_to_string(game_position, seat):
 
     pil_image = download_my_bank_image(game_position, seat)
-    image = pre_process_ocr_image(pil_image)
+    image = pre_process_ocr_image(pil_image, thresh_level = 170)
     string = remove_blank_lines(ocr(image))
     string = replace_letters_s_o(string)
     return string

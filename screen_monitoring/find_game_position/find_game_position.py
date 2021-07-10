@@ -19,7 +19,7 @@ def find_game_reference_point():
     #global game_position
 
     print('searching for game region on screen...')
-    reference_images = ['reference image', 'reference image 2', 'reference image 3']
+    reference_images = ['reference image', 'reference image 2', 'reference image 3', 'reference image 4', 'reference image 5']
     for reference_image in reference_images:
         image_path = os.path.abspath(os.path.dirname(__file__)) + '/reference image.png'
 

@@ -1,0 +1,37 @@
+2021/07/10 03:13:50.50: * bot_status == 'WAITING_FOR_FIRST_HAND' *
+2021/07/10 03:13:51.19: my bank ocr string at seat 1 is: 149
+2021/07/10 03:13:51.19: My bank is:149
+2021/07/10 03:13:51.19: Looking for cards in 'WAITING_FOR_FIRST_HAND' Section...
+2021/07/10 03:14:04.36: My cards are founded
+2021/07/10 03:14:06.08: Reseting table information
+2021/07/10 03:14:06.08: * bot_status == 'I_AM_PLAYING' *
+2021/07/10 03:14:06.10: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/10 03:14:40.40: My cards are founded
+2021/07/10 03:14:40.40: -------- New Hand Started --------
+2021/07/10 03:14:45.47: Dealer is on seat 3
+2021/07/10 03:14:45.57: Screenshot Error: just do check fold small or big blind seat have not been set
+2021/07/10 03:14:46.49: just_do_check_fold is set to True: small or big blind seat have not been set
+2021/07/10 03:14:46.59: TEST. playing_seats dictionary is: {1: False, 2: False, 3: False, 4: False, 5: False, 6: False}
+2021/07/10 03:14:46.97: doing ocr on my seat to check if it is first_round_at_preflop or not
+2021/07/10 03:14:49.24: My hole cards are: 2h, 7d
+2021/07/10 03:14:49.69: my bank ocr string at seat 1 is: 147.6
+2021/07/10 03:14:49.69: My bank is:147.6
+2021/07/10 03:14:50.08: my bank ocr string at seat 1 is: 147.6
+2021/07/10 03:14:50.08: my name ocr string at seat 1 is: 
+2021/07/10 03:14:50.54: other players bank ocr string at seat 2 is: 109.2
+2021/07/10 03:14:50.55: other name ocr string at seat 2 is: 
+2021/07/10 03:14:51.17: other players bank ocr string at seat 3 is: 121
+2021/07/10 03:14:51.17: other name ocr string at seat 3 is: 
+2021/07/10 03:14:51.24: TEST. Players Bank dictionary is: {1: 147.6, 2: 110.2, 3: 121, 4: None, 5: None, 6: None}
+2021/07/10 03:14:51.24: TEST. Players Name dictionary is: {1: None, 2: None, 3: None, 4: None, 5: None, 6: None}
+2021/07/10 03:14:51.25: Waiting for my turn at preflop_stage...
+2021/07/10 03:14:51.73: -------- Hand ended --------
+2021/07/10 03:14:56.53: Reseting table information
+2021/07/10 03:14:56.53: just_do_check_fold is reset to False
+2021/07/10 03:15:01.40: * bot_status == 'I_AM_PLAYING' *
+2021/07/10 03:15:05.48: Looking for my cards in 'I_AM_PLAYING' Section...
+2021/07/10 03:15:07.93: My cards are founded
+2021/07/10 03:15:07.93: -------- New Hand Started --------
+2021/07/10 03:15:12.95: Dealer is on seat 1
+2021/07/10 03:15:14.35: Small blind is on seat 2
+2021/07/10 03:15:26.34: Big blind is on seat 3

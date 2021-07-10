@@ -2,17 +2,15 @@ VERSION = 1
 
 import configs as c
 from iprint import shout
+from hand_history_data_base.append_to_csv import scenario
 import decision_making.rules_and_info.odds as odds
 from decision_making.rules_and_info.starting_hands import group, holdem_starting_hand_ranking
 from decision_making.rules_and_info.table_information import *
 
-def scenario(number):
-    c.scenario_list.append(number)
 
 def play_flop():
 
     win_odds = c.win_odds
-    all_possible_win_odds_list = odds.all_possible_win_odds(c.board_cards, c.my_hole_cards) 
     next_win_odds_average = c.next_win_odds_average
     draw_odds = c.draw_odds
 
